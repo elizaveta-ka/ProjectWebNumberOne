@@ -1,6 +1,8 @@
 package com.example.exampleproject.controller;
 
+import com.example.exampleproject.model.Business;
 import com.example.exampleproject.model.Product;
+import com.example.exampleproject.service.BusinessService;
 import com.example.exampleproject.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,26 +12,26 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.List;
 
 @Controller
-public class ProductController {
+public class BusinessController {
+
+    private final BusinessService businessService;
+
     private final ProductService productService;
 
+
     @Autowired
-    public ProductController(ProductService productService) {
+    public BusinessController(BusinessService businessService, ProductService productService) {
+        this.businessService = businessService;
         this.productService = productService;
     }
-    @GetMapping("/products")
+//можно вывести и продукты и бизнес вместе
+    @GetMapping("/business")
     public String findAll(Model model) {
+        List<Business> businesses = businessService.findAll();
+        System.out.println(businesses);
+        model.addAttribute("businesses", businesses);
         List<Product> products = productService.findAllProducts();
         model.addAttribute("products", products);
-        return "product-page";
+        return "business-list";
     }
-
-//    @GetMapping("/products")
-//    public String findAllPr(Model model) {
-//        List<Product> products = productService.findAllProducts();
-//        Product product = products.get(0);
-//        model.addAttribute("product", product);
-//        return "product-page";
-//    }
-
 }

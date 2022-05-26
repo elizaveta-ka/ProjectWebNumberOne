@@ -8,8 +8,11 @@ import javax.persistence.*;
 @Table(name = "Buddies")
 public class Buddy {
 
+    @OneToOne(cascade = CascadeType.ALL) //свзяь, если удалить Buddy, то login тоже будет удален
+    @JoinColumn(name = "buddy_id")
+    private BuddyLogin buddyLogin;
+
     @Id
-    @Column(name = "buddy_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int buddy_id;
     @Column(name = "first_name")
@@ -27,24 +30,12 @@ public class Buddy {
 
     }
 
-    public String toString() {
-    return "firstName: " + firstName + ", " +
-            "lastName: " + lastName + ", " +
-            "age: " + age + ", " +
-            "city: " + city;
-    }
-
-    public Buddy(int buddy_id, String firstName, String lastName, int age, String city, String avatar_img) {
-        this.buddy_id = buddy_id;
+    public Buddy(String firstName, String lastName, int age, String city, String avatar_img) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.city = city;
         this.avatar_img = avatar_img;
-    }
-
-    public int getBuddyId() {
-        return buddy_id;
     }
 
     public String getFirstName() {
@@ -67,10 +58,6 @@ public class Buddy {
         return avatar_img;
     }
 
-    public void setBuddyId(int buddyId) {
-        this.buddy_id = buddy_id;
-    }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -89,5 +76,25 @@ public class Buddy {
 
     public void setAvatar_img(String avatar_img) {
         this.avatar_img = avatar_img;
+    }
+
+    public BuddyLogin getBuddyLogin() {
+        return buddyLogin;
+    }
+
+    public void setBuddyLogin(BuddyLogin buddyLogin) {
+        this.buddyLogin = buddyLogin;
+    }
+
+    @Override
+    public String toString() {
+        return "\nBuddy{" +
+                "buddyLogin=" + buddyLogin +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", city='" + city + '\'' +
+                ", avatar_img='" + avatar_img + '\'' +
+                '}';
     }
 }
