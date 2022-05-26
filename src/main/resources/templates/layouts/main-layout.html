@@ -24,8 +24,15 @@
         </ul>
     </SideMenu>
     <article th:insert="${mainContent} ? ~{}">
-        <h1 th:text="${Product_NAME}"> Product_NAME </h1>
-        <p>Main content of Product page</p>
+        <h1 align="center" th:text="${Product_NAME}"> Product_NAME </h1>
+        <p align="center" th:text="${Cat_NAME}">Cat_NAME</p>
+        <p align="center"><img src="img/product.png" alt="Product image" align="center"></p>
+        <div align="center"><rate th:insert="${rateBlock} ? ~{}">
+        <span th:text="${Rate_P1}"> Rate_P1</span> <span th:text="${Rate_P2}"> Rate_P2</span>
+        <span th:text="${Rate_P3}"> Rate_P3</span> <span th:text="${Rate_P4}"> Rate_P4</span>
+        </rate></div>
+
+
     </article>
 </section>
 <footer th:insert="${footer} ? ~{}">
