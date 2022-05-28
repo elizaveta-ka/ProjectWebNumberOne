@@ -1,6 +1,8 @@
 package com.example.exampleproject.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "products")
@@ -17,6 +19,8 @@ public class Product {
     @Column(name = "product_img")
     private String prod_img;
 
+    @ManyToMany(mappedBy = "products")
+    private Set<Business> businesses = new HashSet<>();
     public int getProduct_id() {
         return product_id;
     }

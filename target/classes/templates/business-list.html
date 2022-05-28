@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>Тут будет страница business</p>
+<p>Можно вывести и продукты и бизнес</p>
+<h2>Products</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Category</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product : ${products}">
+        <td th:text="${product.product_id}"></td>
+        <td th:text="${product.product_name}"></td>
+        <td th:text="${product.category_id}"></td>
+    </tr>
+    </tbody>
+</table>
+<h2>Business</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Location</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="business : ${businesses}">
+        <td th:text="${business.business_id}"></td>
+        <td th:text="${business.busName}"></td>
+        <td th:text="${business.location}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
