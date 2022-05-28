@@ -5,8 +5,8 @@
 </head>
 <body>
 <form action="#" th:action="@{/buddy-update}" th:object="${buddy}" method="post">
-    <label for="id">ID</label>
-    <input readonly type="number" th:field="*{buddyId}" id="id" placeholder="ID">
+    <label for="buddy_id">ID</label>
+    <input readonly type="text" th:field="*{buddy_id}" id="buddy_id" placeholder="ID">
     <br/>
     <label for="firstName">First name</label>
     <input type="text" th:field="*{firstName}" id="firstName" placeholder="First Name">

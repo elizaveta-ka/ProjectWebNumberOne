@@ -5,7 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Buddies")
+@Table(name = "buddies")
 public class Buddy {
 
     @OneToOne(cascade = CascadeType.ALL) //свзяь, если удалить Buddy, то login тоже будет удален
@@ -13,6 +13,7 @@ public class Buddy {
     private BuddyLogin buddyLogin;
 
     @Id
+    @Column(name = "buddy_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int buddy_id;
     @Column(name = "first_name")
@@ -30,7 +31,16 @@ public class Buddy {
 
     }
 
-    public Buddy(String firstName, String lastName, int age, String city, String avatar_img) {
+    public int getBuddy_id() {
+        return buddy_id;
+    }
+
+    public void setBuddy_id(int buddy_id) {
+        this.buddy_id = buddy_id;
+    }
+
+    public Buddy(int buddy_id, String firstName, String lastName, int age, String city, String avatar_img) {
+        this.buddy_id = buddy_id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -78,18 +88,18 @@ public class Buddy {
         this.avatar_img = avatar_img;
     }
 
-    public BuddyLogin getBuddyLogin() {
-        return buddyLogin;
-    }
-
-    public void setBuddyLogin(BuddyLogin buddyLogin) {
-        this.buddyLogin = buddyLogin;
-    }
+//    public BuddyLogin getBuddyLogin() {
+//        return buddyLogin;
+//    }
+//
+//    public void setBuddyLogin(BuddyLogin buddyLogin) {
+//        this.buddyLogin = buddyLogin;
+//    }
 
     @Override
     public String toString() {
         return "\nBuddy{" +
-                "buddyLogin=" + buddyLogin +
+//                "buddyLogin=" + buddyLogin +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +

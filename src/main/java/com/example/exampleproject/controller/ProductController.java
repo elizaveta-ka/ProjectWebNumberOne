@@ -2,10 +2,12 @@ package com.example.exampleproject.controller;
 
 import com.example.exampleproject.model.Product;
 import com.example.exampleproject.service.ProductService;
+import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 

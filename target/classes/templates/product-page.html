@@ -2,36 +2,34 @@
 <html xmlns:th="http://www.thymeleaf.org"
       th:fragment="main-fragment (title, otherStaticResources, header, SideMenu, mainContent, footer)">
 <head>
-  <meta charset="UTF-8" />
-<!--  <title th:replace="${title}">Page 1 Title</title>-->
-<!--    <link rel="stylesheet" type="text/css" href="main.css" />-->
-  <link rel="stylesheet" type="text/css" th:href="@{main.css}" href="../../templates/main.css"/>
-  <!-- Other javascript, css source files -->
-<!--  <th:block th:replace="${otherStaticResources} ? ~{}"></th:block>-->
+    <meta charset="UTF-8" />
+<!--    <title th:replace="${title}">Page 1 Title</title>-->
+    <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../templates/main.css"/>
+     Other javascript, css source files
+<!--    <th:block th:replace="${otherStaticResources} ? ~{}"></th:block>-->
 </head>
 <body>
-<!--<header th:insert="${header} ? ~{}">-->
-  <h2>Booze buddy</h2>
-</header>
+<!--<header>-->
+    <h2>Booze buddy</h2>
+<!--</header>-->
 <section>
-<!--  <SideMenu th:insert="${SideMenu} ? ~{}">-->
-    <ul>
-      <li><a href="@{/}">Home</a></li>
-      <li><a href="@{/feed}">Feed</a></li>
-      <li><a href="@{/buddies}">Buddies</a></li>
-      <li><a href="@{/notifications}">Notifications</a></li>
-      <li><a href="@{/settings}">Settings</a></li>
-      <li><span style=vertical-align:bottom><a href="@{/}">Log out</a> </span></li>
-    </ul>
-<!--  </SideMenu>-->
-<!--  <article th:insert="${mainContent} ? ~{}">-->
-    <h1 th:text="${products[0]['product_name']}"> Product_NAME </h1>
-    </tr>
-    <p>Main content of Product page</p>
-<!--  </article>-->
+<!--    <SideMenu th:insert="${SideMenu} ? ~{}">-->
+        <ul>
+            <li><a href="@{/}">Home</a></li>
+            <li><a href="@{/feed}">Feed</a></li>
+            <li><a href="@{/buddies}">Buddies</a></li>
+            <li><a href="@{/notifications}">Notifications</a></li>
+            <li><a href="@{/settings}">Settings</a></li>
+            <li><span style=vertical-align:bottom><a href="@{/}">Log out</a> </span></li>
+        </ul>
+<!--    </SideMenu>-->
+<!--    <article th:insert="${mainContent} ? ~{}">-->
+        <h1 th:text="${products[0]['product_name']}"> Product_NAME </h1>
+        <p>Main content of Product page</p>
+<!--    </article>-->
 </section>
 <!--<footer th:insert="${footer} ? ~{}">-->
-  <p>All right reserved and belong to almighty Cthulhu</p>
-</footer>
+    <p>All right reserved and belong to almighty Cthulhu</p>
+<!--</footer>-->
 </body>
 </html>

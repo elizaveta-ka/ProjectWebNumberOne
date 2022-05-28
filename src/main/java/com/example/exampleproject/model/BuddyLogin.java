@@ -11,8 +11,8 @@ public class BuddyLogin {
     private Buddy buddy;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private int id;
+    @Column(name = "buddy_id")
+    private int buddy_id;
     @Column(name = "email")
     private String email;
     @Column(name = "password")
@@ -20,14 +20,14 @@ public class BuddyLogin {
 //    @Transient
 //    transient private String confirmPassword;
 
-
-    public Buddy getBuddy() {
-        return buddy;
-    }
-
-    public void setBuddy(Buddy buddy) {
-        this.buddy = buddy;
-    }
+//
+//    public Buddy getBuddy() {
+//        return buddy;
+//    }
+//
+//    public void setBuddy(Buddy buddy) {
+//        this.buddy = buddy;
+//    }
 
     public BuddyLogin() {
 
@@ -52,19 +52,19 @@ public class BuddyLogin {
         this.password = password;
     }
 
-    public int getId() {
-        return id;
+    public int getBuddyId() {
+        return buddy_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int buddy_id) {
+        this.buddy_id = buddy_id;
     }
 
     @Override
     public String toString() {
         return "\nBuddyLogin{" +
-                "buddy=" + buddy +
-                ", id=" + id +
+//                "buddy=" + buddy +
+                ", buddy_id=" + buddy_id +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';

@@ -36,6 +36,6 @@ public class BuddyLoginController {
     @PostMapping("/buddyLogin-create")
     public String createBuddyLogin(BuddyLogin buddyLogin) {
         buddyLoginService.saveBuddyLogin(buddyLogin);
-        return "redirect:/buddy-login";
+        return "redirect:/buddy";
     }
 }

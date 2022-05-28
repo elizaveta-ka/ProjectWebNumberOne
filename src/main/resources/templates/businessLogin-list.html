@@ -5,11 +5,11 @@
     <title>BuddyLogins</title>
 </head>
 <body>
-<p>Тут будет лист buddyLogins</p>
-<div th:switch="${buddyLogins}">
-    <h2 th:case="null">No buddy_Login found!</h2>
+<p>Тут будет лист businessLogins</p>
+<div th:switch="${businessLogins}">
+    <h2 th:case="null">No business_Login found!</h2>
     <div th:case="*">
-        <h2>Buddy Logins</h2>
+        <h2>Business Logins</h2>
         <table>
             <thead>
             <tr>
@@ -19,15 +19,15 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="login : ${buddyLogins}">
-                <td th:text="${login.buddyId}"></td>
+            <tr th:each="login : ${businessLogins}">
+                <td th:text="${login.id}"></td>
                 <td th:text="${login.email}"></td>
                 <td th:text="${login.password}"></td>
             </tr>
             </tbody>
         </table>
     </div>
-    <p><a href="/buddyLogin-create">Create login</a></p>
+    <p><a href="/businessLogin-create">Create login</a></p>
 </div>
 </body>
 </html>
