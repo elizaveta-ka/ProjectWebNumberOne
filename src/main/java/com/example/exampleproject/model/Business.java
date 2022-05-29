@@ -9,6 +9,14 @@ import java.util.Set;
 @Entity
 @Table(name = "business")
 public class Business {
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "business_id")
+    private BusinessProduct businessProduct;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "business_id")
+    private BusinessLogin businessLogin;
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
             name = "productList",
@@ -18,12 +26,12 @@ public class Business {
    Set<Product> products = new HashSet<>();
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "business_id")
     private int business_id;
 
     @Column(name = "bus_name")
-    private String busName;
+    private String bus_name;
 
     @Column(name = "bus_img")
     private String bus_img;
@@ -35,16 +43,24 @@ public class Business {
         super();
     }
 
-    public Business(int business_id, String busName, String bus_img, String location) {
+    public Business(Set<Product> products) {
+        this.products = products;
+    }
+
+    public Business(BusinessLogin businessLogin) {
+        this.businessLogin = businessLogin;
+    }
+
+    public Business(int business_id, String bus_name, String bus_img, String location) {
         this.business_id = business_id;
-        this.busName = busName;
+        this.bus_name = bus_name;
         this.bus_img = bus_img;
         this.location = location;
     }
-    public Business(Set<Product> products, int business_id, String busName, String bus_img, String location) {
+    public Business(Set<Product> products, int business_id, String bus_name, String bus_img, String location) {
         this.products = products;
         this.business_id = business_id;
-        this.busName = busName;
+        this.bus_name = bus_name;
         this.bus_img = bus_img;
         this.location = location;
     }
@@ -53,7 +69,7 @@ public class Business {
     }
 
     public String getBusName() {
-        return busName;
+        return bus_name;
     }
 
     public String getBus_img() {
@@ -69,7 +85,7 @@ public class Business {
     }
 
     public void setBusName(String busName) {
-        this.busName = busName;
+        this.bus_name = busName;
     }
 
     public void setBus_img(String bus_img) {
@@ -80,16 +96,19 @@ public class Business {
         this.location = location;
     }
 
-
-    public Business(Set<Product> products) {
-        this.products = products;
-    }
-
     public Set<Product> getProducts() {
         return products;
     }
 
     public void setProducts(Set<Product> products) {
         this.products = products;
+    }
+
+    public BusinessLogin getBusinessLogin() {
+        return businessLogin;
+    }
+
+    public void setBusinessLogin(BusinessLogin businessLogin) {
+        this.businessLogin = businessLogin;
     }
 }

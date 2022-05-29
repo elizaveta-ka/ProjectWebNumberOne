@@ -17,8 +17,9 @@ public class BuddyLogin {
     private String email;
     @Column(name = "password")
     private String password;
-//    @Transient
-//    transient private String confirmPassword;
+
+    @Transient
+    transient private String confirmPassword;
 
 //
 //    public Buddy getBuddy() {
