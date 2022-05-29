@@ -3,14 +3,25 @@ package com.example.exampleproject.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "buddies")
 public class Buddy {
 
-    @OneToOne(cascade = CascadeType.ALL) //свзяь, если удалить Buddy, то login тоже будет удален
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "buddy_id")
+    private Friend friend ;
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "buddy_id")
     private BuddyLogin buddyLogin;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "buddy_id")
+    private Wishlist wishlist ;
+
+    @OneToMany(mappedBy = "buddy", fetch = FetchType.EAGER)
+    private Collection<Review> authors;
 
     @Id
     @Column(name = "buddy_id")
@@ -87,7 +98,7 @@ public class Buddy {
     public void setAvatar_img(String avatar_img) {
         this.avatar_img = avatar_img;
     }
-
+//
 //    public BuddyLogin getBuddyLogin() {
 //        return buddyLogin;
 //    }

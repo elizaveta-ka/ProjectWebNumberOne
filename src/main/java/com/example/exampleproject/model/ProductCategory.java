@@ -5,6 +5,11 @@ import javax.persistence.*;
 @Entity
 @Table
 public class ProductCategory {
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id")
+    private Suggestion suggestion;
+
     @Id
     @Column(name = "category_id")
     @GeneratedValue(strategy = GenerationType.AUTO)

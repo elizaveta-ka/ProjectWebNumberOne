@@ -1,13 +1,20 @@
 package com.example.exampleproject.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table
 public class Review {
+
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "buddy_id", insertable = false, updatable = false)
+    private Buddy buddy;
+
+    @OneToOne (optional=false, mappedBy="review")
+    private ProductReview productReview;
+
+    @OneToOne (optional=false, mappedBy="review")
+    private BusinessReview businessReview;
     @Id
     @Column(name = "review_id")
     private int review_id;
@@ -20,6 +27,14 @@ public class Review {
 
     @Column(name = "businessReview_id")
     private int businessReview_id;
+
+//    public Buddy getBuddy() {
+//        return buddy;
+//    }
+//
+//    public void setBuddy(Buddy buddy) {
+//        this.buddy = buddy;
+//    }
 
     public Review() {}
 

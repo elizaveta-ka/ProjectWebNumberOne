@@ -5,6 +5,11 @@ import javax.persistence.*;
 @Entity
 @Table
 public class ProductReview {
+
+    @OneToOne (optional=false, cascade=CascadeType.ALL)
+    @JoinColumn (name="review_id")
+    private Review review;
+
     @Id
     @Column(name = "productReview_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
