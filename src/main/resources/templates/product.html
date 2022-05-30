@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--      th:fragment="main-fragment (title, otherStaticResources, header, SideMenu, mainContent, footer)">-->
+<head>
+    <meta charset="UTF-8" />
+    <title th:replace="${title}">Product Page</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../static/main.css"/>
+</head>
+<header th:insert="${header}">
+    <h2>Booze buddy</h2>
+
+</header>
+<body id="article">
+<section>
+    <SideMenu th:insert="${SideMenu} ? ~{}">
+        <li><a href="@{/}">Home</a></li>
+        <li><a href="@{/feed}">Feed</a></li>
+        <li><a href="@{/buddies}">Buddies</a></li>
+        <li><a href="@{/notifications}">Notifications</a></li>
+        <li><a href="@{/settings}">Settings</a></li>
+        <li><span style=vertical-align:bottom><a href="@{/}">Log out</a> </span></li>
+    </SideMenu>
+<article>
+    <div id="product_block">
+        <div th:fragment="product">
+            <h1 th:text="${Product_NAME}"> Product_NAME </h1>
+            <p th:text="${Cat_NAME}">Cat_NAME</p>
+
+            <div><div id="rating">
+                <span th:text="${Rate_P1}"> Rate_P1</span> <span th:text="${Rate_P2}"> Rate_P2</span><br>
+                <span th:text="${Rate_P3}"> Rate_P3</span> <span th:text="${Rate_P4}"> Rate_P4</span></div>
+                <br>
+                <p id="product_img" ><img src="img/product.png" alt="Product image"></p>
+            </div>
+        </div>
+    </div><br>
+<div th:insert="fragments/main-fragments :: review_block"></div><br>
+    <p th:text="${Review_title}"> Review_title</p><br>
+    <div id="rating_pr">
+        <span th:text="${Rate_P1}"> Rate_P1</span> <span th:text="${Rate_P2}"> Rate_P2</span><br>
+        <span th:text="${Rate_P3}"> Rate_P3</span> <span th:text="${Rate_P4}"> Rate_P4</span></div>
+    <p id="reviewer_img"><img src="img/reviewer_img.png" alt="reviewer_img"></p><br>
+
+    <p th:text="${Review}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus scelerisque ipsum nec mauris dapibus gravida. Nam felis est, ornare sit amet auctor in, malesuada sit amet massa. Pellentesque eget efficitur lorem. Nunc lobortis erat a orci blandit, et consequat diam molestie. Etiam id tempor felis, sit amet egestas sem. Suspendisse potenti. Morbi tristique tincidunt leo in ornare. Aenean sodales leo id dapibus posuere.</p>
+
+<div id="business_block">
+    <p align="center" id="business_img"><img src="img/business_img.png" alt="business_img"></p><br>
+    <div>
+        <p align="right"> <button id="booking">Book a table</button></p>
+        <p th:text="${Business_NAME}, ${Business_TYPE}">Business_NAME, Business_TYPE</p>
+        <p th:text="${Distance}">2 km away</p>
+    </div>
+</div><br>
+</article><br>
+</section>
+</body>
+<footer th:insert="${footer}">
+    <p>All right reserved and belong to almighty Cthulhu</p>
+</footer>
+</html>
