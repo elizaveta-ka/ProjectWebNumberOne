@@ -31,11 +31,38 @@ public class Review {
 
     public Review() {}
 
-    public Review(int review_id, int buddy_id, int productReview_id, int businessReview_id) {
+    public Review(Buddy buddy, ProductReview productReview, BusinessReview businessReview, int review_id, int buddy_id, int productReview_id, int businessReview_id) {
+        this.buddy = buddy;
+        this.productReview = productReview;
+        this.businessReview = businessReview;
         this.review_id = review_id;
         this.buddy_id = buddy_id;
         this.productReview_id = productReview_id;
         this.businessReview_id = businessReview_id;
+    }
+
+    public Buddy getBuddy() {
+        return buddy;
+    }
+
+    public void setBuddy(Buddy buddy) {
+        this.buddy = buddy;
+    }
+
+    public ProductReview getProductReview() {
+        return productReview;
+    }
+
+    public void setProductReview(ProductReview productReview) {
+        this.productReview = productReview;
+    }
+
+    public BusinessReview getBusinessReview() {
+        return businessReview;
+    }
+
+    public void setBusinessReview(BusinessReview businessReview) {
+        this.businessReview = businessReview;
     }
 
     public int getReview_id() {

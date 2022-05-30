@@ -1,8 +1,7 @@
 package com.example.exampleproject.controller;
 
-import com.example.exampleproject.model.Product;
 import com.example.exampleproject.model.ProductReview;
-import com.example.exampleproject.service.ProductReviewService;
+import com.example.exampleproject.repository.ProductReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,16 +12,16 @@ import java.util.List;
 @Controller
 public class ProductReviewController {
 
-    private ProductReviewService productReviewService;
+    private ProductReviewRepository productReviewRepository;
 
     @Autowired
-    public ProductReviewController(ProductReviewService productReviewService) {
-        this.productReviewService = productReviewService;
+    public ProductReviewController(ProductReviewRepository productReviewRepository) {
+        this.productReviewRepository = productReviewRepository;
     }
 
     @GetMapping("/productReview")
     public String findAll(Model model) {
-        List<ProductReview> productReviews = productReviewService.findAllProducts();
+        List<ProductReview> productReviews = productReviewRepository.findAll();
         model.addAttribute("productReviews", productReviews);
         return "product-review";
     }
