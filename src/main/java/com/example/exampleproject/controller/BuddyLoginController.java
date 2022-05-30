@@ -3,6 +3,7 @@ package com.example.exampleproject.controller;
 import com.example.exampleproject.model.Buddy;
 import com.example.exampleproject.model.BuddyLogin;
 import com.example.exampleproject.service.BuddyLoginService;
+import com.example.exampleproject.service.BuddyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,9 +16,12 @@ import java.util.List;
 public class BuddyLoginController {
 
     private final BuddyLoginService buddyLoginService;
+
+    private final BuddyService buddyService;
     @Autowired
-    public BuddyLoginController(BuddyLoginService buddyLoginService) {
+    public BuddyLoginController(BuddyLoginService buddyLoginService, BuddyService buddyService) {
         this.buddyLoginService = buddyLoginService;
+        this.buddyService = buddyService;
     }
 
     @GetMapping("/buddy-login")
@@ -28,14 +32,14 @@ public class BuddyLoginController {
     }
 
     @GetMapping("/buddyLogin-create")
-    public String createBuddyLoginForm(BuddyLogin buddyLogin) {
+    public String createBuddyLoginForm(BuddyLogin buddyLogin, Buddy buddy) {
 
         return "buddyLogin-create";
     }
 
     @PostMapping("/buddyLogin-create")
-    public String createBuddyLogin(BuddyLogin buddyLogin) {
-        buddyLoginService.saveBuddyLogin(buddyLogin);
+    public String createBuddyLogin(Buddy buddy) {
+        buddyService.saveBuddy(buddy);
         return "redirect:/buddy";
     }
 }

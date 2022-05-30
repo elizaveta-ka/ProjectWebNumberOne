@@ -10,9 +10,13 @@ public class ProductCategory {
     @JoinColumn(name = "category_id")
     private Suggestion suggestion;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id")
+    private Product product;
+
     @Id
-    @Column(name = "category_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "category_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int category_id;
 
     @Column(name = "category_name")

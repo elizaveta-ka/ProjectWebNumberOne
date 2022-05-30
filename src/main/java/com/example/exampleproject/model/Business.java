@@ -1,8 +1,11 @@
 package com.example.exampleproject.model;
 
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,15 +22,19 @@ public class Business {
     private BusinessLogin businessLogin;
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
-            name = "productList",
+            name = "businessProduct",
             joinColumns = { @JoinColumn(name = "business_id") },
             inverseJoinColumns = { @JoinColumn(name = "product_id") }
     )
    Set<Product> products = new HashSet<>();
 
+    @OneToMany (mappedBy="business", fetch=FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
+    private Collection<BusinessReview> businessReviews;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "business_id")
+    @Column(name = "business_id", nullable = false)
     private int business_id;
 
     @Column(name = "bus_name")

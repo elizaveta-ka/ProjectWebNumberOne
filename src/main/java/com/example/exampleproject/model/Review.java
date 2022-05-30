@@ -16,7 +16,8 @@ public class Review {
     @OneToOne (optional=false, mappedBy="review")
     private BusinessReview businessReview;
     @Id
-    @Column(name = "review_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "review_id", nullable = false)
     private int review_id;
 
     @Column(name = "buddy_id")
@@ -27,14 +28,6 @@ public class Review {
 
     @Column(name = "businessReview_id")
     private int businessReview_id;
-
-//    public Buddy getBuddy() {
-//        return buddy;
-//    }
-//
-//    public void setBuddy(Buddy buddy) {
-//        this.buddy = buddy;
-//    }
 
     public Review() {}
 

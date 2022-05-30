@@ -10,8 +10,8 @@ public class Suggestion {
     private ProductCategory productCategory;
 
     @Id
-    @Column(name = "food_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "food_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int food_id;
 
     @Column(name = "food_name")

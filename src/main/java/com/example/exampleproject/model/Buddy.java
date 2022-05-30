@@ -1,9 +1,12 @@
 package com.example.exampleproject.model;
 
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "buddies")
@@ -21,11 +24,24 @@ public class Buddy {
     private Wishlist wishlist ;
 
     @OneToMany(mappedBy = "buddy", fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
     private Collection<Review> authors;
 
+    @ManyToMany
+    @JoinTable (name="wishlist",
+            joinColumns=@JoinColumn (name="buddy_id"),
+            inverseJoinColumns=@JoinColumn(name="product_id"))
+    private List<Product> products;
+
+    @ManyToMany
+    @JoinTable (name="friend",
+            joinColumns=@JoinColumn (name="buddy_id"),
+            inverseJoinColumns=@JoinColumn(name="friend_id"))
+    private List<Friend> friends;
+
     @Id
-    @Column(name = "buddy_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "buddy_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int buddy_id;
     @Column(name = "first_name")
     private String firstName;

@@ -9,9 +9,14 @@ public class BusinessReview {
     @OneToOne (optional=false, cascade=CascadeType.ALL)
     @JoinColumn (name="review_id")
     private Review review;
+
+    @ManyToOne (optional=false, cascade=CascadeType.ALL)
+    @JoinColumn (name="business_id", insertable = false, updatable = false)
+    private Business business;
+
     @Id
-    @Column(name = "businessReview_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "businessReview_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int businessReview_id;
 
     @Column(name = "rateB1")

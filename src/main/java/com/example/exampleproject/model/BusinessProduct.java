@@ -9,7 +9,11 @@ public class BusinessProduct {
     @OneToOne(mappedBy = "businessProduct", cascade = CascadeType.ALL)
     private Business business;
 
+    @OneToOne(mappedBy = "businessProduct", cascade = CascadeType.ALL)
+    private Product product;
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "business_id")
     private int bussiness_id;
 
