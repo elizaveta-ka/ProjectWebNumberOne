@@ -23,6 +23,10 @@ public class ProductController {
         model.addAttribute("products", products);
         return "product-list";
     }
+    @GetMapping("/fragments")
+    public String getHome(){
+        return "main-fragments.html";
+    }
 
 
 }

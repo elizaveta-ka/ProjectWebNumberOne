@@ -71,6 +71,9 @@ footer {
 #rating{
     float: left;
 }
+#rating_pr{
+    float: left;
+}
 #reviewer_img{
     float: right;
 }
