@@ -1,5 +1,8 @@
 package com.example.exampleproject.model;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,10 +12,14 @@ public class ProductReview {
     @OneToOne (optional=false, cascade=CascadeType.ALL)
     @JoinColumn (name="review_id")
     private Review review;
+    @ManyToOne (optional=false, cascade=CascadeType.ALL)
+    @JoinColumn (name="product_id", insertable = false, updatable = false)
+    private Product product;
+
 
     @Id
-    @Column(name = "productReview_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "productReview_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int productReview_id;
 
     @Column(name = "rateP1")
@@ -33,14 +40,11 @@ public class ProductReview {
     @Column(name = "product_id")
     private int product_id;
 
-    @Column(name = "business_id")
-    private int business_id;
-
     public ProductReview(){
 
     }
 
-    public ProductReview(int productReview_id, int rateP1, int rateP2, int rateP3, String reviewProduct, String photo, int product_id, int business_id) {
+    public ProductReview(int productReview_id, int rateP1, int rateP2, int rateP3, String reviewProduct, String photo, int product_id) {
         this.productReview_id = productReview_id;
         this.rateP1 = rateP1;
         this.rateP2 = rateP2;
@@ -48,7 +52,6 @@ public class ProductReview {
         this.reviewProduct = reviewProduct;
         this.photo = photo;
         this.product_id = product_id;
-        this.business_id = business_id;
     }
 
     public int getProductReview_id() {
@@ -79,10 +82,6 @@ public class ProductReview {
         return product_id;
     }
 
-    public int getBusiness_id() {
-        return business_id;
-    }
-
     public void setProductReview_id(int productReview_id) {
         this.productReview_id = productReview_id;
     }
@@ -111,7 +110,4 @@ public class ProductReview {
         this.product_id = product_id;
     }
 
-    public void setBusiness_id(int business_id) {
-        this.business_id = business_id;
-    }
 }

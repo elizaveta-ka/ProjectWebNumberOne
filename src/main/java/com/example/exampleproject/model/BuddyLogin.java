@@ -10,8 +10,8 @@ public class BuddyLogin {
     @OneToOne(mappedBy = "buddyLogin", cascade = CascadeType.ALL)
     private Buddy buddy;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "buddy_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "buddy_id", nullable = false)
     private int buddy_id;
     @Column(name = "email")
     private String email;

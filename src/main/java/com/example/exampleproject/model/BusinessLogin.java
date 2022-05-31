@@ -12,7 +12,8 @@ public class BusinessLogin {
     private Business business;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "business_id", nullable = false)
     private int business_id;
 
     @Column(name = "email")

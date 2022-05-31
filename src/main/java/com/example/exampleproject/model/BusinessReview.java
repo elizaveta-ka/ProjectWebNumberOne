@@ -9,9 +9,14 @@ public class BusinessReview {
     @OneToOne (optional=false, cascade=CascadeType.ALL)
     @JoinColumn (name="review_id")
     private Review review;
+
+    @ManyToOne (optional=false, cascade=CascadeType.ALL)
+    @JoinColumn (name="business_id", insertable = false, updatable = false)
+    private Business business;
+
     @Id
-    @Column(name = "businessReview_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "businessReview_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int businessReview_id;
 
     @Column(name = "rateB1")
@@ -31,6 +36,20 @@ public class BusinessReview {
 
     @Column(name = "business_id")
     private int business_id;
+
+    @Override
+    public String toString() {
+        return "BusinessReview{" +
+                "review=" + review +
+                ", businessReview_id=" + businessReview_id +
+                ", rateB1=" + rateB1 +
+                ", rateB2=" + rateB2 +
+                ", rateB3=" + rateB3 +
+                ", reviewB='" + reviewB + '\'' +
+                ", photo='" + photo + '\'' +
+                ", business_id=" + business_id +
+                '}';
+    }
 
     public BusinessReview() {
     }

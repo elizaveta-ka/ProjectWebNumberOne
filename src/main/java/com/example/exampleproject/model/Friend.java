@@ -1,6 +1,11 @@
 package com.example.exampleproject.model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table
@@ -8,8 +13,16 @@ public class Friend {
 
     @OneToOne(mappedBy = "friend", cascade = CascadeType.ALL)
     private Buddy buddy;
+
+    @ManyToMany
+    @JoinTable(name="friend",
+            joinColumns=@JoinColumn(name="friend_id"),
+            inverseJoinColumns=@JoinColumn(name="buddy_id"))
+    private List<Buddy> buddies;
+
     @Id
-    @Column(name = "buddy_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "buddy_id", nullable = false)
     private int buddy_id;
     @Column(name = "friend_id")
     private int friend_id;

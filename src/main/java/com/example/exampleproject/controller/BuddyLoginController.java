@@ -2,7 +2,8 @@ package com.example.exampleproject.controller;
 
 import com.example.exampleproject.model.Buddy;
 import com.example.exampleproject.model.BuddyLogin;
-import com.example.exampleproject.service.BuddyLoginService;
+import com.example.exampleproject.repository.BuddyLoginRep;
+import com.example.exampleproject.repository.BuddyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,28 +15,31 @@ import java.util.List;
 @Controller
 public class BuddyLoginController {
 
-    private final BuddyLoginService buddyLoginService;
+    private final BuddyLoginRep buddyLoginRep;
+
+    private final BuddyRepository buddyRepository;
     @Autowired
-    public BuddyLoginController(BuddyLoginService buddyLoginService) {
-        this.buddyLoginService = buddyLoginService;
+    public BuddyLoginController(BuddyLoginRep buddyLoginRep, BuddyRepository buddyRepository) {
+        this.buddyLoginRep = buddyLoginRep;
+        this.buddyRepository = buddyRepository;
     }
 
     @GetMapping("/buddy-login")
     public String findAll(Model model) {
-        List<BuddyLogin> buddyLogins = buddyLoginService.findAll();
+        List<BuddyLogin> buddyLogins = buddyLoginRep.findAll();
         model.addAttribute("buddyLogins", buddyLogins);
         return "buddyLogins-list";
     }
 
     @GetMapping("/buddyLogin-create")
-    public String createBuddyLoginForm(BuddyLogin buddyLogin) {
+    public String createBuddyLoginForm(BuddyLogin buddyLogin, Buddy buddy) {
 
         return "buddyLogin-create";
     }
 
     @PostMapping("/buddyLogin-create")
-    public String createBuddyLogin(BuddyLogin buddyLogin) {
-        buddyLoginService.saveBuddyLogin(buddyLogin);
+    public String createBuddyLogin(Buddy buddy) {
+        buddyRepository.save(buddy);
         return "redirect:/buddy";
     }
 }

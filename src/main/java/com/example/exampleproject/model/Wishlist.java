@@ -8,8 +8,12 @@ public class Wishlist {
 
     @OneToOne(mappedBy = "wishlist", cascade = CascadeType.ALL)
     private Buddy buddy;
+
+    @OneToOne(mappedBy = "wishlist", cascade = CascadeType.ALL)
+    private Product product;
     @Id
-    @Column(name = "buddy_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "buddy_id", nullable = false)
     private int buddy_id;
 
     @Column(name = "product_id")
