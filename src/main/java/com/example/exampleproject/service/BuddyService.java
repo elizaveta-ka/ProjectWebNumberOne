@@ -30,4 +30,8 @@ public class BuddyService {
     public Buddy findById(int id) {
         return buddyRepository.getOne(id);
     }
+
+    public void deleteById(int id) {
+        buddyRepository.deleteById(id);
+    }
 }
