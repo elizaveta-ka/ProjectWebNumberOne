@@ -15,11 +15,27 @@
     <description>ExampleProject</description>
     <properties>
         <java.version>17</java.version>
+        <webflow-version>2.4.1.RELEASE</webflow-version>
     </properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.webflow</groupId>
+            <artifactId>spring-faces</artifactId>
+            <version>${webflow-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.webflow</groupId>
+            <artifactId>spring-js</artifactId>
+            <version>${webflow-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.webflow</groupId>
+            <artifactId>spring-webflow</artifactId>
+            <version>${webflow-version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
