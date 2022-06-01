@@ -28,19 +28,11 @@ public class ProductController {
         List<ProductCategory> productCategories = productCategoryRepository.findAll();
         model.addAttribute("products", products);
         model.addAttribute("productCategories", productCategories);
-        return "product-list";
+        return "product";
     }
     @GetMapping("/fragments")
     public String getHome(){
         return "main-fragments.html";
     }
-
-//    @GetMapping("/products")
-//    public String findAllPr(Model model) {
-//        List<Product> products = productService.findAllProducts();
-//        Product product = products.get(0);
-//        model.addAttribute("product", product);
-//        return "product-page";
-//    }
 
 }

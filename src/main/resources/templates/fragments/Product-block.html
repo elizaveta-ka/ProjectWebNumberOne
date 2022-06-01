@@ -6,8 +6,8 @@
 </head>
 <body>
 <div th:fragment="product">
-    <h1 th:text="${Product_NAME}"> Product_NAME </h1>
-    <p th:text="${Cat_NAME}">Cat_NAME</p>
+    <h1 th:text="${productName}"> Product_NAME </h1>
+    <p th:text="${'Category name'}">Cat_NAME</p>
     <p align="center"><img src="img/product.png" alt="Product image"></p>
     <div><rate th:insert="${rateBlock} ? ~{}">
     </rate></div>
