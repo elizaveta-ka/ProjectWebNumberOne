@@ -30,6 +30,10 @@ public class ProductController {
         model.addAttribute("productCategories", productCategories);
         return "product-list";
     }
+    @GetMapping("/fragments")
+    public String getHome(){
+        return "main-fragments.html";
+    }
 
 //    @GetMapping("/products")
 //    public String findAllPr(Model model) {

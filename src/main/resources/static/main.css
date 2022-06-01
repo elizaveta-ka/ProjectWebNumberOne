@@ -61,12 +61,14 @@ footer {
     height: 30%; /* Высота слоя в пикселах */
     left: 40%; /* Положение слоя от левого края */
     top: 50%; /* Положение слоя от верхнего края */
-    margin-top: 15px;	/* Отступ сверху */
+    margin-top: 15px;  /* Отступ сверху */
     box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
     background-color: #ffffff;
     border: solid 1px; /* Параметры рамки вокруг */
     padding: 10px; /* Поля вокруг текста */
     overflow: auto; /* Добавление полосы прокрутки */
+    width: 40%;
+    margin-right: 30%;
 }
 #rating{
     float: left;
@@ -89,6 +91,8 @@ footer {
     height: 30%;
     left: 40%;
     align: bottom;
+    width: 40%;
+    margin-right: 30%;
 }
 #booking{
     position: relative;
@@ -105,6 +109,8 @@ footer {
     box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
     height: 30%;
     left: 40%;
+    width: 40%;
+    margin-right: 30%;
 }
 #product_img{
     width: 40%;
