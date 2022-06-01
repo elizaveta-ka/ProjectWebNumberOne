@@ -3,8 +3,10 @@
 <!--      th:fragment="main-fragment (title, otherStaticResources, header, SideMenu, mainContent, footer)">-->
 <head>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
-    <title>Product Page</title>
+    <title th:replace="${title}">Product Page</title>
     <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../../static/main.css"/>
+    <title>Product Page</title>
+
 </head>
 <header>
     <h2>Booze buddy</h2>
@@ -27,8 +29,8 @@
             <p th:text="${products[0]['productCategory']['categoryName']}">Category_NAME</p>
 
             <div><div id="rating">
-                <span th:text="${rateP1}"> Rate_P1</span> <span th:text="${rateP2}"> Rate_P2</span><br>
-                <span th:text="${rateP3}"> Rate_P3</span> <span th:text="${rateP4}"> Rate_P4</span></div>
+                <span th:text="${rateP1}"> Rate_P1</span> <span th:text="${rateP1}"> Rate_P2</span><br>
+                <span th:text="${rateP1}"> Rate_P3</span> <span th:text="${rateP1}"> Rate_P4</span></div>
                 <br>
                 <p id="product_img" ><img src="layouts/img/product.png" alt="Product image"></p>
             </div>

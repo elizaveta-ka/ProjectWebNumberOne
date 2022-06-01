@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
@@ -59,4 +60,46 @@
             </tbody>
         </table>
 </body>
+=======
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../../static/main.css"/>
+    <title>Product List</title>
+</head>
+<header>
+  <h2>Booze buddy</h2>
+
+</header>
+<body>
+<section>
+<SideMenu id="SideMenu">
+  <li><a href="@{/}">Home</a></li>
+  <li><a href="@{/feed}">Feed</a></li>
+  <li><a href="@{/buddies}">Buddies</a></li>
+  <li><a href="@{/notifications}">Notifications</a></li>
+  <li><a href="@{/settings}">Settings</a></li>
+  <li><span style=vertical-align:bottom><a href="@{/}">Log out</a> </span></li>
+</SideMenu>
+<article>
+  <div id="product_block" th:each = "product : ${products}">
+
+      <h1 th:text="${product.productName}"> productName </h1>
+      <p th:text="${product.categoryId}">categoryId</p>
+
+      <div><div id="rating">
+        <span th:text="${Rate_P1}"> Rate_P1</span> <span th:text="${Rate_P2}"> Rate_P2</span><br>
+        <span th:text="${Rate_P3}"> Rate_P3</span> <span th:text="${Rate_P4}"> Rate_P4</span></div>
+        <br>
+        <p id="product_img"><img src="*{'data:image/png;base64, '+image}" alt="product_img"></p>
+      </div>
+
+  </div><br>
+  </article><br>
+    </section>
+</body>
+<footer>
+  <p>All right reserved and belong to almighty Cthulhu</p>
+</footer>
+>>>>>>> 26cb4bb0c980898ca82e4ee3a4bf32533be28cb8
 </html>
