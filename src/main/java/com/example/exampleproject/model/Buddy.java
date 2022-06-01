@@ -14,18 +14,19 @@ public class Buddy {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "buddy_id")
-    private Friend friend ;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "buddy_id")
     private BuddyLogin buddyLogin;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "buddy_id")
-    private Wishlist wishlist ;
 
     @OneToMany(mappedBy = "buddy", fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
-    private Collection<Review> authors;
+    private Collection<BusinessReview> businessAuthors;
+
+    @OneToMany(mappedBy = "buddy", fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
+    private Collection<ProductReview> productAuthors;
+
+    @OneToMany(mappedBy = "buddy", fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
+    private Collection<Friend> friends;
 
     @ManyToMany
     @JoinTable (name="wishlist",
@@ -33,16 +34,10 @@ public class Buddy {
             inverseJoinColumns=@JoinColumn(name="product_id"))
     private List<Product> products;
 
-    @ManyToMany
-    @JoinTable (name="friend",
-            joinColumns=@JoinColumn (name="buddy_id"),
-            inverseJoinColumns=@JoinColumn(name="friend_id"))
-    private List<Friend> friends;
-
     @Id
     @Column(name = "buddy_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int buddy_id;
+    private int buddyId;
     @Column(name = "first_name")
     private String firstName;
     @Column(name = "last_name")
@@ -52,27 +47,88 @@ public class Buddy {
     @Column(name = "city")
     private String city;
     @Column(name = "avatar_img")
-    private String avatar_img;
+    private String avatarImg;
 
     public Buddy() {
-
     }
 
-    public int getBuddy_id() {
-        return buddy_id;
-    }
-
-    public void setBuddy_id(int buddy_id) {
-        this.buddy_id = buddy_id;
-    }
-
-    public Buddy(int buddy_id, String firstName, String lastName, int age, String city, String avatar_img) {
-        this.buddy_id = buddy_id;
+    public Buddy(Collection friends, String firstName, String lastName, int age, String city, String avatarImg) {
+        this.friends = friends;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.city = city;
-        this.avatar_img = avatar_img;
+        this.avatarImg = avatarImg;
+    }
+
+    public Buddy(Collection friends, BuddyLogin buddyLogin, Collection<BusinessReview> businessAuthors, List<Product> products, int buddyId, String firstName, String lastName, int age, String city, String avatarImg) {
+        this.friends = friends;
+        this.buddyLogin = buddyLogin;
+        this.businessAuthors = businessAuthors;
+        this.products = products;
+        this.buddyId = buddyId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.city = city;
+        this.avatarImg = avatarImg;
+    }
+
+    public Buddy(int buddyId, String firstName, String lastName, int age, String city, String avatarImg) {
+        this.buddyId = buddyId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.city = city;
+        this.avatarImg = avatarImg;
+    }
+
+    public void setFriends(Collection<Friend> friends) {
+        this.friends = friends;
+    }
+
+    public Collection<Friend> getFriends() {
+        return friends;
+    }
+
+    public void setFriend(Collection friends) {
+        this.friends = friends;
+    }
+
+    public BuddyLogin getBuddyLogin() {
+        return buddyLogin;
+    }
+
+    public void setBuddyLogin(BuddyLogin buddyLogin) {
+        this.buddyLogin = buddyLogin;
+    }
+
+    public Collection<BusinessReview> getBusinessAuthors() {
+        return businessAuthors;
+    }
+
+    public void setBusinessAuthors(Collection<BusinessReview> businessAuthors) {
+        this.businessAuthors = businessAuthors;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    public int getBuddyId() {
+        return buddyId;
+    }
+
+    public void setBuddyId(int buddyId) {
+        this.buddyId = buddyId;
+    }
+
+    public void setAvatarImg(String avatarImg) {
+        this.avatarImg = avatarImg;
     }
 
     public String getFirstName() {
@@ -91,8 +147,8 @@ public class Buddy {
         return city;
     }
 
-    public String getAvatar_img() {
-        return avatar_img;
+    public String getAvatarImg() {
+        return avatarImg;
     }
 
     public void setFirstName(String firstName) {
@@ -111,27 +167,32 @@ public class Buddy {
         this.city = city;
     }
 
-    public void setAvatar_img(String avatar_img) {
-        this.avatar_img = avatar_img;
+    public void setAvatar_img(String avatarImg) {
+        this.avatarImg = avatarImg;
     }
-//
-//    public BuddyLogin getBuddyLogin() {
-//        return buddyLogin;
-//    }
-//
-//    public void setBuddyLogin(BuddyLogin buddyLogin) {
-//        this.buddyLogin = buddyLogin;
-//    }
+
+    public Collection<ProductReview> getProductAuthors() {
+        return productAuthors;
+    }
+
+    public void setProductAuthors(Collection<ProductReview> productAuthors) {
+        this.productAuthors = productAuthors;
+    }
 
     @Override
     public String toString() {
-        return "\nBuddy{" +
-//                "buddyLogin=" + buddyLogin +
+        return "Buddy{" +
+                "buddyLogin=" + buddyLogin +
+                ", businessAuthors=" + businessAuthors +
+                ", productAuthors=" + productAuthors +
+                ", friends=" + friends +
+                ", products=" + products +
+                ", buddyId=" + buddyId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
                 ", city='" + city + '\'' +
-                ", avatar_img='" + avatar_img + '\'' +
+                ", avatarImg='" + avatarImg + '\'' +
                 '}';
     }
 }

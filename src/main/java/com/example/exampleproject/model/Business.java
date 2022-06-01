@@ -16,10 +16,6 @@ public class Business {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "business_id")
-    private BusinessProduct businessProduct;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "business_id")
     private BusinessLogin businessLogin;
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
@@ -36,13 +32,13 @@ public class Business {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "business_id", nullable = false)
-    private int business_id;
+    private int businessId;
 
     @Column(name = "bus_name")
     private String busName;
 
     @Column(name = "bus_img")
-    private String bus_img;
+    private String busImg;
 
     @Column(name = "location")
     private String location;
@@ -51,72 +47,34 @@ public class Business {
         super();
     }
 
-    public Business(BusinessProduct businessProduct, BusinessLogin businessLogin, List<Product> products, Collection<BusinessReview> businessReviews, int business_id, String busName, String bus_img, String location) {
-        this.businessProduct = businessProduct;
+    public Business(int businessId, String busName, String busImg, String location) {
+        this.businessId = businessId;
+        this.busName = busName;
+        this.busImg = busImg;
+        this.location = location;
+    }
+
+    public Business(BusinessLogin businessLogin, List<Product> products, Collection<BusinessReview> businessReviews, int businessId, String busName, String busImg, String location) {
         this.businessLogin = businessLogin;
         this.products = products;
         this.businessReviews = businessReviews;
-        this.business_id = business_id;
+        this.businessId = businessId;
         this.busName = busName;
-        this.bus_img = bus_img;
+        this.busImg = busImg;
         this.location = location;
     }
 
-    public Business(BusinessLogin businessLogin) {
-        this.businessLogin = businessLogin;
-    }
-
-    public Business(int business_id, String busName, String bus_img, String location) {
-        this.business_id = business_id;
-        this.busName = busName;
-        this.bus_img = bus_img;
-        this.location = location;
-    }
-    public Business(List<Product> products, int business_id, String busName, String bus_img, String location) {
-        this.products = products;
-        this.business_id = business_id;
-        this.busName = busName;
-        this.bus_img = bus_img;
-        this.location = location;
-    }
-    public int getBusiness_id() {
-        return business_id;
-    }
-
-    public String getBusName() {
-        return busName;
-    }
-
-    public String getBus_img() {
-        return bus_img;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setBusiness_id(int business_id) {
-        this.business_id = business_id;
-    }
-
-    public void setBusName(String busName) {
-        this.busName = busName;
-    }
-
-    public void setBus_img(String bus_img) {
-        this.bus_img = bus_img;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    @Override
+    public String toString() {
+        return "Business{" +
+                "businessLogin=" + businessLogin +
+                ", products=" + products +
+                ", businessReviews=" + businessReviews +
+                ", businessId=" + businessId +
+                ", busName='" + busName + '\'' +
+                ", busImg='" + busImg + '\'' +
+                ", location='" + location + '\'' +
+                '}';
     }
 
     public BusinessLogin getBusinessLogin() {
@@ -127,26 +85,12 @@ public class Business {
         this.businessLogin = businessLogin;
     }
 
-    @Override
-    public String toString() {
-        return "Business{" +
-                "businessProduct=" + businessProduct +
-                ", businessLogin=" + businessLogin +
-                ", products=" + products +
-                ", businessReviews=" + businessReviews +
-                ", business_id=" + business_id +
-                ", busName='" + busName + '\'' +
-                ", bus_img='" + bus_img + '\'' +
-                ", location='" + location + '\'' +
-                '}';
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public BusinessProduct getBusinessProduct() {
-        return businessProduct;
-    }
-
-    public void setBusinessProduct(BusinessProduct businessProduct) {
-        this.businessProduct = businessProduct;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     public Collection<BusinessReview> getBusinessReviews() {
@@ -155,5 +99,37 @@ public class Business {
 
     public void setBusinessReviews(Collection<BusinessReview> businessReviews) {
         this.businessReviews = businessReviews;
+    }
+
+    public int getBusinessId() {
+        return businessId;
+    }
+
+    public void setBusinessId(int businessId) {
+        this.businessId = businessId;
+    }
+
+    public String getBusName() {
+        return busName;
+    }
+
+    public void setBusName(String busName) {
+        this.busName = busName;
+    }
+
+    public String getBusImg() {
+        return busImg;
+    }
+
+    public void setBusImg(String busImg) {
+        this.busImg = busImg;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }

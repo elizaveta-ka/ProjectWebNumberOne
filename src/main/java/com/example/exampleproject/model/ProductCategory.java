@@ -1,26 +1,30 @@
 package com.example.exampleproject.model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table
 public class ProductCategory {
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "category_id")
-    private Suggestion suggestion;
+    @OneToMany(mappedBy = "productCategory", fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
+    private Collection<Suggestion> suggestions;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "category_id")
-    private Product product;
+    @OneToMany(mappedBy = "productCategory", fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
+    private Collection<Product> product;
 
     @Id
     @Column(name = "category_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int category_id;
+    private int categoryId;
 
     @Column(name = "category_name")
-    private String category_name;
+    private String categoryName;
 
     @Column(name = "firstAtt")
     private String firstAtt;
@@ -35,20 +39,46 @@ public class ProductCategory {
 
     }
 
-    public ProductCategory(int category_id, String category_name, String firstAtt, String secondAtt, String thirdAtt) {
-        this.category_id = category_id;
-        this.category_name = category_name;
+    public ProductCategory(int categoryId, String categoryName, String firstAtt, String secondAtt, String thirdAtt) {
+        this.categoryId = categoryId;
+        this.categoryName = categoryName;
         this.firstAtt = firstAtt;
         this.secondAtt = secondAtt;
         this.thirdAtt = thirdAtt;
     }
 
-    public int getCategory_id() {
-        return category_id;
+    public ProductCategory(Collection<Suggestion> suggestions, Collection<Product> product, int categoryId, String categoryName, String firstAtt, String secondAtt, String thirdAtt) {
+        this.suggestions = suggestions;
+        this.product = product;
+        this.categoryId = categoryId;
+        this.categoryName = categoryName;
+        this.firstAtt = firstAtt;
+        this.secondAtt = secondAtt;
+        this.thirdAtt = thirdAtt;
     }
 
-    public String getCategory_name() {
-        return category_name;
+    public Collection<Suggestion> getSuggestions() {
+        return suggestions;
+    }
+
+    public void setSuggestions(Collection<Suggestion> suggestions) {
+        this.suggestions = suggestions;
+    }
+
+    public Collection<Product> getProduct() {
+        return product;
+    }
+
+    public void setProduct(Collection<Product> product) {
+        this.product = product;
+    }
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
     }
 
     public String getFirstAtt() {
@@ -63,12 +93,12 @@ public class ProductCategory {
         return thirdAtt;
     }
 
-    public void setCategory_id(int category_id) {
-        this.category_id = category_id;
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public void setCategory_name(String category_name) {
-        this.category_name = category_name;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public void setFirstAtt(String firstAtt) {
@@ -81,5 +111,18 @@ public class ProductCategory {
 
     public void setThirdAtt(String thirdAtt) {
         this.thirdAtt = thirdAtt;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductCategory{" +
+                "suggestions=" + suggestions +
+                ", product=" + product +
+                ", categoryId=" + categoryId +
+                ", categoryName='" + categoryName + '\'' +
+                ", firstAtt='" + firstAtt + '\'' +
+                ", secondAtt='" + secondAtt + '\'' +
+                ", thirdAtt='" + thirdAtt + '\'' +
+                '}';
     }
 }

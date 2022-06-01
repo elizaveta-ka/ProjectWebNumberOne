@@ -13,17 +13,6 @@ import java.util.Set;
 @Table(name = "products")
 public class Product {
 
-    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL)
-    private ProductCategory productCategory;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "product_id")
-    private BusinessProduct businessProduct;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "product_id")
-    private Wishlist wishlist;
-
     @ManyToMany
     @JoinTable(name="businessProduct",
             joinColumns=@JoinColumn(name="product_id"),
@@ -40,31 +29,43 @@ public class Product {
     @Fetch(value = FetchMode.SUBSELECT)
     private Collection<ProductReview> productReviews;
 
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id", insertable = false, updatable = false)
+    private ProductCategory productCategory;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id", nullable = false)
-    private int product_id;
+    private int productId;
 
     @Column(name = "product_name")
-    private String product_name;
+    private String productName;
     @Column(name = "category_id")
-    private int category_id;
+    private int categoryId;
     @Column(name = "product_img")
-    private String prod_img;
+    private String productImg;
 
     public Product(){}
 
-    public Product(ProductCategory productCategory, BusinessProduct businessProduct, Wishlist wishlist, List<Business> businesses, List<Buddy> buddies, Collection<ProductReview> productReviews, int product_id, String product_name, int category_id, String prod_img) {
-        this.productCategory = productCategory;
-        this.businessProduct = businessProduct;
-        this.wishlist = wishlist;
+    public Product(List<Business> businesses, List<Buddy> buddies, Collection<ProductReview> productReviews, ProductCategory productCategory, int productId, String productName, int categoryId, String productImg) {
         this.businesses = businesses;
         this.buddies = buddies;
         this.productReviews = productReviews;
-        this.product_id = product_id;
-        this.product_name = product_name;
-        this.category_id = category_id;
-        this.prod_img = prod_img;
+        this.productCategory = productCategory;
+        this.productId = productId;
+        this.productName = productName;
+        this.categoryId = categoryId;
+        this.productImg = productImg;
+    }
+
+    public Product(String productName, int categoryId, String productImg) {
+        this.productName = productName;
+        this.categoryId = categoryId;
+        this.productImg = productImg;
+    }
+
+    public String getProductImg() {
+        return productImg;
     }
 
     public ProductCategory getProductCategory() {
@@ -73,22 +74,6 @@ public class Product {
 
     public void setProductCategory(ProductCategory productCategory) {
         this.productCategory = productCategory;
-    }
-
-    public BusinessProduct getBusinessProduct() {
-        return businessProduct;
-    }
-
-    public void setBusinessProduct(BusinessProduct businessProduct) {
-        this.businessProduct = businessProduct;
-    }
-
-    public Wishlist getWishlist() {
-        return wishlist;
-    }
-
-    public void setWishlist(Wishlist wishlist) {
-        this.wishlist = wishlist;
     }
 
     public List<Business> getBusinesses() {
@@ -115,35 +100,36 @@ public class Product {
         this.productReviews = productReviews;
     }
 
-    public int getProduct_id() {
-        return product_id;
+    public int getProductId() {
+        return productId;
     }
 
-    public String getProduct_name() {
-        return product_name;
+    public String getProductName() {
+        return productName;
     }
 
-    public int getCategory_id() {
-        return category_id;
+    public int getCategoryId() {
+        return categoryId;
     }
 
-    public String getProd_img() {
-        return prod_img;
+    public String getProdImg() {
+        return productImg;
     }
 
-    public void setProduct_id(int product_id) {
-        this.product_id = product_id;
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
-    public void setProduct_name(String product_name) {
-        this.product_name = product_name;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
-    public void setCategory_id(int category_id) {
-        this.category_id = category_id;
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public void setProd_img(String prod_img) {
-        this.prod_img = prod_img;
+    public void setProductImg(String productImg) {
+        this.productImg = productImg;
     }
+
 }

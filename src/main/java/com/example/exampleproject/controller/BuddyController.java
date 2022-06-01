@@ -2,8 +2,10 @@ package com.example.exampleproject.controller;
 
 import com.example.exampleproject.model.Buddy;
 import com.example.exampleproject.model.BuddyLogin;
+import com.example.exampleproject.model.Product;
 import com.example.exampleproject.repository.BuddyLoginRep;
 import com.example.exampleproject.repository.BuddyRepository;
+import com.example.exampleproject.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,18 +19,21 @@ import java.util.Optional;
 public class BuddyController {
     private BuddyRepository buddyRepository;
 
+    private ProductRepository productRepository;
+
     private BuddyLoginRep buddyLoginRep;
     @Autowired
-    public BuddyController(BuddyRepository buddyRepository, BuddyLoginRep buddyLoginRep) {
+    public BuddyController(BuddyRepository buddyRepository, BuddyLoginRep buddyLoginRep, ProductRepository productRepository) {
         this.buddyRepository = buddyRepository;
         this.buddyLoginRep = buddyLoginRep;
+        this.productRepository = productRepository;
     }
     @GetMapping("/buddy")
     public String findAll(Model model) {
         List<Buddy> buddies = buddyRepository.findAll();
-        List<BuddyLogin> buddyLogins = buddyLoginRep.findAll();
+        List<Product> products = productRepository.findAll();
         model.addAttribute("buddies", buddies);
-        model.addAttribute("buddyLogins", buddyLogins);
+        model.addAttribute("products", products);
         return "buddy-list";
     }
 

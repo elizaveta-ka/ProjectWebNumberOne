@@ -14,7 +14,7 @@ public class BusinessLogin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "business_id", nullable = false)
-    private int business_id;
+    private int businessId;
 
     @Column(name = "email")
     private String email;
@@ -27,9 +27,9 @@ public class BusinessLogin {
 
     public BusinessLogin() {
     }
-    public BusinessLogin(Business business, int business_id, String email, String password, String confirmPassword) {
+    public BusinessLogin(Business business, int businessId, String email, String password, String confirmPassword) {
         this.business = business;
-        this.business_id = business_id;
+        this.businessId = businessId;
         this.email = email;
         this.password = password;
         this.confirmPassword = confirmPassword;
@@ -49,12 +49,12 @@ public class BusinessLogin {
         this.business = business;
     }
 
-    public int getBusiness_id() {
-        return business_id;
+    public int getBusinessId() {
+        return businessId;
     }
 
-    public void setBusiness_id(int business_id) {
-        this.business_id = business_id;
+    public void setBusinessId(int businessId) {
+        this.businessId = businessId;
     }
 
     public String getEmail() {

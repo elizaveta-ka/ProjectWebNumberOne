@@ -18,9 +18,9 @@
     </thead>
     <tbody>
     <tr th:each="product : ${products}">
-        <td th:text="${product.product_id}"></td>
-        <td th:text="${product.product_name}"></td>
-        <td th:text="${product.category_id}"></td>
+        <td th:text="${product.productId}"></td>
+        <td th:text="${product.productName}"></td>
+        <td th:text="${product.categoryId}"></td>
     </tr>
     </tbody>
 </table>
@@ -31,14 +31,36 @@
         <th>Id</th>
         <th>Name</th>
         <th>Location</th>
+        <th>Review Comment</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="business : ${businesses}">
-        <td th:text="${business.business_id}"></td>
+        <td th:text="${business.businessId}"></td>
         <td th:text="${business.busName}"></td>
         <td th:text="${business.location}"></td>
-        <td th:each = "bR : ${business.businessReviews}" th:text="${bR.businessReview_id}"></td>
+        <td th:each = "bR : ${business.businessReviews}" th:text="${bR.reviewB} + ${'('} + ${bR.buddy['firstName']} + ${')'}"></td>
+        <td><a th:href="@{business-update/{id}(id=${business.businessId})}">Edit</a></td>
+        <td><a th:href="@{business-delete/{id}(id=${business.businessId})}">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+<h2>Business & Product</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Product</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="business : ${businesses}">
+        <td th:text="${business.businessId}"></td>
+        <td th:text="${business.busName}"></td>
+        <td th:text="${business.location}"></td>
+        <td th:each = "bR : ${business.products}" th:text="${bR.productName}"></td>
     </tr>
     </tbody>
 </table>
