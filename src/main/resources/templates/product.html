@@ -3,10 +3,11 @@
 <!--      th:fragment="main-fragment (title, otherStaticResources, header, SideMenu, mainContent, footer)">-->
 <head>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
-    <title th:replace="${title}">Product Page</title>
     <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../../static/main.css"/>
+    <title>Product Page</title>
+
 </head>
-<header th:insert="${header}">
+<header>
     <h2>Booze buddy</h2>
 
 </header>
@@ -27,8 +28,8 @@
             <p th:text="${products[0]['category_id']}">Cat_NAME</p>
 
             <div><div id="rating">
-                <span th:text="${Rate_P1}"> Rate_P1</span> <span th:text="${Rate_P2}"> Rate_P2</span><br>
-                <span th:text="${Rate_P3}"> Rate_P3</span> <span th:text="${Rate_P4}"> Rate_P4</span></div>
+                <span th:text="${rateP1}"> Rate_P1</span> <span th:text="${rateP1}"> Rate_P2</span><br>
+                <span th:text="${rateP1}"> Rate_P3</span> <span th:text="${rateP1}"> Rate_P4</span></div>
                 <br>
                 <p id="product_img" ><img src="layouts/img/product.png" alt="Product image"></p>
             </div>
@@ -54,7 +55,7 @@
 </article><br>
 </section>
 </body>
-<footer th:insert="${footer}">
+<footer>
     <p>All right reserved and belong to almighty Cthulhu</p>
 </footer>
 </html>
