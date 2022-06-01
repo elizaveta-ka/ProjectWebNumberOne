@@ -17,42 +17,64 @@
                 <th>Last name</th>
                 <th>Age</th>
                 <th>City</th>
+                <th>Product Review ID</th>
+                <th>Product ID</th>
+                <th>Review Comment</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="buddy : ${buddies}">
-                <td th:text="${buddy.buddy_id}"></td>
+                <td th:text="${buddy.buddyId}"></td>
                 <td th:text="${buddy.firstName}"></td>
                 <td th:text="${buddy.lastName}"></td>
                 <td th:text="${buddy.age}"></td>
                 <td th:text="${buddy.city}"></td>
-                <td><a th:href="@{buddy-update/{id}(id=${buddy.buddy_id})}">Edit</a></td>
-                <td><a th:href="@{buddy-delete/{id}(id=${buddy.buddy_id})}">Delete</a></td>
+<!--                <td th:each = "pR : ${buddy.productAuthors}" th:text="${pR.productReviewId}"></td>-->
+                <td th:each = "pR : ${buddy.productAuthors}" th:text="${pR.productId}"></td>
+                <td th:each = "pR : ${buddy.productAuthors}" th:text="${pR.reviewProduct}"></td>
+                <td><a th:href="@{buddy-update/{id}(id=${buddy.buddyId})}">Edit</a></td>
+                <td><a th:href="@{buddy-delete/{id}(id=${buddy.buddyId})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+        <h2>Wishlist</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.productId}"></td>
+                <td th:text="${product.productName}"></td>
+                <td th:each = "pR : ${product.buddies}" th:text="${pR.firstName} + ${', '}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <h2>Buddy & Friends</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Friend</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="buddy : ${buddies}">
+                <td th:text="${buddy.buddyId}"></td>
+                <td th:text="${buddy.firstName}"></td>
+                <td th:text="${buddy.lastName}"></td>
+<!--                <td th:each = "pR : ${buddy.friends}" th:text="${pR.buddy['Id']}"></td>-->
+                <td th:each = "pR : ${buddy.friends}" th:text=" ${'my friend: '} + ${pR.buddyId}"></td>
             </tr>
             </tbody>
         </table>
     </div>
     <p><a href="/buddy-create">Create user</a></p>
-    <h2>Logins Buddy</h2>
-    <table>
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Email</th>
-            <th>Password</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="login : ${buddyLogins}">
-            <td th:text="${login.buddyId}"></td>
-            <td th:text="${login.email}"></td>
-            <td th:text="${login.password}"></td>
-<!--            <td><a th:href="@{buddyLogin-update/{id}(id=${login.buddyId})}">Edit</a></td>-->
-            <!--                <td><a th:href="@{buddy-delete/{id}(id=${buddy.buddyId})}">Delete</a></td>-->
-        </tr>
-        </tbody>
-    </table>
-    <p><a href="/buddyLogin-create">Create login</a></p>
 </div>
 </body>
 </html>

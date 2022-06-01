@@ -8,19 +8,18 @@ import javax.persistence.*;
 @Entity
 @Table
 public class ProductReview {
-
-    @OneToOne (optional=false, cascade=CascadeType.ALL)
-    @JoinColumn (name="review_id")
-    private Review review;
     @ManyToOne (optional=false, cascade=CascadeType.ALL)
     @JoinColumn (name="product_id", insertable = false, updatable = false)
     private Product product;
 
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "buddy_id", insertable = false, updatable = false)
+    private Buddy buddy;
 
     @Id
     @Column(name = "productReview_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int productReview_id;
+    private int productReviewId;
 
     @Column(name = "rateP1")
     private int rateP1;
@@ -31,6 +30,9 @@ public class ProductReview {
     @Column(name = "rateP3")
     private int rateP3;
 
+    @Column(name = "rateP4")
+    private int rateP4;
+
     @Column(name = "reviewProduct")
     private String reviewProduct;
 
@@ -38,24 +40,30 @@ public class ProductReview {
     private String photo;
 
     @Column(name = "product_id")
-    private int product_id;
+    private int productId;
+//
+//    @Column(name = "buddy_id")
+//    private int buddyId;
 
     public ProductReview(){
 
     }
 
-    public ProductReview(int productReview_id, int rateP1, int rateP2, int rateP3, String reviewProduct, String photo, int product_id) {
-        this.productReview_id = productReview_id;
+    public ProductReview(Product product, Buddy buddy, int productReviewId, int rateP1, int rateP2, int rateP3, int rateP4, String reviewProduct, String photo, int productId) {
+        this.product = product;
+        this.buddy = buddy;
+        this.productReviewId = productReviewId;
         this.rateP1 = rateP1;
         this.rateP2 = rateP2;
         this.rateP3 = rateP3;
+        this.rateP4 = rateP4;
         this.reviewProduct = reviewProduct;
         this.photo = photo;
-        this.product_id = product_id;
+        this.productId = productId;
     }
 
-    public int getProductReview_id() {
-        return productReview_id;
+    public int getProductReviewId() {
+        return productReviewId;
     }
 
     public int getRateP1() {
@@ -78,12 +86,12 @@ public class ProductReview {
         return photo;
     }
 
-    public int getProduct_id() {
-        return product_id;
+    public int getProductId() {
+        return productId;
     }
 
-    public void setProductReview_id(int productReview_id) {
-        this.productReview_id = productReview_id;
+    public void setProductReviewId(int productReviewId) {
+        this.productReviewId = productReviewId;
     }
 
     public void setRateP1(int rateP1) {
@@ -106,8 +114,47 @@ public class ProductReview {
         this.photo = photo;
     }
 
-    public void setProduct_id(int product_id) {
-        this.product_id = product_id;
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Buddy getBuddy() {
+        return buddy;
+    }
+
+    public void setBuddy(Buddy buddy) {
+        this.buddy = buddy;
+    }
+
+    public int getRateP4() {
+        return rateP4;
+    }
+
+    public void setRateP4(int rateP4) {
+        this.rateP4 = rateP4;
+    }
+
+
+
+    @Override
+    public String toString() {
+        return "ProductReview{" +
+                "product=" + product +
+                ", productReviewId=" + productReviewId +
+                ", rateP1=" + rateP1 +
+                ", rateP2=" + rateP2 +
+                ", rateP3=" + rateP3 +
+                ", reviewProduct='" + reviewProduct +
+                ", photo='" + photo +
+                ", productId=" + productId +
+                '}';
+    }
 }

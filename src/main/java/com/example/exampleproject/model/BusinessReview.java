@@ -6,10 +6,9 @@ import javax.persistence.*;
 @Table
 public class BusinessReview {
 
-    @OneToOne (optional=false, cascade=CascadeType.ALL)
-    @JoinColumn (name="review_id")
-    private Review review;
-
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "buddy_id", insertable = false, updatable = false)
+    private Buddy buddy;
     @ManyToOne (optional=false, cascade=CascadeType.ALL)
     @JoinColumn (name="business_id", insertable = false, updatable = false)
     private Business business;
@@ -17,7 +16,7 @@ public class BusinessReview {
     @Id
     @Column(name = "businessReview_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int businessReview_id;
+    private int businessReviewId;
 
     @Column(name = "rateB1")
     private int rateB1;
@@ -28,6 +27,9 @@ public class BusinessReview {
     @Column(name = "rateB3")
     private int rateB3;
 
+    @Column(name = "rateB4")
+    private int rateB4;
+
     @Column(name = "reviewB")
     private String reviewB;
 
@@ -35,37 +37,26 @@ public class BusinessReview {
     private String photo;
 
     @Column(name = "business_id")
-    private int business_id;
-
-    @Override
-    public String toString() {
-        return "BusinessReview{" +
-                "review=" + review +
-                ", businessReview_id=" + businessReview_id +
-                ", rateB1=" + rateB1 +
-                ", rateB2=" + rateB2 +
-                ", rateB3=" + rateB3 +
-                ", reviewB='" + reviewB + '\'' +
-                ", photo='" + photo + '\'' +
-                ", business_id=" + business_id +
-                '}';
-    }
+    private int businessId;
 
     public BusinessReview() {
     }
 
-    public BusinessReview(int businessReview_id, int rateB1, int rateB2, int rateB3, String reviewB, String photo, int business_id) {
-        this.businessReview_id = businessReview_id;
+    public BusinessReview(Buddy buddy, Business business, int businessReviewId, int rateB1, int rateB2, int rateB3, int rateB4, String reviewB, String photo, int businessId) {
+        this.buddy = buddy;
+        this.business = business;
+        this.businessReviewId = businessReviewId;
         this.rateB1 = rateB1;
         this.rateB2 = rateB2;
         this.rateB3 = rateB3;
+        this.rateB4 = rateB4;
         this.reviewB = reviewB;
         this.photo = photo;
-        this.business_id = business_id;
+        this.businessId = businessId;
     }
 
-    public int getBusinessReview_id() {
-        return businessReview_id;
+    public int getBusinessReviewId() {
+        return businessReviewId;
     }
 
     public int getRateB1() {
@@ -88,12 +79,12 @@ public class BusinessReview {
         return photo;
     }
 
-    public int getBusiness_id() {
-        return business_id;
+    public int getBusinessId() {
+        return businessId;
     }
 
-    public void setBusinessReview_id(int businessReview_id) {
-        this.businessReview_id = businessReview_id;
+    public void setBusinessReviewId(int businessReviewId) {
+        this.businessReviewId = businessReviewId;
     }
 
     public void setRateB1(int rateB1) {
@@ -116,7 +107,44 @@ public class BusinessReview {
         this.photo = photo;
     }
 
-    public void setBusiness_id(int business_id) {
-        this.business_id = business_id;
+    public void setBusinessId(int businessId) {
+        this.businessId = businessId;
+    }
+
+    public Buddy getBuddy() {
+        return buddy;
+    }
+
+    public void setBuddy(Buddy buddy) {
+        this.buddy = buddy;
+    }
+
+    public Business getBusiness() {
+        return business;
+    }
+
+    public void setBusiness(Business business) {
+        this.business = business;
+    }
+
+    public int getRateB4() {
+        return rateB4;
+    }
+
+    public void setRateB4(int rateB4) {
+        this.rateB4 = rateB4;
+    }
+
+    @Override
+    public String toString() {
+        return "BusinessReview{" +
+                ", businessReview_id=" + businessReviewId +
+                ", rateB1=" + rateB1 +
+                ", rateB2=" + rateB2 +
+                ", rateB3=" + rateB3 +
+                ", reviewB='" + reviewB + '\'' +
+                ", photo='" + photo + '\'' +
+                ", business_id=" + businessId +
+                '}';
     }
 }

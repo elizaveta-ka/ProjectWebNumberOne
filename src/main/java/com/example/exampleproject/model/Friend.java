@@ -11,46 +11,41 @@ import java.util.List;
 @Table
 public class Friend {
 
-    @OneToOne(mappedBy = "friend", cascade = CascadeType.ALL)
+    @ManyToOne (optional=false, cascade=CascadeType.ALL)
+    @JoinColumn (name="friend_id", insertable = false, updatable = false)
     private Buddy buddy;
-
-    @ManyToMany
-    @JoinTable(name="friend",
-            joinColumns=@JoinColumn(name="friend_id"),
-            inverseJoinColumns=@JoinColumn(name="buddy_id"))
-    private List<Buddy> buddies;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "buddy_id", nullable = false)
-    private int buddy_id;
-    @Column(name = "friend_id")
-    private int friend_id;
+    private int buddyId;
+    @Column(name = "friend_id", nullable = false)
+    private int friendId;
 
     public Friend(){}
 
-    public Friend(int buddy_id, int friend_id) {
-        this.buddy_id = buddy_id;
-        this.friend_id = friend_id;
+    public Friend(int buddyId, int friendId) {
+        this.buddyId = buddyId;
+        this.friendId = friendId;
     }
 
-    public Friend(int friend_id) {
-        this.friend_id = friend_id;
+    public Friend(int friendId) {
+        this.friendId = friendId;
     }
 
-    public int getBuddy_id() {
-        return buddy_id;
+    public int getBuddyId() {
+        return buddyId;
     }
 
-    public void setBuddy_id(int buddy_id) {
-        this.buddy_id = buddy_id;
+    public void setBuddyId(int buddyId) {
+        this.buddyId = buddyId;
     }
 
-    public int getFriend_id() {
-        return friend_id;
+    public int getFriendId() {
+        return friendId;
     }
 
-    public void setFriend_id(int friend_id) {
-        this.friend_id = friend_id;
+    public void setFriendId(int friendId) {
+        this.friendId = friendId;
     }
 }
