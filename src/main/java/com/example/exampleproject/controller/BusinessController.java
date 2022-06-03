@@ -1,6 +1,5 @@
 package com.example.exampleproject.controller;
 
-import com.example.exampleproject.model.Buddy;
 import com.example.exampleproject.model.Business;
 import com.example.exampleproject.model.Product;
 import com.example.exampleproject.repository.BusinessRepository;
@@ -61,9 +60,23 @@ public class BusinessController {
     }
     @GetMapping("/business-update/{id}")
     public String updateBusinessForm(@PathVariable("id") int id, Model model) {
-        Optional<Business> business = businessRepository.findById(id);  //Optional???
+        Optional<Business> business = businessRepository.findById(id);
         model.addAttribute("business", business);
         return "/business-update";
+    }
+    //страница бизнеса
+    @GetMapping("/business/{id}")
+    public String showBusinessPage(@PathVariable("id") int id, Model model) {
+        Business business = businessRepository.getById(id);
+        model.addAttribute("business", business);
+        return "business-page";
+    }
+    //меню бизнеса
+    @GetMapping("/business/{id}/menu")
+    public String showBusinessMenu(@PathVariable("id") int id, Model model) {
+        Business business = businessRepository.getById(id);
+        model.addAttribute("business", business);
+        return "business-menu";
     }
 
     @PostMapping("/business-update")
