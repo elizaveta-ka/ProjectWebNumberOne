@@ -25,16 +25,28 @@
 <article>
     <div id="product_block">
         <div th:fragment="product">
+            <p id="product_img" ><img src="layouts/img/product.png" alt="Product image"></p>
             <h1 th:text="${product.productName}"> Product_NAME </h1>
             <p th:text="${product['productCategory']['categoryName']}">Category_NAME</p>
+            <div class="tabs">
+                <input type="radio" name="inset" value="" id="tab_1" checked>
+                <label for="tab_1">Rating</label>
 
-            <div><div id="rating">
-                <span th:text="${rateP1}"> Rate_P1</span> <span th:text="${rateP1}"> Rate_P2</span><br>
-                <span th:text="${rateP1}"> Rate_P3</span> <span th:text="${rateP1}"> Rate_P4</span></div>
+                <input type="radio" name="inset" value="" id="tab_2">
+                <label for="tab_2">Suggestions</label><br>
+
+            <div id="rating">
+                <span th:text="${product.rateP1}"> Rate_P1</span> <span th:text="${product.rateP1}"> Rate_P2</span><br>
+                <span th:text="${product.rateP1}"> Rate_P3</span> <span th:text="${product.rateP1}"> Rate_P4</span></div>
+
+                <div id="suggestions" th:each="s : ${product.productCategory.suggestions}">
+                    <span th:text="${s.foodName} + , + ${s.foodImg}"></span>
+                </div>
                 <br>
-                <p id="product_img" ><img src="layouts/img/product.png" alt="Product image"></p>
             </div>
-        </div>
+
+
+    </div>
     </div><br>
 <div id="rateBlock" th:each="review : ${product.productReviews}">
     <p th:text="${review.reviewProduct}"> Review_title</p><br>
