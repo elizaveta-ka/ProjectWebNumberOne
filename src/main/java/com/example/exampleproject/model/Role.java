@@ -16,17 +16,9 @@ public class Role implements GrantedAuthority {
     private int id;
     @Column (name = "name")
     private String name;
-    @OneToMany (mappedBy = "role", cascade = CascadeType.ALL)
 
-        private Set<User> users;
 
-    public Set<User> getUsers() {
-        return users;
-    }
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
 
     public Role(int id) {
         this.id = id;

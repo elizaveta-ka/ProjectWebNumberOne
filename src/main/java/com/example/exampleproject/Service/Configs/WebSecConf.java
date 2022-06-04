@@ -14,25 +14,13 @@ import org.springframework.stereotype.Component;
 @Component
 @EnableAutoConfiguration
 public class WebSecConf extends WebSecurityConfigurerAdapter {
-
+    @Autowired
+    private MyAP aadapter;
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-        http.csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/", "/login").permitAll()
-                .antMatchers("/admin/**").hasAnyRole("ADMIN")
-                .antMatchers("/user/**").hasAnyRole("USER")
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .and()
-                .logout()
-                .permitAll()
-                .and();
+        auth.authenticationProvider(aadapter);
 
     }
 

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Table(name = "users")
 public class User {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -26,16 +27,10 @@ public class User {
         @JoinColumn (name="user_role")
         private Role role;
 
-
     public User(String username, String password) {
         this.username = username;
         this.password = password;
-//        @Autowired
-//        RoleRepository rolrep;
-//        List rolreps = rolrep.findAll();
-//        this.role = (Role) rolreps.get(2);
-
-    }
+            }
 
     public User() {
 
