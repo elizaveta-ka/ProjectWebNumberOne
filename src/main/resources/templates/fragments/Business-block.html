@@ -5,11 +5,11 @@
 
 </head>
 <body>
-<div id="business_block" th:fragment="business">
+<div id="Business_block" th:fragment="business">
     <p align="center" id="business_img"><img src="img/business_img.png" alt="business_img"></p><br>
     <div>
         <p align="right"> <button id="booking">Book a table</button></p>
-        <p th:text="${Business_NAME}, ${Business_TYPE}">Business_NAME, Business_TYPE</p>
+        <p th:text="${busName}, ${location}">Business_NAME, Location</p>
         <p th:text="${Distance}">2 km away</p>
     </div>
 </div>

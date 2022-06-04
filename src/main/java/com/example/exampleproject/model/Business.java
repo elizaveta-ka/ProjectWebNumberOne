@@ -43,18 +43,22 @@ public class Business {
     @Column(name = "location")
     private String location;
 
+    @Column(name = "business_link")
+    private String businessLink;
+
     public Business() {
         super();
     }
 
-    public Business(int businessId, String busName, String busImg, String location) {
+    public Business(int businessId, String businessLink, String busName, String busImg, String location) {
         this.businessId = businessId;
         this.busName = busName;
         this.busImg = busImg;
         this.location = location;
+        this.businessLink = businessLink;
     }
 
-    public Business(BusinessLogin businessLogin, List<Product> products, Collection<BusinessReview> businessReviews, int businessId, String busName, String busImg, String location) {
+    public Business(BusinessLogin businessLogin, String businessLink, List<Product> products, Collection<BusinessReview> businessReviews, int businessId, String busName, String busImg, String location) {
         this.businessLogin = businessLogin;
         this.products = products;
         this.businessReviews = businessReviews;
@@ -62,6 +66,7 @@ public class Business {
         this.busName = busName;
         this.busImg = busImg;
         this.location = location;
+        this.businessLink = businessLink;
     }
 
     @Override
@@ -131,5 +136,13 @@ public class Business {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getBusinessLink() {
+        return businessLink;
+    }
+
+    public void setBusinessLink(String businessLink) {
+        this.businessLink = businessLink;
     }
 }

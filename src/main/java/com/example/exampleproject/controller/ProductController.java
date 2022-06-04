@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -32,22 +32,33 @@ public class ProductController {
         model.addAttribute("productCategories", productCategories);
         return "product-list";
     }
+
+    @GetMapping("/productsAdd")
+    public String productAdd(Model model) {
+        List<Product> products = productRepository.findAll();
+        List<ProductCategory> productCategories = productCategoryRepository.findAll();
+        model.addAttribute("products", products);
+        model.addAttribute("productCategories", productCategories);
+        return "product-list";
+    }
+    //страница продукта
+    @GetMapping("/product/{id}")
+    public String showProductPage(@PathVariable("id") int id, Model model) {
+        Product product = productRepository.getById(id);
+        model.addAttribute("product", product);
+        return "product";
+    }
+
+    @GetMapping("/product/{id}/suggestion")
+    public String showProductSuggestionPage(@PathVariable("id") int id, Model model) {
+        Product product = productRepository.getById(id);
+        model.addAttribute("product", product);
+        return "suggestion-page";
+    }
+
     @GetMapping("/fragments")
     public String getHome(){
         return "main-fragments.html";
     }
 
-//    @GetMapping("/products")
-//    public String findAllPr(Model model) {
-//        List<Product> products = productService.findAllProducts();
-//        Product product = products.get(0);
-//        model.addAttribute("product", product);
-//        return "product-page";
-//    }
-
-    @PostMapping("/product-create")
-    public String createProduct(Product product) {
-        productRepository.save(product);
-        return "redirect:/product";
-    }
 }

@@ -61,14 +61,39 @@ public class BusinessController {
     }
     @GetMapping("/business-update/{id}")
     public String updateBusinessForm(@PathVariable("id") int id, Model model) {
-        Optional<Business> business = businessRepository.findById(id);  //Optional???
+        Optional<Business> business = businessRepository.findById(id);
         model.addAttribute("business", business);
         return "/business-update";
+    }
+    //страница бизнеса
+    @GetMapping("/business/{id}")
+    public String showBusinessPage(@PathVariable("id") int id, Model model) {
+        Business business = businessRepository.getById(id);
+        model.addAttribute("business", business);
+        return "business-page";
+    }
+    //меню бизнеса
+    @GetMapping("/business/{id}/menu")
+    public String showBusinessMenu(@PathVariable("id") int id, Model model) {
+        Business business = businessRepository.getById(id);
+        model.addAttribute("business", business);
+        return "business-menu";
     }
 
     @PostMapping("/business-update")
     public String updateBusiness(Business business) {
         businessRepository.save(business);
         return "redirect:/business";
+    }
+
+    @GetMapping("/product-create")
+    public String createProductForm(Product product) {
+        return "product-create";
+    }
+
+    @PostMapping("/product-create")
+    public String createProduct(Product product) {
+        productRepository.save(product);
+        return "redirect:/business/{id}/menu";
     }
 }
