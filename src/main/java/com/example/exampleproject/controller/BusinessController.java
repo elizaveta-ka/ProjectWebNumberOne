@@ -1,5 +1,6 @@
 package com.example.exampleproject.controller;
 
+import com.example.exampleproject.model.Buddy;
 import com.example.exampleproject.model.Business;
 import com.example.exampleproject.model.Product;
 import com.example.exampleproject.repository.BusinessRepository;
@@ -83,5 +84,16 @@ public class BusinessController {
     public String updateBusiness(Business business) {
         businessRepository.save(business);
         return "redirect:/business";
+    }
+
+    @GetMapping("/product-create")
+    public String createProductForm(Product product) {
+        return "product-create";
+    }
+
+    @PostMapping("/product-create")
+    public String createProduct(Product product) {
+        productRepository.save(product);
+        return "redirect:/business/{id}/menu";
     }
 }

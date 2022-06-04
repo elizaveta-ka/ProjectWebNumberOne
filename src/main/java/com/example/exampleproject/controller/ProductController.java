@@ -49,6 +49,13 @@ public class ProductController {
         return "product";
     }
 
+    @GetMapping("/product/{id}/suggestion")
+    public String showProductSuggestionPage(@PathVariable("id") int id, Model model) {
+        Product product = productRepository.getById(id);
+        model.addAttribute("product", product);
+        return "suggestion-page";
+    }
+
     @GetMapping("/fragments")
     public String getHome(){
         return "main-fragments.html";

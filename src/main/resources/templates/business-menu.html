@@ -38,6 +38,7 @@
                 </div>
             </div>
         </div><br>
+        <p><a href="/product-create">Create new product</a></p>
         <div id="product_block" th:each="product : ${business.products}">
             <div th:fragment="product">
                 <h1 th:text="${product.productName}"> Product_NAME </h1>
