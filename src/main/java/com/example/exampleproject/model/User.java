@@ -1,11 +1,17 @@
 package com.example.exampleproject.model;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Objects;
 import java.util.Set;
+import com.example.exampleproject.model.Role;
+import com.example.exampleproject.repository.RoleRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 @Table(name = "users")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -16,18 +22,37 @@ public class User {
     private String password;
     @Transient
     transient private String confirmPassword;
-    @ManyToMany
-    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
+        @ManyToOne (optional=false, fetch = FetchType.LAZY)
+        @JoinColumn (name="user_role")
+        private Role role;
 
-    public Set<Role> getRoles() {
-        return roles;
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+//        @Autowired
+//        RoleRepository rolrep;
+//        List rolreps = rolrep.findAll();
+//        this.role = (Role) rolreps.get(2);
+
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
+    public User() {
+
     }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+//    @ManyToMany
+//    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "role_id"))
+//    private Set<Role> roles;
+
 
     public int getId() {
         return id;
@@ -59,5 +84,19 @@ public class User {
 
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return Objects.equals(username, user.username) &&
+                Objects.equals(password, user.password);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, username, password,
+                role);
     }
 }

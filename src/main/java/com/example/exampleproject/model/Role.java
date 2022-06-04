@@ -1,5 +1,7 @@
 package com.example.exampleproject.model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
@@ -14,8 +16,9 @@ public class Role implements GrantedAuthority {
     private int id;
     @Column (name = "name")
     private String name;
-    @ManyToMany (mappedBy = "roles")
-    private Set<User> users;
+    @OneToMany (mappedBy = "role", cascade = CascadeType.ALL)
+
+        private Set<User> users;
 
     public Set<User> getUsers() {
         return users;
