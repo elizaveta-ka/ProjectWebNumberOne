@@ -98,7 +98,7 @@ footer {
     position: relative;
     alignment: right;
 }
-#product_block{
+#product_block {
     float: left;
     margin-top: 15px;
     margin-bottom: 15px;
@@ -111,6 +111,13 @@ footer {
     left: 40%;
     width: 40%;
     margin-right: 30%;
+}
+
+#menu{
+    background-color: #ffffff;
+    border: solid 1px;
+    overflow: auto;
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
 }
 #product_img{
     width: 40%;
@@ -142,4 +149,6 @@ footer {
     background: #FFFFFF;
 }
 #tab_1:checked ~ #rating,
-#tab_2:checked ~ #suggestions { display: block; }
+#tab_2:checked ~ #suggestions,
+#tab_3:checked ~ #rating,
+#tab_4:checked ~ #menu { display: block; }

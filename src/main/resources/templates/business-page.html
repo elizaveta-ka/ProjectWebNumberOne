@@ -35,20 +35,40 @@
     </SideMenu>
     <article>
         <div id="Business_block">
+            <p id="business_img" ><img src="layouts/img/business.png" alt="Business image"></p>
             <div th:fragment="business">
                 <h1 th:text="${business.busName}"> Business_NAME </h1>
                 <p th:text="${business.location}">Location</p>
                 <p th:text="${Distance}">2 km away</p>
                 <p align="right"> <button onclick ="window.location.href= 'business.businessLink';">Book a table</button></p>
-                <div><div id="rating">
+
+                <div class="tabs">
+                    <input type="radio" name="inset" value="" id="tab_3" checked>
+                    <label for="tab_3">Rating</label>
+
+                    <input type="radio" name="inset" value="" id="tab_4">
+                    <label for="tab_4">Menu</label><br>
+
+                <div id="rating">
                     //суммарный рейтинг заведения
                     <span th:text="${rateB1}"> Rate_B1</span> <span th:text="${rateB2}"> Rate_B2</span><br>
                     <span th:text="${rateB3}"> Rate_B3</span> <span th:text="${rateB4}"> Rate_B4</span></div>
                     <br>
-                    <p id="business_img" ><img src="layouts/img/business.png" alt="Business image"></p>
-                </div>
+
+
+                <div id = "menu">
+                    <table th:each="product : ${business.products}" width="100%" border="0" cellpadding="4">
+                        <tr align="right" valign="top">
+                            <th th:text="${product.productName}">Product_NAME</th>
+                            <td th:text="${product['productCategory']['categoryName']}">Category_NAME</td>
+                            <td th:text="${product.rateP4}">Суммарный рейтинг продукта</td>
+                        </tr>
+                    </table>
+            </div>
+            </div>
             </div>
         </div><br>
+
         <div id="rateBlock" th:each="review : ${business.businessReviews}">
             <p th:text="${review.reviewB}"> Review_title</p><br>
             <div id="rating_pr">
