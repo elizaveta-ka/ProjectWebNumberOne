@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <!--      th:fragment="main-fragment (title, otherStaticResources, header, SideMenu, mainContent, footer)">-->
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="star_rating.js"></script>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
     <title>Product Page</title>
     <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../../static/main.css"/>
@@ -44,10 +46,11 @@
                 </div>
                 <br>
             </div>
-
-
     </div>
     </div><br>
+
+
+
 <div id="rateBlock" th:each="review : ${product.productReviews}">
     <p th:text="${review.reviewProduct}"> Review_title</p><br>
     <div id="rating_pr">
@@ -68,6 +71,36 @@
 </div><br>
 </article><br>
 </section>
+<style type="text/css">
+    .param, .rating_new, #summ { line-height: 28px; }
+    .stars, #sum_stars { background: url(../../../static/images/stars.png); }
+    .stars, #sum_stars, .progress, #sum_progress {
+        width: 130px;
+        height: 28px;
+        cursor: pointer;
+    }
+</style>
+<div id="rating_new">
+    <div class="param">Параметр 1:</div>
+    <div><div class="stars"></div><p class="progress" id="p1"></p></div>
+    <div class="rating_new" id="param1">5.0</div>
+
+    <div class="param">Параметр 2:</div>
+    <div><div class="stars"></div><p class="progress" id="p2"></p></div>
+    <div class="rating_new" id="param2">5.0</div>
+
+    <div class="param">Параметр 3:</div>
+    <div><div class="stars"></div><p class="progress" id="p3"></p></div>
+    <div class="rating_new" id="param3">5.0</div>
+
+
+    <div class="param">Общая оценка:</div>
+    <div><div id="sum_stars"></div><p id="sum_progress"></p></div>
+    <div id="summ">5.00</div>
+
+    <input id="el_999" type="submit" value="Submit">
+    <p id="message"></p>
+</div>
 </body>
 <footer>
     <p>All right reserved and belong to almighty Cthulhu</p>
