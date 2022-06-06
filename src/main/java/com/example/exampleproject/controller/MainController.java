@@ -48,11 +48,14 @@ public class MainController {
 //
     @GetMapping("/login")
 public String get(Model model){
-        model.addAttribute("title", "форма входа");
+        List <User> users = userRepository.findAll();
+
+        model.addAttribute("users", users);
+
         return "login";
     }
     public String user(Authentication authentication) {
-        System.out.println((UserDetails)authentication.);
+//        System.out.println((UserDetails)authentication.);
         return "User";
     }
 //    @PostMapping("/login")

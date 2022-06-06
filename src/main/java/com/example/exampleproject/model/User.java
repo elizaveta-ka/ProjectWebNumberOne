@@ -6,6 +6,8 @@ import java.util.Objects;
 import java.util.Set;
 import com.example.exampleproject.model.Role;
 import com.example.exampleproject.repository.RoleRepository;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
@@ -23,9 +25,20 @@ public class User {
     private String password;
     @Transient
     transient private String confirmPassword;
-        @ManyToOne (optional=false, fetch = FetchType.LAZY)
+        @ManyToOne (optional=false, fetch = FetchType.EAGER)
         @JoinColumn (name="user_role")
         private Role role;
+
+//    @OneToMany
+//    private List<Role> roles;
+//
+//    public List<Role> getRoles() {
+//        return roles;
+//    }
+//
+//    public void setRoles(List<Role> roles) {
+//        this.roles = roles;
+//    }
 
     public User(String username, String password) {
         this.username = username;
