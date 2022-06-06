@@ -1,3 +1,67 @@
+<!--<!DOCTYPE HTML>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--&lt;!&ndash;      th:fragment="main-fragment (title, otherStaticResources, header, SideMenu, mainContent, footer)">&ndash;&gt;-->
+<!--<head>-->
+<!--    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />-->
+<!--    <title>Product Page</title>-->
+<!--    <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../../static/main.css"/>-->
+<!--    <title>Product Page</title>-->
+
+<!--</head>-->
+<!--<header>-->
+<!--    <h2>Booze buddy</h2>-->
+
+<!--</header>-->
+<!--<body>-->
+<!--<section>-->
+<!--    <SideMenu id="SideMenu">-->
+<!--        <li><a href="@{/}">Home</a></li>-->
+<!--        <li><a href="@{/feed}">Feed</a></li>-->
+<!--        <li><a href="@{/buddies}">Buddies</a></li>-->
+<!--        <li><a href="@{/notifications}">Notifications</a></li>-->
+<!--        <li><a href="@{/settings}">Settings</a></li>-->
+<!--        <li><span style=vertical-align:bottom><a href="@{/}">Log out</a> </span></li>-->
+<!--    </SideMenu>-->
+<!--<article>-->
+<!--    <div id="product_block">-->
+<!--        <div th:fragment="product">-->
+<!--            <h1 th:text="${product.productName}"> Product_NAME </h1>-->
+<!--            <p th:text="${product['productCategory']['categoryName']}">Category_NAME</p>-->
+
+<!--            <div><div id="rating">-->
+<!--                <span th:text="${rateP1}"> Rate_P1</span> <span th:text="${rateP1}"> Rate_P2</span><br>-->
+<!--                <span th:text="${rateP1}"> Rate_P3</span> <span th:text="${rateP1}"> Rate_P4</span></div>-->
+<!--                <br>-->
+<!--                <p id="product_img" ><img src="layouts/img/product.png" alt="Product image"></p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div><br>-->
+<!--<div id="rateBlock" th:each="review : ${product.productReviews}">-->
+<!--    <p th:text="${review.reviewProduct}"> Review_title</p><br>-->
+<!--    <div id="rating_pr">-->
+<!--        <span th:text="${review.rateP1}"> Rate_P1</span> <span th:text="${review.rateP2}"> Rate_P2</span><br>-->
+<!--        <span th:text="${review.rateP3}"> Rate_P3</span> <span th:text="${review.rateP4}"> Rate_P4</span></div>-->
+<!--    <p id="reviewer_img"><img src="*{'data:image/png;base64, '+image}" alt="reviewer_img"></p><br>-->
+
+<!--&lt;!&ndash;    <p th:text="${review.reviewProduct}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus scelerisque ipsum nec mauris dapibus gravida. Nam felis est, ornare sit amet auctor in, malesuada sit amet massa. Pellentesque eget efficitur lorem. Nunc lobortis erat a orci blandit, et consequat diam molestie. Etiam id tempor felis, sit amet egestas sem. Suspendisse potenti. Morbi tristique tincidunt leo in ornare. Aenean sodales leo id dapibus posuere.</p>&ndash;&gt;-->
+<!--</div><br>-->
+<!--<div id="business_block">-->
+<!--    <p align="center" id="business_img"><img src="*{'data:image/png;base64, '+image}" alt="business_img"></p><br>-->
+<!--    <div>-->
+<!--        <p align="right"> <button onclick ="window.location.href='https://duobar.ru/';">Book a table</button></p>-->
+<!--&lt;!&ndash;        <p th:text="${busName} + ${', '} ${location}">Business_NAME, Business_TYPE</p>&ndash;&gt;-->
+<!--        <p th:each = "bR : ${product.businesses}" th:text="${bR.busName} + ${', '} + ${bR.location}">Business_NAME, Business_LocationE</p>-->
+<!--        <p th:text="${Distance}">2 km away</p>-->
+<!--    </div>-->
+<!--</div><br>-->
+<!--</article><br>-->
+<!--</section>-->
+<!--</body>-->
+<!--<footer>-->
+<!--    <p>All right reserved and belong to almighty Cthulhu</p>-->
+<!--</footer>-->
+<!--</html>-->
+
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <!--      th:fragment="main-fragment (title, otherStaticResources, header, SideMenu, mainContent, footer)">-->
@@ -22,39 +86,52 @@
         <li><a href="@{/settings}">Settings</a></li>
         <li><span style=vertical-align:bottom><a href="@{/}">Log out</a> </span></li>
     </SideMenu>
-<article>
-    <div id="product_block">
-        <div th:fragment="product">
-            <h1 th:text="${product.productName}"> Product_NAME </h1>
-            <p th:text="${product['productCategory']['categoryName']}">Category_NAME</p>
-
-            <div><div id="rating">
-                <span th:text="${rateP1}"> Rate_P1</span> <span th:text="${rateP1}"> Rate_P2</span><br>
-                <span th:text="${rateP1}"> Rate_P3</span> <span th:text="${rateP1}"> Rate_P4</span></div>
-                <br>
+    <article>
+        <div id="product_block">
+            <div th:fragment="product">
                 <p id="product_img" ><img src="layouts/img/product.png" alt="Product image"></p>
-            </div>
-        </div>
-    </div><br>
-<div id="rateBlock" th:each="review : ${product.productReviews}">
-    <p th:text="${review.reviewProduct}"> Review_title</p><br>
-    <div id="rating_pr">
-        <span th:text="${review.rateP1}"> Rate_P1</span> <span th:text="${review.rateP2}"> Rate_P2</span><br>
-        <span th:text="${review.rateP3}"> Rate_P3</span> <span th:text="${review.rateP4}"> Rate_P4</span></div>
-    <p id="reviewer_img"><img src="*{'data:image/png;base64, '+image}" alt="reviewer_img"></p><br>
+                <h1 th:text="${product.productName}"> Product_NAME </h1>
+                <p th:text="${product['productCategory']['categoryName']}">Category_NAME</p>
+                <div class="tabs">
+                    <input type="radio" name="inset" value="" id="tab_1" checked>
+                    <label for="tab_1">Rating</label>
 
-<!--    <p th:text="${review.reviewProduct}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus scelerisque ipsum nec mauris dapibus gravida. Nam felis est, ornare sit amet auctor in, malesuada sit amet massa. Pellentesque eget efficitur lorem. Nunc lobortis erat a orci blandit, et consequat diam molestie. Etiam id tempor felis, sit amet egestas sem. Suspendisse potenti. Morbi tristique tincidunt leo in ornare. Aenean sodales leo id dapibus posuere.</p>-->
-</div><br>
-<div id="business_block">
-    <p align="center" id="business_img"><img src="*{'data:image/png;base64, '+image}" alt="business_img"></p><br>
-    <div>
-        <p align="right"> <button onclick ="window.location.href='https://duobar.ru/';">Book a table</button></p>
-<!--        <p th:text="${busName} + ${', '} ${location}">Business_NAME, Business_TYPE</p>-->
-        <p th:each = "bR : ${product.businesses}" th:text="${bR.busName} + ${', '} + ${bR.location}">Business_NAME, Business_LocationE</p>
-        <p th:text="${Distance}">2 km away</p>
-    </div>
-</div><br>
-</article><br>
+                    <input type="radio" name="inset" value="" id="tab_2">
+                    <label for="tab_2">Suggestions</label><br>
+
+                    <div id="rating">
+                        <div th:each="p : ${product.productReviews}">
+                        <span th:text="${p.rateP1}"> Rate_P1</span> <span th:text="${p.rateP2}"> Rate_P2</span><br>
+                        <span th:text="${p.rateP3}"> Rate_P3</span> <span th:text="${p.rateP4}"> Rate_P4</span></div>
+                    </div>
+                    <div id="suggestions" th:each="s : ${product.productCategory.suggestions}">
+                        <span th:text="${s.foodName} + ${', '} + ${s.foodImg}"></span>
+                    </div>
+                    <br>
+                </div>
+
+
+            </div>
+        </div><br>
+        <div id="rateBlock" th:each="review : ${product.productReviews}">
+            <p th:text="${review.reviewProduct}"> Review_title</p><br>
+            <div id="rating_pr">
+                <span th:text="${review.rateP1}"> Rate_P1</span> <span th:text="${review.rateP2}"> Rate_P2</span><br>
+                <span th:text="${review.rateP3}"> Rate_P3</span> <span th:text="${review.rateP4}"> Rate_P4</span></div>
+            <p id="reviewer_img"><img src="*{'data:image/png;base64, '+image}" alt="reviewer_img"></p><br>
+
+            <!--    <p th:text="${review.reviewProduct}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus scelerisque ipsum nec mauris dapibus gravida. Nam felis est, ornare sit amet auctor in, malesuada sit amet massa. Pellentesque eget efficitur lorem. Nunc lobortis erat a orci blandit, et consequat diam molestie. Etiam id tempor felis, sit amet egestas sem. Suspendisse potenti. Morbi tristique tincidunt leo in ornare. Aenean sodales leo id dapibus posuere.</p>-->
+        </div><br>
+        <div id="business_block">
+            <p align="center" id="business_img"><img src="*{'data:image/png;base64, '+image}" alt="business_img"></p><br>
+            <div>
+                <p align="right"> <button onclick ="window.location.href='https://duobar.ru/';">Book a table</button></p>
+                <!--        <p th:text="${busName} + ${', '} ${location}">Business_NAME, Business_TYPE</p>-->
+                <p th:each = "bR : ${product.businesses}" th:text="${bR.busName} + ${', '} + ${bR.location}">Business_NAME, Business_LocationE</p>
+                <p th:text="${Distance}">2 km away</p>
+            </div>
+        </div><br>
+    </article><br>
 </section>
 </body>
 <footer>

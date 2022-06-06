@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
 </head>
 <body>
-<form th:action="@{/product-create}" th:object="${products}" method="post">
+<form th:action="@{/product-create}" th:object="${product}" method="post">
     <label for="productName">Name</label>
     <input type="text" th:field="*{productName}" id="productName" placeholder="Name">
     <label for="categoryId">Category</label>

@@ -28,7 +28,7 @@
                 <h1 th:text="${business.busName}"> Business_NAME </h1>
                 <p th:text="${business.location}">Location</p>
                 <p th:text="${Distance}">2 km away</p>
-                <p align="right"> <button onclick ="window.location.href='https://duobar.ru/';">Book a table</button></p>
+                <p align="right"> <button onclick ="window.location.href='https://duobar.ru/'">Book a table</button></p>
                 <div><div id="rating">
                     //суммарный рейтинг заведения
                     <span th:text="${rateB1}"> Rate_B1</span> <span th:text="${rateB2}"> Rate_B2</span><br>
@@ -38,7 +38,8 @@
                 </div>
             </div>
         </div><br>
-        <p><a href="/product-create">Create new product</a></p>
+        <p><a href="@{/business/${business.businessId}/product-create}">Create new product</a></p>
+
         <div id="product_block" th:each="product : ${business.products}">
             <div th:fragment="product">
                 <h1 th:text="${product.productName}"> Product_NAME </h1>

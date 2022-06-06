@@ -1,6 +1,5 @@
 package com.example.exampleproject.controller;
 
-import com.example.exampleproject.model.Buddy;
 import com.example.exampleproject.model.Business;
 import com.example.exampleproject.model.Product;
 import com.example.exampleproject.repository.BusinessRepository;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 public class BusinessController {
@@ -86,13 +86,19 @@ public class BusinessController {
         return "redirect:/business";
     }
 
-    @GetMapping("/product-create")
-    public String createProductForm(Product product) {
+    @GetMapping("/business/{id}/product-create")
+    public String createProductForm(@PathVariable("id")int id, Model model, Product product) {
+        Business business = businessRepository.getById(id);
+        model.addAttribute("business", business);
         return "product-create";
     }
 
-    @PostMapping("/product-create")
-    public String createProduct(Product product) {
+    @PostMapping("/business/{id}/product-create")
+    //Связать бизнес и продукт
+    public String createProduct(Product product, Business business) {
+        Optional<Business> business1 = businessRepository.findById(business.getBusinessId());
+        Set<Product> products = business1.get().getProducts();
+        products.add(product);
         productRepository.save(product);
         return "redirect:/business/{id}/menu";
     }
