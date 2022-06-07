@@ -4,11 +4,16 @@
     <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
-          <list size="4">
+          <list size="9">
             <item index="0" class="java.lang.String" itemvalue="readonlytype" />
             <item index="1" class="java.lang.String" itemvalue="th:action" />
             <item index="2" class="java.lang.String" itemvalue="th:field" />
             <item index="3" class="java.lang.String" itemvalue="th:object" />
+            <item index="4" class="java.lang.String" itemvalue="modelattribute" />
+            <item index="5" class="java.lang.String" itemvalue="th:if" />
+            <item index="6" class="java.lang.String" itemvalue="th:errors" />
+            <item index="7" class="java.lang.String" itemvalue="path" />
+            <item index="8" class="java.lang.String" itemvalue="access" />
           </list>
         </value>
       </option>
@@ -17,7 +22,7 @@
     <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
-          <list size="8">
+          <list size="12">
             <item index="0" class="java.lang.String" itemvalue="nobr" />
             <item index="1" class="java.lang.String" itemvalue="noembed" />
             <item index="2" class="java.lang.String" itemvalue="comment" />
@@ -26,6 +31,10 @@
             <item index="5" class="java.lang.String" itemvalue="script" />
             <item index="6" class="java.lang.String" itemvalue="sidemenu" />
             <item index="7" class="java.lang.String" itemvalue="rateblock" />
+            <item index="8" class="java.lang.String" itemvalue="form:form" />
+            <item index="9" class="java.lang.String" itemvalue="form:input" />
+            <item index="10" class="java.lang.String" itemvalue="form:errors" />
+            <item index="11" class="java.lang.String" itemvalue="sec:authorize" />
           </list>
         </value>
       </option>

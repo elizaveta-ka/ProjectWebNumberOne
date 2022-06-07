@@ -124,7 +124,6 @@
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-core:5.7.1" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-crypto:5.7.1" level="project" />
     <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.18.24" level="project" />
-    <orderEntry type="library" name="Maven: jstl:jstl:1.2" level="project" />
     <orderEntry type="library" name="Maven: org.thymeleaf:thymeleaf:3.1.0.M2" level="project" />
     <orderEntry type="library" name="Maven: ognl:ognl:3.2.21" level="project" />
     <orderEntry type="library" name="Maven: org.javassist:javassist:3.24.1-GA" level="project" />

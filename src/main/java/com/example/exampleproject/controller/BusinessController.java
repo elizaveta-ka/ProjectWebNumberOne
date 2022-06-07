@@ -82,6 +82,11 @@ public class BusinessController {
 
     @PostMapping("/business-update")
     public String updateBusiness(Business business) {
+        Optional<Business> business1 = businessRepository.findById(business.getBusinessId());
+        Set<Product> products = business1.get().getProducts();
+        for (var product:products) {
+            business.addProduct(product);
+        }
         businessRepository.save(business);
         return "redirect:/business";
     }
@@ -94,12 +99,11 @@ public class BusinessController {
     }
 
     @PostMapping("/business/{id}/product-create")
-    //Связать бизнес и продукт
     public String createProduct(Product product, Business business) {
         Optional<Business> business1 = businessRepository.findById(business.getBusinessId());
         Set<Product> products = business1.get().getProducts();
         products.add(product);
         productRepository.save(product);
-        return "redirect:/business/{id}/menu";
+        return "redirect:/business";
     }
 }

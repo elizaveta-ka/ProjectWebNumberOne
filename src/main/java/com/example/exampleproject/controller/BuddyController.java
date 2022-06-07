@@ -1,8 +1,6 @@
 package com.example.exampleproject.controller;
 
-import com.example.exampleproject.model.Buddy;
-import com.example.exampleproject.model.BuddyLogin;
-import com.example.exampleproject.model.Product;
+import com.example.exampleproject.model.*;
 import com.example.exampleproject.repository.BuddyLoginRep;
 import com.example.exampleproject.repository.BuddyRepository;
 import com.example.exampleproject.repository.ProductRepository;
@@ -11,8 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 
 @Controller
@@ -61,6 +61,11 @@ public class BuddyController {
 
     @PostMapping("/buddy-update")
    public String updateBuddy(Buddy buddy) {
+//        Optional<Buddy> buddy1 = buddyRepository.findById(buddy.getBuddyId());
+//        List<Product> products = buddy1.get().getProducts();
+//        for (var product:products) {
+//            buddy.addProduct(product);
+//        }
         buddyRepository.save(buddy);
        return "redirect:/buddy";
    }
