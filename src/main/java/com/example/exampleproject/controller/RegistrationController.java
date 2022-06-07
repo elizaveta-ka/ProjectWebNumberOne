@@ -2,6 +2,7 @@ package com.example.exampleproject.controller;
 
 //import com.example.exampleproject.Service.UserService;
 import com.example.exampleproject.model.User;
+import com.example.exampleproject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,22 +12,28 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 public class RegistrationController {
 
-//    @Autowired
-//    private UserService userService;
+    @Autowired
+    private final UserRepository userRepository;
+
+    public RegistrationController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @GetMapping("/registration")
     public String registration(Model model) {
-//        model.addAttribute("userForm", new User());
-
+        List<User> users = userRepository.findAll();
+        model.addAttribute("users", users);
         return "registration";
     }
 
-    @PostMapping("/registration")
-    public String addUser(@ModelAttribute("userForm") @Validated User userForm, BindingResult bindingResult, Model model) {
-
+//    @PostMapping("/registration")
+//    public String addUser(@ModelAttribute("userForm") @Validated User userForm, BindingResult bindingResult, Model model) {
+//
 //        if (bindingResult.hasErrors()) {
 //            return "registration";
 //        }
@@ -38,7 +45,7 @@ public class RegistrationController {
 //            model.addAttribute("usernameError", "Пользователь с таким именем уже существует");
 //            return "registration";
 //        }
-
-        return "redirect:/";
-    }
+//
+//        return "redirect:/";
+//    }
 }

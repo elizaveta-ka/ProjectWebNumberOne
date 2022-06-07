@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.sql.SQLOutput;
 import java.util.List;
 
 @Controller
@@ -49,15 +50,14 @@ public class MainController {
     @GetMapping("/login")
 public String get(Model model){
         List <User> users = userRepository.findAll();
-
         model.addAttribute("users", users);
 
-        return "login";
+        return "redirect:/suggestion";
     }
-    public String user(Authentication authentication) {
+//    public String user(Authentication authentication) {
 //        System.out.println((UserDetails)authentication.);
-        return "User";
-    }
+//        return "User";
+//    }
 //    @PostMapping("/login")
 //    public String login (String username, String password) {
 //        User user = new User (username, password);

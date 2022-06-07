@@ -17,6 +17,7 @@ public class WebSecConf extends WebSecurityConfigurerAdapter {
     @Autowired
     private MyAP aadapter;
 
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
@@ -26,8 +27,9 @@ public class WebSecConf extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
+                .antMatchers("/", "/registration", "/suggestion").permitAll()
                 .antMatchers("/admin").hasAuthority("ROLE_ADMIN")
-                .antMatchers("/products").hasAnyAuthority( "ROLE_USER")
+                .antMatchers("/product-category").hasAnyAuthority( "ROLE_USER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
