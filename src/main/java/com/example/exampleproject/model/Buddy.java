@@ -195,4 +195,13 @@ public class Buddy {
                 ", avatarImg='" + avatarImg + '\'' +
                 '}';
     }
+    public void addProduct(Product product){
+        this.products.add(product);
+        product.getBuddies().add(this);
+    }
+
+    public void removeProduct(Product product){
+        this.products.remove(product);
+        product.getBuddies().remove(this);
+    }
 }
