@@ -23,6 +23,8 @@ public class User {
     private String username;
     @Column(name = "password")
     private String password;
+    @Column(name = "active")
+    private boolean active;
     @Transient
     transient private String confirmPassword;
         @ManyToOne (optional=false, fetch = FetchType.EAGER)
@@ -43,6 +45,7 @@ public class User {
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+        this.active = false;
             }
 
     public User() {
@@ -61,6 +64,14 @@ public class User {
 //            inverseJoinColumns = @JoinColumn(name = "role_id"))
 //    private Set<Role> roles;
 
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 
     public int getId() {
         return id;

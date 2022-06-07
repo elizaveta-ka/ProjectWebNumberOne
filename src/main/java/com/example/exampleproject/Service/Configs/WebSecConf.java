@@ -30,11 +30,20 @@ public class WebSecConf extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "/registration", "/suggestion").permitAll()
                 .antMatchers("/admin").hasAuthority("ROLE_ADMIN")
                 .antMatchers("/product-category").hasAnyAuthority( "ROLE_USER")
+
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
+                .defaultSuccessUrl("/suggestion").permitAll()
+
                 .and()
-                .httpBasic();
+                .httpBasic()
+                .and()
+                .logout()
+                .permitAll()
+
+                .logoutSuccessUrl("/login");
+
     }
 
 

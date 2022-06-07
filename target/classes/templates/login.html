@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
 >
 <head>
-    <title>Spring Security Example </title>
+    <title>LOG IN </title>
 <!--    <style>-->
 <!--        body {-->
 <!--            background-image: url(img/product.png), url(img/1.jpeg);-->
@@ -47,7 +47,7 @@
 
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6">
-                            <form method="post" action="suggestion">
+                            <form method="post" th:action="@{/suggestion}">
                             <input type="submit" name="submitButton" class="btn btn-lg btn-primary btn-block" value="Sign In"/>
                             </form>
                         </div>
@@ -55,14 +55,14 @@
                         </div>
                     </div>
 
-
+                    <a th:href="@{/registration}">Add new user</a>
 
 
                 </fieldset>
             </form>
 
 
-            <a th:href="@{/registration}">Add new employee</a>
+
         </div>
     </div>
 
