@@ -1,16 +1,16 @@
-package com.example.exampleproject.Service.Configs;
+package com.example.exampleproject.service.Configs;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-
-public class ConfigController implements WebMvcConfigurer {
+public class ConfigController implements WebMvcConfigurer{
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/login").setViewName("login");
-        registry.addViewController("/oauth/confirm_access").setViewName("authorize");
+//        registry.addViewController("/oauth/confirm_access").setViewName("authorize");
     }
 }

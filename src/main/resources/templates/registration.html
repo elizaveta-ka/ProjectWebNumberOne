@@ -5,12 +5,11 @@
   <title>Title</title>
 </head>
 <body>
-
-      <form action="#" th:action="@{/registration}" th:object="${username}" method="post">
+      <form action="#" th:action="@{/registration}" th:object="username" method="post">
         <label for="username">Username</label>
-        <input type="text" th:field="*{username}" id="username" placeholder="Email">
+        <input type="text" th:field="${username}" id="username" placeholder="Email">
         <label for="password">Password</label>
-        <input type="text" th:field="*{password}" id="password" placeholder="Password">
+        <input type="text" th:field="${password}" id="password" placeholder="Password">
 
         <input type="submit" value="Create user">
       </form>

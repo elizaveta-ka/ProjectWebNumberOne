@@ -52,7 +52,7 @@ public String get(Model model){
         List <User> users = userRepository.findAll();
         model.addAttribute("users", users);
 
-        return "redirect:/suggestion";
+        return "redirect:/business";
     }
 //    public String user(Authentication authentication) {
 //        System.out.println((UserDetails)authentication.);

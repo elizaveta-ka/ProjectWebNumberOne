@@ -1,8 +1,9 @@
-package com.example.exampleproject.Service.Configs;
+package com.example.exampleproject.service.Configs;
 
 import com.example.exampleproject.model.User;
 import com.example.exampleproject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,7 +23,7 @@ public class MyAP implements AuthenticationProvider {
         String password = authentication.getCredentials().toString();
         User user = rep.findByUsername(userName);
         if (user  == null) {
-            throw new BadCredentialsException("Unknown user "+userName);
+            throw new BadCredentialsException("Unknown user "+ userName);
         }
         if (!password.equals(user.getPassword())) {
             throw new BadCredentialsException("Bad password");

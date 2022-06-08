@@ -5,6 +5,7 @@ import org.hibernate.annotations.FetchMode;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,9 +17,6 @@ public class Role implements GrantedAuthority {
     private int id;
     @Column (name = "name")
     private String name;
-
-
-
 
     public Role(int id) {
         this.id = id;
@@ -53,4 +51,5 @@ public class Role implements GrantedAuthority {
     public String getAuthority() {
         return getName();
     }
+
 }

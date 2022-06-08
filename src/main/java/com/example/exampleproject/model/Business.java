@@ -19,11 +19,11 @@ public class Business {
     private BusinessLogin businessLogin;
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
-            name = "businessProduct",
+            name = "business_product",
             joinColumns = { @JoinColumn(name = "business_id") },
             inverseJoinColumns = { @JoinColumn(name = "product_id") }
     )
-    Set<Product> products = new HashSet<>();
+    Set<Product> products;
 
     @OneToMany (mappedBy="business", fetch=FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
@@ -51,6 +51,17 @@ public class Business {
     }
 
     public Business(int businessId, String businessLink, String busName, String busImg, String location) {
+        this.businessId = businessId;
+        this.busName = busName;
+        this.busImg = busImg;
+        this.location = location;
+        this.businessLink = businessLink;
+    }
+
+    public Business(BusinessLogin businessLogin, Set<Product> products, Collection<BusinessReview> businessReviews, int businessId, String busName, String busImg, String location, String businessLink) {
+        this.businessLogin = businessLogin;
+        this.products = products;
+        this.businessReviews = businessReviews;
         this.businessId = businessId;
         this.busName = busName;
         this.busImg = busImg;
@@ -151,7 +162,7 @@ public class Business {
         product.getBusinesses().add(this);
     }
     public void removeProduct(Product product){
-        this.products.remove(product);
+        this.getProducts().remove(product);
         product.getBusinesses().remove(this);
     }
 }

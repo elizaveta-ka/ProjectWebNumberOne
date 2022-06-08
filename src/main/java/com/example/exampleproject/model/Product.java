@@ -14,10 +14,10 @@ import java.util.Set;
 public class Product {
 
     @ManyToMany
-    @JoinTable(name="businessProduct",
+    @JoinTable(name="business_product",
             joinColumns=@JoinColumn(name="product_id"),
             inverseJoinColumns=@JoinColumn(name="business_id"))
-    private Set<Business> businesses;
+    private List<Business> businesses;
 
     @ManyToMany
     @JoinTable(name="wishlist",
@@ -47,7 +47,7 @@ public class Product {
 
     public Product(){}
 
-    public Product(Set<Business> businesses, List<Buddy> buddies, Collection<ProductReview> productReviews, ProductCategory productCategory, int productId, String productName, int categoryId, String productImg) {
+    public Product(List<Business> businesses, List<Buddy> buddies, Collection<ProductReview> productReviews, ProductCategory productCategory, int productId, String productName, int categoryId, String productImg) {
         this.businesses = businesses;
         this.buddies = buddies;
         this.productReviews = productReviews;
@@ -76,11 +76,11 @@ public class Product {
         this.productCategory = productCategory;
     }
 
-    public Set<Business> getBusinesses() {
+    public List<Business> getBusinesses() {
         return businesses;
     }
 
-    public void setBusinesses(Set<Business> businesses) {
+    public void setBusinesses(List<Business> businesses) {
         this.businesses = businesses;
     }
 
