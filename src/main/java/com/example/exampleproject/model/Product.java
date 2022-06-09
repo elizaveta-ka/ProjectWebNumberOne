@@ -23,7 +23,7 @@ public class Product {
     @JoinTable(name="wishlist",
             joinColumns=@JoinColumn(name="product_id"),
             inverseJoinColumns=@JoinColumn(name="buddy_id"))
-    private List<Buddy> buddies;
+    private Set<Buddy> buddies;
 
     @OneToMany (mappedBy="product", fetch=FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
@@ -47,7 +47,7 @@ public class Product {
 
     public Product(){}
 
-    public Product(Set<Business> businesses, List<Buddy> buddies, Collection<ProductReview> productReviews, ProductCategory productCategory, int productId, String productName, int categoryId, String productImg) {
+    public Product(Set<Business> businesses, Set<Buddy> buddies, Collection<ProductReview> productReviews, ProductCategory productCategory, int productId, String productName, int categoryId, String productImg) {
         this.businesses = businesses;
         this.buddies = buddies;
         this.productReviews = productReviews;
@@ -84,11 +84,11 @@ public class Product {
         this.businesses = businesses;
     }
 
-    public List<Buddy> getBuddies() {
+    public Set<Buddy> getBuddies() {
         return buddies;
     }
 
-    public void setBuddies(List<Buddy> buddies) {
+    public void setBuddies(Set<Buddy> buddies) {
         this.buddies = buddies;
     }
 

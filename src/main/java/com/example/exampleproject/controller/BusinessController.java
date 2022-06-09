@@ -32,7 +32,7 @@ public class BusinessController {
         this.productRepository = productRepository;
         this.businessReviewRepository = businessReviewRepository;
     }
-
+    // работает для демонстрации связей
     @GetMapping("/business")
     public String findAll(Model model) {
         List<Business> businesses = businessRepository.findAll();
@@ -55,31 +55,33 @@ public class BusinessController {
         return "redirect:/business";
     }
     @GetMapping("/business-delete/{id}")
-    public String deleteBusiness(@PathVariable("id") int id) {
+    public String deleteBusiness(@PathVariable(value = "id") int id) {
+
         businessRepository.deleteById(id);
         return "redirect:/business";
     }
+    // работает
     @GetMapping("/business-update/{id}")
     public String updateBusinessForm(@PathVariable("id") int id, Model model) {
         Optional<Business> business = businessRepository.findById(id);
         model.addAttribute("business", business);
         return "/business-update";
     }
-    //страница бизнеса
+    //страница бизнеса // работает
     @GetMapping("/business/{id}")
     public String showBusinessPage(@PathVariable("id") int id, Model model) {
         Business business = businessRepository.getById(id);
         model.addAttribute("business", business);
         return "business-page";
     }
-    //меню бизнеса
+    //меню бизнеса // работает
     @GetMapping("/business/{id}/menu")
     public String showBusinessMenu(@PathVariable("id") int id, Model model) {
         Business business = businessRepository.getById(id);
         model.addAttribute("business", business);
         return "business-menu";
     }
-
+    // работает
     @PostMapping("/business-update")
     public String updateBusiness(Business business) {
         Optional<Business> business1 = businessRepository.findById(business.getBusinessId());
@@ -90,14 +92,14 @@ public class BusinessController {
         businessRepository.save(business);
         return "redirect:/business";
     }
-
+    // работает
     @GetMapping("/business/{id}/product-create")
     public String createProductForm(@PathVariable("id")int id, Model model, Product product) {
         Business business = businessRepository.getById(id);
         model.addAttribute("business", business);
         return "product-create";
     }
-
+    // работает
     @PostMapping("/business/{id}/product-create")
     public String createProduct(Product product, Business business) {
         Optional<Business> business1 = businessRepository.findById(business.getBusinessId());
