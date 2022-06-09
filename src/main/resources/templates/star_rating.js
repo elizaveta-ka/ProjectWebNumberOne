@@ -18,6 +18,7 @@
     move(e, $(this));
 });
 
+
     $('#rating_new .stars').on('mousemove', function(e){
     if ($(this).hasClass('fixed')==false) move(e, $(this));
 });
