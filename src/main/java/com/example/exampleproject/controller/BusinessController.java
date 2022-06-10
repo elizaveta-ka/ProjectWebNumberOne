@@ -105,7 +105,8 @@ public class BusinessController {
         Optional<Business> business1 = businessRepository.findById(business.getBusinessId());
         Set<Product> products = business1.get().getProducts();
         products.add(product);
+        int id = business1.get().getBusinessId();
         productRepository.save(product);
-        return "redirect:/business";
+        return String.format("redirect:/business/%d/menu", id);
     }
 }

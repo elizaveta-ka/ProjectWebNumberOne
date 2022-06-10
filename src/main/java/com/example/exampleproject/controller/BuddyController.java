@@ -37,6 +37,13 @@ public class BuddyController {
         return "buddy-list";
     }
 
+    @GetMapping("/buddy/{id}")
+    public String showBuddyPage(@PathVariable("id") int id, Model model) {
+        Buddy buddy = buddyRepository.getById(id);
+        model.addAttribute("buddy", buddy);
+        return "buddy-page";
+    }
+
     @GetMapping("/buddy-create")
    public String createUserForm(Buddy buddy) {
     return "buddy-create";
