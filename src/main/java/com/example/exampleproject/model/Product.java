@@ -17,7 +17,7 @@ public class Product {
     @JoinTable(name="businessProduct",
             joinColumns=@JoinColumn(name="product_id"),
             inverseJoinColumns=@JoinColumn(name="business_id"))
-    private List<Business> businesses;
+    private Set<Business> businesses;
 
     @ManyToMany
     @JoinTable(name="wishlist",
@@ -47,7 +47,7 @@ public class Product {
 
     public Product(){}
 
-    public Product(List<Business> businesses, List<Buddy> buddies, Collection<ProductReview> productReviews, ProductCategory productCategory, int productId, String productName, int categoryId, String productImg) {
+    public Product(Set<Business> businesses, List<Buddy> buddies, Collection<ProductReview> productReviews, ProductCategory productCategory, int productId, String productName, int categoryId, String productImg) {
         this.businesses = businesses;
         this.buddies = buddies;
         this.productReviews = productReviews;
@@ -76,11 +76,11 @@ public class Product {
         this.productCategory = productCategory;
     }
 
-    public List<Business> getBusinesses() {
+    public Set<Business> getBusinesses() {
         return businesses;
     }
 
-    public void setBusinesses(List<Business> businesses) {
+    public void setBusinesses(Set<Business> businesses) {
         this.businesses = businesses;
     }
 
@@ -130,6 +130,15 @@ public class Product {
 
     public void setProductImg(String productImg) {
         this.productImg = productImg;
+    }
+
+    public void addBusiness(Business business){
+        this.businesses.add(business);
+        business.getProducts().add(this);
+    }
+    public void removeBusiness(Business business){
+        this.businesses.remove(business);
+        business.getProducts().remove(this);
     }
 
 }

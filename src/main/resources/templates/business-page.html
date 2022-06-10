@@ -65,6 +65,18 @@
                         </tr>
                     </table>
             </div>
+
+
+                    <div id = "menu">
+                        <table th:each="product : ${business.products}" width="100%" border="0" cellpadding="4">
+                            <tr align="right" valign="top">
+                                <th th:text="${product.productName}">Product_NAME</th>
+                                <td th:text="${product['productCategory']['categoryName']}">Category_NAME</td>
+                                <td th:text="${'blabla'}">Суммарный рейтинг продукта</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
             </div>
         </div><br>
@@ -76,7 +88,7 @@
                 <span th:text="${review.rateB3}"> Rate_B3</span> <span th:text="${review.rateB4}"> Rate_B4</span></div>
             <p id="reviewer_img"><img src="*{'data:image/png;base64, '+image}" alt="reviewer_img"></p><br>
 
-<!--            <p th:text="${review.reviewB}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus scelerisque ipsum nec mauris dapibus gravida. Nam felis est, ornare sit amet auctor in, malesuada sit amet massa. Pellentesque eget efficitur lorem. Nunc lobortis erat a orci blandit, et consequat diam molestie. Etiam id tempor felis, sit amet egestas sem. Suspendisse potenti. Morbi tristique tincidunt leo in ornare. Aenean sodales leo id dapibus posuere.</p>-->
+            <!--            <p th:text="${review.reviewB}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus scelerisque ipsum nec mauris dapibus gravida. Nam felis est, ornare sit amet auctor in, malesuada sit amet massa. Pellentesque eget efficitur lorem. Nunc lobortis erat a orci blandit, et consequat diam molestie. Etiam id tempor felis, sit amet egestas sem. Suspendisse potenti. Morbi tristique tincidunt leo in ornare. Aenean sodales leo id dapibus posuere.</p>-->
         </div><br>
         </div><br>
     </article><br>

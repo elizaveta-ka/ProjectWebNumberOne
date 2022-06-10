@@ -26,7 +26,7 @@
         <div id="product_block">
             <div th:fragment="product">
                 <h1 th:text="${product.productName}"> Product_NAME </h1>
-                <p th:text="${product['productCategory']['categoryName']}">Category_NAME</p>
+                <p th:text="${product.productCategory.categoryName}">Category_NAME</p>
 
                 <div><div id="rating">
                     <span th:text="${rateP1}"> Rate_P1</span> <span th:text="${rateP1}"> Rate_P2</span><br>

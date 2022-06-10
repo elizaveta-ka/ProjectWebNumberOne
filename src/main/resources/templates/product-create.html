@@ -1,17 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<!--      th:fragment="main-fragment (title, otherStaticResources, header, SideMenu, mainContent, footer)">-->
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <title>Business Page</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../../static/main.css"/>
+    <title>Business Menu</title>
+
 </head>
+<header>
+    <h2>Business Menu</h2>
+
+</header>
 <body>
-<p>Product create</p>
-<form action="#" th:action="@{/product-create}" th:object="${product}" method="post">
-    <label for="productName">Product name</label>
-    <input type="text" th:field="*{product.productName}" id="productName" placeholder="Product Name">
-    <label for="categoryId">Category ID</label>
-    <input type="text" th:field="*{product.categoryId}" id="categoryId" placeholder="Category ID">
-    <input type="submit" value="Create Product">
-</form>
+<section>
+    <SideMenu id="SideMenu">
+        <li><a href="@{/}">Home</a></li>
+        <li><a href="@{/feed}">Feed</a></li>
+        <li><a href="@{/buddies}">Buddies</a></li>
+        <li><a href="@{/notifications}">Notifications</a></li>
+        <li><a href="@{/settings}">Settings</a></li>
+        <li><span style=vertical-align:bottom><a href="@{/}">Log out</a> </span></li>
+    </SideMenu>
+    <article>
+        <div id="Business_block">
+            <div th:fragment="business">
+                <h1 th:text="${business.busName}"> Business_NAME </h1>
+                <p th:text="${business.location}">Location</p>
+                <p th:text="${Distance}">2 km away</p>
+            </div>
+        </div><br>
+        <div>
+            <form action="#" th:action="@{/business/{id}/product-create}" th:object="${product}" method="post">
+                <label for="businessId">Business Id</label>
+                <input readonly th:object="${business}" th:field="${business.businessId}" id="businessId" placeholder="Business Id">
+                <label for="productName">Product name</label>
+                <input type="text" th:field="*{productName}" id="productName" placeholder="Product Name">
+                <label for="categoryId">Category Id</label>
+                <input type="text" th:field="*{categoryId}" id="categoryId" placeholder="Category Id">
+                <input type="submit" value="Create Product">
+            </form>
+        </div>
+        <div id="product_block" th:each="product : ${business.products}">
+            <div th:fragment="product">
+                <h1 th:text="${product.productName}"> Product_NAME </h1>
+                <p th:text="${product['productCategory']['categoryName']}">Category_NAME</p>
+            </div>
+        </div><br>
+    </article><br>
+</section>
 </body>
+<footer>
+    <p>All right reserved and belong to almighty Cthulhu</p>
+</footer>
 </html>

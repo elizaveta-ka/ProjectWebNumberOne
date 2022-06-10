@@ -23,7 +23,7 @@ public class Business {
             joinColumns = { @JoinColumn(name = "business_id") },
             inverseJoinColumns = { @JoinColumn(name = "product_id") }
     )
-    List<Product> products;
+    Set<Product> products = new HashSet<>();
 
     @OneToMany (mappedBy="business", fetch=FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
@@ -58,7 +58,7 @@ public class Business {
         this.businessLink = businessLink;
     }
 
-    public Business(BusinessLogin businessLogin, String businessLink, List<Product> products, Collection<BusinessReview> businessReviews, int businessId, String busName, String busImg, String location) {
+    public Business(BusinessLogin businessLogin, String businessLink, Set<Product> products, Collection<BusinessReview> businessReviews, int businessId, String busName, String busImg, String location) {
         this.businessLogin = businessLogin;
         this.products = products;
         this.businessReviews = businessReviews;
@@ -90,11 +90,11 @@ public class Business {
         this.businessLogin = businessLogin;
     }
 
-    public List<Product> getProducts() {
+    public Set<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(Set<Product> products) {
         this.products = products;
     }
 
@@ -144,5 +144,14 @@ public class Business {
 
     public void setBusinessLink(String businessLink) {
         this.businessLink = businessLink;
+    }
+
+    public void addProduct(Product product){
+        this.products.add(product);
+        product.getBusinesses().add(this);
+    }
+    public void removeProduct(Product product){
+        this.products.remove(product);
+        product.getBusinesses().remove(this);
     }
 }
