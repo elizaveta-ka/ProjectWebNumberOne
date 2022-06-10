@@ -2,8 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="review-handler.js"></script>
 </head>
 <body>
+
+<form id="productReviewForm" action="/addReview">
+    Review title:<br>
+    <input type="text" name="reviewTitle" value="">
+    <br>
+    Review:<br>
+    <input type="text" name="reviewProduct" value="">
+    <br>
+    <input type="hidden" name="productId" value="${productId}">
+    <input type="hidden" name="buddyId" value="${buddyId}">
+    <br><br>
+    <input id="submitButton" type="submit" value="Submit">
+</form>
+
 
 </body>
 </html>
