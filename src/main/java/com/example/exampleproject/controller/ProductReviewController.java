@@ -36,7 +36,7 @@ public class ProductReviewController {
     }
     @PostMapping(value = "/addReview", produces = {MediaType.APPLICATION_JSON_VALUE})
     @ResponseBody
-    public ProductReviewResponse saveEmployee(@ModelAttribute @Valid ProductReview productReview,
+    public ProductReviewResponse saveReview(@ModelAttribute @Valid ProductReview productReview,
                                         BindingResult result) {
 
         ProductReviewResponse response = new ProductReviewResponse();
