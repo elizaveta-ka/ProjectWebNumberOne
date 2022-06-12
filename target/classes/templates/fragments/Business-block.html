@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+</head>
+<body>
+<div id="Business_block" th:fragment="business">
+    <p align="center" id="business_img"><img src="img/business_img.png" alt="business_img"></p><br>
+    <div>
+        <p align="right"> <button id="booking">Book a table</button></p>
+        <p th:text="${busName}, ${location}">Business_NAME, Location</p>
+        <p th:text="${Distance}">2 km away</p>
+    </div>
+</div>
+</body>
+</html>
