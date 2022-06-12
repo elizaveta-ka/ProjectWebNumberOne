@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<meta charset="UTF-8">
+<title>Create buddy</title>
+</head>
+<body>
+<form action="#" th:action="@{/business-update}" th:object="${business}" method="post">
+  <label for="businessId">ID</label>
+  <input readonly type="text" th:field="*{businessId}" id="businessId" placeholder="ID">
+  <br/>
+  <label for="busName">Business name</label>
+  <input type="text" th:field="*{busName}" id="busName" placeholder="Business Name">
+  <br/>
+  <label for="location">Location</label>
+  <input type="text" th:field="*{location}" id="location" placeholder="Location">
+  <br/>
+  <input type="submit" value="Update Business">
+</form>
+</body>
+</html>

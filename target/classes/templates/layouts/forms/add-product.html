@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<form th:action="@{/product-create}" th:object="${product}" method="post">
+    <label for="productName">Name</label>
+    <input type="text" th:field="*{productName}" id="productName" placeholder="Name">
+    <label for="categoryId">Category</label>
+    <select name="category" id="categoryId">
+        <option value="">--Please choose an option--</option>
+        <option th:each="productCategory : ${productCategory}" th:value="*{productCategory.categoryId}" th:text="${productCategory.categoryName}"></option>
+    </select>
+    <input type="submit" value="Add a product">
+</form>
+</body>
+</html>

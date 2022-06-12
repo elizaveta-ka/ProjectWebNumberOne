@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Buddies</title>
+<!--    <script type="text/javascript">-->
+<!--        $(function() {-->
+<!--            $('.jqButton').button();-->
+<!--        });-->
+<!--    </script>-->
+</head>
+<body>
+<!--<?php-->
+<!--if (isset($_POST['posted'])) {-->
+<!--${banned} = ban;-->
+<!--${htmlname} = name;-->
+<!--}-->
+<div th:switch="${users}">
+    <h2 th:case="null">No buddies found!</h2>
+    <div th:case="*">
+        <h2>Buddies</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Status</th>
+                <th>Role</th>
+                <th>BAN</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.id}"></td>
+                <td name = username th:text="${user.username}"></td>
+                <td th:text="${user.password}"></td>
+                <td th:text="${user.active}"></td>
+                <td th:text="${user.role.getName()}"></td>
+                <td
+                 method="POST" action="listbox.php">
+                    <form>
+                        <input class="jqButton" type="checkbox" id="ban/unban">
+
+                    </form>
+                </form>
+                </td>
+
+
+<!--                <td><a th:href="@{buddy-update/{id}(id=${buddy.buddyId})}">Edit</a></td>-->
+<!--                <td><a th:href="@{buddy-delete/{id}(id=${buddy.buddyId})}">Delete</a></td>-->
+            </tr>
+            <input type="submit" value="Отправить">
+            </tbody>
+
+
+        </table>
+    </div>
+    <p><a href="/buddy-create">Create user</a></p>
+</div>
+</body>
+</html>
