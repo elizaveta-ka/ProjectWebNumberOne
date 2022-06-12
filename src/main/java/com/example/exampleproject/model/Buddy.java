@@ -6,7 +6,9 @@ import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "buddies")
@@ -32,7 +34,7 @@ public class Buddy {
     @JoinTable (name="wishlist",
             joinColumns=@JoinColumn (name="buddy_id"),
             inverseJoinColumns=@JoinColumn(name="product_id"))
-    private List<Product> products;
+    private Set<Product> products = new HashSet<>();
 
     @Id
     @Column(name = "buddy_id", nullable = false)
@@ -61,7 +63,7 @@ public class Buddy {
         this.avatarImg = avatarImg;
     }
 
-    public Buddy(Collection friends, BuddyLogin buddyLogin, Collection<BusinessReview> businessAuthors, List<Product> products, int buddyId, String firstName, String lastName, int age, String city, String avatarImg) {
+    public Buddy(Collection friends, BuddyLogin buddyLogin, Collection<BusinessReview> businessAuthors, Set<Product> products, int buddyId, String firstName, String lastName, int age, String city, String avatarImg) {
         this.friends = friends;
         this.buddyLogin = buddyLogin;
         this.businessAuthors = businessAuthors;
@@ -111,11 +113,11 @@ public class Buddy {
         this.businessAuthors = businessAuthors;
     }
 
-    public List<Product> getProducts() {
+    public Set<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(Set<Product> products) {
         this.products = products;
     }
 

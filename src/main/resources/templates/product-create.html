@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <!--      th:fragment="main-fragment (title, otherStaticResources, header, SideMenu, mainContent, footer)">-->
 <head>
-    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
     <title>Business Page</title>
     <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../../static/main.css"/>
     <title>Business Menu</title>
@@ -29,16 +29,31 @@
                 <p th:text="${business.location}">Location</p>
                 <p th:text="${Distance}">2 km away</p>
             </div>
-        </div><br>
+        </div>
+        <br>
         <div>
             <form action="#" th:action="@{/business/{id}/product-create}" th:object="${product}" method="post">
+                <div class="business-control" th:name = "business" th:id="business">
                 <label for="businessId">Business Id</label>
-                <input readonly th:object="${business}" th:field="${business.businessId}" id="businessId" placeholder="Business Id">
+                <input readonly th:object="${business}" th:field="${business.businessId}" id="businessId"
+                       placeholder="Business Id"
+                th:data-business="business.businessId">
+                </div>
                 <label for="productName">Product name</label>
                 <input type="text" th:field="*{productName}" id="productName" placeholder="Product Name">
-                <label for="categoryId">Category Id</label>
-                <input type="text" th:field="*{categoryId}" id="categoryId" placeholder="Category Id">
+                <!--                <label for="categoryId">Category Id</label>-->
+                <!--                <input type="text" th:field="*{categoryId}" id="categoryId" placeholder="Category Id">-->
+                <select class="form-control" th:name="category" th:id="category">
+                    <option value="">--Please choose an option--</option>
+                    <option th:each="productCategory : ${productCategories}" th:value="${productCategory}"
+                            th:text="${productCategory.categoryName}"
+                            th:data-id="${productCategory.categoryId}">
+
+                    </option>
+                </select>
                 <input type="submit" value="Create Product">
+                <input type="hidden" th:field="*{productCategory.categoryId}" class="form-control" id="categoryId"
+                       placeholder="categoryId">
             </form>
         </div>
         <div id="product_block" th:each="product : ${business.products}">
@@ -46,11 +61,24 @@
                 <h1 th:text="${product.productName}"> Product_NAME </h1>
                 <p th:text="${product['productCategory']['categoryName']}">Category_NAME</p>
             </div>
-        </div><br>
-    </article><br>
+        </div>
+        <br>
+    </article>
+    <br>
 </section>
 </body>
 <footer>
     <p>All right reserved and belong to almighty Cthulhu</p>
 </footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#category").change(function () {
+            $("#categoryId").val($("#category option:selected").attr("data-id"));
+        });
+        $("#business").change(function () {
+            $("#businessId").val($("#business").attr("data-business"));
+        });
+    });
+</script>
 </html>
