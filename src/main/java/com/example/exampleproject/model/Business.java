@@ -17,7 +17,7 @@ public class Business {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "business_id")
     private BusinessLogin businessLogin;
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
     @JoinTable(
             name = "businessProduct",
             joinColumns = { @JoinColumn(name = "business_id") },

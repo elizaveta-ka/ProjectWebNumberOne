@@ -4,6 +4,7 @@ import com.example.exampleproject.model.Business;
 import com.example.exampleproject.model.Product;
 import com.example.exampleproject.repository.BusinessRepository;
 import com.example.exampleproject.repository.BusinessReviewRepository;
+import com.example.exampleproject.repository.ProductCategoryRepository;
 import com.example.exampleproject.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -25,12 +27,15 @@ public class BusinessController {
 
     private final BusinessReviewRepository businessReviewRepository;
 
+    private final ProductCategoryRepository productCategoryRepository;
+
 
     @Autowired
-    public BusinessController(BusinessRepository businessRepository, ProductRepository productRepository, BusinessReviewRepository businessReviewRepository) {
+    public BusinessController(BusinessRepository businessRepository, ProductRepository productRepository, BusinessReviewRepository businessReviewRepository, ProductCategoryRepository productCategoryRepository) {
         this.businessRepository = businessRepository;
         this.productRepository = productRepository;
         this.businessReviewRepository = businessReviewRepository;
+        this.productCategoryRepository = productCategoryRepository;
     }
     // работает для демонстрации связей
     @GetMapping("/business")
@@ -97,16 +102,21 @@ public class BusinessController {
     public String createProductForm(@PathVariable("id")int id, Model model, Product product) {
         Business business = businessRepository.getById(id);
         model.addAttribute("business", business);
+        model.addAttribute("productCategories", productCategoryRepository.findAll());
         return "product-create";
     }
-    // работает
+
     @PostMapping("/business/{id}/product-create")
     public String createProduct(Product product, Business business) {
-        Optional<Business> business1 = businessRepository.findById(business.getBusinessId());
-        Set<Product> products = business1.get().getProducts();
-        products.add(product);
-        int id = business1.get().getBusinessId();
+        Business business1 = businessRepository.getById(business.getBusinessId());
+        Set<Product> products = business1.getProducts();
+        var productCategory= productCategoryRepository.findById(product.getProductCategory().getCategoryId()).orElseThrow();
+        product.setProductCategory(productCategory);
         productRepository.save(product);
-        return String.format("redirect:/business/%d/menu", id);
+        products.add(product);
+        business1.setProducts(products);
+        businessRepository.save(business1);
+        int id = business1.getBusinessId();
+        return "redirect:/business/"+ id;
     }
 }

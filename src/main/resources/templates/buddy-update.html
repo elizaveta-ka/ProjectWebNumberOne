@@ -1,26 +1,88 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<meta charset="UTF-8">
-<title>Create buddy</title>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">-->
+<!--<meta charset="UTF-8">-->
+<!--<title>Create buddy</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<form action="#" th:action="@{/buddy-update}" th:object="${buddy}" method="post">-->
+<!--    <label for="buddyId">ID</label>-->
+<!--    <input readonly type="text" th:field="*{buddyId}" id="buddyId" placeholder="ID">-->
+<!--    <br/>-->
+<!--    <label for="firstName">First name</label>-->
+<!--    <input type="text" th:field="*{firstName}" id="firstName" placeholder="First Name">-->
+<!--    <br/>-->
+<!--    <label for="lastName">Last name</label>-->
+<!--    <input type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name">-->
+<!--    <br/>-->
+<!--    <label for="age">Age</label>-->
+<!--    <input type="number" th:field="*{age}" id="age" placeholder="Age">-->
+<!--    <br/>-->
+<!--    <label for="city">City</label>-->
+<!--    <input type="text" th:field="*{city}" id="city" placeholder="City">-->
+<!--    <br/>-->
+<!--    <input type="submit" value="Update Buddy">-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--      th:fragment="main-fragment (title, otherStaticResources, header, SideMenu, mainContent, footer)">-->
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="profileForm.js"></script>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <title>Business Page</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../../static/main.css"/>
+    <title>Business Page</title>
+
 </head>
+<header>
+    <h2>Buddy page</h2>
+
+</header>
 <body>
-<form action="#" th:action="@{/buddy-update}" th:object="${buddy}" method="post">
-    <label for="buddyId">ID</label>
-    <input readonly type="text" th:field="*{buddyId}" id="buddyId" placeholder="ID">
-    <br/>
-    <label for="firstName">First name</label>
-    <input type="text" th:field="*{firstName}" id="firstName" placeholder="First Name">
-    <br/>
-    <label for="lastName">Last name</label>
-    <input type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name">
-    <br/>
-    <label for="age">Age</label>
-    <input type="number" th:field="*{age}" id="age" placeholder="Age">
-    <br/>
-    <label for="city">City</label>
-    <input type="text" th:field="*{city}" id="city" placeholder="City">
-    <br/>
-    <input type="submit" value="Update Buddy">
-</form>
+<section>
+    <SideMenu id="SideMenu">
+        <li><a href="@{/}">Home</a></li>
+        <li><a href="@{/feed}">Feed</a></li>
+        <li><a href="@{/buddies}">Buddies</a></li>
+        <li><a href="@{/notifications}">Notifications</a></li>
+        <li><a href="@{/settings}">Settings</a></li>
+        <li><span style=vertical-align:bottom><a href="@{/}">Log out</a> </span></li>
+    </SideMenu>
+    <article>
+        <form id="changeProfile" th:action="@{/buddy-update}" th:object="${buddy}" method="post">
+            <label for="buddyId">ID</label>
+            <input readonly type="text" th:field="*{buddyId}" id="buddyId" placeholder="ID">
+            <br/>
+            <label for="firstName">First name</label>
+            <input type="text" th:field="*{firstName}" id="firstName" placeholder="First Name">
+            <br/>
+            <label for="lastName">Last name</label>
+            <input type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name">
+            <br/>
+            <label for="age">Age</label>
+            <input type="number" th:field="*{age}" id="age" placeholder="Age">
+            <br/>
+            <label for="city">City</label>
+            <input type="text" th:field="*{city}" id="city" placeholder="City">
+            <br/>
+            <input type="submit" value="Update Buddy">
+        </form>
+
+            <script type="text/javascript">
+                $(document).ready(function(){
+                $("#changeProfile").ajaxForm(function() {
+
+                    $("#result").load("buddy/${buddyId}");
+                });
+            });
+
+        </script>
+    </article><br>
+</section>
 </body>
+<footer>
+    <p>All right reserved and belong to almighty Cthulhu</p>
+</footer>
 </html>

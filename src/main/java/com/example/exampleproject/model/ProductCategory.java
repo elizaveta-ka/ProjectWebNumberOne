@@ -14,9 +14,9 @@ public class ProductCategory {
     @Fetch(value = FetchMode.SUBSELECT)
     private Collection<Suggestion> suggestions;
 
-    @OneToMany(mappedBy = "productCategory", fetch = FetchType.EAGER)
+  /*  @OneToMany(mappedBy = "productCategory", fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
-    private Collection<Product> product;
+    private Collection<Product> product;*/
 
     @Id
     @Column(name = "category_id", nullable = false)
@@ -49,7 +49,7 @@ public class ProductCategory {
 
     public ProductCategory(Collection<Suggestion> suggestions, Collection<Product> product, int categoryId, String categoryName, String firstAtt, String secondAtt, String thirdAtt) {
         this.suggestions = suggestions;
-        this.product = product;
+        /*this.product = product;*/
         this.categoryId = categoryId;
         this.categoryName = categoryName;
         this.firstAtt = firstAtt;
@@ -65,13 +65,13 @@ public class ProductCategory {
         this.suggestions = suggestions;
     }
 
-    public Collection<Product> getProduct() {
+   /* public Collection<Product> getProduct() {
         return product;
-    }
+    }*/
 
-    public void setProduct(Collection<Product> product) {
+ /*   public void setProduct(Collection<Product> product) {
         this.product = product;
-    }
+    }*/
 
     public int getCategoryId() {
         return categoryId;
@@ -117,7 +117,7 @@ public class ProductCategory {
     public String toString() {
         return "ProductCategory{" +
                 "suggestions=" + suggestions +
-                ", product=" + product +
+                /*", product=" + product +*/
                 ", categoryId=" + categoryId +
                 ", categoryName='" + categoryName + '\'' +
                 ", firstAtt='" + firstAtt + '\'' +

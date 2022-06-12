@@ -30,7 +30,7 @@ public class Product {
     private Collection<ProductReview> productReviews;
 
     @ManyToOne(optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "category_id", insertable = false, updatable = false)
+    @JoinColumn(name = "category_id")
     private ProductCategory productCategory;
 
     @Id
@@ -40,27 +40,23 @@ public class Product {
 
     @Column(name = "product_name")
     private String productName;
-    @Column(name = "category_id")
-    private int categoryId;
     @Column(name = "product_img")
     private String productImg;
 
     public Product(){}
 
-    public Product(Set<Business> businesses, Set<Buddy> buddies, Collection<ProductReview> productReviews, ProductCategory productCategory, int productId, String productName, int categoryId, String productImg) {
+    public Product(Set<Business> businesses, Set<Buddy> buddies, Collection<ProductReview> productReviews, ProductCategory productCategory, int productId, String productName, String productImg) {
         this.businesses = businesses;
         this.buddies = buddies;
         this.productReviews = productReviews;
         this.productCategory = productCategory;
         this.productId = productId;
         this.productName = productName;
-        this.categoryId = categoryId;
         this.productImg = productImg;
     }
 
-    public Product(String productName, int categoryId, String productImg) {
+    public Product(String productName, String productImg) {
         this.productName = productName;
-        this.categoryId = categoryId;
         this.productImg = productImg;
     }
 
@@ -108,9 +104,6 @@ public class Product {
         return productName;
     }
 
-    public int getCategoryId() {
-        return categoryId;
-    }
 
     public String getProdImg() {
         return productImg;
@@ -124,9 +117,6 @@ public class Product {
         this.productName = productName;
     }
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
-    }
 
     public void setProductImg(String productImg) {
         this.productImg = productImg;
