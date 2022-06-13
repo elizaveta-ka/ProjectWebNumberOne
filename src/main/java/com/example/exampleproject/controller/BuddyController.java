@@ -1,7 +1,6 @@
 package com.example.exampleproject.controller;
 
 import com.example.exampleproject.model.*;
-import com.example.exampleproject.repository.BuddyLoginRep;
 import com.example.exampleproject.repository.BuddyRepository;
 import com.example.exampleproject.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -21,11 +19,9 @@ public class BuddyController {
 
     private ProductRepository productRepository;
 
-    private BuddyLoginRep buddyLoginRep;
     @Autowired
-    public BuddyController(BuddyRepository buddyRepository, BuddyLoginRep buddyLoginRep, ProductRepository productRepository) {
+    public BuddyController(BuddyRepository buddyRepository, ProductRepository productRepository) {
         this.buddyRepository = buddyRepository;
-        this.buddyLoginRep = buddyLoginRep;
         this.productRepository = productRepository;
     }
     @GetMapping("/buddy")
