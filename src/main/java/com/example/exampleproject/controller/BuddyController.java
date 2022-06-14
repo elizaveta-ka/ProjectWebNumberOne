@@ -60,7 +60,7 @@ public class BuddyController {
         return "redirect:/buddy";
     }
     // работает
-    @GetMapping("/buddy-update/{id}")
+    @GetMapping("buddy/buddy-update/{id}")
    public String updateBuddyForm(@PathVariable("id") int id, Model model) {
         Optional<Buddy> buddy = buddyRepository.findById(id);  //Optional???
         model.addAttribute("buddy", buddy);
@@ -74,8 +74,9 @@ public class BuddyController {
         for (var product:products) {
             buddy.addProduct(product);
         }
+        int id = buddy.getBuddyId();
         buddyRepository.save(buddy);
-       return "redirect:/buddy";
+       return "redirect:/buddy" + id;
    }
 
 

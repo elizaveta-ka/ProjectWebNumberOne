@@ -84,11 +84,9 @@
 <body>
 <section>
     <SideMenu id="SideMenu">
-        <li><a href="@{/}">Home</a></li>
-        <li><a href="@{/feed}">Feed</a></li>
-        <li><a href="@{/buddies}">Buddies</a></li>
+        <li><a th:href="'buddy' + ${Id}">Home</a></li> 
+        <li><a th:href="@{/feed}">Feed</a></li>
         <li><a href="@{/notifications}">Notifications</a></li>
-        <li><a href="@{/settings}">Settings</a></li>
         <li><span style=vertical-align:bottom><a th:href="@{/logout}">Log out</a> </span></li>
     </SideMenu>
     <article>

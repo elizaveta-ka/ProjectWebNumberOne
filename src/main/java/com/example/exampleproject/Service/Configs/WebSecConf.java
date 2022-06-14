@@ -27,10 +27,10 @@ public class WebSecConf extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/registration", "/suggestion").permitAll()
+                .antMatchers("/", "/registration", "/feed", "/logout").permitAll()
                 .antMatchers("/admin").hasAuthority("ROLE_ADMIN")
                 .antMatchers("/business-page").hasAuthority("ROLE_BUSINESS")
-                .antMatchers("/product-category").hasAnyAuthority( "ROLE_USER")
+                .antMatchers("/buddy").hasAnyAuthority( "ROLE_USER")
 
                 .anyRequest().authenticated()
                 .and()
@@ -38,17 +38,17 @@ public class WebSecConf extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
 //                .loginProcessingUrl("/perform_login")
 //                .defaultSuccessUrl("/homepage.html",true)
-                .failureUrl("/login?error").permitAll()
-                .defaultSuccessUrl("/buddy/").permitAll()
+                .failureUrl("/login").permitAll()
+                .defaultSuccessUrl("/feed").permitAll()  //переход на страницу feed
 //                .defaultSuccessUrl("/admin").usernameParameter("ROLE_ADMIN")
-//                .defaultSuccessUrl("/business-page").usernameParameter("ROLE_BUSINESS")
+//                .defaultSuccessUrl("/business/1/product-create").usernameParameter("ROLE_BUSINESS")
 
                 .and()
-                .httpBasic()
-                .and()
+//                .httpBasic()
+//                .and()
+
                 .logout()
                 .permitAll()
-
                 .logoutSuccessUrl("/login");
 
 

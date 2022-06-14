@@ -15,27 +15,23 @@
 <body>
 <section>
     <SideMenu id="SideMenu">
-        <li><a href="@{/}">Home</a></li>
-        <li><a href="@{/feed}">Feed</a></li>
-        <li><a href="@{/buddies}">Buddies</a></li>
+        <li>Home</li>
+        <li><a th:href="@{/feed}">Feed</a></li>
         <li><a href="@{/notifications}">Notifications</a></li>
-        <li><a href="@{/settings}">Settings</a></li>
-        <li><span style=vertical-align:bottom><a href="@{/}">Log out</a> </span></li>
+        <li><span style=vertical-align:bottom><a th:href="@{/logout}">Log out</a> </span></li>
     </SideMenu>
     <article>
         <div id="Buddy_block">
             <div th:fragment="buddy">
                 <p id="buddy_img" ><img src="layouts/img/buddy.png" alt="Buddy image"></p>
-                <h1 th:text="${buddy.firstName}"> First Name </h1>
-                <h1 th:text="${buddy.lastName}">Last Name</h1>
-                <p th:text="${buddy.age}">Age</p>
-                <p th:text="${buddy.city}">City</p>
-                <button th:onclick="submit"> Редактировать профиль</button>
-<!--                <div id='response'></div>-->
-<!--                <form action="" name='ourForm'>-->
-<!--                    <input type="text" name='ourForm_inp'>-->
-<!--                    <button type='submit' name='ourForm_btn'>Отправить</button>-->
-<!--                </form>-->
+                <h1 id="first_name" contenteditable="true" th:text="${buddy.firstName}"> First Name </h1>
+                <h1 id="last_name"contenteditable="true" th:text="${buddy.lastName}">Last Name</h1>
+                <p id="age" contenteditable="true" th:text="${buddy.age}">Age</p>
+                <p id="city" contenteditable="true" th:text="${buddy.city}">City</p>
+<!--                <button id="save"> Редактировать профиль</button>-->
+                <p><a th:href="@{buddy-update/{id}(id=${buddy.buddyId})}">Edit</a></p>
+<!--                <button><a th:href="@{buddy-update/{id}(id=${buddy.buddyId})}">Редактировать профиль</a></button>-->
+
         <div id="rateBlock" th:each="review : ${buddy.productAuthors}">
             <p th:text="${review.product.productName}"> Review_title</p><br>
             <p th:text="${review.reviewProduct}"> Review_title</p><br>
@@ -50,11 +46,18 @@
         </div>
     </article><br>
 </section>
-<script>
-    $.get()
-</script>
+
 </body>
 <footer>
     <p>All right reserved and belong to almighty Cthulhu</p>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script>
+    $(document).ready(function (){
+        $("#first_name").change(function () {
+
+
+        })
+    });
+    </script>
 </footer>
 </html>

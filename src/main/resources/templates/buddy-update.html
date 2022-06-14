@@ -43,17 +43,16 @@
 <body>
 <section>
     <SideMenu id="SideMenu">
-        <li><a href="@{/}">Home</a></li>
-        <li><a href="@{/feed}">Feed</a></li>
-        <li><a href="@{/buddies}">Buddies</a></li>
+<!--        <li><a th:href="@{buddy/{id}(id=${buddy.buddyId})}">Home</a></li>-->
+        <li><a th:href="@{/feed}">Feed</a></li>
         <li><a href="@{/notifications}">Notifications</a></li>
-        <li><a href="@{/settings}">Settings</a></li>
-        <li><span style=vertical-align:bottom><a href="@{/}">Log out</a> </span></li>
+        <li><span style=vertical-align:bottom><a th:href="@{/logout}">Log out</a> </span></li>
     </SideMenu>
     <article>
         <form id="changeProfile" th:action="@{/buddy-update}" th:object="${buddy}" method="post">
             <label for="buddyId">ID</label>
-            <input readonly type="text" th:field="*{buddyId}" id="buddyId" placeholder="ID">
+            <input readonly type="text" th:field="*{buddyId}" id="buddyId" placeholder="ID"
+                   th:data-buddy="buddyId">
             <br/>
             <label for="firstName">First name</label>
             <input type="text" th:field="*{firstName}" id="firstName" placeholder="First Name">
@@ -70,15 +69,15 @@
             <input type="submit" value="Update Buddy">
         </form>
 
-            <script type="text/javascript">
-                $(document).ready(function(){
-                $("#changeProfile").ajaxForm(function() {
+<!--            <script type="text/javascript">-->
+<!--                $(document).ready(function(){-->
+<!--                $("#changeProfile").ajaxForm(function() {-->
 
-                    $("#result").load("buddy/${buddyId}");
-                });
-            });
+<!--                    $("#result").load("/buddy/" + "data-buddy");-->
+<!--                });-->
+<!--            });-->
 
-        </script>
+<!--        </script>-->
     </article><br>
 </section>
 </body>
