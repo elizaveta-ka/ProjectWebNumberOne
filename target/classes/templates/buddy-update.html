@@ -28,8 +28,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <!--      th:fragment="main-fragment (title, otherStaticResources, header, SideMenu, mainContent, footer)">-->
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="profileForm.js"></script>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
     <title>Business Page</title>
     <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../../static/main.css"/>
@@ -43,46 +41,64 @@
 <body>
 <section>
     <SideMenu id="SideMenu">
-        <li><a href="@{/}">Home</a></li>
-        <li><a href="@{/feed}">Feed</a></li>
-        <li><a href="@{/buddies}">Buddies</a></li>
+        <li><a th:href="@{/buddy}">Home</a></li>
+        <li><a th:href="@{/feed}">Feed</a></li>
         <li><a href="@{/notifications}">Notifications</a></li>
-        <li><a href="@{/settings}">Settings</a></li>
-        <li><span style=vertical-align:bottom><a href="@{/}">Log out</a> </span></li>
+        <li><span style=vertical-align:bottom><a th:href="@{/logout}">Log out</a> </span></li>
     </SideMenu>
     <article>
-        <form id="changeProfile" th:action="@{/buddy-update}" th:object="${buddy}" method="post">
-            <label for="buddyId">ID</label>
-            <input readonly type="text" th:field="*{buddyId}" id="buddyId" placeholder="ID">
+        <form class="changeProfile" th:action="@{/buddy-update}" th:object="${buddy}" method="post">
+            <input readonly type="hidden" th:field="*{buddyId}" id="buddyId"
+                   th:data-id="buddyId">
             <br/>
             <label for="firstName">First name</label>
-            <input type="text" th:field="*{firstName}" id="firstName" placeholder="First Name">
+            <input type="text" th:field="*{firstName}" id="firstName" placeholder="First Name"
+            th:data-name="firstName">
             <br/>
             <label for="lastName">Last name</label>
-            <input type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name">
+            <input type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name"
+                   th:data-last="lastName">
             <br/>
             <label for="age">Age</label>
-            <input type="number" th:field="*{age}" id="age" placeholder="Age">
+            <input type="number" th:field="*{age}" id="age" placeholder="Age"
+                   th:data-age="age">
             <br/>
             <label for="city">City</label>
-            <input type="text" th:field="*{city}" id="city" placeholder="City">
+            <input type="text" th:field="*{city}" id="city" placeholder="City"
+                   th:data-city="city">
+            <br/>
+            <label for="avatarImg">Photo</label>
+            <input type="text" th:field="*{avatarImg}" id="avatarImg" placeholder="avatarImg"
+                   th:data-avatar="avatarImg">
             <br/>
             <input type="submit" value="Update Buddy">
         </form>
-
-            <script type="text/javascript">
-                $(document).ready(function(){
-                $("#changeProfile").ajaxForm(function() {
-
-                    $("#result").load("buddy/${buddyId}");
-                });
-            });
-
-        </script>
     </article><br>
 </section>
 </body>
 <footer>
     <p>All right reserved and belong to almighty Cthulhu</p>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+           $(".form-profile").change(function (){
+               var id = $(this).attr("data-id");
+               var name = $(this).attr("data-name");
+               var lastname = $(this).attr("data-lastName");
+               var age = $(this).attr("data-age");
+               var city = $(this).attr("data-city");
+               var avatar = $(this).attr("data-avatar");
+
+               $.post("buddy-update"), {
+                   "buddyId" : id,
+                   "firstName" : name,
+                   "lastName" : lastname,
+                   "age" : age,
+                   "city" : city,
+                   "avatarImg" : avatar
+               }
+           });
+        });
+    </script>
 </footer>
 </html>

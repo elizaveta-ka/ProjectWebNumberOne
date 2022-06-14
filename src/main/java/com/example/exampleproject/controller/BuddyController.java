@@ -59,14 +59,14 @@ public class BuddyController {
 
         return "redirect:/buddy";
     }
-    // работает
-    @GetMapping("buddy/buddy-update/{id}")
+
+    @GetMapping("/buddy/update/{id}")
    public String updateBuddyForm(@PathVariable("id") int id, Model model) {
-        Optional<Buddy> buddy = buddyRepository.findById(id);  //Optional???
+        Optional<Buddy> buddy = buddyRepository.findById(id);
         model.addAttribute("buddy", buddy);
     return "/buddy-update";
    }
-    // работает
+
     @PostMapping("/buddy-update")
    public String updateBuddy(Buddy buddy) {
         Optional<Buddy> buddy1 = buddyRepository.findById(buddy.getBuddyId());

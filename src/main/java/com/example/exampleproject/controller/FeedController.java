@@ -37,4 +37,11 @@ public class FeedController {
         model.addAttribute("productCategories", productCategories);
         return "feed";
     }
+
+    @GetMapping("/notifications")
+    public String notificationPage() {
+
+        return "notifications";
+    }
+
 }

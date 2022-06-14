@@ -1,74 +1,5 @@
-<!--<!DOCTYPE HTML>-->
-<!--<html xmlns:th="http://www.thymeleaf.org">-->
-<!--&lt;!&ndash;      th:fragment="main-fragment (title, otherStaticResources, header, SideMenu, mainContent, footer)">&ndash;&gt;-->
-<!--<head>-->
-<!--    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />-->
-<!--    <title>Business Page</title>-->
-<!--    <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../../static/main.css"/>-->
-<!--    <title>Business Page</title>-->
-
-<!--</head>-->
-<!--<header>-->
-<!--    <h2>Business page</h2>-->
-
-<!--</header>-->
-<!--<body>-->
-<!--<section>-->
-<!--    <SideMenu id="SideMenu">-->
-<!--        <li><a href="@{/}">Home</a></li>-->
-<!--        <li><a href="@{/feed}">Feed</a></li>-->
-<!--        <li><a href="@{/buddies}">Buddies</a></li>-->
-<!--        <li><a href="@{/notifications}">Notifications</a></li>-->
-<!--        <li><a href="@{/settings}">Settings</a></li>-->
-<!--        <li><span style=vertical-align:bottom><a href="@{/}">Log out</a> </span></li>-->
-<!--    </SideMenu>-->
-<!--    <article>-->
-<!--        <div id="Business_block">-->
-<!--            <div th:fragment="business">-->
-<!--                <h1 th:text="${business.busName}"> Business_NAME </h1>-->
-<!--                <p th:text="${business.location}">Location</p>-->
-<!--                <p th:text="${Distance}">2 km away</p>-->
-<!--                <p align="right"> <button onclick ="window.location.href= 'business.businessLink';">Book a table</button></p>-->
-<!--                <div><div id="rating">-->
-<!--                    //суммарный рейтинг заведения-->
-<!--                    <span th:text="${rateB1}"> Rate_B1</span> <span th:text="${rateB2}"> Rate_B2</span><br>-->
-<!--                    <span th:text="${rateB3}"> Rate_B3</span> <span th:text="${rateB4}"> Rate_B4</span></div>-->
-<!--                    <br>-->
-<!--                    <p id="business_img" ><img src="layouts/img/business.png" alt="Business image"></p>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div><br>-->
-<!--        <div id="rateBlock" th:each="review : ${business.businessReviews}">-->
-<!--            <p th:text="${review.reviewB}"> Review_title</p><br>-->
-<!--            <div id="rating_pr">-->
-<!--                <span th:text="${review.rateB1}"> Rate_B1</span> <span th:text="${review.rateB2}"> Rate_B2</span><br>-->
-<!--                <span th:text="${review.rateB3}"> Rate_B3</span> <span th:text="${review.rateB4}"> Rate_B4</span></div>-->
-<!--            <p id="reviewer_img"><img src="*{'data:image/png;base64, '+image}" alt="reviewer_img"></p><br>-->
-
-<!--&lt;!&ndash;            <p th:text="${review.reviewB}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus scelerisque ipsum nec mauris dapibus gravida. Nam felis est, ornare sit amet auctor in, malesuada sit amet massa. Pellentesque eget efficitur lorem. Nunc lobortis erat a orci blandit, et consequat diam molestie. Etiam id tempor felis, sit amet egestas sem. Suspendisse potenti. Morbi tristique tincidunt leo in ornare. Aenean sodales leo id dapibus posuere.</p>&ndash;&gt;-->
-<!--        </div><br>-->
-<!--        </div><br>-->
-<!--    </article><br>-->
-<!--</section>-->
-<!--</body>-->
-<!--<footer>-->
-<!--    <p>All right reserved and belong to almighty Cthulhu</p>-->
-<!--</footer>-->
-<!--</html>-->
-
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Business</title>-->
-<!--    <p> Business page</p>-->
-<!--</head>-->
-<!--<body>-->
-
-<!--</body>-->
-<!--</html>-->
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <!--      th:fragment="main-fragment (title, otherStaticResources, header, SideMenu, mainContent, footer)">-->
 <head>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
@@ -84,9 +15,9 @@
 <body>
 <section>
     <SideMenu id="SideMenu">
-        <li><a th:href="'buddy' + ${Id}">Home</a></li> 
+        <li>Home</li>
         <li><a th:href="@{/feed}">Feed</a></li>
-        <li><a href="@{/notifications}">Notifications</a></li>
+        <li><a th:href="@{/notifications}">Notifications</a></li>
         <li><span style=vertical-align:bottom><a th:href="@{/logout}">Log out</a> </span></li>
     </SideMenu>
     <article>
@@ -95,8 +26,11 @@
             <div th:fragment="business">
                 <h1 th:text="${business.busName}"> Business_NAME </h1>
                 <p th:text="${business.location}">Location</p>
+                <p id="link" th:text="${business.businessLink}" th:data-link="business.businessLink">link</p>
+<!--                <a href='${business.businessLink}' class="btn">Переход по ссылке</a>-->
+                <div onclick="javascript:location.href='${business.businessLink}';">Переход по ссылке</div>
                 <p th:text="${Distance}">2 km away</p>
-                <p align="right"> <button onclick ="window.location.href= 'business.businessLink';">Book a table</button></p>
+
 
                 <div class="tabs">
                     <input type="radio" name="inset" value="" id="tab_3" checked>
@@ -115,18 +49,24 @@
                     <div id = "menu">
                         <table th:each="product : ${business.products}" width="100%" border="0" cellpadding="4">
                             <tr align="right" valign="top">
+                                <div>
                                 <th th:text="${product.productName}">Product_NAME</th>
                                 <td th:text="${product['productCategory']['categoryName']}">Category_NAME</td>
                                 <td th:text="${'blabla'}">Суммарный рейтинг продукта</td>
+                                </div>
                             </tr>
                         </table>
-                        <button onclick="location.href='http://localhost:9090/business/id/product-create'">Add new product</button>
+                        <td><a th:href="@{{id}/product-create(id=${business.businessId})}">Add new product</a></td>
+<!--                        <button><a th:href="@{business/{businessId}/product-create}">Add new product</a></button>-->
                     </div>
                 </div>
             </div>
         </div><br>
 
         <div id="rateBlock" th:each="review : ${business.businessReviews}">
+            <p th:text="${review.buddy.firstName} + ${' '} + ${review.buddy.lastName}">Author</p>
+            <th><a th:href="@{/buddy/{id}(id=${review.buddy.buddyId})}"><img src="layouts/img/product.png" width="30"
+                                                                             height="50" alt="Buddy image"></a></th>
             <p th:text="${review.reviewB}"> Review_title</p><br>
             <div id="rating_pr">
                 <span th:text="${review.rateB1}"> Rate_B1</span> <span th:text="${review.rateB2}"> Rate_B2</span><br>
@@ -141,5 +81,11 @@
 </body>
 <footer>
     <p>All right reserved and belong to almighty Cthulhu</p>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+        });
+    </script>
 </footer>
 </html>

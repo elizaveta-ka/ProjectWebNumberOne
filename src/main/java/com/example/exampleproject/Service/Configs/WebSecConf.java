@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.stereotype.Component;
 
 
@@ -38,7 +39,7 @@ public class WebSecConf extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
 //                .loginProcessingUrl("/perform_login")
 //                .defaultSuccessUrl("/homepage.html",true)
-                .failureUrl("/login").permitAll()
+                .failureUrl("/login?error").permitAll()
                 .defaultSuccessUrl("/feed").permitAll()  //переход на страницу feed
 //                .defaultSuccessUrl("/admin").usernameParameter("ROLE_ADMIN")
 //                .defaultSuccessUrl("/business/1/product-create").usernameParameter("ROLE_BUSINESS")
@@ -48,7 +49,7 @@ public class WebSecConf extends WebSecurityConfigurerAdapter {
 //                .and()
 
                 .logout()
-                .permitAll()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login");
 
 

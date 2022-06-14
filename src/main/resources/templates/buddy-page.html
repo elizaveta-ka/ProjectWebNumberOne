@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <!--      th:fragment="main-fragment (title, otherStaticResources, header, SideMenu, mainContent, footer)">-->
 <head>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
@@ -17,7 +17,7 @@
     <SideMenu id="SideMenu">
         <li>Home</li>
         <li><a th:href="@{/feed}">Feed</a></li>
-        <li><a href="@{/notifications}">Notifications</a></li>
+        <li><a th:href="@{/notifications}">Notifications</a></li>
         <li><span style=vertical-align:bottom><a th:href="@{/logout}">Log out</a> </span></li>
     </SideMenu>
     <article>
@@ -29,11 +29,13 @@
                 <p id="age" contenteditable="true" th:text="${buddy.age}">Age</p>
                 <p id="city" contenteditable="true" th:text="${buddy.city}">City</p>
 <!--                <button id="save"> Редактировать профиль</button>-->
-                <p><a th:href="@{buddy-update/{id}(id=${buddy.buddyId})}">Edit</a></p>
+                <p><a th:href="@{update/{id}(id=${buddy.buddyId})}">Edit</a></p>
 <!--                <button><a th:href="@{buddy-update/{id}(id=${buddy.buddyId})}">Редактировать профиль</a></button>-->
 
         <div id="rateBlock" th:each="review : ${buddy.productAuthors}">
             <p th:text="${review.product.productName}"> Review_title</p><br>
+            <th><a th:href="@{/product/{id}(id=${review.product.productId})}"><img src="layouts/img/product.png" width="50"
+                                                                            height="50" alt="Product image"></a></th>
             <p th:text="${review.reviewProduct}"> Review_title</p><br>
             <div id="rating_pr">
                 <span th:text="${review.rateP1}"> Rate_P1</span> <span th:text="${review.rateP2}"> Rate_P2</span><br>
