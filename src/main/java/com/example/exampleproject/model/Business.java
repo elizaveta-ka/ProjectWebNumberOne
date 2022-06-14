@@ -14,9 +14,6 @@ import java.util.Set;
 @Table(name = "business")
 public class Business {
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "business_id")
-    private BusinessLogin businessLogin;
     @ManyToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
     @JoinTable(
             name = "businessProduct",
@@ -33,6 +30,11 @@ public class Business {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "business_id", nullable = false)
     private int businessId;
+
+
+    @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
 
     @Column(name = "bus_name")
     private String busName;
@@ -58,11 +60,11 @@ public class Business {
         this.businessLink = businessLink;
     }
 
-    public Business(BusinessLogin businessLogin, String businessLink, Set<Product> products, Collection<BusinessReview> businessReviews, int businessId, String busName, String busImg, String location) {
-        this.businessLogin = businessLogin;
+    public Business(Set<Product> products, Collection<BusinessReview> businessReviews, int businessId, User user, String busName, String busImg, String location, String businessLink) {
         this.products = products;
         this.businessReviews = businessReviews;
         this.businessId = businessId;
+        this.user = user;
         this.busName = busName;
         this.busImg = busImg;
         this.location = location;
@@ -72,7 +74,6 @@ public class Business {
     @Override
     public String toString() {
         return "Business{" +
-                "businessLogin=" + businessLogin +
                 ", products=" + products +
                 ", businessReviews=" + businessReviews +
                 ", businessId=" + businessId +
@@ -82,12 +83,13 @@ public class Business {
                 '}';
     }
 
-    public BusinessLogin getBusinessLogin() {
-        return businessLogin;
+    public void addProduct(Product product){
+        this.products.add(product);
+        product.getBusinesses().add(this);
     }
-
-    public void setBusinessLogin(BusinessLogin businessLogin) {
-        this.businessLogin = businessLogin;
+    public void removeProduct(Product product){
+        this.products.remove(product);
+        product.getBusinesses().remove(this);
     }
 
     public Set<Product> getProducts() {
@@ -146,12 +148,11 @@ public class Business {
         this.businessLink = businessLink;
     }
 
-    public void addProduct(Product product){
-        this.products.add(product);
-        product.getBusinesses().add(this);
+    public User getUser() {
+        return user;
     }
-    public void removeProduct(Product product){
-        this.products.remove(product);
-        product.getBusinesses().remove(this);
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

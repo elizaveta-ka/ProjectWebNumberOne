@@ -35,16 +35,13 @@ public class WebSecConf extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-//                .loginPage("/login")
+                .loginPage("/login")
 //                .loginProcessingUrl("/perform_login")
 //                .defaultSuccessUrl("/homepage.html",true)
-//                .failureUrl("/login?error=true")
-                .defaultSuccessUrl("/suggestion").permitAll()
+                .failureUrl("/login?error").permitAll()
+                .defaultSuccessUrl("/buddy/").permitAll()
 //                .defaultSuccessUrl("/admin").usernameParameter("ROLE_ADMIN")
 //                .defaultSuccessUrl("/business-page").usernameParameter("ROLE_BUSINESS")
-
-
-
 
                 .and()
                 .httpBasic()
