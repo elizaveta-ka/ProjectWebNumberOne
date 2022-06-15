@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <!--      th:fragment="main-fragment (title, otherStaticResources, header, SideMenu, mainContent, footer)">-->
 <head>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
@@ -62,9 +62,10 @@
         </div><br>
         <div id="business_block">
             <div>
-                <p align="right"> <button onclick ="window.location.href='https://duobar.ru/';">Book a table</button></p>
+<!--                <p align="right"> <button onclick ="window.location.href='@{/{link}(link=${bR.businessLink})}';">Book a table</button></p>-->
                 <!--        <p th:text="${busName} + ${', '} ${location}">Business_NAME, Business_TYPE</p>-->
                 <div th:each = "bR : ${product.businesses}" ><p th:text="${bR.busName} + ${', '} + ${bR.location}">Business_NAME, Business_LocationE<p>
+                    <p align="right"> <button onclick ="window.location.href='{{link}(link=${bR.businessLink})}';">Book a table</button></p>
                 <th><a th:href="@{/business/{id}(id=${bR.businessId})}"><img src="layouts/img/product.png" width="30"
                                                                                  height="50" alt="Business image"></a></th>
                 <p th:text="${Distance}">2 km away</p>
@@ -76,5 +77,7 @@
 </body>
 <footer>
     <p>All right reserved and belong to almighty Cthulhu</p>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
 </footer>
 </html>

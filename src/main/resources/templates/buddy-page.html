@@ -23,7 +23,10 @@
     <article>
         <div id="Buddy_block">
             <div th:fragment="buddy">
+<!--                <p><img src="layouts/img/buddy.png" alt="Buddy image"></p>-->
                 <p id="buddy_img" ><img src="layouts/img/buddy.png" alt="Buddy image"></p>
+                <p img th:src="*{'data:layouts/img/buddy.png;base64,'+image}" alt="Buddy image"></p>
+
                 <h1 id="first_name" contenteditable="true" th:text="${buddy.firstName}"> First Name </h1>
                 <h1 id="last_name"contenteditable="true" th:text="${buddy.lastName}">Last Name</h1>
                 <p id="age" contenteditable="true" th:text="${buddy.age}">Age</p>
