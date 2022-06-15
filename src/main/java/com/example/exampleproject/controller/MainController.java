@@ -32,7 +32,6 @@ public class MainController {
     }
 
     @GetMapping("/admin")
-
     public String admin( Model model) {
         List <User> users = userRepository.findAll();
         model.addAttribute("users", users);
