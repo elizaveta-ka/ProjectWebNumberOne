@@ -8,12 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+//import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -34,26 +31,43 @@ public class ProductReviewController {
         model.addAttribute("productReviews", productReviews);
         return "product-review";
     }
-    @PostMapping(value = "/addReview", produces = {MediaType.APPLICATION_JSON_VALUE})
-    @ResponseBody
-    public ProductReviewResponse saveReview(@ModelAttribute @Valid ProductReview productReview,
-                                        BindingResult result) {
+//    @PostMapping(value = "/addReview", produces = {MediaType.APPLICATION_JSON_VALUE})
+//    @ResponseBody
+//    public ProductReviewResponse saveReview(@ModelAttribute @Valid ProductReview productReview,
+//                                            BindingResult result) {
+//
+//        ProductReviewResponse response = new ProductReviewResponse();
+//
+//        if (result.hasErrors()) {
+//
+//            Map<String, String> errors = result.getFieldErrors().stream()
+//                    .collect(
+//                            Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage)
+//                    );
+//
+//            response.setValidated(false);
+//            response.setErrorMessages(errors);
+//        } else {
+//
+//            response.setValidated(true);
+//        }
+//        return response;
+//    }
 
-        ProductReviewResponse response = new ProductReviewResponse();
 
-        if (result.hasErrors()) {
 
-            Map<String, String> errors = result.getFieldErrors().stream()
-                    .collect(
-                            Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage)
-                    );
 
-            response.setValidated(false);
-            response.setErrorMessages(errors);
-        } else {
+    @RequestMapping(value = "/product/{id}/add-review", method = RequestMethod.POST)
+    public String addReview(@PathVariable("id") int id, Model model, @ModelAttribute("SpringWeb") ProductReview productReview) {
+        model.addAttribute("productId", productReview.getProductId());
+        model.addAttribute("reviewTitle", productReview.getReviewTitle());
+        model.addAttribute("reviewProduct", productReview.getReviewProduct());
+        model.addAttribute("buddy", productReview.getBuddy());
 
-            response.setValidated(true);
-        }
-        return response;
+
+        return "redirect:/product/{id}/";
     }
+
+
+
 }
