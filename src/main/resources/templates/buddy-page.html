@@ -34,6 +34,8 @@
 <!--                <button id="save"> Редактировать профиль</button>-->
                 <p><a th:href="@{update/{id}(id=${buddy.buddyId})}">Edit</a></p>
 <!--                <button><a th:href="@{buddy-update/{id}(id=${buddy.buddyId})}">Редактировать профиль</a></button>-->
+<!--                <td><a th:href="@{{id}/product-create(id=${buddy.buddyId})}">Добавить в wishlist</a></td>-->
+                <td><a th:href="@{/buddy/{id}/wishlist(id=${buddy.buddyId})}">Wishlist</a></td>
 
         <div id="rateBlock" th:each="review : ${buddy.productAuthors}">
             <p th:text="${review.product.productName}"> Review_title</p><br>

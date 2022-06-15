@@ -78,7 +78,12 @@ public class BuddyController {
         buddyRepository.save(buddy);
        return "redirect:/buddy" + id;
    }
-
+    @GetMapping("/buddy/{id}/wishlist")
+    public String showWishlist(@PathVariable("id") int id, Model model) {
+        Buddy buddy = buddyRepository.getById(id);
+        model.addAttribute("buddy", buddy);
+        return "wishlist";
+    }
 
 
 }

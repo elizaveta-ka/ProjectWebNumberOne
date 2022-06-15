@@ -26,9 +26,12 @@
             <div th:fragment="business">
                 <h1 th:text="${business.busName}"> Business_NAME </h1>
                 <p th:text="${business.location}">Location</p>
-                <p id="link" th:text="${business.businessLink}" th:data-link="business.businessLink">link</p>
+<!--                <p id="link" th:text="${business.businessLink}" th:data-link="business.businessLink">link</p>-->
 <!--                <a href='${business.businessLink}' class="btn">Переход по ссылке</a>-->
-                <div onclick="javascript:location.href='${business.businessLink}';">Переход по ссылке</div>
+<!--                <div onclick="javascript:location.href='${business.businessLink}';">Переход по ссылке</div>-->
+<!--                <p align="right"> <button onclick ="window.location.href='{{link}(link=${bR.businessLink})}';">Book a table</button></p>-->
+                <form action="http://italyco.rest/hitch-medikov" target="_blank">
+                    <button>Переход по ссылке</button>
                 <p th:text="${Distance}">2 km away</p>
 
 
