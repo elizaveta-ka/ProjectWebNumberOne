@@ -2,22 +2,64 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="review-handler.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 
-<form id="productReviewForm" action="/addReview">
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#category").change(function () {
+            $("#productId").val($("#product option:selected").attr("data-id"));
+        });
+    });
+</script>
+
+<script>
+    $('#submitButton').submit(function(e) {
+        // reference to form object
+        var form = this;
+        // for stopping the default action of element
+        e.preventDefault();
+        // mapthat will hold form data
+        var formData = {}
+        //iterate over form elements
+        $.each(this, function(i, v){
+            var input = $(v);
+            // populate form data as key-value pairs
+            // with the name of input as key and its value as value
+            formData[input.attr("reviewProduct")] = input.val();
+            formData[input.attr("reviewTitle")] = input.val();
+            formData[input.attr("productId")] = input.val();
+            formData[input.attr("buddy")] = input.val();
+        });
+        $.ajax({
+            type: form.attr('POST'), // method attribute of form
+            url: form.attr('/product/{id}/add-review'),  // action attribute of form
+            dataType : 'json',
+            // convert form data to json format
+            data : JSON.stringify(formData),
+        });
+    });
+</script>
+
+<form class="form-control" method="post" th:action="@{/product/${id}/add-review}" th:object="${productReview}">
     Review title:<br>
-    <input type="text" name="reviewTitle" value="">
+    <input id="reviewTitle" placeholder="Enter Review Title" required type="text" name="reviewTitle" th:field="*{reviewTitle}">
     <br>
     Review:<br>
-    <input type="text" name="reviewProduct" value="">
+    <textarea id="reviewText" placeholder="Enter Your Review" name="reviewProduct" th:field="*{reviewProduct}"></textarea>
     <br>
-    <input type="hidden" name="productId" value="${productId}">
-    <input type="hidden" name="buddyId" value="${buddyId}">
+    <select class="form-control" th:field="*{productId}">
+        <option value="">--Please choose an option--</option>
+        <option th:each="product : ${Products}"
+                th:text="${product.productName}"
+                th:value="${product.productId}">
+        </option>
+    </select>
+    <input type="hidden" th:field="*{buddy}" th:value="${buddyId}">
     <br><br>
-    <input id="submitButton" type="submit" value="Submit">
+    <input id="submitButton" type="submit" value="add-review">
 </form>
 
 

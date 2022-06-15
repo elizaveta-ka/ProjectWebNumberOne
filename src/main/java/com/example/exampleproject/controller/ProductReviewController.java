@@ -8,10 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -56,4 +53,21 @@ public class ProductReviewController {
         }
         return response;
     }
+
+
+
+
+    @RequestMapping(value = "/product/{id}/add-review", method = RequestMethod.POST)
+    public String addReview(@PathVariable("id") int id, Model model, @ModelAttribute("SpringWeb") ProductReview productReview) {
+        model.addAttribute("productId", productReview.getProductId());
+        model.addAttribute("reviewTitle", productReview.getReviewTitle());
+        model.addAttribute("reviewProduct", productReview.getReviewProduct());
+        model.addAttribute("buddy", productReview.getBuddy());
+
+
+        return "redirect:/product/{id}/";
+    }
+
+
+
 }
