@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+
+
+
+<form id="addReviewForm" class="form-control" method="post" th:action="@{/product/${id}/add-review}" th:object="${productReview}">
+    Review title:<br>
+    <input id="reviewTitle" placeholder="Enter Review Title" required type="text" name="reviewTitle" th:field="*{reviewTitle}">
+    <br>
+    Review:<br>
+    <textarea id="reviewText" placeholder="Enter Your Review" name="reviewProduct" th:field="*{reviewProduct}"></textarea>
+    <br>
+    <select class="form-control" th:field="*{productId}">
+        <option value="">--Please choose an option--</option>
+        <option th:each="product : ${Products}"
+                th:text="${product.productName}"
+                th:value="${product.productId}">
+        </option>
+    </select>
+<!--    <input type="hidden" th:field="*{buddy}" th:value="${buddyId}">-->
+    <br><br>
+    <input id="submitButton" type="submit" value="add-review">
+</form>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#category").change(function () {
+            $("#productId").val($("#product option:selected").attr("data-id"));
+        });
+    });
+</script>
+
+<script>
+
+        $(function() {
+        $('#submitButton').submit(function (e) {
+            e.preventDefault();
+            var review = $('#addReviewForm').serialize();
+            console.log(review);
+            $.ajax({
+                type: 'POST',
+                url: '/product/{id}/add-review',
+                data: review,
+                contentType: "application/json; charset=utf-8",
+                dataType: 'JSON',
+                success: function(data){
+                    console.log(data);
+                }
+            });
+        });
+    });
+
+</script>
+
+
+
+
+</body>
+</html>
