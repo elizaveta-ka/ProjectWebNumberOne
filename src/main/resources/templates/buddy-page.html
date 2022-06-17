@@ -34,7 +34,7 @@
             </div>
 
 
-                <form  hidden name="buddyEd" method="POST"  th:object="${buddy}" modelAttribute="buddy" class="buddyForm" th:name="buddyEd" th:id="buddyEd"> //th:action="@{/buddy/{id}(id=${buddy.buddyId})}"
+                <form  hidden name="buddyEd" method="POST"  th:object="${buddy}" modelAttribute="buddy" class="buddyForm" th:name="buddyEd" th:id="buddyEd">
                     <input readonly id="id" type="number" name="id" th:value="${buddy.buddyId}" th:data-id="${buddy.buddyId}"/><br/><br/>
                     <input id="firstName" type="text" name="firstName" th:value="${buddy.firstName}" placeholder="Имя" th:data-fName="${buddy.firstName}" /><br/><br/>
                     <input id="lastName" type="text" name="lastName" th:value="${buddy.lastName}" placeholder="Фамилия" /><br/><br/>
@@ -142,7 +142,7 @@
                 document.querySelector('#result').textContent = '...';
             }
             // при отправке формы
-            document.forms.user.addEventListener('submit', (e) => {
+            document.forms.buddyForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 sendForm();
             });

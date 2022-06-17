@@ -47,16 +47,6 @@ public class BuddyController {
         return "buddy-page";
     }
 
-    @GetMapping("/buddy-create")
-   public String createUserForm(Buddy buddy) {
-    return "buddy-create";
-   }
-
-    @PostMapping("/buddy-create")
-   public String createBuddy(Buddy buddy) {
-        buddyRepository.save(buddy);
-    return "redirect:/buddy";
-   }
     @GetMapping("/buddy-delete/{id}")
     public String deleteBuddy(@PathVariable("id") int id) {
         Buddy buddy = buddyRepository.getById(id);
@@ -66,13 +56,6 @@ public class BuddyController {
 
         return "redirect:/buddy";
     }
-
-//    @GetMapping("/buddy/update/{id}")
-//   public String updateBuddyForm(@PathVariable("id") int id, Model model) {
-//        Optional<Buddy> buddy = buddyRepository.findById(id);
-//        model.addAttribute("buddy", buddy);
-//    return "/buddy-update";
-//   }
 
     @PostMapping("/buddy/{id}")
    public String updateBuddy(@PathVariable int id, Buddy buddy, BindingResult bindingResult, String formData) {

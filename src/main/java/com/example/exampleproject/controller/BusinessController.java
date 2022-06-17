@@ -1,5 +1,6 @@
 package com.example.exampleproject.controller;
 
+import com.example.exampleproject.model.Buddy;
 import com.example.exampleproject.model.Business;
 import com.example.exampleproject.model.Product;
 import com.example.exampleproject.repository.BusinessRepository;
@@ -9,10 +10,12 @@ import com.example.exampleproject.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -72,30 +75,41 @@ public class BusinessController {
         model.addAttribute("business", business);
         return "/business-update";
     }
-    //страница бизнеса // работает
+
     @GetMapping("/business/{id}")
-    public String showBusinessPage(@PathVariable("id") int id, Model model) {
+    public String showBusinessPage(@PathVariable("id") int id, Model model) throws UnsupportedEncodingException {
         Business business = businessRepository.getById(id);
         model.addAttribute("business", business);
+//        byte[] encodeBase64 = Base64.encode(business.getImg());
+//        String base64Encoded = new String(encodeBase64, "UTF-8");
+//        model.addAttribute("image", base64Encoded );
         return "business-page";
     }
+
+    @PostMapping("/business/{id}")
+    public String updateBusiness(@PathVariable int id, Business business, BindingResult bindingResult) {
+        Business business1 = businessRepository.getById(id);
+        business1.setBusName(business.getBusName());
+        business1.setLocation(business.getLocation());
+        business1.setBusinessLink(business.getBusinessLink());
+        businessRepository.save(business1);
+        return "redirect:/business/" + id;
+    }
+
+//    @PostMapping("/link")
+//    public String goToLink(@PathVariable int id, Business business, BindingResult bindingResult) {
+//        Business business1 = businessRepository.getById(id);
+//        var link = business.getBusinessLink();
+//        System.out.println(link);
+//        return "redirect:" + link;
+//    }
+
     //меню бизнеса // работает
     @GetMapping("/business/{id}/menu")
     public String showBusinessMenu(@PathVariable("id") int id, Model model) {
         Business business = businessRepository.getById(id);
         model.addAttribute("business", business);
         return "business-menu";
-    }
-    // работает
-    @PostMapping("/business-update")
-    public String updateBusiness(Business business) {
-        Optional<Business> business1 = businessRepository.findById(business.getBusinessId());
-        Set<Product> products = business1.get().getProducts();
-        for (var product:products) {
-            business.addProduct(product);
-        }
-        businessRepository.save(business);
-        return "redirect:/business";
     }
     // работает
     @GetMapping("/business/{id}/product-create")
