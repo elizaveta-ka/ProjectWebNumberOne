@@ -19,16 +19,16 @@
             document.getElementById("message").innerHTML = "**Only_letters,_numbers_and_'_'_in_username!";
             return false;
         }
-        if (! /^[a-zA-Z0-9]+$/.test(pw)) {
-            document.getElementById("message").innerHTML = "**Only_letters_and_numbers_in_password!";
-            return false;
-        }
+
 
         if(pw == "") {
             document.getElementById("message").innerHTML = "**Fill_the_password_please!";
             return false;
         }
-
+        if (! /^[a-zA-Z0-9]+$/.test(pw)) {
+            document.getElementById("message").innerHTML = "**Only_letters_and_numbers_in_password!";
+            return false;
+        }
         //minimum password length validation
         if(pw.length < 4) {
             document.getElementById("message").innerHTML = "**Password_length_must_be_atleast_4_characters";
@@ -71,10 +71,10 @@
             <p th:case="*"></p>
         </div>
     </fieldset>
+    <span id = "message" style="color:red"> </span> <br>
+
     <form class="form-profile" th:action="@{/registration}" method="post" th:name="profile" th:id="profile" onsubmit ="return verifyPassword()" >
-        <span id = "message" style="color:red"> </span> <br><br>
-        <br>
-        <br>
+
         <div><label for="username"> Login : <input class="fontawesome-user" id = username type="text" name="username"/> </label></div>
         <div><label for ="password1">  Password: <input class="fontawesome-lock" id = password1 type="password" name="password"/> </label></div>
         <div><label for ="password2">  Confirm password: <input class="fontawesome-lock" id = password2 type="password" name="password1"/> </label></div>
