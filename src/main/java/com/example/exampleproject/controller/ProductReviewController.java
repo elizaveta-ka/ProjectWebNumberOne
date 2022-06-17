@@ -31,41 +31,47 @@ public class ProductReviewController {
         model.addAttribute("productReviews", productReviews);
         return "product-review";
     }
-    @PostMapping(value = "/addReview", produces = {MediaType.APPLICATION_JSON_VALUE})
-    @ResponseBody
-    public ProductReviewResponse saveReview(@ModelAttribute @Valid ProductReview productReview,
-                                        BindingResult result) {
-
-        ProductReviewResponse response = new ProductReviewResponse();
-
-        if (result.hasErrors()) {
-
-            Map<String, String> errors = result.getFieldErrors().stream()
-                    .collect(
-                            Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage)
-                    );
-
-            response.setValidated(false);
-            response.setErrorMessages(errors);
-        } else {
-
-            response.setValidated(true);
-        }
-        return response;
-    }
-
-
+//    @PostMapping(value = "/addReview", produces = {MediaType.APPLICATION_JSON_VALUE})
+//    @ResponseBody
+//    public ProductReviewResponse saveReview(@ModelAttribute @Valid ProductReview productReview,
+//                                        BindingResult result) {
+//
+//        ProductReviewResponse response = new ProductReviewResponse();
+//
+//        if (result.hasErrors()) {
+//
+//            Map<String, String> errors = result.getFieldErrors().stream()
+//                    .collect(
+//                            Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage)
+//                    );
+//
+//            response.setValidated(false);
+//            response.setErrorMessages(errors);
+//        } else {
+//
+//            response.setValidated(true);
+//        }
+//        return response;
+//    }
+//
+//
 
 
     @RequestMapping(value = "/product/{id}/add-review", method = RequestMethod.POST)
-    public String addReview(@PathVariable("id") int id, Model model, @ModelAttribute("SpringWeb") ProductReview productReview) {
-        model.addAttribute("productId", productReview.getProductId());
-        model.addAttribute("reviewTitle", productReview.getReviewTitle());
-        model.addAttribute("reviewProduct", productReview.getReviewProduct());
-        model.addAttribute("buddy", productReview.getBuddy());
-
-
-        return "redirect:/product/{id}/";
+    public String addReview(@PathVariable("id") int id, Model model, BindingResult result, @Valid ProductReview pr) {
+        productReviewRepository.save(pr);
+        return "redirect:/product" + id;
+    }
+    @GetMapping("/product/{id}/update-review")
+    public String showUpdateForm(@PathVariable("id") int id, Model model) {
+        ProductReview pr = productReviewRepository.findById(id).get();
+        model.addAttribute("productReview", pr);
+        return "redirect:/product" + id;
+    }
+    @RequestMapping(value = "/product/{id}/edit-review", method = RequestMethod.POST)
+    public String editReview(@PathVariable("id") int id, Model model, BindingResult result, @Valid ProductReview pr) {
+        productReviewRepository.save(pr);
+        return "redirect:/product" + id;
     }
 
 
