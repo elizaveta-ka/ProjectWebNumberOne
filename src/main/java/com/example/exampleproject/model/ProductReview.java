@@ -52,7 +52,7 @@ public class ProductReview {
 
     }
 
-    public ProductReview(Product product, Buddy buddy, int buddyId, int productReviewId, int rateP1, int rateP2, int rateP3, int rateP4, String reviewProduct, String photo, int productId, String reviewTitle) {
+    public ProductReview(Product product, Buddy buddy, int productReviewId, int rateP1, int rateP2, int rateP3, int rateP4, String reviewProduct, String photo, int productId, String reviewTitle, int buddyId) {
         this.product = product;
         this.buddy = buddy;
         this.productReviewId = productReviewId;
@@ -63,8 +63,8 @@ public class ProductReview {
         this.reviewProduct = reviewProduct;
         this.photo = photo;
         this.productId = productId;
-        this.buddyId = buddyId;
         this.reviewTitle = reviewTitle;
+        this.buddyId = buddyId;
     }
 
     public int getProductReviewId() {
@@ -153,6 +153,14 @@ public class ProductReview {
 
     public void setReviewTitle(String reviewTitle) {
         this.reviewTitle = reviewTitle;
+    }
+
+    public int getBuddyId() {
+        return buddyId;
+    }
+
+    public void setBuddyId(int buddyId) {
+        this.buddyId = buddyId;
     }
 
     @Override

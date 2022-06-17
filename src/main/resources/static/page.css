@@ -95,17 +95,17 @@ p {
     border-radius: 3px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
-    background-color: #ea4c88;
+    background-color: #2e61a9;
     color: #eee;
     font-weight: bold;
     margin-bottom: 2em;
     text-transform: uppercase;
     cursor:pointer;
-    width: 280px;
+    width: 261px;
 }
 
 #login form input[type="submit"]:hover {
-    background-color: #d44179;
+    background-color: #2e61a9;
 }
 
 #login > p {
@@ -120,7 +120,7 @@ p {
 .vladmaxi-top{
     line-height: 24px;
     font-size: 11px;
-    background: #eee;
+    background: #000;
     text-transform: uppercase;
     z-index: 9999;
     position: fixed;
@@ -146,7 +146,7 @@ p {
     float: left;
 }
 .vladmaxi-top a:hover{
-    background: #fff;
+    background: #000;
 }
 .vladmaxi-top span.right{
     float: right;

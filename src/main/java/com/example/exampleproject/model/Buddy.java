@@ -48,13 +48,13 @@ public class Buddy {
     private int age;
     @Column(name = "city")
     private String city;
-    @Column(name = "avatar_img")
-    private String avatarImg;
+    @Column(name = "avatar_img", length = 2000)
+    private byte[] avatarImg;
 
     public Buddy() {
     }
 
-    public Buddy(Collection friends, String firstName, String lastName, int age, String city, String avatarImg) {
+    public Buddy(Collection friends, String firstName, String lastName, int age, String city, byte[] avatarImg) {
         this.friends = friends;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -63,7 +63,7 @@ public class Buddy {
         this.avatarImg = avatarImg;
     }
 
-    public Buddy(Collection<BusinessReview> businessAuthors, Collection<ProductReview> productAuthors, Collection<Friend> friends, Set<Product> products, User user, int buddyId, String firstName, String lastName, int age, String city, String avatarImg) {
+    public Buddy(Collection<BusinessReview> businessAuthors, Collection<ProductReview> productAuthors, Collection<Friend> friends, Set<Product> products, User user, int buddyId, String firstName, String lastName, int age, String city, byte[] avatarImg) {
         this.businessAuthors = businessAuthors;
         this.productAuthors = productAuthors;
         this.friends = friends;
@@ -77,7 +77,7 @@ public class Buddy {
         this.avatarImg = avatarImg;
     }
 
-    public Buddy(int buddyId, String firstName, String lastName, int age, String city, String avatarImg) {
+    public Buddy(int buddyId, String firstName, String lastName, int age, String city, byte[] avatarImg) {
         this.buddyId = buddyId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -147,7 +147,7 @@ public class Buddy {
         this.buddyId = buddyId;
     }
 
-    public void setAvatarImg(String avatarImg) {
+    public void setAvatarImg(byte[] avatarImg) {
         this.avatarImg = avatarImg;
     }
 
@@ -167,7 +167,7 @@ public class Buddy {
         return city;
     }
 
-    public String getAvatarImg() {
+    public byte[] getAvatarImg() {
         return avatarImg;
     }
 
@@ -185,10 +185,6 @@ public class Buddy {
 
     public void setCity(String city) {
         this.city = city;
-    }
-
-    public void setAvatar_img(String avatarImg) {
-        this.avatarImg = avatarImg;
     }
 
     public Collection<ProductReview> getProductAuthors() {

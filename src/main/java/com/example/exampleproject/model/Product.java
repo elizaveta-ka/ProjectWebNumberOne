@@ -122,6 +122,8 @@ public class Product {
         this.productImg = productImg;
     }
 
+
+
     public void addBusiness(Business business){
         this.businesses.add(business);
         business.getProducts().add(this);

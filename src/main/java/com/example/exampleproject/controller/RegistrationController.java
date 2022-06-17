@@ -75,6 +75,7 @@ public class RegistrationController {
             business.setUser(newuser);
         return "redirect:/business/" + id;
         }
+
         return "redirect:/";
     }
 

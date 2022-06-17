@@ -21,18 +21,30 @@
         <li><span style=vertical-align:bottom><a th:href="@{/logout}">Log out</a> </span></li>
     </SideMenu>
     <article>
-        <div id="Buddy_block">
+        <div class="Buddy_block" th:name="buddy" th:id="buddy">
             <div th:fragment="buddy">
 <!--                <p><img src="layouts/img/buddy.png" alt="Buddy image"></p>-->
-                <p id="buddy_img" ><img src="layouts/img/buddy.png" alt="Buddy image"></p>
-                <p img th:src="*{'data:layouts/img/buddy.png;base64,'+image}" alt="Buddy image"></p>
+<!--                <p id="buddy_img" ><img src="${image}" width="130" height="180" alt="Buddy image"></p>-->
+<!--                <p img th:object="image" th:src="*{'data:image/buddy.png;base64, '+ image}" alt="Buddy image"></p>-->
+                <h1 id="first_name" th:text="${buddy.firstName}"> First Name </h1>
+                <h1 id="last_name" th:text="${buddy.lastName}">Last Name</h1>
+                <p id="age1" th:text="${buddy.age}">Age</p>
+                <p id="city1" th:text="${buddy.city}">City</p>
+                <input type="submit" value="Редактировать" id="editBtn"/>
+            </div>
 
-                <h1 id="first_name" contenteditable="true" th:text="${buddy.firstName}"> First Name </h1>
-                <h1 id="last_name"contenteditable="true" th:text="${buddy.lastName}">Last Name</h1>
-                <p id="age" contenteditable="true" th:text="${buddy.age}">Age</p>
-                <p id="city" contenteditable="true" th:text="${buddy.city}">City</p>
-<!--                <button id="save"> Редактировать профиль</button>-->
-                <p><a th:href="@{update/{id}(id=${buddy.buddyId})}">Edit</a></p>
+
+                <form  hidden name="buddyEd" method="POST"  th:object="${buddy}" modelAttribute="buddy" class="buddyForm" th:name="buddyEd" th:id="buddyEd"> //th:action="@{/buddy/{id}(id=${buddy.buddyId})}"
+                    <input readonly id="id" type="number" name="id" th:value="${buddy.buddyId}" th:data-id="${buddy.buddyId}"/><br/><br/>
+                    <input id="firstName" type="text" name="firstName" th:value="${buddy.firstName}" placeholder="Имя" th:data-fName="${buddy.firstName}" /><br/><br/>
+                    <input id="lastName" type="text" name="lastName" th:value="${buddy.lastName}" placeholder="Фамилия" /><br/><br/>
+                    <input id="age" type="number" name="age" th:value="${buddy.age}" placeholder="Возраст"/><br/><br/>
+                    <input id="city" type="text" name="city" th:value="${buddy.city}" placeholder="Город"/><br/><br/>
+                    <input type="submit" value="Сохранить" id="btnSubmit"/>
+                </form>
+
+
+<!--                <p><a th:href="@{update/{id}(id=${buddy.buddyId})}">Edit</a></p>-->
 <!--                <button><a th:href="@{buddy-update/{id}(id=${buddy.buddyId})}">Редактировать профиль</a></button>-->
 <!--                <td><a th:href="@{{id}/product-create(id=${buddy.buddyId})}">Добавить в wishlist</a></td>-->
                 <td><a th:href="@{/buddy/{id}/wishlist(id=${buddy.buddyId})}">Wishlist</a></td>
@@ -59,12 +71,82 @@
     <p>All right reserved and belong to almighty Cthulhu</p>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script>
-    $(document).ready(function (){
-        $("#first_name").change(function () {
-
-
-        })
-    });
+    // $(document).ready(function () {
+    //     $("#editBtn").on('click', function() {
+    //         $(".buddyForm").show();
+    //     });
+    //     $("#btnSubmit").submit(function (e) {
+    //         // e.preventDefault(); // avoid to execute the actual submit of the form.
+    //         //
+    //         // var form = $(this);
+    //         // var actionUrl = form.attr('$/buddy/{buddy.buddyId}');
+    //         //
+    //         // $.ajax({
+    //         //     type: "post",
+    //         //     url: actionUrl,
+    //         //     data: form.serialize(), // serializes the form's elements.
+    //         // });
+    //
+    //
+    //         e.preventDefault();
+    //
+    //         fire_ajax_submit();
+    //
+    //     });
+    //
+    // });
+    //
+    // function fire_ajax_submit() {
+    //     var form = $(this);
+    //    var formData = {}
+    //     $.each(this, function(i, v){
+    //         var input = $(v);
+    //         // populate form data as key-value pairs
+    //         // with the name of input as key and its value as value
+    //         formData[input.attr("buddyId")] = input.val();
+    //         formData[input.attr("firstName")] = input.val();
+    //         formData[input.attr("lastName")] = input.val();
+    //         formData[input.attr("age")] = input.val();
+    //         formData[input.attr("city")] = input.val();
+    //     });
+    //     $.ajax({
+    //         type: form.attr('POST'), // method attribute of form
+    //         url: form.attr('$/buddy/{buddy.buddyId}') ,  // action attribute of form
+    //         dataType : 'json',
+    //         contentType: false,
+    //         // convert form data to json format
+    //         data : JSON.stringify(formData),
+    //     });
+    //
+    // }
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#editBtn").on('click', function () {
+                $(".buddyForm").show();
+            });
+            function sendForm() {
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', document.forms.buddyEd.action);
+                xhr.responseType = 'json';
+                xhr.onload = () => {
+                    if (xhr.status !== 200) {
+                        return;
+                    }
+                    const response = xhr.response;
+                    document.querySelector('#result').innerHTML = `<li>Имя: <b>${response.firstName}</b></li><li>Фамилия: <b>${response.lastName}</b><li>ID: <b>${response.id}</b></li>
+                    <li>Возраст: <b>${response.age}</b></li><li>Город: <b>${response.city}</b></li>`;
+                }
+                let formData = new FormData(document.forms.buddyEd);
+                xhr.send(formData);
+                document.querySelector('#result').textContent = '...';
+            }
+            // при отправке формы
+            document.forms.user.addEventListener('submit', (e) => {
+                e.preventDefault();
+                sendForm();
+            });
+        });
     </script>
 </footer>
 </html>

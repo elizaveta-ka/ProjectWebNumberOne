@@ -43,16 +43,16 @@
     });
 </script>
 
-<form class="form-control" method="post" th:action="@{/product/${id}/add-review}" th:object="${productReview}">//
+<form class="form-control" method="post" th:action="@{/add-review}" th:object="${product}">
     Review title:<br>
-    <input id="reviewTitle" placeholder="Enter Review Title" required type="text" name="reviewTitle" th:field="*{reviewTitle}">
+    <input id="reviewTitle" placeholder="Enter Review Title" required type="text" name="reviewTitle" th:field="*{productReviews.reviewTitle}">
     <br>
     Review:<br>
-    <textarea id="reviewText" placeholder="Enter Your Review" name="reviewProduct" th:field="*{reviewProduct}"></textarea>
+    <textarea id="reviewText" placeholder="Enter Your Review" name="reviewProduct" th:field="*{productReviews.reviewProduct}"></textarea>
     <br>
-    <select class="form-control" th:field="*{productId}">
+    <select class="form-control" th:field="*{productReviews.productId}">
         <option value="">--Please choose an option--</option>
-        <option th:each="product : ${Products}"
+        <option th:each="product : ${productReviews.productId}"
                 th:text="${product.productName}"
                 th:value="${product.productId}">
         </option>

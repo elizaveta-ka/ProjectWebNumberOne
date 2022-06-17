@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -25,13 +26,20 @@ public class WebSecConf extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(aadapter);
 
     }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/page.css");
+    }
     protected void configure(HttpSecurity http) throws Exception {
+
         http
+                .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/registration", "/feed", "/logout").permitAll()
+                .antMatchers("/login", "/registration", "/feed", "/logout").permitAll()
                 .antMatchers("/admin").hasAuthority("ROLE_ADMIN")
-                .antMatchers("/business-page").hasAuthority("ROLE_BUSINESS")
-                .antMatchers("/buddy").hasAnyAuthority( "ROLE_USER")
+                .antMatchers("/business/", "/buddy/").hasAnyAuthority("ROLE_BUSINESS")
+                .antMatchers("/buddy/", "/business/" ).hasAnyAuthority("ROLE_USER")
 
                 .anyRequest().authenticated()
                 .and()
@@ -40,7 +48,7 @@ public class WebSecConf extends WebSecurityConfigurerAdapter {
 //                .loginProcessingUrl("/perform_login")
 //                .defaultSuccessUrl("/homepage.html",true)
                 .failureUrl("/login?error").permitAll()
-                .defaultSuccessUrl("/feed").permitAll()  //переход на страницу feed
+                .defaultSuccessUrl("/feed").permitAll() //переход на страницу feed
 //                .defaultSuccessUrl("/admin").usernameParameter("ROLE_ADMIN")
 //                .defaultSuccessUrl("/business/1/product-create").usernameParameter("ROLE_BUSINESS")
 

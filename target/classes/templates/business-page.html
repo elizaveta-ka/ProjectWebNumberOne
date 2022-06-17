@@ -24,14 +24,32 @@
         <div id="Business_block">
             <p id="business_img" ><img src="layouts/img/business.png" alt="Business image"></p>
             <div th:fragment="business">
+                <h1 hidden th:text="${business.businessId}"> Business_ID </h1>
                 <h1 th:text="${business.busName}"> Business_NAME </h1>
                 <p th:text="${business.location}">Location</p>
+            </div>
+        </div>
+
+        <iframe name="businessEd" method="POST" th:action="@{/business/{id}(id=${business.businessId})}"  th:object="${business}" modelAttribute="buddy" class="buddyForm" th:name="buddyEd" th:id="buddyEd">
+            <input readonly id="id" type="number" name="id" th:value="${buddy.buddyId}" th:data-id="${buddy.buddyId}"/><br/><br/>
+            <input id="firstName" type="text" name="firstName" th:value="${buddy.firstName}" placeholder="Имя" th:data-fName="${buddy.firstName}" /><br/><br/>
+            <input id="lastName" type="text" name="lastName" th:value="${buddy.lastName}" placeholder="Фамилия" /><br/><br/>
+            <input id="age" type="number" name="age" th:value="${buddy.age}" placeholder="Возраст"/><br/><br/>
+            <input id="city" type="text" name="city" th:value="${buddy.city}" placeholder="Город"/><br/><br/>
+            <input type="submit" value="Сохранить" id="btnSubmit"/>
+        </iframe>
+
+
 <!--                <p id="link" th:text="${business.businessLink}" th:data-link="business.businessLink">link</p>-->
 <!--                <a href='${business.businessLink}' class="btn">Переход по ссылке</a>-->
 <!--                <div onclick="javascript:location.href='${business.businessLink}';">Переход по ссылке</div>-->
 <!--                <p align="right"> <button onclick ="window.location.href='{{link}(link=${bR.businessLink})}';">Book a table</button></p>-->
-                <form action="http://italyco.rest/hitch-medikov" target="_blank">
-                    <button>Переход по ссылке</button>
+<!--                <link action="http://italyco.rest/hitch-medikov" target="_blank">-->
+<!--                    <link rel="shortcut icon" href="http://italyco.rest/hitch-medikov">-->
+<!--                    <button>Переход по ссылке</button>-->
+
+
+
                 <p th:text="${Distance}">2 km away</p>
 
 
