@@ -30,14 +30,14 @@
             </div>
         </div>
 
-        <iframe name="businessEd" method="POST" th:action="@{/business/{id}(id=${business.businessId})}"  th:object="${business}" modelAttribute="buddy" class="buddyForm" th:name="buddyEd" th:id="buddyEd">
-            <input readonly id="id" type="number" name="id" th:value="${buddy.buddyId}" th:data-id="${buddy.buddyId}"/><br/><br/>
-            <input id="firstName" type="text" name="firstName" th:value="${buddy.firstName}" placeholder="Имя" th:data-fName="${buddy.firstName}" /><br/><br/>
-            <input id="lastName" type="text" name="lastName" th:value="${buddy.lastName}" placeholder="Фамилия" /><br/><br/>
-            <input id="age" type="number" name="age" th:value="${buddy.age}" placeholder="Возраст"/><br/><br/>
-            <input id="city" type="text" name="city" th:value="${buddy.city}" placeholder="Город"/><br/><br/>
-            <input type="submit" value="Сохранить" id="btnSubmit"/>
-        </iframe>
+<!--        <iframe name="businessEd" method="POST" th:action="@{/business/{id}(id=${business.businessId})}"  th:object="${business}" modelAttribute="buddy" class="buddyForm" th:name="buddyEd" th:id="buddyEd">-->
+<!--            <input readonly id="id" type="number" name="id" th:value="${business.businessId}" th:data-id="${business.businessId}"/><br/><br/>-->
+<!--            <input id="firstName" type="text" name="firstName" th:value="${buddy.firstName}" placeholder="Имя" th:data-fName="${buddy.firstName}" /><br/><br/>-->
+<!--            <input id="lastName" type="text" name="lastName" th:value="${buddy.lastName}" placeholder="Фамилия" /><br/><br/>-->
+<!--            <input id="age" type="number" name="age" th:value="${buddy.age}" placeholder="Возраст"/><br/><br/>-->
+<!--            <input id="city" type="text" name="city" th:value="${buddy.city}" placeholder="Город"/><br/><br/>-->
+<!--            <input type="submit" value="Сохранить" id="btnSubmit"/>-->
+<!--        </iframe>-->
 
 
 <!--                <p id="link" th:text="${business.businessLink}" th:data-link="business.businessLink">link</p>-->

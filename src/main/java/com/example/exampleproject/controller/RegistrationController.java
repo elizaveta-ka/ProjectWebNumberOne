@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class RegistrationController {
 
@@ -47,6 +50,10 @@ public class RegistrationController {
     public String addUser(@RequestParam String Roleee, @RequestParam String username,
                               @RequestParam String password, Model model) {
         User userFromDB = userRepository.findByUsername(username);
+        List<User> usersRep = userRepository.findAll();
+        List <String> users = new ArrayList<>();
+        for (var user : usersRep)
+            users.add(user.getUsername());
 
         if (userFromDB != null) {
             model.addAttribute("message", "User exists!");
