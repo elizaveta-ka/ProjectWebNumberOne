@@ -12,36 +12,36 @@
         var user = document.getElementById("username").value;
         //check empty password field
         if(user == "") {
-            document.getElementById("message").innerHTML = "**Fill_the_username_please!";
+            document.getElementById("message").innerHTML = "**Fill the username please!";
             return false;
         }
         if (! /^[a-zA-Z0-9_]+$/.test(user)) {
-            document.getElementById("message").innerHTML = "**Only_letters,_numbers_and_'_'_in_username!";
+            document.getElementById("message").innerHTML = "**Only letters, numbers and '_' in username!";
             return false;
         }
 
 
         if(pw == "") {
-            document.getElementById("message").innerHTML = "**Fill_the_password_please!";
+            document.getElementById("message").innerHTML = "**Fill the password please!";
             return false;
         }
         if (! /^[a-zA-Z0-9]+$/.test(pw)) {
-            document.getElementById("message").innerHTML = "**Only_letters_and_numbers_in_password!";
+            document.getElementById("message").innerHTML = "**Only letters and numbers in password!";
             return false;
         }
         //minimum password length validation
         if(pw.length < 4) {
-            document.getElementById("message").innerHTML = "**Password_length_must_be_atleast_4_characters";
+            document.getElementById("message").innerHTML = "**Password length must be atleast 4 characters";
             return false;
         }
 
 //maximum length of password validation
         if(pw.length > 15) {
-            document.getElementById("message").innerHTML = "**Password_length_must_not_exceed_15_characters";
+            document.getElementById("message").innerHTML = "**Password length must not exceed 15 characters";
             return false;
         }
         if(pw != pw1) {
-            document.getElementById("message").innerHTML = "Not_confirmed!";
+            document.getElementById("message").innerHTML = "Not confirmed!";
             return false;
         }
         else {
