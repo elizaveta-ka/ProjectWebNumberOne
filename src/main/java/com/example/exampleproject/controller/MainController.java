@@ -32,7 +32,6 @@ public class MainController {
     }
 
     @GetMapping("/admin")
-
     public String admin( Model model) {
         List <User> users = userRepository.findAll();
         model.addAttribute("users", users);
@@ -53,13 +52,13 @@ public class MainController {
 //        return "/about";
 //    }
 //
-//    @GetMapping("/login")
-//    public String get(Model model){
-//        List <User> users = userRepository.findAll();
-//        model.addAttribute("users", users);
-//
-//        return "login";
-//    }
+    @GetMapping("/login")
+    public String get(Model model){
+        List <User> users = userRepository.findAll();
+        model.addAttribute("users", users);
+
+        return "login";
+    }
 //
 //    @RequestMapping("/login")
 //    public String getLogin(@RequestParam(value = "error", required = false) String error,

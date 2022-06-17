@@ -76,9 +76,10 @@ public class RegistrationController {
         return "redirect:/business/" + id;
         }
 
-
         return "redirect:/";
     }
+
+
 
 
 

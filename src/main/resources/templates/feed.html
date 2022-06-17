@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../../static/main.css"/>
+    <title>Product List</title>
+</head>
+<header>
+    <h2>Feed</h2>
+
+</header>
+<body>
+<section>
+    <SideMenu id="SideMenu">
+<!--        <li><a th:href="@{buddy/{id}(id=${buddy.buddyId})}">Home</a></li>-->
+        <li>Feed</li>
+        <li><a th:href="@{/notifications}">Notifications</a></li>
+        <li><span style=vertical-align:bottom><a th:href="@{/logout}">Log out</a> </span></li>
+    </SideMenu>
+    <article>
+        <div id="product_block" th:each = "product : ${products}">
+
+            <h1 th:text="${product.productName}"> productName </h1>
+            <th><a th:href="@{/product/{id}(id=${product.productId})}"><img src="layouts/img/product.png" width="50"
+                                                                         height="50" alt="Product image"></a></th>
+            <!--      <p th:text="${product.categoryId}">categoryId</p>-->
+            <p th:each = "b : ${product.productCategory}" th:text="${b.categoryName}"></p>
+<!--            <input type="hidden" th:field="*{product.productId}" class="product_block" id="productId"-->
+<!--                   placeholder="productId" th:data-product="product.productId">-->
+
+            <div><div class="rating">
+                <span th:text="${rateP1}"> Rate_P1</span> <span th:text="${rateP2}"> Rate_P2</span><br>
+                <span th:text="${rateP3}"> Rate_P3</span> <span th:text="${rateP4}"> Rate_P4</span></div>
+                <br>
+                <p id="product_img"><img src="*{'data:image/png;base64, '+image}" alt="product_img"></p>
+            </div>
+
+        </div><br>
+    </article><br>
+</section>
+</body>
+<footer>
+    <p>All right reserved and belong to almighty Cthulhu</p>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script>
+        // $(document).ready(function (){
+        //     $("#product_block").click(function () {
+        //
+        //     });
+        // });
+    </script>
+</footer>
+</html>

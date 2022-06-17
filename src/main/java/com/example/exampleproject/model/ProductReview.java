@@ -41,15 +41,18 @@ public class ProductReview {
 
     @Column(name = "product_id")
     private int productId;
-//
-//    @Column(name = "buddy_id")
-//    private int buddyId;
+
+    @Column(name = "reviewTitle")
+    private String reviewTitle;
+    //
+    @Column(name = "buddy_id")
+    private int buddyId;
 
     public ProductReview(){
 
     }
 
-    public ProductReview(Product product, Buddy buddy, int productReviewId, int rateP1, int rateP2, int rateP3, int rateP4, String reviewProduct, String photo, int productId) {
+    public ProductReview(Product product, Buddy buddy, int productReviewId, int rateP1, int rateP2, int rateP3, int rateP4, String reviewProduct, String photo, int productId, String reviewTitle, int buddyId) {
         this.product = product;
         this.buddy = buddy;
         this.productReviewId = productReviewId;
@@ -60,6 +63,8 @@ public class ProductReview {
         this.reviewProduct = reviewProduct;
         this.photo = photo;
         this.productId = productId;
+        this.reviewTitle = reviewTitle;
+        this.buddyId = buddyId;
     }
 
     public int getProductReviewId() {
@@ -142,7 +147,21 @@ public class ProductReview {
         this.rateP4 = rateP4;
     }
 
+    public String getReviewTitle() {
+        return reviewTitle;
+    }
 
+    public void setReviewTitle(String reviewTitle) {
+        this.reviewTitle = reviewTitle;
+    }
+
+    public int getBuddyId() {
+        return buddyId;
+    }
+
+    public void setBuddyId(int buddyId) {
+        this.buddyId = buddyId;
+    }
 
     @Override
     public String toString() {
