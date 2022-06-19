@@ -1,15 +1,20 @@
 package com.example.exampleproject.controller;
 
 
-import com.example.exampleproject.model.Product;
-import com.example.exampleproject.model.ProductCategory;
+import com.example.exampleproject.model.*;
 import com.example.exampleproject.repository.BuddyRepository;
 import com.example.exampleproject.repository.ProductCategoryRepository;
 import com.example.exampleproject.repository.ProductRepository;
+import com.example.exampleproject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -17,16 +22,17 @@ import java.util.List;
 public class FeedController {
 
     private ProductRepository productRepository;
-
     private ProductCategoryRepository productCategoryRepository;
-
     private BuddyRepository buddyRepository;
 
+    private final UserRepository userRepository;
+
     @Autowired
-    public FeedController(ProductRepository productRepository, ProductCategoryRepository productCategoryRepository, BuddyRepository buddyRepository) {
+    public FeedController(ProductRepository productRepository, ProductCategoryRepository productCategoryRepository, BuddyRepository buddyRepository, UserRepository userRepository) {
         this.productRepository = productRepository;
         this.productCategoryRepository = productCategoryRepository;
         this.buddyRepository = buddyRepository;
+        this.userRepository = userRepository;
     }
 
     @GetMapping("/feed")
@@ -37,6 +43,26 @@ public class FeedController {
         model.addAttribute("productCategories", productCategories);
         return "feed";
     }
+
+    @PostMapping("/feed")
+    public String addWishlist(@AuthenticationPrincipal UserDetails user) {
+        User user1 =userRepository.findByUsername(user.getUsername());
+        System.out.println(user1);
+        int bId;
+        List<Buddy> buddies = buddyRepository.findAll();
+        for (var b:buddies) {
+            User user2 = b.getUser();
+            if(user1.equals(user2)) {
+                bId = b.getBuddyId();
+                System.out.println(bId);
+            }
+        }
+
+//        System.out.println(user);
+
+        return "redirect:/feed";
+    }
+
 
     @GetMapping("/notifications")
     public String notificationPage() {

@@ -5,6 +5,7 @@ import com.example.exampleproject.repository.BuddyRepository;
 import com.example.exampleproject.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.codec.Base64;
+import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
@@ -47,16 +48,6 @@ public class BuddyController {
         return "buddy-page";
     }
 
-    @GetMapping("/buddy-create")
-   public String createUserForm(Buddy buddy) {
-    return "buddy-create";
-   }
-
-    @PostMapping("/buddy-create")
-   public String createBuddy(Buddy buddy) {
-        buddyRepository.save(buddy);
-    return "redirect:/buddy";
-   }
     @GetMapping("/buddy-delete/{id}")
     public String deleteBuddy(@PathVariable("id") int id) {
         Buddy buddy = buddyRepository.getById(id);
@@ -67,15 +58,8 @@ public class BuddyController {
         return "redirect:/buddy";
     }
 
-//    @GetMapping("/buddy/update/{id}")
-//   public String updateBuddyForm(@PathVariable("id") int id, Model model) {
-//        Optional<Buddy> buddy = buddyRepository.findById(id);
-//        model.addAttribute("buddy", buddy);
-//    return "/buddy-update";
-//   }
-
     @PostMapping("/buddy/{id}")
-   public String updateBuddy(@PathVariable int id, Buddy buddy, BindingResult bindingResult, String formData) {
+   public String updateBuddy(@PathVariable int id,Buddy buddy, BindingResult bindingResult, String formData) {
         System.out.println(id);
         Buddy buddy1 = buddyRepository.getById(id);
         buddy1.setFirstName(buddy.getFirstName());

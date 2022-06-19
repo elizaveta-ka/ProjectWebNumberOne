@@ -80,6 +80,7 @@ public class Business {
                 ", busName='" + busName + '\'' +
                 ", busImg='" + busImg + '\'' +
                 ", location='" + location + '\'' +
+                ", link='" + businessLink + '\'' +
                 '}';
     }
 

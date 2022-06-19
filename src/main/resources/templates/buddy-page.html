@@ -34,7 +34,7 @@
             </div>
 
 
-                <form  hidden name="buddyEd" method="POST"  th:object="${buddy}" modelAttribute="buddy" class="buddyForm" th:name="buddyEd" th:id="buddyEd"> //th:action="@{/buddy/{id}(id=${buddy.buddyId})}"
+                <form  hidden name="buddyEd" method="POST"  th:object="${buddy}" modelAttribute="buddy" class="buddyForm" th:name="buddyEd" th:id="buddyEd">
                     <input readonly id="id" type="number" name="id" th:value="${buddy.buddyId}" th:data-id="${buddy.buddyId}"/><br/><br/>
                     <input id="firstName" type="text" name="firstName" th:value="${buddy.firstName}" placeholder="Имя" th:data-fName="${buddy.firstName}" /><br/><br/>
                     <input id="lastName" type="text" name="lastName" th:value="${buddy.lastName}" placeholder="Фамилия" /><br/><br/>
@@ -127,7 +127,7 @@
             });
             function sendForm() {
                 const xhr = new XMLHttpRequest();
-                xhr.open('POST', document.forms.buddyEd.action);
+                xhr.open('POST', document.forms.buddyForm.action);
                 xhr.responseType = 'json';
                 xhr.onload = () => {
                     if (xhr.status !== 200) {
@@ -137,12 +137,12 @@
                     document.querySelector('#result').innerHTML = `<li>Имя: <b>${response.firstName}</b></li><li>Фамилия: <b>${response.lastName}</b><li>ID: <b>${response.id}</b></li>
                     <li>Возраст: <b>${response.age}</b></li><li>Город: <b>${response.city}</b></li>`;
                 }
-                let formData = new FormData(document.forms.buddyEd);
+                let formData = new FormData(document.forms.buddyForm);
                 xhr.send(formData);
                 document.querySelector('#result').textContent = '...';
             }
             // при отправке формы
-            document.forms.user.addEventListener('submit', (e) => {
+            document.forms.buddyForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 sendForm();
             });

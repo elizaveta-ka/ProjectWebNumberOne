@@ -48,7 +48,7 @@ public class RegistrationController {
 
     @PostMapping("/registration")
     public String addUser(@RequestParam String Roleee, @RequestParam String username,
-                              @RequestParam String password, Model model) {
+                              @RequestParam String password, User user, Model model) {
         User userFromDB = userRepository.findByUsername(username);
         List<User> usersRep = userRepository.findAll();
         List <String> users = new ArrayList<>();
@@ -59,27 +59,30 @@ public class RegistrationController {
             model.addAttribute("message", "User exists!");
             return "registration";
         }
-        User newuser = new User(username, password);
+        User newUser = new User(username, password);
+
+        System.out.println(user);
         Role role = rolerep.findByName(Roleee).orElseThrow();
 
-        newuser.setRole(role);
-        newuser.setActive(true);
-        userRepository.save(newuser);
+        newUser.setRole(role);
+        newUser.setActive(true);
+        userRepository.save(newUser);
+        System.out.println(newUser);
 
 
-        if(newuser.getRole().getName().equals("user")) {
+        if(newUser.getRole().getName().equals("user")) {
             Buddy buddy = new Buddy();
-            buddy.setUser(newuser);
+            buddy.setUser(newUser);
             buddyRepository.save(buddy);
             int id = buddy.getBuddyId();
             return "redirect:/buddy/" + id;
         }
 
-        if(newuser.getRole().getName().equals("business")) {
+        if(newUser.getRole().getName().equals("business")) {
             Business business = new Business();
             businessRepository.save(business);
             int id = business.getBusinessId();
-            business.setUser(newuser);
+            business.setUser(newUser);
         return "redirect:/business/" + id;
         }
 
