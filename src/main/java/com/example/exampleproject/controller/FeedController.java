@@ -48,6 +48,16 @@ public class FeedController {
     public String addWishlist(@AuthenticationPrincipal UserDetails user) {
         User user1 =userRepository.findByUsername(user.getUsername());
         System.out.println(user1);
+        int bId;
+        List<Buddy> buddies = buddyRepository.findAll();
+        for (var b:buddies) {
+            User user2 = b.getUser();
+            if(user1.equals(user2)) {
+                bId = b.getBuddyId();
+                System.out.println(bId);
+            }
+        }
+
 //        System.out.println(user);
 
         return "redirect:/feed";
