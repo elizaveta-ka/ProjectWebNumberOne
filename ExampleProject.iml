@@ -11,7 +11,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
-          <factory-entry name="ExampleProject" value="f4d19cfd-6954-4768-ac33-3957f1657e5b" />
+          <factory-entry name="ExampleProject" value="3e3b2b63-dfee-4466-9607-fb452af63e0f" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>

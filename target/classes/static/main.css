@@ -71,12 +71,6 @@ footer {
     width: 40%;
     margin-right: 30%;
 }
-#rating{
-    float: left;
-}
-#rating_pr{
-    float: left;
-}
 #reviewer_img{
     float: right;
 }
@@ -153,3 +147,32 @@ footer {
 #tab_2:checked ~ #suggestions,
 #tab_3:checked ~ #rating,
 #tab_4:checked ~ #menu { display: block; }
+
+#rating_new {
+    width: 320px;
+    border-radius: 4px;
+    box-shadow: 0 0 2px 1px #333333;
+    margin: 10px auto;
+    padding: 10px;
+    text-align: center;
+}
+#rating_new div { float: left; }
+#rating_new p { margin: 0; padding: 0; }
+.param {
+    width: 110px;
+    margin: 0 20px 0 0;
+    text-align: right;
+}
+/*.param, .rating_new, #summ { line-height: 28px; }*/
+/*.stars, #sum_stars { background: url(../../../static/images//stars.png); }*/
+/*.stars, #sum_stars, .progress, #sum_progress {*/
+/*    width: 130px;*/
+/*    height: 28px;*/
+/*    cursor: pointer;*/
+/*}*/
+.progress { background: #38D8FF; }
+#sum_progress { background: #FCFF38; }
+.rating_new, #summ {
+    margin: 0 0 0 20px;
+    font-weight: bold;
+}

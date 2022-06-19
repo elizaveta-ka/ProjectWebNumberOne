@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <!--      th:fragment="main-fragment (title, otherStaticResources, header, SideMenu, mainContent, footer)">-->
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -45,10 +46,24 @@
                     </div>
                     <br>
                 </div>
-
-
             </div>
         </div><br>
+
+        <input type="submit" value="AddReview" id="addBtn"/>
+
+        <form hidden id="addReviewForm" class="form-control" method="post" th:action="@{/add-review}" th:object="${productReview}">
+            Review title:<br>
+            <input id="reviewTitle" placeholder="Enter Review Title" required type="text" name="reviewTitle" th:field="*{productReview.reviewTitle}">
+            <br>
+            Review:<br>
+            <textarea id="reviewText" placeholder="Enter Your Review" name="reviewProduct" th:field="*{productReview.reviewProduct}"></textarea>
+            <br>
+            <input type="hidden" class="form-control" th:field="*{productReview.productId}" th:value="${product.productId}">
+            <!--    <input type="hidden" th:field="*{buddy}" th:value="${buddyId}">-->
+            <br><br>
+            <input name="Add review" id="submitButton" type="submit" value="add-review">
+        </form>
+
         <div id="rateBlock" th:each="review : ${product.productReviews}">
             <p th:text="${review.buddy.firstName} + ${' '} + ${review.buddy.lastName}">Author</p>
             <p th:text="${review.buddy.avatarImg}">Img</p>
@@ -60,7 +75,14 @@
                 <span th:text="${review.rateP3}"> Rate_P3</span> <span th:text="${review.rateP4}"> Rate_P4</span></div>
             <p id="reviewer_img"><img src="*{'data:image/png;base64, '+image}" alt="reviewer_img"></p><br>
 
-            <!--    <p th:text="${review.reviewProduct}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus scelerisque ipsum nec mauris dapibus gravida. Nam felis est, ornare sit amet auctor in, malesuada sit amet massa. Pellentesque eget efficitur lorem. Nunc lobortis erat a orci blandit, et consequat diam molestie. Etiam id tempor felis, sit amet egestas sem. Suspendisse potenti. Morbi tristique tincidunt leo in ornare. Aenean sodales leo id dapibus posuere.</p>-->
+            <input type="submit" value="Редактировать" id="editBtn"/>
+
+            <form hidden name="reviewEd" method="POST" th:object="${productReview}" class="productReviewEdForm">
+                <input readonly id="productReviewId" type="number"  th:value="${productReview.productReviewId}"/><br>
+                <input id="reviewTitleEd" type="text" th:field="*{productReview.reviewTitle}" th:value="${productReview.reviewTitle}"/><br>
+                <textarea id="reviewProduct" th:field="*{productReview.reviewProduct}" th:value="${productReview.reviewProduct}"></textarea><br>
+                <input type="submit" value="Сохранить" id="btnSubmit"/>
+            </form>
         </div><br>
         <div id="business_block">
             <p align="center" id="business_img"><img src="*{'data:image/png;base64, '+image}" alt="business_img"></p><br>
@@ -107,6 +129,76 @@
     <input id="el_999" type="submit" value="Submit">
     <p id="message"></p>
 </div>
+<script>
+    $(document).ready(function (event) {
+        $("#editBtn").on('click', function (event) {
+            $(".productReviewEdForm").show();
+        });
+    });
+    $(document).ready(function (event) {
+        $("#addBtn").on('click', function (event) {
+            $(".addReviewForm").show();
+        });
+    });
+    $(function() {
+        $('#btnSubmit').submit(function (e) {
+            e.preventDefault();
+            var review = $('#productReviewEdForm').serialize();
+            console.log(review);
+            $.ajax({
+                type: 'POST',
+                url: '/product/{id}/edit-review',
+                data: review,
+                contentType: "application/json; charset=utf-8",
+                dataType: 'JSON',
+                success: function(data){
+                    console.log(data);
+                }
+            });
+        });
+    });
+
+    $(document).ready(function () {
+        $("#category").change(function () {
+            $("#productId").val($("#product option:selected").attr("data-id"));
+        });
+    });
+
+    $(function() {
+        $('#submitButton').submit(function (e) {
+            e.preventDefault();
+            var review = $('#addReviewForm').serialize();
+            console.log(review);
+            $.ajax({
+                type: 'POST',
+                url: '/product/{id}/add-review',
+                data: review,
+                contentType: "application/json; charset=utf-8",
+                dataType: 'JSON',
+                success: function(data){
+                    console.log(data);
+                }
+            });
+        });
+    });
+    $(function() {
+        $('#submitButton').submit(function (e) {
+            e.preventDefault();
+            var review = $('#addReviewForm').serialize();
+            console.log(review);
+            $.ajax({
+                type: 'POST',
+                url: '/product/{id}/{productReview_id}/edit-review',
+                data: review,
+                contentType: "application/json; charset=utf-8",
+                dataType: 'JSON',
+                success: function(data){
+                    console.log(data);
+                }
+            });
+        });
+    });
+</script>
 </body>
 <footer>
     <p>All right reserved and belong to almighty Cthulhu</p>

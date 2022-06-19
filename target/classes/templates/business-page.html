@@ -65,11 +65,22 @@
                     <input type="radio" name="inset" value="" id="tab_4">
                     <label for="tab_4">Menu</label><br>
 
-                    <div id="rating">
-                        //суммарный рейтинг заведения
-                        <span th:text="${rateB1}"> Rate_B1</span> <span th:text="${rateB2}"> Rate_B2</span><br>
-                        <span th:text="${rateB3}"> Rate_B3</span> <span th:text="${rateB4}"> Rate_B4</span></div>
+                <div id="rating">
+                    //суммарный рейтинг заведения
+                    <span th:text="${rateB1}"> Rate_B1</span> <span th:text="${rateB2}"> Rate_B2</span><br>
+                    <span th:text="${rateB3}"> Rate_B3</span> <span th:text="${rateB4}"> Rate_B4</span></div>
                     <br>
+
+
+                <div id = "menu">
+                    <table th:each="product : ${business.products}" width="100%" border="0" cellpadding="4">
+                        <tr align="right" valign="top">
+                            <th th:text="${product.productName}">Product_NAME</th>
+                            <td th:text="${product['productCategory']['categoryName']}">Category_NAME</td>
+                            <td th:text="${product.rateP4}">Суммарный рейтинг продукта</td>
+                        </tr>
+                    </table>
+            </div>
 
 
                     <div id = "menu">
@@ -86,6 +97,7 @@
 <!--                        <button><a th:href="@{business/{businessId}/product-create}">Add new product</a></button>-->
                     </div>
                 </div>
+            </div>
             </div>
         </div><br>
 
