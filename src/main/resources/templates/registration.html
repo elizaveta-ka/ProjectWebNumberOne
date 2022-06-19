@@ -10,15 +10,14 @@
         var pw = document.getElementById("password1").value;
         var pw1 = document.getElementById("password2").value;
         var user = document.getElementById("username").value;
-        var users = document.getElementById("users").value;
+        var users = document.getElementById("users").innerHTML;
         var form = document.querySelector("form");
         var data = new FormData(form);
         var outputRole = "";
-
         for (const entry of data) {
             outputRole = entry[0] + entry[1];
         };
-        document.getElementById("message2").innerHTML = outputRole;
+
 
         if(user == "") {
             document.getElementById("message").innerHTML = "**Fill the username please!";
@@ -28,16 +27,19 @@
             document.getElementById("message").innerHTML = "**Only letters, numbers and '_' in username!";
             return false;
         }
+        if(user.length < 4) {
+            document.getElementById("message").innerHTML = "**Username length must be atleast 4 characters";
+            return false;
+        }
 
 
-        for (let userdb of "#users") {
 
-            if(user == userdb) {
-                document.getElementById("message").innerHTML = "**EXISTS!";
+            if(users.includes(user)) {
+                document.getElementById("message").innerHTML = "**This username exists!";
                 return false;
             }
 
-        }
+
 
 
         if(pw == "") {
@@ -61,7 +63,7 @@
         }
 
         if(pw != pw1) {
-            document.getElementById("message").innerHTML = "Not confirmed!";
+            document.getElementById("message").innerHTML = "**Password is not confirmed!";
             return false;
         }
 
@@ -99,7 +101,7 @@
             <p th:case="*"></p>
         </div>
     </fieldset>
-    <span id = "message2" style="color:red"> </span> <br>
+
     <span id = "message" style="color:red"> </span> <br>
 
     <form class="form-profile" th:action="@{/registration}" method="post" th:name="profile" th:id="profile" onsubmit ="return verifyPassword()" >
@@ -117,7 +119,7 @@
         <div><input type="submit" value="Sign in">
             <!--    <input type="hidden" th:field="${buddy.buddyId}" id="buddyId" th:data-buddy="${buddy.buddyId}"></div>-->
         </div>
-        <label  name="users" th:field="${users}" id="users" th:value="${users}" th:text = "${users}"/>
+        <label  name="users" th:field="${users}" hidden id="users" th:value="${users}" th:text = "${users}"/>
         <br>
         <INPUT class="hidden" name="Roleee" type="radio" id="Choice0" checked value="">
     </form>
