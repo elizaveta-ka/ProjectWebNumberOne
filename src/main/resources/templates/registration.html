@@ -5,6 +5,51 @@
 <head>
     <title>Spring Security Example </title>
 </head>
+<script>
+    function verifyPassword() {
+        var pw = document.getElementById("password1").value;
+        var pw1 = document.getElementById("password2").value;
+        var user = document.getElementById("username").value;
+        //check empty password field
+        if(user == "") {
+            document.getElementById("message").innerHTML = "**Fill the username please!";
+            return false;
+        }
+        if (! /^[a-zA-Z0-9_]+$/.test(user)) {
+            document.getElementById("message").innerHTML = "**Only letters, numbers and '_' in username!";
+            return false;
+        }
+
+
+        if(pw == "") {
+            document.getElementById("message").innerHTML = "**Fill the password please!";
+            return false;
+        }
+        if (! /^[a-zA-Z0-9]+$/.test(pw)) {
+            document.getElementById("message").innerHTML = "**Only letters and numbers in password!";
+            return false;
+        }
+        //minimum password length validation
+        if(pw.length < 4) {
+            document.getElementById("message").innerHTML = "**Password length must be atleast 4 characters";
+            return false;
+        }
+
+//maximum length of password validation
+        if(pw.length > 15) {
+            document.getElementById("message").innerHTML = "**Password length must not exceed 15 characters";
+            return false;
+        }
+        if(pw != pw1) {
+            document.getElementById("message").innerHTML = "Not confirmed!";
+            return false;
+        }
+        else {
+
+        }
+    }
+</script>
+
 <body>
 <div class="vladmaxi-top">
     <a href="http://vladmaxi.net" target="_blank"></a>
@@ -26,14 +71,18 @@
             <p th:case="*"></p>
         </div>
     </fieldset>
-    <form class="form-profile" th:action="@{/registration}" method="post" th:name="profile" th:id="profile" >
-        <div><label> Login : <input class="fontawesome-user" type="text" name="username"/> </label></div>
-        <div><label> Password: <input class="fontawesome-lock" type="password" name="password"/> </label></div>
+    <span id = "message" style="color:red"> </span> <br>
+
+    <form class="form-profile" th:action="@{/registration}" method="post" th:name="profile" th:id="profile" onsubmit ="return verifyPassword()" >
+
+        <div><label for="username"> Login : <input class="fontawesome-user" id = username type="text" name="username"/> </label></div>
+        <div><label for ="password1">  Password: <input class="fontawesome-lock" id = password1 type="password" name="password"/> </label></div>
+        <div><label for ="password2">  Confirm password: <input class="fontawesome-lock" id = password2 type="password" name="password1"/> </label></div>
         <br>
-        <INPUT class="fontawesome-user" name="Roleee" type="radio" id="Choice1" value="USER">
+        <INPUT class="fontawesome-user" required name="Roleee" type="radio" id="Choice1" value="USER">
         Buddy
         <br>
-        <INPUT class="fontawesome-user" name="Roleee" type="radio" id="Choice2" value="BUSINESS">
+        <INPUT class="fontawesome-user" required name="Roleee" type="radio" id="Choice2" value="BUSINESS">
         Business
         <br>
         <div><input type="submit" value="Sign in">
@@ -51,3 +100,4 @@
 <!--    });-->
 <!--</script>-->
 </html>
+
