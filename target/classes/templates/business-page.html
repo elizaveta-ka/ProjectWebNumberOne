@@ -1,16 +1,5 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Business</title>-->
-<!--    <p> Business page</p>-->
-<!--</head>-->
-<!--<body>-->
-
-<!--</body>-->
-<!--</html>-->
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <!--      th:fragment="main-fragment (title, otherStaticResources, header, SideMenu, mainContent, footer)">-->
 <head>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
@@ -26,21 +15,48 @@
 <body>
 <section>
     <SideMenu id="SideMenu">
-        <li><a href="@{/}">Home</a></li>
-        <li><a href="@{/feed}">Feed</a></li>
-        <li><a href="@{/buddies}">Buddies</a></li>
-        <li><a href="@{/notifications}">Notifications</a></li>
-        <li><a href="@{/settings}">Settings</a></li>
-        <li><span style=vertical-align:bottom><a href="@{/}">Log out</a> </span></li>
+        <li>Home</li>
+        <li><a th:href="@{/feed}">Feed</a></li>
+        <li><a th:href="@{/notifications}">Notifications</a></li>
+        <li><span style=vertical-align:bottom><a th:href="@{/logout}">Log out</a> </span></li>
     </SideMenu>
     <article>
-        <div id="Business_block">
-            <p id="business_img" ><img src="layouts/img/business.png" alt="Business image"></p>
+
+        <div class="Business_block" th:name="business" th:id="business">
             <div th:fragment="business">
                 <h1 th:text="${business.busName}"> Business_NAME </h1>
                 <p th:text="${business.location}">Location</p>
+                <p th:text="${business.businessLink}">Link</p>
                 <p th:text="${Distance}">2 km away</p>
-                <p align="right"> <button onclick ="window.location.href= 'business.businessLink';">Book a table</button></p>
+                <input type="submit" value="Редактировать" id="editBtn"/>
+            </div>
+
+<!--            <iframe id="iframe1" name="iframe1" style="position: absolute; left: -9999px;"></iframe>-->
+        <form hidden name="businessEd" method="POST" th:object="${business}" class="businessForm">
+            <input readonly id="id" type="number" name="id" th:value="${business.businessId}"/><br/><br/>
+            <input id="name" type="text" name="busName" th:value="${business.busName}" placeholder="Имя" /><br/><br/>
+            <input id="location" type="text" name="location" th:value="${business.location}" placeholder="Расположение" /><br/><br/>
+            <input id="link" type="text" name="businessLink" th:value="${business.businessLink}" placeholder="Ссылка"/><br/><br/>
+            <input type="submit" value="Сохранить" id="btnSubmit"/>
+        </form>
+
+
+
+<!--                <p id="link" th:text="${business.businessLink}" th:data-link="business.businessLink">link</p>-->
+<!--                <a href='${business.businessLink}' class="btn">Переход по ссылке</a>-->
+<!--                <div onclick="javascript:location.href='${business.businessLink}';">Переход по ссылке</div>-->
+<!--                <p align="right"> <button id="linkButton">Book a table</button></p>-->
+<!--            <script>-->
+<!--                $("#linkButton").on('click', function (event) {-->
+<!--                    $.ajax({-->
+<!--                        type: 'GET', // method attribute of form-->
+<!--                        url: '/link'-->
+<!--                    });-->
+<!--                });-->
+<!--            </script>-->
+<!--                <link action="http://italyco.rest/hitch-medikov" target="_blank">-->
+<!--                    <link rel="shortcut icon" href="http://italyco.rest/hitch-medikov">-->
+<!--                    <button>Переход по ссылке</button>-->
 
                 <div class="tabs">
                     <input type="radio" name="inset" value="" id="tab_3" checked>
@@ -49,39 +65,34 @@
                     <input type="radio" name="inset" value="" id="tab_4">
                     <label for="tab_4">Menu</label><br>
 
-                <div id="rating">
-                    //суммарный рейтинг заведения
-                    <span th:text="${rateB1}"> Rate_B1</span> <span th:text="${rateB2}"> Rate_B2</span><br>
-                    <span th:text="${rateB3}"> Rate_B3</span> <span th:text="${rateB4}"> Rate_B4</span></div>
+                    <div id="rating">
+                        //суммарный рейтинг заведения
+                        <span th:text="${rateB1}"> Rate_B1</span> <span th:text="${rateB2}"> Rate_B2</span><br>
+                        <span th:text="${rateB3}"> Rate_B3</span> <span th:text="${rateB4}"> Rate_B4</span></div>
                     <br>
-
-
-                <div id = "menu">
-                    <table th:each="product : ${business.products}" width="100%" border="0" cellpadding="4">
-                        <tr align="right" valign="top">
-                            <th th:text="${product.productName}">Product_NAME</th>
-                            <td th:text="${product['productCategory']['categoryName']}">Category_NAME</td>
-                            <td th:text="${product.rateP4}">Суммарный рейтинг продукта</td>
-                        </tr>
-                    </table>
-            </div>
 
 
                     <div id = "menu">
                         <table th:each="product : ${business.products}" width="100%" border="0" cellpadding="4">
                             <tr align="right" valign="top">
+                                <div>
                                 <th th:text="${product.productName}">Product_NAME</th>
                                 <td th:text="${product['productCategory']['categoryName']}">Category_NAME</td>
                                 <td th:text="${'blabla'}">Суммарный рейтинг продукта</td>
+                                </div>
                             </tr>
                         </table>
+                        <td><a th:href="@{{id}/product-create(id=${business.businessId})}">Add new product</a></td>
+<!--                        <button><a th:href="@{business/{businessId}/product-create}">Add new product</a></button>-->
                     </div>
                 </div>
-            </div>
             </div>
         </div><br>
 
         <div id="rateBlock" th:each="review : ${business.businessReviews}">
+            <p th:text="${review.buddy.firstName} + ${' '} + ${review.buddy.lastName}">Author</p>
+            <th><a th:href="@{/buddy/{id}(id=${review.buddy.buddyId})}"><img src="layouts/img/product.png" width="30"
+                                                                             height="50" alt="Buddy image"></a></th>
             <p th:text="${review.reviewB}"> Review_title</p><br>
             <div id="rating_pr">
                 <span th:text="${review.rateB1}"> Rate_B1</span> <span th:text="${review.rateB2}"> Rate_B2</span><br>
@@ -96,5 +107,100 @@
 </body>
 <footer>
     <p>All right reserved and belong to almighty Cthulhu</p>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script>
+        $(document).ready(function (event) {
+            $("#editBtn").on('click', function (event) {
+                $(".businessForm").show();
+            });
+            $(document).on('btnSubmit', function (e) {
+                e.preventDefault();
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', document.forms.businessForm.action);
+                xhr.responseType = 'json';
+                xhr.onload = () => {
+                    if (xhr.readyState === 4 && xhr.status !== 200) {
+                        return;
+                    }
+                    const response = xhr.response;
+                    document.querySelector('#result').innerHTML = `<li>Имя: <b>${response.busName}</b></li><li>Расположение: <b>${response.location}</b><li>Ссылка: <b>${response.businessLink}</b></li>`;
+                }
+                let formData = new FormData(document.forms.businessForm);
+
+                xhr.send(formData);
+                document.querySelector('#result').textContent = '...';
+                return false;
+            });
+            // при отправке формы
+            // document.forms.businessForm.addEventListener('btnSubmit', (e) => {
+            //     e.preventDefault();
+            //     // var fr = document.getElementById('iframe1');
+            //     // var fw = (fr.contentWindow || fr.contentDocument);
+            //     // if ( !!!fw.document) fw = fw.defaultView;
+            //     // sendForm();
+            // });
+        });
+    </script>
+<!--    <script>-->
+<!--        $(document).ready(function () {-->
+<!--            $("#editBtn").on('click', function () {-->
+<!--                $(".businessForm").show();-->
+<!--                let form;-->
+<!--                let action;-->
+
+<!--                function findElements() {-->
+<!--                    form = document.querySelector('form');-->
+<!--                    ({action} = form);-->
+<!--                }-->
+
+<!--                function showMessage(data) {-->
+<!--                    alert(data.message);-->
+<!--                }-->
+
+<!--                function onSuccess(response) {-->
+<!--                    return response.json().then(showMessage);-->
+<!--                }-->
+
+<!--                function onError(data) {-->
+<!--                    console.error(data);-->
+<!--                }-->
+
+<!--                function collectData(currentForm) {-->
+<!--                    const data = new FormData(currentForm);-->
+<!--                    return data;-->
+<!--                }-->
+
+<!--                function setOptions(currentForm) {-->
+<!--                    return {-->
+<!--                        method: 'post',-->
+<!--                        body: collectData(currentForm),-->
+<!--                    };-->
+<!--                }-->
+
+<!--                function sendForm(currentForm) {-->
+<!--                    return fetch(action, setOptions(currentForm));-->
+<!--                }-->
+
+<!--                function onSubmit(event) {-->
+<!--                    event.preventDefault();-->
+<!--                    const {currentTarget} = event;-->
+<!--                    sendForm(currentTarget)-->
+<!--                        .then(response => onSuccess(response, currentTarget))-->
+<!--                        .catch(onError);-->
+<!--                }-->
+
+<!--                function subscribe() {-->
+<!--                    form.addEventListener('btnSubmit', onSubmit);-->
+<!--                }-->
+
+<!--                function init() {-->
+<!--                    findElements();-->
+<!--                    subscribe();-->
+<!--                }-->
+
+<!--                init();-->
+<!--            });-->
+<!--        });-->
+<!--    </script>-->
 </footer>
 </html>

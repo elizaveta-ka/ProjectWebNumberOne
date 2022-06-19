@@ -6,15 +6,13 @@ import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "buddies")
 public class Buddy {
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "buddy_id")
-    private BuddyLogin buddyLogin;
 
     @OneToMany(mappedBy = "buddy", fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
@@ -32,12 +30,16 @@ public class Buddy {
     @JoinTable (name="wishlist",
             joinColumns=@JoinColumn (name="buddy_id"),
             inverseJoinColumns=@JoinColumn(name="product_id"))
-    private List<Product> products;
+    private Set<Product> products = new HashSet<>();
 
+    @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
     @Id
     @Column(name = "buddy_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int buddyId;
+
     @Column(name = "first_name")
     private String firstName;
     @Column(name = "last_name")
@@ -46,13 +48,13 @@ public class Buddy {
     private int age;
     @Column(name = "city")
     private String city;
-    @Column(name = "avatar_img")
-    private String avatarImg;
+    @Column(name = "avatar_img", length = 2000)
+    private byte[] avatarImg;
 
     public Buddy() {
     }
 
-    public Buddy(Collection friends, String firstName, String lastName, int age, String city, String avatarImg) {
+    public Buddy(Collection friends, String firstName, String lastName, int age, String city, byte[] avatarImg) {
         this.friends = friends;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -61,11 +63,12 @@ public class Buddy {
         this.avatarImg = avatarImg;
     }
 
-    public Buddy(Collection friends, BuddyLogin buddyLogin, Collection<BusinessReview> businessAuthors, List<Product> products, int buddyId, String firstName, String lastName, int age, String city, String avatarImg) {
-        this.friends = friends;
-        this.buddyLogin = buddyLogin;
+    public Buddy(Collection<BusinessReview> businessAuthors, Collection<ProductReview> productAuthors, Collection<Friend> friends, Set<Product> products, User user, int buddyId, String firstName, String lastName, int age, String city, byte[] avatarImg) {
         this.businessAuthors = businessAuthors;
+        this.productAuthors = productAuthors;
+        this.friends = friends;
         this.products = products;
+        this.user = user;
         this.buddyId = buddyId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -74,7 +77,7 @@ public class Buddy {
         this.avatarImg = avatarImg;
     }
 
-    public Buddy(int buddyId, String firstName, String lastName, int age, String city, String avatarImg) {
+    public Buddy(int buddyId, String firstName, String lastName, int age, String city, byte[] avatarImg) {
         this.buddyId = buddyId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -82,6 +85,31 @@ public class Buddy {
         this.city = city;
         this.avatarImg = avatarImg;
     }
+
+    @Override
+    public String toString() {
+        return "Buddy{" +
+                ", businessAuthors=" + businessAuthors +
+                ", productAuthors=" + productAuthors +
+                ", friends=" + friends +
+                ", products=" + products +
+                ", buddyId=" + buddyId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", city='" + city + '\'' +
+                ", avatarImg='" + avatarImg + '\'' +
+                '}';
+    }
+//    public void addProduct(Product product){
+//        this.products.add(product);
+//        product.getBuddies().add(this);
+//    }
+//
+//    public void removeProduct(Product product){
+//        this.products.remove(product);
+//        product.getBuddies().remove(this);
+//    }
 
     public void setFriends(Collection<Friend> friends) {
         this.friends = friends;
@@ -95,14 +123,6 @@ public class Buddy {
         this.friends = friends;
     }
 
-    public BuddyLogin getBuddyLogin() {
-        return buddyLogin;
-    }
-
-    public void setBuddyLogin(BuddyLogin buddyLogin) {
-        this.buddyLogin = buddyLogin;
-    }
-
     public Collection<BusinessReview> getBusinessAuthors() {
         return businessAuthors;
     }
@@ -111,11 +131,11 @@ public class Buddy {
         this.businessAuthors = businessAuthors;
     }
 
-    public List<Product> getProducts() {
+    public Set<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(Set<Product> products) {
         this.products = products;
     }
 
@@ -127,7 +147,7 @@ public class Buddy {
         this.buddyId = buddyId;
     }
 
-    public void setAvatarImg(String avatarImg) {
+    public void setAvatarImg(byte[] avatarImg) {
         this.avatarImg = avatarImg;
     }
 
@@ -147,7 +167,7 @@ public class Buddy {
         return city;
     }
 
-    public String getAvatarImg() {
+    public byte[] getAvatarImg() {
         return avatarImg;
     }
 
@@ -167,10 +187,6 @@ public class Buddy {
         this.city = city;
     }
 
-    public void setAvatar_img(String avatarImg) {
-        this.avatarImg = avatarImg;
-    }
-
     public Collection<ProductReview> getProductAuthors() {
         return productAuthors;
     }
@@ -179,29 +195,11 @@ public class Buddy {
         this.productAuthors = productAuthors;
     }
 
-    @Override
-    public String toString() {
-        return "Buddy{" +
-                "buddyLogin=" + buddyLogin +
-                ", businessAuthors=" + businessAuthors +
-                ", productAuthors=" + productAuthors +
-                ", friends=" + friends +
-                ", products=" + products +
-                ", buddyId=" + buddyId +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", age=" + age +
-                ", city='" + city + '\'' +
-                ", avatarImg='" + avatarImg + '\'' +
-                '}';
-    }
-    public void addProduct(Product product){
-        this.products.add(product);
-        product.getBuddies().add(this);
+    public User getUser() {
+        return user;
     }
 
-    public void removeProduct(Product product){
-        this.products.remove(product);
-        product.getBuddies().remove(this);
+    public void setUser(User user) {
+        this.user = user;
     }
 }

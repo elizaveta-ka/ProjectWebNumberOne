@@ -1,26 +1,104 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<meta charset="UTF-8">
-<title>Create buddy</title>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">-->
+<!--<meta charset="UTF-8">-->
+<!--<title>Create buddy</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<form action="#" th:action="@{/buddy-update}" th:object="${buddy}" method="post">-->
+<!--    <label for="buddyId">ID</label>-->
+<!--    <input readonly type="text" th:field="*{buddyId}" id="buddyId" placeholder="ID">-->
+<!--    <br/>-->
+<!--    <label for="firstName">First name</label>-->
+<!--    <input type="text" th:field="*{firstName}" id="firstName" placeholder="First Name">-->
+<!--    <br/>-->
+<!--    <label for="lastName">Last name</label>-->
+<!--    <input type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name">-->
+<!--    <br/>-->
+<!--    <label for="age">Age</label>-->
+<!--    <input type="number" th:field="*{age}" id="age" placeholder="Age">-->
+<!--    <br/>-->
+<!--    <label for="city">City</label>-->
+<!--    <input type="text" th:field="*{city}" id="city" placeholder="City">-->
+<!--    <br/>-->
+<!--    <input type="submit" value="Update Buddy">-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--      th:fragment="main-fragment (title, otherStaticResources, header, SideMenu, mainContent, footer)">-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <title>Business Page</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../../static/main.css"/>
+    <title>Business Page</title>
+
 </head>
+<header>
+    <h2>Buddy page</h2>
+
+</header>
 <body>
-<form action="#" th:action="@{/buddy-update}" th:object="${buddy}" method="post">
-    <label for="buddyId">ID</label>
-    <input readonly type="text" th:field="*{buddyId}" id="buddyId" placeholder="ID">
-    <br/>
-    <label for="firstName">First name</label>
-    <input type="text" th:field="*{firstName}" id="firstName" placeholder="First Name">
-    <br/>
-    <label for="lastName">Last name</label>
-    <input type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name">
-    <br/>
-    <label for="age">Age</label>
-    <input type="number" th:field="*{age}" id="age" placeholder="Age">
-    <br/>
-    <label for="city">City</label>
-    <input type="text" th:field="*{city}" id="city" placeholder="City">
-    <br/>
-    <input type="submit" value="Update Buddy">
-</form>
+<section>
+    <SideMenu id="SideMenu">
+        <li><a th:href="@{/buddy}">Home</a></li>
+        <li><a th:href="@{/feed}">Feed</a></li>
+        <li><a href="@{/notifications}">Notifications</a></li>
+        <li><span style=vertical-align:bottom><a th:href="@{/logout}">Log out</a> </span></li>
+    </SideMenu>
+    <article>
+        <form class="changeProfile" th:action="@{/buddy-update}" th:object="${buddy}" method="post">
+            <input readonly type="hidden" th:field="*{buddyId}" id="buddyId"
+                   th:data-id="buddyId">
+            <br/>
+            <label for="firstName">First name</label>
+            <input type="text" th:field="*{firstName}" id="firstName" placeholder="First Name"
+            th:data-name="firstName">
+            <br/>
+            <label for="lastName">Last name</label>
+            <input type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name"
+                   th:data-last="lastName">
+            <br/>
+            <label for="age">Age</label>
+            <input type="number" th:field="*{age}" id="age" placeholder="Age"
+                   th:data-age="age">
+            <br/>
+            <label for="city">City</label>
+            <input type="text" th:field="*{city}" id="city" placeholder="City"
+                   th:data-city="city">
+            <br/>
+            <label for="avatarImg">Photo</label>
+            <input type="text" th:field="*{avatarImg}" id="avatarImg" placeholder="avatarImg"
+                   th:data-avatar="avatarImg">
+            <br/>
+            <input type="submit" value="Update Buddy">
+        </form>
+    </article><br>
+</section>
 </body>
+<footer>
+    <p>All right reserved and belong to almighty Cthulhu</p>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+           $(".form-profile").change(function (){
+               var id = $(this).attr("data-id");
+               var name = $(this).attr("data-name");
+               var lastname = $(this).attr("data-lastName");
+               var age = $(this).attr("data-age");
+               var city = $(this).attr("data-city");
+               var avatar = $(this).attr("data-avatar");
+
+               $.post("buddy-update"), {
+                   "buddyId" : id,
+                   "firstName" : name,
+                   "lastName" : lastname,
+                   "age" : age,
+                   "city" : city,
+                   "avatarImg" : avatar
+               }
+           });
+        });
+    </script>
+</footer>
 </html>

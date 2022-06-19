@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+<!--    <script src="review-handler.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#category").change(function () {
+            $("#productId").val($("#product option:selected").attr("data-id"));
+        });
+    });
+</script>
+
+<script>
+    $('#submitButton').submit(function(e) {
+        // reference to form object
+        var form = this;
+        // for stopping the default action of element
+        e.preventDefault();
+        // mapthat will hold form data
+        var formData = {}
+        //iterate over form elements
+        $.each(this, function(i, v){
+            var input = $(v);
+            // populate form data as key-value pairs
+            // with the name of input as key and its value as value
+            formData[input.attr("reviewProduct")] = input.val();
+            formData[input.attr("reviewTitle")] = input.val();
+            formData[input.attr("productId")] = input.val();
+            formData[input.attr("buddy")] = input.val();
+        });
+        $.ajax({
+            type: form.attr('POST'), // method attribute of form
+            url: form.attr('/product/{id}/add-review'),  // action attribute of form
+            dataType : 'json',
+            // convert form data to json format
+            data : JSON.stringify(formData),
+        });
+    });
+</script>
+
+<form class="form-control" method="post" th:action="@{/add-review}" th:object="${product}">
+    Review title:<br>
+    <input id="reviewTitle" placeholder="Enter Review Title" required type="text" name="reviewTitle" th:field="*{productReviews.reviewTitle}">
+    <br>
+    Review:<br>
+    <textarea id="reviewText" placeholder="Enter Your Review" name="reviewProduct" th:field="*{productReviews.reviewProduct}"></textarea>
+    <br>
+    <select class="form-control" th:field="*{productReviews.productId}">
+        <option value="">--Please choose an option--</option>
+        <option th:each="product : ${productReviews.productId}"
+                th:text="${product.productName}"
+                th:value="${product.productId}">
+        </option>
+    </select>
+    <input type="hidden" th:field="*{buddy}" th:value="${buddyId}">
+    <br><br>
+    <input id="submitButton" type="submit" value="add-review">
+</form>
+
+
+</body>
+</html>

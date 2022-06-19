@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Create business</title>
+</head>
+<body>
+<form action="#" th:action="@{/business-create}" th:object="${business}" method="post">
+  <label for="busName">Name</label>
+  <input type="text" th:field="*{busName}" id="busName" placeholder="Name">
+  <label for="location">location</label>
+  <input type="number" th:field="*{location}" id="location" placeholder="location">
+  <input type="submit" value="Create Business">
+</form>
+</body>
+</html>

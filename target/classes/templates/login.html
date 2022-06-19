@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+
+      xmlns: sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="/page.css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<!--    <link rel="icon" href="http://vladmaxi.net/favicon.ico" type="image/x-icon">-->
+<!--    <link rel="shortcut icon" href="http://vladmaxi.net/favicon.ico" type="image/x-icon">-->
+</head>
+<body>
+<div class="vladmaxi-top">
+    <a href="http://vladmaxi.net" target="_blank"></a>
+    <span class="right">
+        </span>
+    <div class="clr"></div>
+</div>
+<div id="login">
+    <form th:action="@{/login}" method="post">
+        <fieldset class="clearfix">
+            <div th:if="${param.error}" >
+                Invalid username and password.
+            </div>
+            <div th:if="${param.logout}">
+                You have been logged out.
+            </div>
+
+            <div><label> Login : <input class="fontawesome-user" type="text" name="username"/></label></div>
+            <div><label> Password: <input class="fontawesome-lock" type="password" name="password"/> </label></div>
+            <div><input type="submit" value="ВОЙТИ"></div>
+        </fieldset>
+    </form>
+    <!--    <p>Нет аккаунта? &nbsp;&nbsp;<a href="#">Регистрация</a></p>-->
+    <p class="fontawesome-arrow-right"> Нет аккаунта? &nbsp;&nbsp;<a th:href="@{/registration}">Регистрация</a><span></span></p>
+</div>
+</div>
+</body>
+</html>
