@@ -5,6 +5,7 @@ import com.example.exampleproject.repository.BuddyRepository;
 import com.example.exampleproject.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.codec.Base64;
+import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
@@ -58,7 +59,7 @@ public class BuddyController {
     }
 
     @PostMapping("/buddy/{id}")
-   public String updateBuddy(@PathVariable int id, Buddy buddy, BindingResult bindingResult, String formData) {
+   public String updateBuddy(@PathVariable int id,Buddy buddy, BindingResult bindingResult, String formData) {
         System.out.println(id);
         Buddy buddy1 = buddyRepository.getById(id);
         buddy1.setFirstName(buddy.getFirstName());

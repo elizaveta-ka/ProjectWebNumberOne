@@ -127,7 +127,7 @@
             });
             function sendForm() {
                 const xhr = new XMLHttpRequest();
-                xhr.open('POST', document.forms.buddyEd.action);
+                xhr.open('POST', document.forms.buddyForm.action);
                 xhr.responseType = 'json';
                 xhr.onload = () => {
                     if (xhr.status !== 200) {
@@ -137,7 +137,7 @@
                     document.querySelector('#result').innerHTML = `<li>Имя: <b>${response.firstName}</b></li><li>Фамилия: <b>${response.lastName}</b><li>ID: <b>${response.id}</b></li>
                     <li>Возраст: <b>${response.age}</b></li><li>Город: <b>${response.city}</b></li>`;
                 }
-                let formData = new FormData(document.forms.buddyEd);
+                let formData = new FormData(document.forms.buddyForm);
                 xhr.send(formData);
                 document.querySelector('#result').textContent = '...';
             }

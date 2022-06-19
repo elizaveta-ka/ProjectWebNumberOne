@@ -18,13 +18,24 @@
         <li><span style=vertical-align:bottom><a th:href="@{/logout}">Log out</a> </span></li>
     </SideMenu>
     <article>
+
         <div id="product_block" th:each = "product : ${products}">
 
             <h1 th:text="${product.productName}"> productName </h1>
+            <p hidden th:text="${product.productId}" >Id Product</p>
             <th><a th:href="@{/product/{id}(id=${product.productId})}"><img src="layouts/img/product.png" width="50"
                                                                          height="50" alt="Product image"></a></th>
             <!--      <p th:text="${product.categoryId}">categoryId</p>-->
             <p th:each = "b : ${product.productCategory}" th:text="${b.categoryName}"></p>
+            <form method="post" class="productForm">
+<!--                <input type="text" value="${user.id}" name="User ID">-->
+<!--                <input type="hidden" value="${_csrf.token}" name="_csrf">-->
+                <input id="id" type="hidden" name="id" th:value="${product.productId}"/><br/><br/>
+                <input id="name" type="hidden" name="name" th:value="${product.productName}"/><br/><br/>
+                <input id="categoryId" type="hidden" name="categoryId" th:value="${product.productCategory.categoryId}"/><br/><br/>
+                <input id="categoryName" type="hidden" name="categoryName" th:value="${product.productCategory.categoryName}"/><br/><br/>
+                <input type="submit" value="Добавить в Wishlist" id="btnAdd"/>
+            </form>
 <!--            <input type="hidden" th:field="*{product.productId}" class="product_block" id="productId"-->
 <!--                   placeholder="productId" th:data-product="product.productId">-->
 
@@ -32,22 +43,16 @@
                 <span th:text="${rateP1}"> Rate_P1</span> <span th:text="${rateP2}"> Rate_P2</span><br>
                 <span th:text="${rateP3}"> Rate_P3</span> <span th:text="${rateP4}"> Rate_P4</span></div>
                 <br>
-                <p id="product_img"><img src="*{'data:image/png;base64, '+image}" alt="product_img"></p>
+<!--                <p id="product_img"><img src="*{'data:image/png;base64, '+image}" alt="product_img"></p>-->
             </div>
 
         </div><br>
+
     </article><br>
 </section>
 </body>
 <footer>
     <p>All right reserved and belong to almighty Cthulhu</p>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script>
-        // $(document).ready(function (){
-        //     $("#product_block").click(function () {
-        //
-        //     });
-        // });
-    </script>
 </footer>
 </html>
