@@ -18,7 +18,6 @@
             outputRole = entry[0] + entry[1];
         };
 
-
         if(user == "") {
             document.getElementById("message").innerHTML = "**Fill the username please!";
             return false;
@@ -31,7 +30,10 @@
             document.getElementById("message").innerHTML = "**Username length must be atleast 4 characters";
             return false;
         }
-
+        if(user.length > 15) {
+            document.getElementById("message").innerHTML = "**Username length must not exceed 15 characters";
+            return false;
+        }
 
 
             if(users.includes(user)) {
