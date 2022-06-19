@@ -1,0 +1,57 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../../main.css"/>-->
+<!--    <title>Friend List</title>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<!--      th:fragment="main-fragment (title, otherStaticResources, header, SideMenu, mainContent, footer)">-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../../static/main.css"/>
+    <title>Добавь собутыльника</title>
+
+</head>
+<header>
+    <h2>Добавь собутыльника</h2>
+
+</header>
+<body>
+<section>
+<SideMenu id="SideMenu">
+    <li><a th:href="@{/buddy/{id}(id=${buddy.buddyId})}">Home</a></li>
+    <li><a th:href="@{/feed}">Feed</a></li>
+    <li><a th:href="@{/notifications}">Notifications</a></li>
+    <li><span style=vertical-align:bottom><a th:href="@{/logout}">Log out</a> </span></li>
+</SideMenu>
+<article>
+<div id="product_block" th:each = "buddy : ${buddies}">
+
+    <p th:text="${buddy.firstName}"> Имя </p>
+    <p th:text="${buddy.lastName}"> Фамилия </p>
+    <p th:text="${buddy.age}"> Возраст </p>
+    <p th:text="${buddy.city}"> Город </p>
+    <p hidden th:text="${buddy.buddyId}" >Id </p>
+    <p th:each = "b : ${buddy.friends}" th:text="${b.buddyId}"></p>
+
+    <form name="buddyAdd" th:object="${user}" method="POST" >
+        <div><label  for="idF"><input class="buddyIdAdd" id = "idF" type="text" th:value="${buddy.buddyId}" name="idF"/> </label></div>
+        <input type="submit" value="Добавить в Друзья" id="friendAdd"/>
+    </form>
+
+</div><br>
+</article>
+    <br>
+</section>
+</body>
+<footer>
+    <p>All right reserved and belong to almighty Cthulhu</p>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</html>

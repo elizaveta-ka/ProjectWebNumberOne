@@ -15,12 +15,14 @@
 <body>
 <section>
     <SideMenu id="SideMenu">
-        <li>Home</li>
+<!--        <li><a th:href="@{/buddy/{id}/(id=${buddy.buddyId}">Home</a></li>-->
         <li><a th:href="@{/feed}">Feed</a></li>
+        <li><a th:href="@{/friend}">Найти друга</a></li>
         <li><a th:href="@{/notifications}">Notifications</a></li>
         <li><span style=vertical-align:bottom><a th:href="@{/logout}">Log out</a> </span></li>
     </SideMenu>
     <article>
+
         <div class="Buddy_block" th:name="buddy" th:id="buddy">
             <div th:fragment="buddy">
 <!--                <p><img src="layouts/img/buddy.png" alt="Buddy image"></p>-->
@@ -42,6 +44,7 @@
                     <input id="city" type="text" name="city" th:value="${buddy.city}" placeholder="Город"/><br/><br/>
                     <input type="submit" value="Сохранить" id="btnSubmit"/>
                 </form>
+
 
 
 <!--                <p><a th:href="@{update/{id}(id=${buddy.buddyId})}">Edit</a></p>-->

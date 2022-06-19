@@ -60,8 +60,6 @@ public class BuddyController {
 
     @PostMapping("/buddy/{id}")
    public String updateBuddy(@PathVariable int id,Buddy buddy, BindingResult bindingResult, String formData) {
-        System.out.println(id);
-        System.out.println(buddy);
         Buddy buddy1 = buddyRepository.getById(id);
         buddy1.setFirstName(buddy.getFirstName());
         buddy1.setLastName(buddy.getLastName());

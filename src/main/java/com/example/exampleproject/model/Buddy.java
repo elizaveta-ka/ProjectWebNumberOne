@@ -99,6 +99,7 @@ public class Buddy {
                 ", age=" + age +
                 ", city='" + city + '\'' +
                 ", avatarImg='" + avatarImg + '\'' +
+                ", user='" + user + '\'' +
                 '}';
     }
     public void addProduct(Product product){
