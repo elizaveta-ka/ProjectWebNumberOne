@@ -5,8 +5,6 @@ import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -58,6 +56,19 @@ public class Product {
     public Product(String productName, String productImg) {
         this.productName = productName;
         this.productImg = productImg;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "businesses=" + businesses +
+                ", buddies=" + buddies +
+                ", productReviews=" + productReviews +
+                ", productCategory=" + productCategory +
+                ", productId=" + productId +
+                ", productName='" + productName + '\'' +
+                ", productImg='" + productImg + '\'' +
+                '}';
     }
 
     public String getProductImg() {

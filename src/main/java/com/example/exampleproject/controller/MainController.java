@@ -62,24 +62,17 @@ public class MainController {
 //        model.addAttribute("logout", logout != null);
 //        return "login";
 //    }
-//    @RequestMapping(value = "/login", method = RequestMethod.POST)
+//        @GetMapping("/login")
+//    public String userForm(Model model) {
+//
+//        return "login";
+//    }
+//    @PostMapping("/login")
 //    public String checkLogin(@RequestParam String username, @RequestParam String password, Model model) {
-//             User user = userRepository.findByUsername(username);
-//        if (user.getPassword().equals(password))
-//        {
-//            if (user.getRole().getName().equals("ADMIN"))
-//                return "redirect:/admin";
-//            if (user.getRole().getName().equals("USER"))
-//                return "redirect:/suggestion";
-//            if (user.getRole().getName().equals("BUSINESS"))
-//                return "redirect:/business-page";
-//        }
-//        else
-//        {
-//            model.addAttribute("logError","logError");
-//            return "login";
-//        }
-//        return null;
+//             User user = new User(username,password);
+//        System.out.println(user);
+//
+//       return "redirect:/feed";
 //    }
 //    public String user(Authentication authentication) {
 //        System.out.println((UserDetails)authentication.);

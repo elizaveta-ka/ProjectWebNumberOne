@@ -1,4 +1,5 @@
 package com.example.exampleproject.Service.Configs;
+import com.example.exampleproject.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -8,6 +9,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.stereotype.Component;
@@ -17,12 +19,19 @@ import org.springframework.stereotype.Component;
 @EnableAutoConfiguration
 public class WebSecConf extends WebSecurityConfigurerAdapter {
     @Autowired
+    private UserService userService;
+    @Autowired
     private MyAP aadapter;
 
+    @Autowired
+    public WebSecConf(UserService userService) {
+        this.userService = userService;
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
+        auth.userDetailsService(userService)
+                        .passwordEncoder(NoOpPasswordEncoder.getInstance());
         auth.authenticationProvider(aadapter);
 
     }
@@ -37,7 +46,7 @@ public class WebSecConf extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/login", "/registration", "/feed", "/logout").permitAll()
-                .antMatchers("/admin").hasAuthority("ROLE_ADMIN")
+                .antMatchers("/admin/").hasAnyAuthority("ROLE_ADMIN")
                 .antMatchers("/business/", "/buddy/").hasAnyAuthority("ROLE_BUSINESS")
                 .antMatchers("/buddy/", "/business/" ).hasAnyAuthority("ROLE_USER")
 

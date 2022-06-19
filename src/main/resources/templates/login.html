@@ -3,7 +3,7 @@
 
       xmlns: sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <meta charset="UTF-8">
+<!--    <meta charset="UTF-8">-->
     <title>Login</title>
     <link rel="stylesheet" href="/page.css"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -26,7 +26,6 @@
             <div th:if="${param.logout}">
                 You have been logged out.
             </div>
-
             <div><label> Login : <input class="fontawesome-user" type="text" name="username"/></label></div>
             <div><label> Password: <input class="fontawesome-lock" type="password" name="password"/> </label></div>
             <div><input type="submit" value="ВОЙТИ"></div>
