@@ -3,7 +3,12 @@ package com.example.exampleproject.controller;
 //import com.example.exampleproject.Service.UserService;
 import com.example.exampleproject.model.*;
 import com.example.exampleproject.repository.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+
+import net.minidev.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,23 +47,37 @@ public class RegistrationController {
 
 
     @GetMapping("/registration")
-    public String registration() {
+    public String registration(Model model) {
+        List<User> usersrep = userRepository.findAll();
+        List <String> users = new ArrayList<>();
+        for (var userdb : usersrep)
+            users.add(userdb.getUsername());
+
+        model.addAttribute("users", users);
+
+//        List <String> users = new ArrayList<>();
+//        for (var user : usersRep)
+//            users.add(user.getUsername());
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        try {
+//            String json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(users);
+//            System.out.println(json);
+//        } catch(Exception e) {
+//            e.printStackTrace();
+//        }
+
         return "registration";
     }
 
     @PostMapping("/registration")
     public String addUser(@RequestParam String Roleee, @RequestParam String username,
                               @RequestParam String password, Model model) {
-        User userFromDB = userRepository.findByUsername(username);
-        List<User> usersRep = userRepository.findAll();
-        List <String> users = new ArrayList<>();
-        for (var user : usersRep)
-            users.add(user.getUsername());
 
-        if (userFromDB != null) {
-            model.addAttribute("message", "User exists!");
-            return "registration";
-        }
+//        User userFromDB = userRepository.findByUsername(username);
+//        if (userFromDB != null) {
+//            model.addAttribute("message", "User exists!");
+//        }
+
         User newuser = new User(username, password);
         Role role = rolerep.findByName(Roleee).orElseThrow();
 

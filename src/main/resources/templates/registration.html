@@ -10,7 +10,16 @@
         var pw = document.getElementById("password1").value;
         var pw1 = document.getElementById("password2").value;
         var user = document.getElementById("username").value;
-        //check empty password field
+        var users = document.getElementById("users").value;
+        var form = document.querySelector("form");
+        var data = new FormData(form);
+        var outputRole = "";
+
+        for (const entry of data) {
+            outputRole = entry[0] + entry[1];
+        };
+        document.getElementById("message2").innerHTML = outputRole;
+
         if(user == "") {
             document.getElementById("message").innerHTML = "**Fill the username please!";
             return false;
@@ -18,6 +27,16 @@
         if (! /^[a-zA-Z0-9_]+$/.test(user)) {
             document.getElementById("message").innerHTML = "**Only letters, numbers and '_' in username!";
             return false;
+        }
+
+
+        for (let userdb of "#users") {
+
+            if(user == userdb) {
+                document.getElementById("message").innerHTML = "**EXISTS!";
+                return false;
+            }
+
         }
 
 
@@ -40,10 +59,19 @@
             document.getElementById("message").innerHTML = "**Password length must not exceed 15 characters";
             return false;
         }
+
         if(pw != pw1) {
             document.getElementById("message").innerHTML = "Not confirmed!";
             return false;
         }
+
+        if(outputRole == "Roleee") {
+            document.getElementById("message").innerHTML = "**Choose your role!";
+            return false;
+        }
+
+
+
         else {
 
         }
@@ -71,23 +99,27 @@
             <p th:case="*"></p>
         </div>
     </fieldset>
+    <span id = "message2" style="color:red"> </span> <br>
     <span id = "message" style="color:red"> </span> <br>
 
     <form class="form-profile" th:action="@{/registration}" method="post" th:name="profile" th:id="profile" onsubmit ="return verifyPassword()" >
 
-        <div><label for="username"> Login : <input class="fontawesome-user" id = username type="text" name="username"/> </label></div>
-        <div><label for ="password1">  Password: <input class="fontawesome-lock" id = password1 type="password" name="password"/> </label></div>
-        <div><label for ="password2">  Confirm password: <input class="fontawesome-lock" id = password2 type="password" name="password1"/> </label></div>
+        <div><label for="username"> Login : <input class="fontawesome-user" id = "username" type="text" name="username"/> </label></div>
+        <div><label for ="password1">  Password: <input class="fontawesome-lock" id = "password1" type="password" name="password"/> </label></div>
+        <div><label for ="password2">  Confirm password: <input class="fontawesome-lock" id = "password2" type="password" name="password1"/> </label></div>
         <br>
-        <INPUT class="fontawesome-user" required name="Roleee" type="radio" id="Choice1" value="USER">
+        <INPUT class="fontawesome-user" name="Roleee" type="radio" id="Choice1" value="USER">
         Buddy
         <br>
-        <INPUT class="fontawesome-user" required name="Roleee" type="radio" id="Choice2" value="BUSINESS">
+        <INPUT class="fontawesome-user"  name="Roleee" type="radio" id="Choice2" value="BUSINESS">
         Business
         <br>
         <div><input type="submit" value="Sign in">
             <!--    <input type="hidden" th:field="${buddy.buddyId}" id="buddyId" th:data-buddy="${buddy.buddyId}"></div>-->
         </div>
+        <label  name="users" th:field="${users}" id="users" th:value="${users}" th:text = "${users}"/>
+        <br>
+        <INPUT class="hidden" name="Roleee" type="radio" id="Choice0" checked value="">
     </form>
 </div>
 </body>
