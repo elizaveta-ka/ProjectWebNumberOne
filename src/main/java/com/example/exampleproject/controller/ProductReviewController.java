@@ -57,22 +57,22 @@ public class ProductReviewController {
 //
 
 
-    @RequestMapping(value = "/product/{id}/add-review", method = RequestMethod.POST)
-    public String addReview(@PathVariable("id") int id, Model model, BindingResult result, @Valid ProductReview pr) {
-        productReviewRepository.save(pr);
-        return "redirect:/product" + id;
-    }
-    @GetMapping("/product/{id}/update-review")
-    public String showUpdateForm(@PathVariable("id") int id, Model model) {
-        ProductReview pr = productReviewRepository.findById(id).get();
-        model.addAttribute("productReview", pr);
-        return "redirect:/product" + id;
-    }
-    @RequestMapping(value = "/product/{id}/edit-review", method = RequestMethod.POST)
-    public String editReview(@PathVariable("id") int id, Model model, BindingResult result, @Valid ProductReview pr) {
-        productReviewRepository.save(pr);
-        return "redirect:/product" + id;
-    }
+//    @RequestMapping(value = "/product/{id}/add-review", method = RequestMethod.POST)
+//    public String addReview(@PathVariable("id") int id, Model model, BindingResult result, @Valid ProductReview pr) {
+//        productReviewRepository.save(pr);
+//        return "redirect:/product" + id;
+//    }
+//    @GetMapping("/product/{id}/")
+//    public String showUpdateForm(@PathVariable("id") int id, Model model) {
+//        ProductReview pr = productReviewRepository.findById(id).get();
+//        model.addAttribute("productReview", pr);
+//        return "redirect:/product" + id;
+//    }
+//    @RequestMapping(value = "/product/{id}/edit-review", method = RequestMethod.POST)
+//    public String editReview(@PathVariable("id") int id, Model model, BindingResult result, @Valid ProductReview pr) {
+//        productReviewRepository.save(pr);
+//        return "redirect:/product" + id;
+//    }
 
 
 

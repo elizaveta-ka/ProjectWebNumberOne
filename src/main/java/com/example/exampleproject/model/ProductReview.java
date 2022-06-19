@@ -159,13 +159,17 @@ public class ProductReview {
     public String toString() {
         return "ProductReview{" +
                 "product=" + product +
+                ", buddy=" + buddy +
                 ", productReviewId=" + productReviewId +
                 ", rateP1=" + rateP1 +
                 ", rateP2=" + rateP2 +
                 ", rateP3=" + rateP3 +
-                ", reviewProduct='" + reviewProduct +
-                ", photo='" + photo +
+                ", rateP4=" + rateP4 +
+                ", reviewProduct='" + reviewProduct + '\'' +
+                ", photo='" + photo + '\'' +
                 ", productId=" + productId +
+                ", reviewTitle='" + reviewTitle + '\'' +
+                ", buddyId=" + buddyId +
                 '}';
     }
 }

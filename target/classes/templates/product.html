@@ -1,6 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <!--      th:fragment="main-fragment (title, otherStaticResources, header, SideMenu, mainContent, footer)">-->
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -51,16 +50,17 @@
 
         <input type="submit" value="AddReview" id="addBtn"/>
 
-        <form hidden id="addReviewForm" class="form-control" method="post" th:action="@{/add-review}" th:object="${productReview}">
+        <form id="addReviewForm" class="form-control" method="post" th:object="${productReview}">
             Review title:<br>
-            <input id="reviewTitle" placeholder="Enter Review Title" required type="text" name="reviewTitle" th:field="*{productReview.reviewTitle}">
+<!--            <input id="reviewTitle" placeholder="Enter Review Title" required type="text" name="reviewTitle" th:value="*{reviewTitle}">-->
             <br>
+            <div><label for="reviewTitle"><input class="reviewTitlePr" id = "reviewTitle" type="text" th:value="${reviewTitle}" name="reviewTitle"/> </label></div>
             Review:<br>
-            <textarea id="reviewText" placeholder="Enter Your Review" name="reviewProduct" th:field="*{productReview.reviewProduct}"></textarea>
-            <br>
-            <input type="hidden" class="form-control" th:field="*{productReview.productId}" th:value="${product.productId}">
-            <!--    <input type="hidden" th:field="*{buddy}" th:value="${buddyId}">-->
-            <br><br>
+<!--            <textarea id="reviewText" placeholder="Enter Your Review" name="reviewProduct" th:field="*{productReview.reviewProduct}"></textarea>-->
+<!--            <br>-->
+<!--            <input type="hidden" class="form-control" th:field="*{productReview.productId}">-->
+<!--            &lt;!&ndash;    <input type="hidden" th:field="*{buddy}" th:value="${buddyId}">&ndash;&gt;-->
+<!--            <br><br>-->
             <input name="Add review" id="submitButton" type="submit" value="add-review">
         </form>
 
@@ -75,14 +75,14 @@
                 <span th:text="${review.rateP3}"> Rate_P3</span> <span th:text="${review.rateP4}"> Rate_P4</span></div>
             <p id="reviewer_img"><img src="*{'data:image/png;base64, '+image}" alt="reviewer_img"></p><br>
 
-            <input type="submit" value="Редактировать" id="editBtn"/>
+<!--            <input type="submit" value="Редактировать" id="editBtn"/>-->
 
-            <form hidden name="reviewEd" method="POST" th:object="${productReview}" class="productReviewEdForm">
-                <input readonly id="productReviewId" type="number"  th:value="${productReview.productReviewId}"/><br>
-                <input id="reviewTitleEd" type="text" th:field="*{productReview.reviewTitle}" th:value="${productReview.reviewTitle}"/><br>
-                <textarea id="reviewProduct" th:field="*{productReview.reviewProduct}" th:value="${productReview.reviewProduct}"></textarea><br>
-                <input type="submit" value="Сохранить" id="btnSubmit"/>
-            </form>
+<!--            <form hidden name="reviewEd" method="POST" th:object="${productReview}" class="productReviewEdForm">-->
+<!--                <input readonly id="productReviewId" type="number"  th:value="${productReviewId}"/><br>-->
+<!--                <input id="reviewTitleEd" type="text" th:field="*{reviewTitle}" th:value="${reviewTitle}"/><br>-->
+<!--                <textarea id="reviewProduct" th:field="*{reviewProduct}" th:value="${reviewProduct}"></textarea><br>-->
+<!--                <input type="submit" value="Сохранить" id="btnSubmit"/>-->
+<!--            </form>-->
         </div><br>
         <div id="business_block">
             <p align="center" id="business_img"><img src="*{'data:image/png;base64, '+image}" alt="business_img"></p><br>
@@ -132,12 +132,12 @@
 <script>
     $(document).ready(function (event) {
         $("#editBtn").on('click', function (event) {
-            $(".productReviewEdForm").show();
+            $("#productReviewEdForm").show();
         });
     });
     $(document).ready(function (event) {
-        $("#addBtn").on('click', function (event) {
-            $(".addReviewForm").show();
+        $("#submitButton").on('click', function (event) {
+            $("#addReviewForm").show();
         });
     });
     $(function() {
@@ -171,7 +171,7 @@
             console.log(review);
             $.ajax({
                 type: 'POST',
-                url: '/product/{id}/add-review',
+                url: '$/product/{product.productId}',
                 data: review,
                 contentType: "application/json; charset=utf-8",
                 dataType: 'JSON',
