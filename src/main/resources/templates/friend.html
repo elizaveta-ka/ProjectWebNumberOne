@@ -37,11 +37,13 @@
     <p th:text="${buddy.lastName}"> Фамилия </p>
     <p th:text="${buddy.age}"> Возраст </p>
     <p th:text="${buddy.city}"> Город </p>
+    <p><a th:href="@{/buddy/{id}(id=${buddy.buddyId})}"><img src="layouts/img/product.png" width="30"
+                                                                     height="50" alt="Buddy image"></a></p>
     <p hidden th:text="${buddy.buddyId}" >Id </p>
     <p th:each = "b : ${buddy.friends}" th:text="${b.buddyId}"></p>
 
     <form name="buddyAdd" th:object="${user}" method="POST" >
-        <div><label  for="idF"><input class="buddyIdAdd" id = "idF" type="text" th:value="${buddy.buddyId}" name="idF"/> </label></div>
+        <div><label  hidden for="idF"><input class="buddyIdAdd" id = "idF" type="text" th:value="${buddy.buddyId}" name="idF"/> </label></div>
         <input type="submit" value="Добавить в Друзья" id="friendAdd"/>
     </form>
 

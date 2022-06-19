@@ -57,7 +57,7 @@ public class FriendController {
 
     @PostMapping("/friend")
     public String addFriend(@AuthenticationPrincipal UserDetails user, @RequestParam int idF) {
-        User user1 =userRepository.findByUsername(user.getUsername());
+        User user1 = userRepository.findByUsername(user.getUsername());
         int bId = 0;
         Collection<Buddy> buddies = buddyRepository.findAll();
         for (var b:buddies) {
