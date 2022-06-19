@@ -166,7 +166,7 @@ public class ProductReview {
     @Override
     public String toString() {
         return "ProductReview{" +
-                "product=" + product +
+//                "product=" + product +
                 ", productReviewId=" + productReviewId +
                 ", rateP1=" + rateP1 +
                 ", rateP2=" + rateP2 +

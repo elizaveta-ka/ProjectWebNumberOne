@@ -48,8 +48,8 @@
     </SideMenu>
     <article>
         <form class="changeProfile" th:action="@{/buddy-update}" th:object="${buddy}" method="post">
-            <input readonly type="hidden" th:field="*{buddyId}" id="buddyId"
-                   th:data-id="buddyId">
+<!--            <input readonly type="hidden" th:field="*{buddyId}" id="buddyId"-->
+<!--                   th:data-id="buddyId">-->
             <br/>
             <label for="firstName">First name</label>
             <input type="text" th:field="*{firstName}" id="firstName" placeholder="First Name"

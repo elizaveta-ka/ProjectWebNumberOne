@@ -62,8 +62,8 @@ public class Product {
     public String toString() {
         return "Product{" +
                 "businesses=" + businesses +
-                ", buddies=" + buddies +
-                ", productReviews=" + productReviews +
+//                ", buddies=" + buddies +
+//                ", productReviews=" + productReviews +
                 ", productCategory=" + productCategory +
                 ", productId=" + productId +
                 ", productName='" + productName + '\'' +

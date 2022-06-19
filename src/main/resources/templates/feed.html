@@ -27,15 +27,12 @@
                                                                          height="50" alt="Product image"></a></th>
             <!--      <p th:text="${product.categoryId}">categoryId</p>-->
             <p th:each = "b : ${product.productCategory}" th:text="${b.categoryName}"></p>
-            <form method="post" class="productForm">
-<!--                <input type="text" value="${user.id}" name="User ID">-->
-<!--                <input type="hidden" value="${_csrf.token}" name="_csrf">-->
-                <input id="id" type="hidden" name="id" th:value="${product.productId}"/><br/><br/>
-                <input id="name" type="hidden" name="name" th:value="${product.productName}"/><br/><br/>
-                <input id="categoryId" type="hidden" name="categoryId" th:value="${product.productCategory.categoryId}"/><br/><br/>
-                <input id="categoryName" type="hidden" name="categoryName" th:value="${product.productCategory.categoryName}"/><br/><br/>
+
+            <form name="productForm" th:object="${product}" method="POST" >
+                <div><label for="productId"><input class="productIdPr" id = "productId" type="number" th:value="${product.productId}" name="productId"/> </label></div>
                 <input type="submit" value="Добавить в Wishlist" id="btnAdd"/>
             </form>
+
 <!--            <input type="hidden" th:field="*{product.productId}" class="product_block" id="productId"-->
 <!--                   placeholder="productId" th:data-product="product.productId">-->
 
@@ -54,5 +51,8 @@
 <footer>
     <p>All right reserved and belong to almighty Cthulhu</p>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script>
+
+    </script>
 </footer>
 </html>
