@@ -53,9 +53,9 @@ public class RegistrationController {
         List<User> usersRep = userRepository.findAll();
 
         //спросить у Андрея
-//        List <String> users = new ArrayList<>();
-//        for (var user : usersRep)
-//            users.add(user.getUsername());
+        List <String> users = new ArrayList<>();
+        for (var us : usersRep)
+            users.add(us.getUsername());
 
         if (userFromDB != null) {
             model.addAttribute("message", "User exists!");
@@ -82,9 +82,9 @@ public class RegistrationController {
 
         if(newUser.getRole().getName().equals("business")) {
             Business business = new Business();
+            business.setUser(newUser);
             businessRepository.save(business);
             int id = business.getBusinessId();
-            business.setUser(newUser);
         return "redirect:/business/" + id;
         }
 

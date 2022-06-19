@@ -1,15 +1,12 @@
 package com.example.exampleproject.controller;
 
-import com.example.exampleproject.model.Buddy;
 import com.example.exampleproject.model.Business;
 import com.example.exampleproject.model.Product;
 import com.example.exampleproject.model.User;
-import com.example.exampleproject.repository.BusinessRepository;
-import com.example.exampleproject.repository.BusinessReviewRepository;
-import com.example.exampleproject.repository.ProductCategoryRepository;
-import com.example.exampleproject.repository.ProductRepository;
+import com.example.exampleproject.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,10 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.io.UnsupportedEncodingException;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 public class BusinessController {
@@ -34,43 +28,46 @@ public class BusinessController {
 
     private final ProductCategoryRepository productCategoryRepository;
 
+    private final UserRepository userRepository;
+
 
     @Autowired
-    public BusinessController(BusinessRepository businessRepository, ProductRepository productRepository, BusinessReviewRepository businessReviewRepository, ProductCategoryRepository productCategoryRepository) {
+    public BusinessController(BusinessRepository businessRepository, ProductRepository productRepository, BusinessReviewRepository businessReviewRepository, ProductCategoryRepository productCategoryRepository, UserRepository userRepository) {
         this.businessRepository = businessRepository;
         this.productRepository = productRepository;
         this.businessReviewRepository = businessReviewRepository;
         this.productCategoryRepository = productCategoryRepository;
+        this.userRepository = userRepository;
     }
     // работает для демонстрации связей
-    @GetMapping("/business")
-    public String findAll(Model model) {
-        List<Business> businesses = businessRepository.findAll();
-        System.out.println(businesses);
-        model.addAttribute("businesses", businesses);
-        List<Product> products = productRepository.findAll();
-        model.addAttribute("products", products);
-        return "business-list";
-    }
+//    @GetMapping("/business")
+//    public String findAll(Model model) {
+//        List<Business> businesses = businessRepository.findAll();
+//        System.out.println(businesses);
+//        model.addAttribute("businesses", businesses);
+//        List<Product> products = productRepository.findAll();
+//        model.addAttribute("products", products);
+//        return "business-list";
+//    }
 
-
-    @GetMapping("/business-create")
-    public String createBusinessForm(Business business) {
-        return "business-create";
-    }
-
-    @PostMapping("/business-create")
-    public String createBusiness(Business business) {
-        businessRepository.save(business);
-        return "redirect:/business";
-    }
+//
+//    @GetMapping("/business-create")
+//    public String createBusinessForm(Business business) {
+//        return "business-create";
+//    }
+//
+//    @PostMapping("/business-create")
+//    public String createBusiness(Business business) {
+//        businessRepository.save(business);
+//        return "redirect:/business";
+//    }
     @GetMapping("/business-delete/{id}")
     public String deleteBusiness(@PathVariable(value = "id") int id) {
 
         businessRepository.deleteById(id);
         return "redirect:/business";
     }
-    // работает
+     //работает
     @GetMapping("/business-update/{id}")
     public String updateBusinessForm(@PathVariable("id") int id, Model model) {
         Optional<Business> business = businessRepository.findById(id);
@@ -89,11 +86,23 @@ public class BusinessController {
     }
 
     @PostMapping("/business/{id}")
-    public String updateBusiness(@PathVariable int id, Business business, BindingResult bindingResult) {
-        Business business1 = businessRepository.getById(id);
+    public String updateBusiness(@PathVariable int id, @AuthenticationPrincipal UserDetails user, Business business, BindingResult bindingResult) {
+        System.out.println(business);
+        User user1 = userRepository.findByUsername(user.getUsername());
+        int bId = 0;
+        Collection<Business> businesses = businessRepository.findAll();
+        for (var b:businesses) {
+            User user2 = b.getUser();
+            if(user1.equals(user2)) {
+                bId = b.getBusinessId();
+            }
+        }
+        Business business1 = businessRepository.getById(bId);
+        System.out.println(business1);
         business1.setBusName(business.getBusName());
         business1.setLocation(business.getLocation());
         business1.setBusinessLink(business.getBusinessLink());
+        business1.setUser(user1);
         businessRepository.save(business1);
         return "redirect:/business/" + id;
     }
@@ -106,13 +115,13 @@ public class BusinessController {
 //        return "redirect:" + link;
 //    }
 
-    //меню бизнеса // работает
-    @GetMapping("/business/{id}/menu")
-    public String showBusinessMenu(@PathVariable("id") int id, Model model) {
-        Business business = businessRepository.getById(id);
-        model.addAttribute("business", business);
-        return "business-menu";
-    }
+//    //меню бизнеса // работает
+//    @GetMapping("/business/{id}/menu")
+//    public String showBusinessMenu(@PathVariable("id") int id, Model model) {
+//        Business business = businessRepository.getById(id);
+//        model.addAttribute("business", business);
+//        return "business-menu";
+//    }
     // работает
     @GetMapping("/business/{id}/product-create")
     public String createProductForm(@PathVariable("id")int id, Model model, Product product) {
@@ -123,8 +132,18 @@ public class BusinessController {
     }
 
     @PostMapping("/business/{id}/product-create")
-    public String createProduct(Product product, Business business) {
-        Business business1 = businessRepository.getById(business.getBusinessId());
+    public String createProduct(@AuthenticationPrincipal UserDetails user, Product product, Business business) {
+        System.out.println(business);
+        User user1 = userRepository.findByUsername(user.getUsername());
+        int bId = 0;
+        Collection<Business> businesses = businessRepository.findAll();
+        for (var b:businesses) {
+            User user2 = b.getUser();
+            if(user1.equals(user2)) {
+                bId = b.getBusinessId();
+            }
+        }
+        Business business1 = businessRepository.getById(bId);
         Set<Product> products = business1.getProducts();
         var productCategory= productCategoryRepository.findById(product.getProductCategory().getCategoryId()).orElseThrow();
         product.setProductCategory(productCategory);
