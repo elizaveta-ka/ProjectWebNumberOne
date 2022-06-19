@@ -53,6 +53,23 @@
             });
         });
     });
+        $(function() {
+            $('#submitButton').submit(function (e) {
+                e.preventDefault();
+                var review = $('#addReviewForm').serialize();
+                console.log(review);
+                $.ajax({
+                    type: 'POST',
+                    url: '/product/{id}/{productReview_id}/edit-review',
+                    data: review,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: 'JSON',
+                    success: function(data){
+                        console.log(data);
+                    }
+                });
+            });
+        });
 
 </script>
 
