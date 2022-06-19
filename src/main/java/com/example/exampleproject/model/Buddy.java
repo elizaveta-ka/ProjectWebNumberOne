@@ -90,9 +90,9 @@ public class Buddy {
     public String toString() {
         return "Buddy{" +
                 ", businessAuthors=" + businessAuthors +
-                ", productAuthors=" + productAuthors +
+//                ", productAuthors=" + productAuthors +
                 ", friends=" + friends +
-                ", products=" + products +
+//                ", products=" + products +
                 ", buddyId=" + buddyId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +

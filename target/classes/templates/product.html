@@ -48,21 +48,17 @@
             </div>
         </div><br>
 
-        <input type="submit" value="AddReview" id="addBtn"/>
-
-        <form id="addReviewForm" class="form-control" method="post" th:object="${productReview}">
+        <div id = "rating_add"><form id="addReviewForm" class="form-control" method="post" th:object="${productReview}">
             Review title:<br>
 <!--            <input id="reviewTitle" placeholder="Enter Review Title" required type="text" name="reviewTitle" th:value="*{reviewTitle}">-->
             <br>
             <div><label for="reviewTitle"><input class="reviewTitlePr" id = "reviewTitle" type="text" th:value="${reviewTitle}" name="reviewTitle"/> </label></div>
             Review:<br>
-<!--            <textarea id="reviewText" placeholder="Enter Your Review" name="reviewProduct" th:field="*{productReview.reviewProduct}"></textarea>-->
-<!--            <br>-->
-<!--            <input type="hidden" class="form-control" th:field="*{productReview.productId}">-->
-<!--            &lt;!&ndash;    <input type="hidden" th:field="*{buddy}" th:value="${buddyId}">&ndash;&gt;-->
-<!--            <br><br>-->
+            <div><label for="reviewProduct"><textarea class="reviewProductPr" id = "reviewProduct" th:value="${reviewProduct}" name="reviewProduct"></textarea> </label></div>
+            <input type="range" min="0" max="5" step="1" value="1" th:value = "${rateP1}">
+
             <input name="Add review" id="submitButton" type="submit" value="add-review">
-        </form>
+        </form></div>
 
         <div id="rateBlock" th:each="review : ${product.productReviews}">
             <p th:text="${review.buddy.firstName} + ${' '} + ${review.buddy.lastName}">Author</p>
@@ -108,97 +104,76 @@
         cursor: pointer;
     }
 </style>
-<div id="rating_new">
-    <div class="param">Параметр 1:</div>
-    <div><div class="stars"></div><p class="progress" id="p1"></p></div>
-    <div class="rating_new" id="param1">5.0</div>
+<!--<script>-->
+<!--    $(document).ready(function (event) {-->
+<!--        $("#editBtn").on('click', function (event) {-->
+<!--            $("#productReviewEdForm").show();-->
+<!--        });-->
+<!--    });-->
+<!--    $(document).ready(function (event) {-->
+<!--        $("#submitButton").on('click', function (event) {-->
+<!--            $("#addReviewForm").show();-->
+<!--        });-->
+<!--    });-->
+<!--    $(function() {-->
+<!--        $('#btnSubmit').submit(function (e) {-->
+<!--            e.preventDefault();-->
+<!--            var review = $('#productReviewEdForm').serialize();-->
+<!--            console.log(review);-->
+<!--            $.ajax({-->
+<!--                type: 'POST',-->
+<!--                url: '/product/{id}/edit-review',-->
+<!--                data: review,-->
+<!--                contentType: "application/json; charset=utf-8",-->
+<!--                dataType: 'JSON',-->
+<!--                success: function(data){-->
+<!--                    console.log(data);-->
+<!--                }-->
+<!--            });-->
+<!--        });-->
+<!--    });-->
 
-    <div class="param">Параметр 2:</div>
-    <div><div class="stars"></div><p class="progress" id="p2"></p></div>
-    <div class="rating_new" id="param2">5.0</div>
+<!--    $(document).ready(function () {-->
+<!--        $("#category").change(function () {-->
+<!--            $("#productId").val($("#product option:selected").attr("data-id"));-->
+<!--        });-->
+<!--    });-->
 
-    <div class="param">Параметр 3:</div>
-    <div><div class="stars"></div><p class="progress" id="p3"></p></div>
-    <div class="rating_new" id="param3">5.0</div>
-
-
-    <div class="param">Общая оценка:</div>
-    <div><div id="sum_stars"></div><p id="sum_progress"></p></div>
-    <div id="summ">5.00</div>
-
-    <input id="el_999" type="submit" value="Submit">
-    <p id="message"></p>
-</div>
-<script>
-    $(document).ready(function (event) {
-        $("#editBtn").on('click', function (event) {
-            $("#productReviewEdForm").show();
-        });
-    });
-    $(document).ready(function (event) {
-        $("#submitButton").on('click', function (event) {
-            $("#addReviewForm").show();
-        });
-    });
-    $(function() {
-        $('#btnSubmit').submit(function (e) {
-            e.preventDefault();
-            var review = $('#productReviewEdForm').serialize();
-            console.log(review);
-            $.ajax({
-                type: 'POST',
-                url: '/product/{id}/edit-review',
-                data: review,
-                contentType: "application/json; charset=utf-8",
-                dataType: 'JSON',
-                success: function(data){
-                    console.log(data);
-                }
-            });
-        });
-    });
-
-    $(document).ready(function () {
-        $("#category").change(function () {
-            $("#productId").val($("#product option:selected").attr("data-id"));
-        });
-    });
-
-    $(function() {
-        $('#submitButton').submit(function (e) {
-            e.preventDefault();
-            var review = $('#addReviewForm').serialize();
-            console.log(review);
-            $.ajax({
-                type: 'POST',
-                url: '$/product/{product.productId}',
-                data: review,
-                contentType: "application/json; charset=utf-8",
-                dataType: 'JSON',
-                success: function(data){
-                    console.log(data);
-                }
-            });
-        });
-    });
-    $(function() {
-        $('#submitButton').submit(function (e) {
-            e.preventDefault();
-            var review = $('#addReviewForm').serialize();
-            console.log(review);
-            $.ajax({
-                type: 'POST',
-                url: '/product/{id}/{productReview_id}/edit-review',
-                data: review,
-                contentType: "application/json; charset=utf-8",
-                dataType: 'JSON',
-                success: function(data){
-                    console.log(data);
-                }
-            });
-        });
-    });
-</script>
+<!--    // $(function() {-->
+<!--    //     $('#submitButton').submit(function (e) {-->
+<!--    //         e.preventDefault();-->
+<!--    //         var review = $('#addReviewForm').serialize();-->
+<!--    //         console.log(review);-->
+<!--    //         $.ajax({-->
+<!--    //             type: 'POST',-->
+<!--    //             url: '$/product/{product.productId}',-->
+<!--    //             data: review,-->
+<!--    //             contentType: "application/json; charset=utf-8",-->
+<!--    //             dataType: 'JSON',-->
+<!--    //             success: function(data){-->
+<!--    //                 console.log(data);-->
+<!--    //             }-->
+<!--    //         });-->
+<!--    //     });-->
+<!--    // });-->
+<!--    // $(function() {-->
+<!--    //     $('#submitButton').submit(function (e) {-->
+<!--    //         e.preventDefault();-->
+<!--    //         var review = $('#addReviewForm').serialize();-->
+<!--    //         console.log(review);-->
+<!--    //         $.ajax({-->
+<!--    //             type: 'POST',-->
+<!--    //             url: '/product/{id}/{productReview_id}/edit-review',-->
+<!--    //             data: review,-->
+<!--    //             contentType: "application/json; charset=utf-8",-->
+<!--    //             dataType: 'JSON',-->
+<!--    //             success: function(data){-->
+<!--    //                 console.log(data);-->
+<!--    //             }-->
+<!--    //         });-->
+<!--    //     });-->
+<!--    // });-->
+<!--</script>-->
 </body>
 <footer>
     <p>All right reserved and belong to almighty Cthulhu</p>

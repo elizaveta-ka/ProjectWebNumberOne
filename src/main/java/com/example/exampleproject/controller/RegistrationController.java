@@ -51,9 +51,9 @@ public class RegistrationController {
                               @RequestParam String password, User user, Model model) {
         User userFromDB = userRepository.findByUsername(username);
         List<User> usersRep = userRepository.findAll();
-        List <String> users = new ArrayList<>();
-        for (var user : usersRep)
-            users.add(user.getUsername());
+//        List <String> users = new ArrayList<>();
+//        for (var user : usersRep)
+//            users.add(user.getUsername());
 
         if (userFromDB != null) {
             model.addAttribute("message", "User exists!");

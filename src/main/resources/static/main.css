@@ -150,8 +150,7 @@ footer {
 
 #rating_new {
     width: 320px;
-    border-radius: 4px;
-    box-shadow: 0 0 2px 1px #333333;
+
     margin: 10px auto;
     padding: 10px;
     text-align: center;
@@ -175,4 +174,27 @@ footer {
 .rating_new, #summ {
     margin: 0 0 0 20px;
     font-weight: bold;
+}
+#rating_add{
+    float: left;
+    height: 30%; /* Высота слоя в пикселах */
+    left: 40%; /* Положение слоя от левого края */
+    top: 50%; /* Положение слоя от верхнего края */
+    margin-top: 15px;  /* Отступ сверху */
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
+    background-color: #ffffff;
+    border: solid 1px; /* Параметры рамки вокруг */
+    padding: 10px; /* Поля вокруг текста */
+    overflow: auto; /* Добавление полосы прокрутки */
+    width: 40%;
+    margin-right: 30%;
+}
+#rating_add.form{
+    margin:  20px;
+    padding: 10px;
+    alignment: center;
+}
+#submitButton{
+    margin: 20px;
+    alignment: center;
 }

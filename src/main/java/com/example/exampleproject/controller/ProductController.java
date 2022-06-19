@@ -1,13 +1,7 @@
 package com.example.exampleproject.controller;
 
-import com.example.exampleproject.model.Product;
-import com.example.exampleproject.model.ProductCategory;
-import com.example.exampleproject.model.ProductReview;
-import com.example.exampleproject.model.User;
-import com.example.exampleproject.repository.ProductCategoryRepository;
-import com.example.exampleproject.repository.ProductRepository;
-import com.example.exampleproject.repository.ProductReviewRepository;
-import com.example.exampleproject.repository.UserRepository;
+import com.example.exampleproject.model.*;
+import com.example.exampleproject.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import java.util.Collection;
 import java.util.List;
 
 @Controller
@@ -30,15 +25,17 @@ public class ProductController {
 
     private final ProductCategoryRepository productCategoryRepository;
     private final UserRepository userRepository;
+    private final BuddyRepository buddyRepository;
 
 
 
     @Autowired
-    public ProductController(ProductRepository productRepository, ProductReviewRepository productReviewRepository, ProductCategoryRepository productCategoryRepository, com.example.exampleproject.repository.UserRepository userRepository) {
+    public ProductController(ProductRepository productRepository, ProductReviewRepository productReviewRepository, ProductCategoryRepository productCategoryRepository, UserRepository userRepository, BuddyRepository buddyRepository) {
         this.productRepository = productRepository;
         this.productReviewRepository = productReviewRepository;
         this.productCategoryRepository = productCategoryRepository;
         this.userRepository = userRepository;
+        this.buddyRepository = buddyRepository;
     }
     @GetMapping("/products")
     public String findAll(Model model) {
@@ -78,12 +75,40 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/product/{id}", method = RequestMethod.POST)
-    public String addReview(@PathVariable("id") @AuthenticationPrincipal UserDetails user, int id, ProductReview pr) {
-//        User user1 = userRepository.findByUsername(user.getUsername());
-//        System.out.println(user1);
+    public String addReview(@PathVariable("id") int id, @AuthenticationPrincipal UserDetails user, ProductReview pr) {
         ProductReview productReview = new ProductReview();
+
+//        System.out.println(productReview);
         productReview.setReviewTitle(pr.getReviewTitle());
-        productReviewRepository.save(pr);
+        productReview.setReviewProduct(pr.getReviewProduct());
+        productReview.setRateP1(pr.getRateP1());
+
+        Product product = productRepository.getById(id);
+
+        User user1 = userRepository.findByUsername(user.getUsername());
+        System.out.println(user1);
+        List<Buddy> buddies = buddyRepository.findAll();
+        int bId = 0;
+        for (var b:buddies) {
+            User user2 = b.getUser();
+            if(user1.equals(user2)) {
+                bId = b.getBuddyId();
+            }
+        }
+        System.out.println(productReview);
+        Buddy buddy = buddyRepository.getById(bId);
+        productReview.setBuddyId(buddy.getBuddyId());
+        Collection<ProductReview> productReviews = buddy.getProductAuthors();
+        productReviews.add(productReview);
+        productReview.setBuddy(buddy);
+        productReview.setProduct(product);
+        productReview.setProductId(product.getProductId());
+
+        System.out.println(productReview);
+        buddyRepository.saveAndFlush(buddy);
+
+        System.out.println(productReview);
+        productReviewRepository.saveAndFlush(productReview);
         System.out.println(pr);
         return "redirect:/product/" + id;
     }

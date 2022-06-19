@@ -155,11 +155,15 @@ public class ProductReview {
         this.reviewTitle = reviewTitle;
     }
 
+    public void setBuddyId(int buddyId) {
+        this.buddyId = buddyId;
+    }
+
     @Override
     public String toString() {
         return "ProductReview{" +
-                "product=" + product +
-                ", buddy=" + buddy +
+//                "product=" + product +
+//                ", buddy=" + buddy +
                 ", productReviewId=" + productReviewId +
                 ", rateP1=" + rateP1 +
                 ", rateP2=" + rateP2 +
