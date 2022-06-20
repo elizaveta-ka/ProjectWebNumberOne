@@ -32,11 +32,11 @@ public class BusinessReviewController {
         return "businessReview";
     }
 
-    @RequestMapping(value = "/business/{id}/add-review", method = RequestMethod.POST)
-    public String addReview(@PathVariable("id") int id, Model model, BindingResult result, @Valid BusinessReview br) {
-        businessReviewRepository.save(br);
-        return "redirect:/business" + id;
-    }
+//    @RequestMapping(value = "/business/{id}/add-review", method = RequestMethod.POST)
+//    public String addReview(@PathVariable("id") int id, Model model, BindingResult result, @Valid BusinessReview br) {
+//        businessReviewRepository.save(br);
+//        return "redirect:/business" + id;
+//    }
     @GetMapping("/business/{id}/update-review")
     public String showUpdateForm(@PathVariable("id") int id, Model model) {
         BusinessReview br = businessReviewRepository.findById(id).get();

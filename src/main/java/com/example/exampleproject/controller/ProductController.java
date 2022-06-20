@@ -78,7 +78,6 @@ public class ProductController {
     public String addReview(@PathVariable("id") int id, @AuthenticationPrincipal UserDetails user, ProductReview pr) {
         ProductReview productReview = new ProductReview();
 
-//        System.out.println(productReview);
         productReview.setReviewTitle(pr.getReviewTitle());
         productReview.setReviewProduct(pr.getReviewProduct());
         productReview.setRateP1(pr.getRateP1());
