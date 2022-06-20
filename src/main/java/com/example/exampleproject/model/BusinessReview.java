@@ -30,19 +30,25 @@ public class BusinessReview {
     @Column(name = "rateB4")
     private int rateB4;
 
-    @Column(name = "reviewB")
-    private String reviewB;
+    @Column(name = "reviewBusiness")
+    private String reviewBusiness;
 
     @Column(name = "photo")
     private String photo;
 
     @Column(name = "business_id")
     private int businessId;
+    @Column(name = "review_title")
+    private String reviewTitle;
+
+    @Column(name = "buddy_id")
+    private int buddyId;
+
 
     public BusinessReview() {
     }
 
-    public BusinessReview(Buddy buddy, Business business, int businessReviewId, int rateB1, int rateB2, int rateB3, int rateB4, String reviewB, String photo, int businessId) {
+    public BusinessReview(Buddy buddy, Business business, int businessReviewId, int rateB1, int rateB2, int rateB3, int rateB4, String reviewBusiness, String photo, int businessId) {
         this.buddy = buddy;
         this.business = business;
         this.businessReviewId = businessReviewId;
@@ -50,9 +56,11 @@ public class BusinessReview {
         this.rateB2 = rateB2;
         this.rateB3 = rateB3;
         this.rateB4 = rateB4;
-        this.reviewB = reviewB;
+        this.reviewBusiness = reviewBusiness;
         this.photo = photo;
         this.businessId = businessId;
+        this.reviewTitle = reviewTitle;
+        this.buddyId = buddyId;
     }
 
     public int getBusinessReviewId() {
@@ -71,8 +79,8 @@ public class BusinessReview {
         return rateB3;
     }
 
-    public String getReviewB() {
-        return reviewB;
+    public String getReviewBusiness() {
+        return reviewBusiness;
     }
 
     public String getPhoto() {
@@ -97,10 +105,6 @@ public class BusinessReview {
 
     public void setRateB3(int rateB3) {
         this.rateB3 = rateB3;
-    }
-
-    public void setReviewB(String reviewB) {
-        this.reviewB = reviewB;
     }
 
     public void setPhoto(String photo) {
@@ -135,6 +139,26 @@ public class BusinessReview {
         this.rateB4 = rateB4;
     }
 
+    public void setReviewBusiness(String reviewBusiness) {
+        this.reviewBusiness = reviewBusiness;
+    }
+
+    public String getReviewTitle() {
+        return reviewTitle;
+    }
+
+    public void setReviewTitle(String reviewTitle) {
+        this.reviewTitle = reviewTitle;
+    }
+
+    public int getBuddyId() {
+        return buddyId;
+    }
+
+    public void setBuddyId(int buddyId) {
+        this.buddyId = buddyId;
+    }
+
     @Override
     public String toString() {
         return "BusinessReview{" +
@@ -142,7 +166,7 @@ public class BusinessReview {
                 ", rateB1=" + rateB1 +
                 ", rateB2=" + rateB2 +
                 ", rateB3=" + rateB3 +
-                ", reviewB='" + reviewB + '\'' +
+                ", reviewBusiness='" + reviewBusiness + '\'' +
                 ", photo='" + photo + '\'' +
                 ", business_id=" + businessId +
                 '}';
