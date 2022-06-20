@@ -154,6 +154,7 @@ public class BusinessController {
 //        Collection<BusinessReview> businessReviews = buddy.getProductAuthors();
 //        businessReviews.add(productReview);
         businessReview.setBuddy(buddy);
+        businessReview.setBuddyId(buddy.getBuddyId());
         businessReview.setBusiness(business);
         businessReview.setBusinessId(business.getBusinessId());
         buddyRepository.saveAndFlush(buddy);

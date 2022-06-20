@@ -41,6 +41,9 @@ public class BusinessReview {
     @Column(name = "review_title")
     private String reviewTitle;
 
+    @Column(name = "buddy_id")
+    private int buddyId;
+
 
     public BusinessReview() {
     }
@@ -57,6 +60,7 @@ public class BusinessReview {
         this.photo = photo;
         this.businessId = businessId;
         this.reviewTitle = reviewTitle;
+        this.buddyId = buddyId;
     }
 
     public int getBusinessReviewId() {
@@ -145,6 +149,14 @@ public class BusinessReview {
 
     public void setReviewTitle(String reviewTitle) {
         this.reviewTitle = reviewTitle;
+    }
+
+    public int getBuddyId() {
+        return buddyId;
+    }
+
+    public void setBuddyId(int buddyId) {
+        this.buddyId = buddyId;
     }
 
     @Override
