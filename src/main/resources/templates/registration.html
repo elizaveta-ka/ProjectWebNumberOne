@@ -70,6 +70,15 @@
             document.getElementById("message").innerHTML = "**Password is not confirmed!";
             return false;
         }
+        if(age == "") {
+            document.getElementById("message").innerHTML = "**Fill the age please!";
+            return false;
+        }
+
+        if (! /^[0-9]+$/.test(age)) {
+            document.getElementById("message").innerHTML = "**Only numbers in age!";
+            return false;
+        }
         if(Number(age) > 99) {
             document.getElementById("message").innerHTML = "**You are too old!";
             return false;
