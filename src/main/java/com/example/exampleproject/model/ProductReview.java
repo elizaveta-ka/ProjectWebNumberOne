@@ -22,7 +22,7 @@ public class ProductReview {
     private int productReviewId;
 
     @Column(name = "rateP1")
-    private int rateP1;
+    private float rateP1;
 
     @Column(name = "rateP2")
     private int rateP2;
@@ -71,7 +71,7 @@ public class ProductReview {
         return productReviewId;
     }
 
-    public int getRateP1() {
+    public float getRateP1() {
         return rateP1;
     }
 
@@ -99,7 +99,7 @@ public class ProductReview {
         this.productReviewId = productReviewId;
     }
 
-    public void setRateP1(int rateP1) {
+    public void setRateP1(float rateP1) {
         this.rateP1 = rateP1;
     }
 

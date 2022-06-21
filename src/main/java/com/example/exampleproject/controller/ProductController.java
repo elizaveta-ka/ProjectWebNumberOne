@@ -75,11 +75,12 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/product/{id}", method = RequestMethod.POST)
-    public String addReview(@PathVariable("id") int id, @AuthenticationPrincipal UserDetails user, ProductReview pr) {
+    public String addReview(@PathVariable("id") int id, @AuthenticationPrincipal UserDetails user, ProductReview pr, float summ) {
         ProductReview productReview = new ProductReview();
 
         productReview.setReviewTitle(pr.getReviewTitle());
         productReview.setReviewProduct(pr.getReviewProduct());
+        productReview.setRateP1(summ);
         productReview.setRateP1(pr.getRateP1());
 
         Product product = productRepository.getById(id);

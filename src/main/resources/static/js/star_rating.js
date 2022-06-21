@@ -13,17 +13,25 @@
         $('#summ').text(summ.toFixed(2));
     }
 
-    $('#rating_new .stars').click(function(e){
-    $(this).toggleClass('fixed');
-    move(e, $(this));
-});
+        $('#rating_new [type=submit]').click(function(){
+            summ = parseFloat($('#summ').text());
+            console.log(summ);
+            // $ajax({
+            //     type: 'POST',
+            //     url: '/product/{id}(id=${business.businessId})',
+            //     data: String,
+            //
+            // })
+            $.post('/product/{id}(id=${product.productId})', summ)
+        });
+
 
 
     $('#rating_new .stars').on('mousemove', function(e){
     if ($(this).hasClass('fixed')==false) move(e, $(this));
-});
-
-    function notice(text){
-    $('#message').fadeOut(500, function(){ $(this).text(text); }).fadeIn(2000);
-}
-});
+    });
+        $('#rating_new .stars').click(function(e){
+            $(this).toggleClass('fixed');
+            move(e, $(this));
+        });
+    });
