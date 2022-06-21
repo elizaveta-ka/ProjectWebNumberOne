@@ -12,7 +12,24 @@
 <body>
 <section>
     <SideMenu id="SideMenu">
-<!--        <li><a th:href="@{/buddy/{id}(id=${home.id})}">HomeBuddy</a></li>-->
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var role = $("#product_block").val($("#role").attr("data-id"));
+                console.log(role.val() + "HLMKJHG")
+                if (role.val() === "2")
+                {
+                    console.log("user")
+                    $("a[href='homescreen']").prop('href', '@{/buddy/{id}(id=${buddy.buddyId})}')
+
+                } else if (role.val() === "3")
+                {
+                    console.log("business")
+                    $("a[href='homescreen']").prop('href', '@{/business/{id}}'(id=${buddy.buddyId}))
+                }
+            });
+        </script>
+        <li><a th:id="home" th:href="homescreen">Home</a></li>
         <li>Feed</li>
         <li><a th:href="@{/friend}">Найти друга</a></li>
         <li><a th:href="@{/notifications}">Notifications</a></li>
@@ -21,6 +38,9 @@
     <article>
 
         <div id="product_block" th:each = "product : ${products}">
+            <h1  id="role" th:text = "${user.role.id}"
+                 th:data-id="${user.role.id}"> role </h1>
+
 
             <h1 th:text="${product.productName}"> productName </h1>
             <p hidden th:text="${product.productId}" >Id Product</p>

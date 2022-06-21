@@ -10,19 +10,9 @@
 //
 //@Service
 //public class MyUserDetailService implements UserDetailsService {
-//    @Autowired
-//    private UserRepository dao;
+//
 //    @Override
-//    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-//        User myUser= dao.findByUsername(userName);
-//        if (myUser == null) {
-//            throw new UsernameNotFoundException("Unknown user: "+userName);
-//        }
-//        UserDetails user = org.springframework.security.core.userdetails.User.builder()
-//                .username(myUser.getUsername())
-//                .password(myUser.getPassword())
-//                .roles(myUser.getRole().getName())
-//                .build();
-//        return user;
+//    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+//        return null;
 //    }
 //}

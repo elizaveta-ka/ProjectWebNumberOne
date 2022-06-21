@@ -73,17 +73,20 @@
 
 
                     <div id = "menu">
-                        <table th:each="product : ${business.products}" width="100%" border="0" cellpadding="4">
-                            <tr align="right" valign="top">
-                                <div>
-                                <th th:text="${product.productName}">Product_NAME</th>
-                                <td th:text="${product['productCategory']['categoryName']}">Category_NAME</td>
-                                <td th:text="${'blabla'}">Суммарный рейтинг продукта</td>
-                                </div>
-                            </tr>
-                        </table>
-                        <td><a th:href="@{{id}/product-create(id=${business.businessId})}">Add new product</a></td>
-<!--                        <button><a th:href="@{business/{businessId}/product-create}">Add new product</a></button>-->
+<!--                        <article>-->
+                            <td><a th:href="@{{id}/product-create(id=${business.businessId})}">Add new product</a></td>
+                        <div id="business_block">
+                            <table th:each="product : ${business.products}" width="100%" border="0" cellpadding="4">
+<!--                                <tr align="right" valign="top">-->
+                                    <div id="product_block">
+                                        <th th:text="${product.productName}">Product_NAME</th>
+                                        <td th:text="${product['productCategory']['categoryName']}">Category_NAME</td>
+                                        <td th:text="${'blabla'}">Суммарный рейтинг продукта</td><!--                                </tr>-->
+                                    </div>
+                            </table>
+                        </div>
+
+                        <!--                        </article><br>-->
                     </div>
                 </div>
             </div>

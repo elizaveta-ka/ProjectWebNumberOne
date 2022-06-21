@@ -89,8 +89,8 @@ public class Buddy {
     @Override
     public String toString() {
         return "Buddy{" +
-                ", businessAuthors=" + businessAuthors +
-                ", productAuthors=" + productAuthors +
+//                ", businessAuthors=" + businessAuthors +
+//                ", productAuthors=" + productAuthors +
                 ", friends=" + friends +
 //                ", products=" + products +
                 ", buddyId=" + buddyId +

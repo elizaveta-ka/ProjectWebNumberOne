@@ -133,7 +133,7 @@ public class BusinessController {
 
     @PostMapping("/business/{id}/product-create")
     public String createProduct(@AuthenticationPrincipal UserDetails user, Product product, Business business) {
-        System.out.println(business);
+//        Optional<Business> businessToUpdate = businessRepository.getBusinessByUserName(user.getUsername());
         User user1 = userRepository.findByUsername(user.getUsername());
         int bId = 0;
         Collection<Business> businesses = businessRepository.findAll();

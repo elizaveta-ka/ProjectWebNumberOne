@@ -27,13 +27,16 @@ public class FeedController {
 
     private BusinessRepository businessRepository;
 
+    private RoleRepository roleRepo;
+
     @Autowired
-    public FeedController(ProductRepository productRepository, ProductCategoryRepository productCategoryRepository, BuddyRepository buddyRepository, UserRepository userRepository, BusinessRepository businessRepository) {
+    public FeedController(ProductRepository productRepository, ProductCategoryRepository productCategoryRepository, BuddyRepository buddyRepository, UserRepository userRepository, BusinessRepository businessRepository, RoleRepository roleRepo) {
         this.productRepository = productRepository;
         this.productCategoryRepository = productCategoryRepository;
         this.buddyRepository = buddyRepository;
         this.userRepository = userRepository;
         this.businessRepository = businessRepository;
+        this.roleRepo = roleRepo;
     }
 
     @GetMapping("/feed")
@@ -51,7 +54,8 @@ public class FeedController {
                 }
             }
             homeB = buddyRepository.getById(bId);
-            model.addAttribute("home", homeB);
+            model.addAttribute("home", "buddy");
+            model.addAttribute("homeId", homeB.getBuddyId());
         } else if (user1.getRole().getName().equals("business")) {
             int buId = 0;
 
@@ -63,12 +67,18 @@ public class FeedController {
                 }
             }
             homeBu = businessRepository.getById(buId);
-            model.addAttribute("home", homeBu);
+//            model.addAttribute("home", "business");
+            model.addAttribute("homeId", homeBu.getBusinessId());
         }
 
         List<Product> products = productRepository.findAll();
         List<ProductCategory> productCategories = productCategoryRepository.findAll();
+
+//        products.createRecomendation(buddy);
+
         model.addAttribute("products", products);
+        model.addAttribute("user", user1);
+//        model.addAttribute("listRole", roleRepo.findAll());
         model.addAttribute("productCategories", productCategories);
         return "feed";
     }

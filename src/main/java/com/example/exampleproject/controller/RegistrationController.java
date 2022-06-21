@@ -71,24 +71,35 @@ public class RegistrationController {
         userRepository.save(newUser);
         System.out.println(newUser);
 
-
         if(newUser.getRole().getName().equals("user")) {
+            return makeRedirectBuddyAfterRegistration(newUser);
+        }
+        else if (newUser.getRole().getName().equals("business")) {
+          return makeRedirectBusinessAfterRegistration(newUser);
+        }
+            return "redirect:/";
+    }
+
+    public String makeRedirectBuddyAfterRegistration(User user) {
+
+        String page = null;
             Buddy buddy = new Buddy();
-            buddy.setUser(newUser);
+            buddy.setUser(user);
             buddyRepository.save(buddy);
             int id = buddy.getBuddyId();
-            return "redirect:/buddy/" + id;
-        }
+            page = "redirect:/buddy/" + id;
+            return page;
+    }
 
-        if(newUser.getRole().getName().equals("business")) {
+    public String makeRedirectBusinessAfterRegistration(User user) {
+
+        String page = null;
             Business business = new Business();
-            business.setUser(newUser);
+            business.setUser(user);
             businessRepository.save(business);
             int id = business.getBusinessId();
-        return "redirect:/business/" + id;
-        }
-
-        return "redirect:/";
+            page = "redirect:/business/"+ id;
+            return page;
     }
 
 

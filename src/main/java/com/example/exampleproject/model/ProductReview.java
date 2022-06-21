@@ -52,7 +52,7 @@ public class ProductReview {
 
     }
 
-    public ProductReview(Product product, Buddy buddy, int productReviewId, int rateP1, int rateP2, int rateP3, int rateP4, String reviewProduct, String photo, int productId, String reviewTitle, int buddyId) {
+    public ProductReview(Product product, Buddy buddy, int buddyId, int productReviewId, int rateP1, int rateP2, int rateP3, int rateP4, String reviewProduct, String photo, int productId, String reviewTitle) {
         this.product = product;
         this.buddy = buddy;
         this.productReviewId = productReviewId;
@@ -63,8 +63,8 @@ public class ProductReview {
         this.reviewProduct = reviewProduct;
         this.photo = photo;
         this.productId = productId;
-        this.reviewTitle = reviewTitle;
         this.buddyId = buddyId;
+        this.reviewTitle = reviewTitle;
     }
 
     public int getProductReviewId() {
@@ -155,10 +155,6 @@ public class ProductReview {
         this.reviewTitle = reviewTitle;
     }
 
-    public int getBuddyId() {
-        return buddyId;
-    }
-
     public void setBuddyId(int buddyId) {
         this.buddyId = buddyId;
     }
@@ -167,13 +163,17 @@ public class ProductReview {
     public String toString() {
         return "ProductReview{" +
 //                "product=" + product +
+//                ", buddy=" + buddy +
                 ", productReviewId=" + productReviewId +
                 ", rateP1=" + rateP1 +
                 ", rateP2=" + rateP2 +
                 ", rateP3=" + rateP3 +
-                ", reviewProduct='" + reviewProduct +
-                ", photo='" + photo +
+                ", rateP4=" + rateP4 +
+                ", reviewProduct='" + reviewProduct + '\'' +
+                ", photo='" + photo + '\'' +
                 ", productId=" + productId +
+                ", reviewTitle='" + reviewTitle + '\'' +
+                ", buddyId=" + buddyId +
                 '}';
     }
 }
