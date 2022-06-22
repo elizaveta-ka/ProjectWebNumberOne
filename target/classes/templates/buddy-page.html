@@ -1,0 +1,154 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<!--      th:fragment="main-fragment (title, otherStaticResources, header, SideMenu, mainContent, footer)">-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <title>Business Page</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../../static/main.css"/>
+    <title>Business Page</title>
+
+</head>
+<header>
+    <h2>Buddy page</h2>
+
+</header>
+<body>
+<section>
+    <SideMenu id="SideMenu">
+        <li><a th:href="@{/buddy/{id}(id=${buddy1.buddyId})}">Home</a></li>
+        <li><a th:href="@{/feed}">Feed</a></li>
+        <li><a th:href="@{/friend}">Найти друга</a></li>
+        <li><a th:href="@{/notifications}">Notifications</a></li>
+        <li><span style=vertical-align:bottom><a th:href="@{/logout}">Log out</a> </span></li>
+    </SideMenu>
+    <article>
+
+        <div class="Buddy_block" th:name="buddy" th:id="buddy">
+            <div th:fragment="buddy">
+<!--                <p><img src="layouts/img/buddy.png" alt="Buddy image"></p>-->
+<!--                <p id="buddy_img" ><img src="${image}" width="130" height="180" alt="Buddy image"></p>-->
+<!--                <p img th:object="image" th:src="*{'data:image/buddy.png;base64, '+ image}" alt="Buddy image"></p>-->
+                <h1 id="first_name" th:text="${buddy.firstName}"> First Name </h1>
+                <h1 id="last_name" th:text="${buddy.lastName}">Last Name</h1>
+                <p id="age1" th:text="${buddy.age}">Age</p>
+                <p id="city1" th:text="${buddy.city}">City</p>
+                <input type="submit" value="Редактировать" id="editBtn"/>
+            </div>
+
+
+                <form  hidden name="buddyEd" method="POST"  th:object="${buddy}" modelAttribute="buddy" class="buddyForm" th:name="buddyEd" th:id="buddyEd">
+                    <input readonly id="id" type="hidden" name="id" th:value="${buddy.buddyId}" th:data-id="${buddy.buddyId}"/><br/><br/>
+                    <input id="firstName" type="text" name="firstName" th:value="${buddy.firstName}" placeholder="Имя" th:data-fName="${buddy.firstName}" /><br/>Имя<br/>
+                    <input id="lastName" type="text" name="lastName" th:value="${buddy.lastName}" placeholder="Фамилия" /><br/>Фамилия<br/>
+                    <input id="age" type="number" name="age" th:value="${buddy.age}" placeholder="Возраст"/><br/>Возраст<br/>
+                    <input id="city" type="text" name="city" th:value="${buddy.city}" placeholder="Город"/><br/>Город<br/>
+                    <input type="submit" value="Сохранить" id="btnSubmit"/>
+                </form>
+
+
+
+<!--                <p><a th:href="@{update/{id}(id=${buddy.buddyId})}">Edit</a></p>-->
+<!--                <button><a th:href="@{buddy-update/{id}(id=${buddy.buddyId})}">Редактировать профиль</a></button>-->
+<!--                <td><a th:href="@{{id}/product-create(id=${buddy.buddyId})}">Добавить в wishlist</a></td>-->
+                <td><a th:href="@{/buddy/{id}/wishlist(id=${buddy.buddyId})}">Wishlist</a></td>
+
+        <div id="rateBlock" th:each="review : ${buddy.productAuthors}">
+            <p th:text="${review.product.productName}"> Review_title</p><br>
+            <th><a th:href="@{/product/{id}(id=${review.product.productId})}"><img src="layouts/img/product.png" width="50"
+                                                                            height="50" alt="Product image"></a></th>
+            <p th:text="${review.reviewProduct}"> Review_title</p><br>
+            <div id="rating_pr">
+                 <span th:text="${review.rateP4}"> Rate_P4</span></div>
+            <p id="reviewer_img"><img src="*{'data:image/png;base64, '+image}" alt="reviewer_img"></p><br>
+
+            <!--            <p th:text="${review.reviewB}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus scelerisque ipsum nec mauris dapibus gravida. Nam felis est, ornare sit amet auctor in, malesuada sit amet massa. Pellentesque eget efficitur lorem. Nunc lobortis erat a orci blandit, et consequat diam molestie. Etiam id tempor felis, sit amet egestas sem. Suspendisse potenti. Morbi tristique tincidunt leo in ornare. Aenean sodales leo id dapibus posuere.</p>-->
+        </div><br>
+        </div><br>
+        </div>
+    </article><br>
+</section>
+
+</body>
+<footer>
+    <p>All right reserved and belong to almighty Cthulhu</p>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script>
+    // $(document).ready(function () {
+    //     $("#editBtn").on('click', function() {
+    //         $(".buddyForm").show();
+    //     });
+    //     $("#btnSubmit").submit(function (e) {
+    //         // e.preventDefault(); // avoid to execute the actual submit of the form.
+    //         //
+    //         // var form = $(this);
+    //         // var actionUrl = form.attr('$/buddy/{buddy.buddyId}');
+    //         //
+    //         // $.ajax({
+    //         //     type: "post",
+    //         //     url: actionUrl,
+    //         //     data: form.serialize(), // serializes the form's elements.
+    //         // });
+    //
+    //
+    //         e.preventDefault();
+    //
+    //         fire_ajax_submit();
+    //
+    //     });
+    //
+    // });
+    //
+    // function fire_ajax_submit() {
+    //     var form = $(this);
+    //    var formData = {}
+    //     $.each(this, function(i, v){
+    //         var input = $(v);
+    //         // populate form data as key-value pairs
+    //         // with the name of input as key and its value as value
+    //         formData[input.attr("buddyId")] = input.val();
+    //         formData[input.attr("firstName")] = input.val();
+    //         formData[input.attr("lastName")] = input.val();
+    //         formData[input.attr("age")] = input.val();
+    //         formData[input.attr("city")] = input.val();
+    //     });
+    //     $.ajax({
+    //         type: form.attr('POST'), // method attribute of form
+    //         url: form.attr('$/buddy/{buddy.buddyId}') ,  // action attribute of form
+    //         dataType : 'json',
+    //         contentType: false,
+    //         // convert form data to json format
+    //         data : JSON.stringify(formData),
+    //     });
+    //
+    // }
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#editBtn").on('click', function () {
+                $(".buddyForm").show();
+            });
+            function sendForm() {
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', document.forms.buddyForm.action);
+                xhr.responseType = 'json';
+                xhr.onload = () => {
+                    if (xhr.status !== 200) {
+                        return;
+                    }
+                    const response = xhr.response;
+                    document.querySelector('#result').innerHTML = `<li>Имя: <b>${response.firstName}</b></li><li>Фамилия: <b>${response.lastName}</b><li>ID: <b>${response.id}</b></li>
+                    <li>Возраст: <b>${response.age}</b></li><li>Город: <b>${response.city}</b></li>`;
+                }
+                let formData = new FormData(document.forms.buddyForm);
+                xhr.send(formData);
+                document.querySelector('#result').textContent = '...';
+            }
+            // при отправке формы
+            document.forms.buddyForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                sendForm();
+            });
+        });
+    </script>
+</footer>
+</html>

@@ -1,8 +1,6 @@
 package com.example.exampleproject.controller;
 
-import com.example.exampleproject.model.Business;
-import com.example.exampleproject.model.Product;
-import com.example.exampleproject.model.User;
+import com.example.exampleproject.model.*;
 import com.example.exampleproject.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -10,9 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
 import java.util.*;
@@ -30,14 +26,17 @@ public class BusinessController {
 
     private final UserRepository userRepository;
 
+    private final BuddyRepository buddyRepository;
+
 
     @Autowired
-    public BusinessController(BusinessRepository businessRepository, ProductRepository productRepository, BusinessReviewRepository businessReviewRepository, ProductCategoryRepository productCategoryRepository, UserRepository userRepository) {
+    public BusinessController(BusinessRepository businessRepository, ProductRepository productRepository, BusinessReviewRepository businessReviewRepository, ProductCategoryRepository productCategoryRepository, UserRepository userRepository, BuddyRepository buddyRepository) {
         this.businessRepository = businessRepository;
         this.productRepository = productRepository;
         this.businessReviewRepository = businessReviewRepository;
         this.productCategoryRepository = productCategoryRepository;
         this.userRepository = userRepository;
+        this.buddyRepository = buddyRepository;
     }
     // работает для демонстрации связей
 //    @GetMapping("/business")
@@ -67,7 +66,7 @@ public class BusinessController {
         businessRepository.deleteById(id);
         return "redirect:/business";
     }
-     //работает
+    // работает
     @GetMapping("/business-update/{id}")
     public String updateBusinessForm(@PathVariable("id") int id, Model model) {
         Optional<Business> business = businessRepository.findById(id);
@@ -133,7 +132,7 @@ public class BusinessController {
 
     @PostMapping("/business/{id}/product-create")
     public String createProduct(@AuthenticationPrincipal UserDetails user, Product product, Business business) {
-//        Optional<Business> businessToUpdate = businessRepository.getBusinessByUserName(user.getUsername());
+        System.out.println(business);
         User user1 = userRepository.findByUsername(user.getUsername());
         int bId = 0;
         Collection<Business> businesses = businessRepository.findAll();
@@ -153,5 +152,37 @@ public class BusinessController {
         businessRepository.save(business1);
         int id = business1.getBusinessId();
         return "redirect:/business/"+ id;
+    }
+
+    @RequestMapping(value = "/business/{id}/add-review", method = RequestMethod.POST)
+    public String addReview(@PathVariable("id") int id, @AuthenticationPrincipal UserDetails user, BusinessReview br) {
+        BusinessReview businessReview = new BusinessReview();
+        businessReview.setReviewTitle(br.getReviewTitle());
+        businessReview.setReviewBusiness(br.getReviewBusiness());
+        businessReview.setRateB1(br.getRateB1());
+        Business business = businessRepository.getById(id);
+        User user1 = userRepository.findByUsername(user.getUsername());
+        System.out.println(user1);
+        List<Buddy> buddies = buddyRepository.findAll();
+        int bId = 0;
+        for (var b:buddies) {
+            User user2 = b.getUser();
+            if(user1.equals(user2)) {
+                bId = b.getBuddyId();
+            }
+        }
+        Buddy buddy = buddyRepository.getById(bId);
+        businessReview.setBuddy(buddy);
+//        Collection<BusinessReview> businessReviews = buddy.getProductAuthors();
+//        businessReviews.add(productReview);
+        businessReview.setBuddy(buddy);
+        businessReview.setBuddyId(buddy.getBuddyId());
+        businessReview.setBusiness(business);
+        businessReview.setBusinessId(business.getBusinessId());
+        buddyRepository.saveAndFlush(buddy);
+        System.out.println(businessReview);
+        businessReviewRepository.saveAndFlush(businessReview);
+        System.out.println(br);
+        return "redirect:/business/" + id;
     }
 }

@@ -71,18 +71,18 @@ public class Business {
         this.businessLink = businessLink;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Business{" +
-////                ", products=" + products +
-//                ", businessReviews=" + businessReviews +
-//                ", businessId=" + businessId +
-//                ", busName='" + busName + '\'' +
-//                ", busImg='" + busImg + '\'' +
-//                ", location='" + location + '\'' +
-//                ", link='" + businessLink + '\'' +
-//                '}';
-//    }
+    @Override
+    public String toString() {
+        return "Business{" +
+//                ", products=" + products +
+                ", businessReviews=" + businessReviews +
+                ", businessId=" + businessId +
+                ", busName='" + busName + '\'' +
+                ", busImg='" + busImg + '\'' +
+                ", location='" + location + '\'' +
+                ", link='" + businessLink + '\'' +
+                '}';
+    }
 
     public void addProduct(Product product){
         this.products.add(product);

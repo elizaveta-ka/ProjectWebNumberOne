@@ -6,11 +6,20 @@
     <title>Spring Security Example </title>
 </head>
 <script>
-    function verifyPassword() {
+
+    function verify() {
         var pw = document.getElementById("password1").value;
         var pw1 = document.getElementById("password2").value;
         var user = document.getElementById("username").value;
-        //check empty password field
+        var users = document.getElementById("users").innerHTML;
+        var form = document.querySelector("form");
+        var data = new FormData(form);
+        var outputRole = "";
+        var age = document.getElementById("age").value;
+        for (const entry of data) {
+            outputRole = entry[0] + entry[1];
+        };
+
         if(user == "") {
             document.getElementById("message").innerHTML = "**Fill the username please!";
             return false;
@@ -19,6 +28,22 @@
             document.getElementById("message").innerHTML = "**Only letters, numbers and '_' in username!";
             return false;
         }
+        if(user.length < 4) {
+            document.getElementById("message").innerHTML = "**Username length must be atleast 4 characters";
+            return false;
+        }
+        if(user.length > 15) {
+            document.getElementById("message").innerHTML = "**Username length must not exceed 15 characters";
+            return false;
+        }
+
+
+            if(users.includes(user)) {
+                document.getElementById("message").innerHTML = "**This username exists!";
+                return false;
+            }
+
+
 
 
         if(pw == "") {
@@ -40,10 +65,35 @@
             document.getElementById("message").innerHTML = "**Password length must not exceed 15 characters";
             return false;
         }
+
         if(pw != pw1) {
-            document.getElementById("message").innerHTML = "Not confirmed!";
+            document.getElementById("message").innerHTML = "**Password is not confirmed!";
             return false;
         }
+        if(age == "") {
+            document.getElementById("message").innerHTML = "**Fill the age please!";
+            return false;
+        }
+
+        if (! /^[0-9]+$/.test(age)) {
+            document.getElementById("message").innerHTML = "**Only numbers in age!";
+            return false;
+        }
+        if(Number(age) > 99) {
+            document.getElementById("message").innerHTML = "**You are too old!";
+            return false;
+        }
+        if(Number(age) < 18) {
+            document.getElementById("message").innerHTML = "**You are too young!";
+            return false;
+        }
+        if(outputRole == "Roleee") {
+            document.getElementById("message").innerHTML = "**Choose your role!";
+            return false;
+        }
+
+
+
         else {
 
         }
@@ -71,23 +121,30 @@
             <p th:case="*"></p>
         </div>
     </fieldset>
+
     <span id = "message" style="color:red"> </span> <br>
 
-    <form class="form-profile" th:action="@{/registration}" method="post" th:name="profile" th:id="profile" onsubmit ="return verifyPassword()" >
+    <form class="form-profile" th:action="@{/registration}" method="post" th:name="profile" th:id="profile" onsubmit ="return verify()" >
 
-        <div><label for="username"> Login : <input class="fontawesome-user" id = username type="text" name="username"/> </label></div>
-        <div><label for ="password1">  Password: <input class="fontawesome-lock" id = password1 type="password" name="password"/> </label></div>
-        <div><label for ="password2">  Confirm password: <input class="fontawesome-lock" id = password2 type="password" name="password1"/> </label></div>
+        <div><label for="username"> Login : <input class="fontawesome-user" id = "username" type="text" name="username"/> </label></div>
+        <div><label for ="password1">  Password: <input class="fontawesome-lock" id = "password1" type="password" name="password"/> </label></div>
+        <div><label for ="password2">  Confirm password: <input class="fontawesome-lock" id = "password2" type="password" name="password1"/> </label></div>
+        <div><label for ="age">  Your age: <input class="fontawesome-lock" id = "age" type="text" name="age"/> </label></div>
+
+
         <br>
-        <INPUT class="fontawesome-user" required name="Roleee" type="radio" id="Choice1" value="USER">
+        <INPUT class="fontawesome-user" name="Roleee" type="radio" id="Choice1" value="USER">
         Buddy
         <br>
-        <INPUT class="fontawesome-user" required name="Roleee" type="radio" id="Choice2" value="BUSINESS">
+        <INPUT class="fontawesome-user"  name="Roleee" type="radio" id="Choice2" value="BUSINESS">
         Business
         <br>
         <div><input type="submit" value="Sign in">
             <!--    <input type="hidden" th:field="${buddy.buddyId}" id="buddyId" th:data-buddy="${buddy.buddyId}"></div>-->
         </div>
+        <label  name="users" th:field="${users}" hidden id="users" th:value="${users}" th:text = "${users}"/>
+        <br>
+        <INPUT class="hidden" name="Roleee" type="radio" id="Choice0" checked value="">
     </form>
 </div>
 </body>

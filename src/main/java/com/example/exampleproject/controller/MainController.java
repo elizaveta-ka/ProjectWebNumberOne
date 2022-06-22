@@ -52,7 +52,22 @@ public class MainController {
 //        return "/about";
 //    }
 //
+    @GetMapping("/login")
+    public String get(Model model){
+        List <User> users = userRepository.findAll();
+        model.addAttribute("users", users);
 
+        return "login";
+    }
+    @PostMapping("/admin")
+    public String addUser(@RequestParam String username, @RequestParam String active, Model model) {
+        List <User> users = userRepository.findAll();
+        model.addAttribute("users", users);
+        User user = userRepository.findByUsername(username);
+        user.setActive(Boolean.parseBoolean(active));
+        userRepository.save(user);
+        return "admin";
+    }
 //
 //    @RequestMapping("/login")
 //    public String getLogin(@RequestParam(value = "error", required = false) String error,
@@ -109,7 +124,13 @@ public class MainController {
 //        userRepository.save(newUser);
 //        return Status.SUCCESS;
 //    }
+@GetMapping("/xxx")
+public String getxxx(Model model){
+    List <User> users = userRepository.findAll();
+    model.addAttribute("users", users);
 
+    return "xxx";
+}
 
 
 }

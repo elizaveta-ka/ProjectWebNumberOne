@@ -1,29 +1,28 @@
 package com.example.exampleproject.controller;
 
-import com.example.exampleproject.model.Product;
 import com.example.exampleproject.model.ProductReview;
-import com.example.exampleproject.repository.ProductRepository;
 import com.example.exampleproject.repository.ProductReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
-//import javax.validation.Valid;
+import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 public class ProductReviewController {
 
     private ProductReviewRepository productReviewRepository;
 
-    private final ProductRepository productRepository;
-
     @Autowired
-    public ProductReviewController(ProductReviewRepository productReviewRepository, ProductRepository productRepository) {
+    public ProductReviewController(ProductReviewRepository productReviewRepository) {
         this.productReviewRepository = productReviewRepository;
-        this.productRepository = productRepository;
     }
 
     @GetMapping("/productReview")
@@ -35,7 +34,7 @@ public class ProductReviewController {
 //    @PostMapping(value = "/addReview", produces = {MediaType.APPLICATION_JSON_VALUE})
 //    @ResponseBody
 //    public ProductReviewResponse saveReview(@ModelAttribute @Valid ProductReview productReview,
-//                                            BindingResult result) {
+//                                        BindingResult result) {
 //
 //        ProductReviewResponse response = new ProductReviewResponse();
 //
@@ -54,25 +53,26 @@ public class ProductReviewController {
 //        }
 //        return response;
 //    }
-
-    @GetMapping("/product/{id}/add-review")
-    public String showReview(@PathVariable("id") int id, Model model) {
-        Product product = productRepository.getReferenceById(id);
-        model.addAttribute("product", product);
-        return "add-review";
-    }
+//
+//
 
 
-    @RequestMapping(value = "/product/{id}/add-review", method = RequestMethod.POST)
-    public String addReview(@PathVariable("id") int id, ProductReview productReview, BindingResult bindingResult, Model model) {
-        model.addAttribute("productId", productReview.getProductId());
-        model.addAttribute("reviewTitle", productReview.getReviewTitle());
-        model.addAttribute("reviewProduct", productReview.getReviewProduct());
-        model.addAttribute("buddy", productReview.getBuddy());
-
-
-        return "redirect:/product/" + id;
-    }
+//    @RequestMapping(value = "/product/{id}/add-review", method = RequestMethod.POST)
+//    public String addReview(@PathVariable("id") int id, Model model, BindingResult result, @Valid ProductReview pr) {
+//        productReviewRepository.save(pr);
+//        return "redirect:/product" + id;
+//    }
+//    @GetMapping("/product/{id}/")
+//    public String showUpdateForm(@PathVariable("id") int id, Model model) {
+//        ProductReview pr = productReviewRepository.findById(id).get();
+//        model.addAttribute("productReview", pr);
+//        return "redirect:/product" + id;
+//    }
+//    @RequestMapping(value = "/product/{id}/edit-review", method = RequestMethod.POST)
+//    public String editReview(@PathVariable("id") int id, Model model, BindingResult result, @Valid ProductReview pr) {
+//        productReviewRepository.save(pr);
+//        return "redirect:/product" + id;
+//    }
 
 
 
