@@ -1,9 +1,7 @@
 package com.example.exampleproject.controller;
 
-import com.example.exampleproject.model.Buddy;
-import com.example.exampleproject.model.Friend;
-import com.example.exampleproject.model.Product;
-import com.example.exampleproject.model.User;
+import com.example.exampleproject.Service.RoleOnPage;
+import com.example.exampleproject.model.*;
 import com.example.exampleproject.repository.BuddyRepository;
 import com.example.exampleproject.repository.FriendRepository;
 import com.example.exampleproject.repository.UserRepository;
@@ -28,30 +26,33 @@ public class FriendController {
     private BuddyRepository buddyRepository;
 
     private UserRepository userRepository;
+
+    private RoleOnPage roleOnPage;
     @Autowired
-    public FriendController(FriendRepository friendRepository, BuddyRepository buddyRepository, UserRepository userRepository) {
+    public FriendController(RoleOnPage roleOnPage, FriendRepository friendRepository, BuddyRepository buddyRepository, UserRepository userRepository) {
         this.friendRepository = friendRepository;
         this.buddyRepository = buddyRepository;
         this.userRepository = userRepository;
+        this.roleOnPage = roleOnPage;
     }
 
     @GetMapping("/friend")
     public String findAll(@AuthenticationPrincipal UserDetails user, Model model) {
-        User user1 = userRepository.findByUsername(user.getUsername());
-        System.out.println(user1);
-        int bId = 0;
-        Collection<Buddy> buddies = buddyRepository.findAll();
-        for (var b:buddies) {
-            User user2 = b.getUser();
-            if(user1.equals(user2)) {
-                bId = b.getBuddyId();
-            }
+        User userInPage = userRepository.findByUsername(user.getUsername());
+        System.out.println(userInPage);
+        Buddy homeB = null;
+        if(userInPage.getRole().getName().equals("user")) {
+            Buddy buddy = roleOnPage.findRoleBuddyOnPage(userInPage);
+//            model.addAttribute("buddy", buddy);
+            model.addAttribute("homeId", buddy.getBuddyId());
+        } else if (userInPage.getRole().getName().equals("business")) {
+            Business business = roleOnPage.findRoleBusinessOnPage(userInPage);
+            model.addAttribute("homeId", business.getBusinessId());
         }
-        Buddy buddy = buddyRepository.getById(bId);
         List<Friend> friends = friendRepository.findAll();
         model.addAttribute("friends", friends);
+        model.addAttribute("user", userInPage);
         model.addAttribute("buddies", buddyRepository.findAll());
-        model.addAttribute("buddy", buddy);
         return "friend";
     }
 

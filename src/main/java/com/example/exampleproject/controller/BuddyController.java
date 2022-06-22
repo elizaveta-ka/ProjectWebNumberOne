@@ -1,5 +1,6 @@
 package com.example.exampleproject.controller;
 
+import com.example.exampleproject.Service.RoleOnPage;
 import com.example.exampleproject.model.*;
 import com.example.exampleproject.repository.BuddyRepository;
 import com.example.exampleproject.repository.ProductRepository;
@@ -25,11 +26,14 @@ public class BuddyController {
 
     private UserRepository userRepository;
 
+    private RoleOnPage roleOnPage;
+
     @Autowired
-    public BuddyController(BuddyRepository buddyRepository, ProductRepository productRepository, UserRepository userRepository) {
+    public BuddyController(RoleOnPage roleOnPage, BuddyRepository buddyRepository, ProductRepository productRepository, UserRepository userRepository) {
         this.buddyRepository = buddyRepository;
         this.productRepository = productRepository;
         this.userRepository = userRepository;
+        this.roleOnPage = roleOnPage;
     }
     @GetMapping("/buddy")
     public String findAll(Model model) {
@@ -42,22 +46,18 @@ public class BuddyController {
 
     @GetMapping("/buddy/{id}")
     public String showBuddyPage(@PathVariable("id") int id, @AuthenticationPrincipal UserDetails user,Model model) throws UnsupportedEncodingException {
-        User user1 = userRepository.findByUsername(user.getUsername());
-        int bId = 0;
-        Collection<Buddy> buddies = buddyRepository.findAll();
-        for (var b:buddies) {
-            User user2 = b.getUser();
-            if(user1.equals(user2)) {
-                bId = b.getBuddyId();
-            }
+        User userInPage = userRepository.findByUsername(user.getUsername());
+        if(userInPage.getRole().getName().equals("user")) {
+            Buddy buddy = roleOnPage.findRoleBuddyOnPage(userInPage);
+//            model.addAttribute("buddy", buddy);
+            model.addAttribute("homeId", buddy.getBuddyId());
+        } else if (userInPage.getRole().getName().equals("business")) {
+            Business business = roleOnPage.findRoleBusinessOnPage(userInPage);
+            model.addAttribute("homeId", business.getBusinessId());
         }
-        Buddy buddy1 = buddyRepository.getById(bId);
-        Buddy buddy = buddyRepository.getById(id);
-        model.addAttribute("buddy", buddy);
-        model.addAttribute("buddy1", buddy1);
-//        byte[] encodeBase64 = Base64.encode(buddy.getAvatarImg());
-//        String base64Encoded = new String(encodeBase64, "UTF-8");
-//        model.addAttribute("image", base64Encoded );
+        Buddy buddyPage = buddyRepository.getById(id);
+        model.addAttribute("user", userInPage);
+        model.addAttribute("buddy", buddyPage);
         return "buddy-page";
     }
 
@@ -86,6 +86,8 @@ public class BuddyController {
         buddy1.setFirstName(buddy.getFirstName());
         buddy1.setLastName(buddy.getLastName());
         buddy1.setAge(buddy.getAge());
+        System.out.println(buddy);
+        buddy1.setAvatarImg(buddy.getAvatarImg());
         buddy1.setCity(buddy.getCity());
         buddyRepository.save(buddy1);
        return "redirect:/buddy/" + id;

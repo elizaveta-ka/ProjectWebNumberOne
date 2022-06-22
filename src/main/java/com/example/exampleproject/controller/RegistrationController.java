@@ -48,7 +48,7 @@ public class RegistrationController {
 
     @PostMapping("/registration")
     public String addUser(@RequestParam String Roleee, @RequestParam String username,
-                              @RequestParam String password, User user, Model model) {
+                              @RequestParam String password, @RequestParam int age, User user, Model model) {
         User userFromDB = userRepository.findByUsername(username);
         List<User> usersRep = userRepository.findAll();
 
@@ -72,7 +72,7 @@ public class RegistrationController {
         System.out.println(newUser);
 
         if(newUser.getRole().getName().equals("user")) {
-            return makeRedirectBuddyAfterRegistration(newUser);
+            return makeRedirectBuddyAfterRegistration(newUser, age);
         }
         else if (newUser.getRole().getName().equals("business")) {
           return makeRedirectBusinessAfterRegistration(newUser);
@@ -80,11 +80,11 @@ public class RegistrationController {
             return "redirect:/";
     }
 
-    public String makeRedirectBuddyAfterRegistration(User user) {
-
+    public String makeRedirectBuddyAfterRegistration(User user, int age) {
         String page = null;
             Buddy buddy = new Buddy();
             buddy.setUser(user);
+            buddy.setAge(age);
             buddyRepository.save(buddy);
             int id = buddy.getBuddyId();
             page = "redirect:/buddy/" + id;

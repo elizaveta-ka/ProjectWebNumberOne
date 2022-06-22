@@ -1,6 +1,7 @@
 package com.example.exampleproject.controller;
 
 
+import com.example.exampleproject.Service.RoleOnPage;
 import com.example.exampleproject.model.*;
 import com.example.exampleproject.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,62 +30,66 @@ public class FeedController {
 
     private RoleRepository roleRepo;
 
+    private RoleOnPage roleOnPage;
+
 //    private BusinessLogicService businessLogicService;
 
     @Autowired
-    public FeedController(ProductRepository productRepository, ProductCategoryRepository productCategoryRepository, BuddyRepository buddyRepository, UserRepository userRepository, BusinessRepository businessRepository, RoleRepository roleRepo) {
+    public FeedController(RoleOnPage roleOnPage, ProductRepository productRepository, ProductCategoryRepository productCategoryRepository, BuddyRepository buddyRepository, UserRepository userRepository, BusinessRepository businessRepository, RoleRepository roleRepo) {
         this.productRepository = productRepository;
         this.productCategoryRepository = productCategoryRepository;
         this.buddyRepository = buddyRepository;
         this.userRepository = userRepository;
         this.businessRepository = businessRepository;
         this.roleRepo = roleRepo;
+        this.roleOnPage = roleOnPage;
 //        this.businessLogicService = businessLogicService;
     }
             //уменьшить метод
     @GetMapping("/feed")
     public String findAll(@AuthenticationPrincipal UserDetails user, Model model) {
-        System.out.println(user);
-//        Buddy buddyEx = buddyRepository.getById(1);
-//        Buddy buddyForComparison = buddyRepository.getById(4);
-//        System.out.println(createSimilarityCoefficient(buddyEx, buddyForComparison) + "посмотреееееть");
-        User user1 = userRepository.findByUsername(user.getUsername());
-        System.out.println(user1);
-        Buddy homeB = null;
-        if(user1.getRole().getName().equals("user")) {
-            int bId = 0;
-            Collection<Buddy> buddies = buddyRepository.findAll();
-            for (var b : buddies) {
-                User user2 = b.getUser();
-                if (user1.equals(user2)) {
-                    bId = b.getBuddyId();
-                }
-            }
-            homeB = buddyRepository.getById(bId);
-//            model.addAttribute("watch", createSimilarityCoefficient(buddyEx, buddyForComparison));
-            model.addAttribute("homeId", homeB.getBuddyId());
-        } else if (user1.getRole().getName().equals("business")) {
-            int buId = 0;
-            Collection<Business> businesses = businessRepository.findAll();
-            for (var b : businesses) {
-                User user2 = b.getUser();
-                if (user1.equals(user2)) {
-                    buId = b.getBusinessId();
-                }
-            }
-            Business homeBu = businessRepository.getById(buId);
-            model.addAttribute("homeId", homeBu.getBusinessId());
+        User userInPage = userRepository.findByUsername(user.getUsername());
+        if(userInPage.getRole().getName().equals("user")) {
+            Buddy buddy = roleOnPage.findRoleBuddyOnPage(userInPage);
+            model.addAttribute("homeId", buddy.getBuddyId());
+        } else if (userInPage.getRole().getName().equals("business")) {
+            Business business = roleOnPage.findRoleBusinessOnPage(userInPage);
+            model.addAttribute("homeId", business.getBusinessId());
         }
-
-        List<Product> products = productRepository.findAll(); //приходит из сервиса отсортированный по рекомендациям список продуктов
-
+        List<Product> products = productRepository.findAll();
         List<ProductCategory> productCategories = productCategoryRepository.findAll();
 
         model.addAttribute("products", products);
-        model.addAttribute("user", user1);
+        model.addAttribute("user", userInPage);
         model.addAttribute("productCategories", productCategories);
         return "feed";
     }
+
+//    public Buddy findRoleBuddyOnPage(User user) {
+//        int bId = 0;
+//        Collection<Buddy> buddies = buddyRepository.findAll();
+//        for (var b : buddies) {
+//            User user2 = b.getUser();
+//            if (user.equals(user2)) {
+//                bId = b.getBuddyId();
+//            }
+//        }
+//        Buddy buddy = buddyRepository.getById(bId);
+//        return buddy;
+//    }
+//
+//    public Business findRoleBusinessOnPage(User user) {
+//        int buId = 0;
+//        Collection<Business> businesses = businessRepository.findAll();
+//        for (var b : businesses) {
+//            User user2 = b.getUser();
+//            if (user.equals(user2)) {
+//                buId = b.getBusinessId();
+//            }
+//        }
+//        Business business = businessRepository.getById(buId);
+//        return business;
+//    }
 
 
 
@@ -114,12 +119,6 @@ public class FeedController {
         buddiesList.add(buddy);
         product1.setBuddies(buddiesList);
         productRepository.save(product1);
-
-
-//        Buddy buddyEx = buddyRepository.getById(1);
-//        Buddy buddyForComparison = buddyRepository.getById(2);
-//        System.out.println(createSimilarityCoefficient(buddyEx, buddyForComparison));
-//    createSimilarityCoefficient(buddy, buddyForComparison);
         return "redirect:/feed";
     }
 
