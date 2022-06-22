@@ -15,21 +15,20 @@
         <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
-                var role = $("#product_block").val($("#role").attr("data-id"));
-                console.log(role.val() + "HLMKJHG")
-                if (role.val() === "2")
-                {
-                    console.log("user")
-                    $("a[href='homescreen']").prop('href', '@{/buddy/{id}(id=${buddy.buddyId})}')
+                var role = $("#product_block").val($("#role").attr("data-role"));
+                console.log(role.val() + " role")
 
-                } else if (role.val() === "3")
+                if (role.val() === "3")
                 {
+                    var num = $("#num_block").val($("#buddIdHo").attr("data-home"));
+
+                    console.log(num.val())
                     console.log("business")
-                    $("a[href='homescreen']").prop('href', '@{/business/{id}}'(id=${buddy.buddyId}))
+                    $("a[href*='buddy']").prop('href', '/business/' + num.val())
                 }
             });
         </script>
-        <li><a th:id="home" th:href="homescreen">Home</a></li>
+        <li><a th:id="home" th:href="@{/buddy/{id}(id=${homeId})}">Home</a></li>
         <li>Feed</li>
         <li><a th:href="@{/friend}">Найти друга</a></li>
         <li><a th:href="@{/notifications}">Notifications</a></li>
@@ -37,9 +36,14 @@
     </SideMenu>
     <article>
 
+        <div id="num_block">
+            <h1 hidden id="buddIdHo" th:text = "${homeId}"
+                th:data-home="${homeId}"> id </h1>
+        </div>
+
         <div id="product_block" th:each = "product : ${products}">
-            <h1  id="role" th:text = "${user.role.id}"
-                 th:data-id="${user.role.id}"> role </h1>
+            <h1 hidden id="role" th:text = "${user.role.id}"
+                th:data-role="${user.role.id}"> role </h1>
 
 
             <h1 th:text="${product.productName}"> productName </h1>
@@ -57,12 +61,12 @@
 <!--            <input type="hidden" th:field="*{product.productId}" class="product_block" id="productId"-->
 <!--                   placeholder="productId" th:data-product="product.productId">-->
 
-            <div><div class="rating">
-                <span th:text="${rateP1}"> Rate_P1</span> <span th:text="${rateP2}"> Rate_P2</span><br>
-                <span th:text="${rateP3}"> Rate_P3</span> <span th:text="${rateP4}"> Rate_P4</span></div>
-                <br>
-<!--                <p id="product_img"><img src="*{'data:image/png;base64, '+image}" alt="product_img"></p>-->
-            </div>
+<!--            <div><div class="rating">-->
+<!--                <span th:text="${rateP1}"> Rate_P1</span> <span th:text="${rateP2}"> Rate_P2</span><br>-->
+<!--                <span th:text="${rateP3}"> Rate_P3</span> <span th:text="${rateP4}"> Rate_P4</span></div>-->
+<!--                <br>-->
+<!--&lt;!&ndash;                <p id="product_img"><img src="*{'data:image/png;base64, '+image}" alt="product_img"></p>&ndash;&gt;-->
+<!--            </div>-->
 
         </div><br>
 

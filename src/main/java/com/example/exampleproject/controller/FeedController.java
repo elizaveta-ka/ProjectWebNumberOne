@@ -29,6 +29,8 @@ public class FeedController {
 
     private RoleRepository roleRepo;
 
+//    private BusinessLogicService businessLogicService;
+
     @Autowired
     public FeedController(ProductRepository productRepository, ProductCategoryRepository productCategoryRepository, BuddyRepository buddyRepository, UserRepository userRepository, BusinessRepository businessRepository, RoleRepository roleRepo) {
         this.productRepository = productRepository;
@@ -37,13 +39,15 @@ public class FeedController {
         this.userRepository = userRepository;
         this.businessRepository = businessRepository;
         this.roleRepo = roleRepo;
+//        this.businessLogicService = businessLogicService;
     }
-
+            //уменьшить метод
     @GetMapping("/feed")
     public String findAll(@AuthenticationPrincipal UserDetails user, Model model) {
+        System.out.println(user);
         User user1 = userRepository.findByUsername(user.getUsername());
-        Buddy homeB;
-        Business homeBu;
+        System.out.println(user1);
+        Buddy homeB = null;
         if(user1.getRole().getName().equals("user")) {
             int bId = 0;
             Collection<Buddy> buddies = buddyRepository.findAll();
@@ -58,7 +62,6 @@ public class FeedController {
             model.addAttribute("homeId", homeB.getBuddyId());
         } else if (user1.getRole().getName().equals("business")) {
             int buId = 0;
-
             Collection<Business> businesses = businessRepository.findAll();
             for (var b : businesses) {
                 User user2 = b.getUser();
@@ -66,25 +69,25 @@ public class FeedController {
                     buId = b.getBusinessId();
                 }
             }
-            homeBu = businessRepository.getById(buId);
-//            model.addAttribute("home", "business");
+            Business homeBu = businessRepository.getById(buId);
             model.addAttribute("homeId", homeBu.getBusinessId());
         }
 
-        List<Product> products = productRepository.findAll();
-        List<ProductCategory> productCategories = productCategoryRepository.findAll();
+        List<Product> products = productRepository.findAll(); //приходит из сервиса отсортированный по рекомендациям список продуктов
 
-//        products.createRecomendation(buddy);
+        List<ProductCategory> productCategories = productCategoryRepository.findAll();
 
         model.addAttribute("products", products);
         model.addAttribute("user", user1);
-//        model.addAttribute("listRole", roleRepo.findAll());
         model.addAttribute("productCategories", productCategories);
         return "feed";
     }
 
+
+
     @PostMapping("/feed")
     public String addWishlist(@AuthenticationPrincipal UserDetails user, Product product) {
+        System.out.println(user);
         User user1 =userRepository.findByUsername(user.getUsername());
         System.out.println(user1);
         int bId = 0;
@@ -118,4 +121,24 @@ public class FeedController {
         return "notifications";
     }
 
+    //бизнес логика
+  
+
+
+//    public double createSimilarityCoefficient() {
+//        double coefficient = 0;
+//        return coefficient;
+//    }
+//
+//
+//
+//
+//
+//
+//
+//    public List<Product> makeRec(Buddy buddy) {
+//        List<Product> bestProducts = null;
+//        System.out.println(buddy);
+//        return bestProducts;
+//    }
 }

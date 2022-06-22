@@ -89,7 +89,7 @@ public class ProductController {
         ProductReview productReview = new ProductReview();
         productReview.setReviewTitle(pr.getReviewTitle());
         productReview.setReviewProduct(pr.getReviewProduct());
-        productReview.setRateP1(pr.getRateP1());
+        productReview.setRateP4(pr.getRateP4());
 
         Product product = productRepository.getById(id);
 
