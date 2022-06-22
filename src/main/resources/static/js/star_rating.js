@@ -12,26 +12,17 @@
         $('#sum_progress').width(Math.round($('.stars').width() * summ / 5));
         $('#summ').text(summ.toFixed(2));
     }
-
-        $('#rating_new [type=submit]').click(function(){
-            summ = parseFloat($('#summ').text());
-            console.log(summ);
-            // $ajax({
-            //     type: 'POST',
-            //     url: '/product/{id}(id=${business.businessId})',
-            //     data: String,
-            //
-            // })
-            $.post('/product/{id}(id=${product.productId})', summ)
-        });
-
-
-
-    $('#rating_new .stars').on('mousemove', function(e){
-    if ($(this).hasClass('fixed')==false) move(e, $(this));
-    });
         $('#rating_new .stars').click(function(e){
             $(this).toggleClass('fixed');
             move(e, $(this));
+        });
+        $('#rating_new .stars').on('mousemove', function(e){
+            if ($(this).hasClass('fixed')==false) move(e, $(this));
+        });
+        $(document).mousedown(function() {
+            summ = parseFloat($('#summ').text());
+            summ.toPrecision(2);
+            console.log(summ);
+            $('#rateP1').val(summ);
         });
     });

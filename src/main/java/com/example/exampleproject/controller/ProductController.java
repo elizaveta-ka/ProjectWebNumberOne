@@ -2,16 +2,14 @@ package com.example.exampleproject.controller;
 
 import com.example.exampleproject.model.*;
 import com.example.exampleproject.repository.*;
+import com.google.common.collect.Iterables;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Collection;
@@ -75,18 +73,13 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/product/{id}", method = RequestMethod.POST)
-    public String addReview(@PathVariable("id") int id, @AuthenticationPrincipal UserDetails user, ProductReview pr, float summ) {
+    public String addReview(@PathVariable("id") int id, @AuthenticationPrincipal UserDetails user, ProductReview pr) {
         ProductReview productReview = new ProductReview();
-
         productReview.setReviewTitle(pr.getReviewTitle());
         productReview.setReviewProduct(pr.getReviewProduct());
-        productReview.setRateP1(summ);
         productReview.setRateP1(pr.getRateP1());
-
         Product product = productRepository.getById(id);
-
         User user1 = userRepository.findByUsername(user.getUsername());
-        System.out.println(user1);
         List<Buddy> buddies = buddyRepository.findAll();
         int bId = 0;
         for (var b:buddies) {
@@ -95,7 +88,6 @@ public class ProductController {
                 bId = b.getBuddyId();
             }
         }
-        System.out.println(productReview);
         Buddy buddy = buddyRepository.getById(bId);
         productReview.setBuddyId(buddy.getBuddyId());
         Collection<ProductReview> productReviews = buddy.getProductAuthors();
@@ -103,13 +95,9 @@ public class ProductController {
         productReview.setBuddy(buddy);
         productReview.setProduct(product);
         productReview.setProductId(product.getProductId());
-
-        System.out.println(productReview);
         buddyRepository.saveAndFlush(buddy);
-
-        System.out.println(productReview);
         productReviewRepository.saveAndFlush(productReview);
-        System.out.println(pr);
+        calculateRating(id);
         return "redirect:/product/" + id;
     }
 //    @GetMapping("/product/{id}")
@@ -122,5 +110,17 @@ public class ProductController {
     public String editReview(@PathVariable("id") int id, Model model, BindingResult result, @Valid ProductReview pr) {
         productReviewRepository.save(pr);
         return "redirect:/product" + id;
+    }
+
+    public void calculateRating(int id){
+        float calcRate = 0;
+        Product p = productRepository.getById(id);
+        for (int i = 0; i<p.getProductReviews().size(); i++){
+            ProductReview pr = Iterables.get(p.getProductReviews(), i) ;
+            calcRate+=pr.getRateP1();
+        }
+        calcRate /=p.getProductReviews().size();
+        productRepository.getById(id).setPrRating(calcRate);
+        productRepository.save(productRepository.getById(id));
     }
 }

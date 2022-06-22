@@ -52,7 +52,7 @@ public class ProductReview {
 
     }
 
-    public ProductReview(Product product, Buddy buddy, int buddyId, int productReviewId, int rateP1, int rateP2, int rateP3, int rateP4, String reviewProduct, String photo, int productId, String reviewTitle) {
+    public ProductReview(Product product, Buddy buddy, int buddyId, int productReviewId, float rateP1, int rateP2, int rateP3, int rateP4, String reviewProduct, String photo, int productId, String reviewTitle) {
         this.product = product;
         this.buddy = buddy;
         this.productReviewId = productReviewId;

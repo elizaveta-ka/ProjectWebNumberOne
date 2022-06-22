@@ -41,6 +41,9 @@ public class Product {
     @Column(name = "product_img")
     private String productImg;
 
+    @Column(name = "pr_rating")
+    private float prRating;
+
     public Product(){}
 
     public Product(Set<Business> businesses, Set<Buddy> buddies, Collection<ProductReview> productReviews, ProductCategory productCategory, int productId, String productName, String productImg) {
@@ -51,6 +54,7 @@ public class Product {
         this.productId = productId;
         this.productName = productName;
         this.productImg = productImg;
+        this.prRating = prRating;
     }
 
     public Product(String productName, String productImg) {
@@ -144,4 +148,11 @@ public class Product {
         business.getProducts().remove(this);
     }
 
+    public float getPrRating() {
+        return prRating;
+    }
+
+    public void setPrRating(float prRating) {
+        this.prRating = prRating;
+    }
 }

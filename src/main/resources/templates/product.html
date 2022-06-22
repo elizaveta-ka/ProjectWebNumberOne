@@ -31,13 +31,10 @@
                 <div class="tabs">
                     <input type="radio" name="inset" value="" id="tab_1" checked>
                     <label for="tab_1">Rating</label>
-
                     <input type="radio" name="inset" value="" id="tab_2">
                     <label for="tab_2">Suggestions</label><br>
-
                     <div id="rating">
-                        <div th:each="p : ${product.productReviews}">
-                        <span th:text="${p.rateP1}"> Rate_P1</span>
+                        <span th:text="${product.prRating}"> Rate_P1</span>
                     </div>
                     <div id="suggestions" th:each="s : ${product.productCategory.suggestions}">
                         <span th:text="${s.foodName} + ${', '} + ${s.foodImg}"></span>
@@ -45,8 +42,7 @@
                     <br>
                 </div>
             </div>
-        </div></div><br>
-
+        </div><br>
         <div id = "rating_add"><form id="addReviewForm" class="form-control" method="post" th:object="${productReview}">
             Review title:<br>
 <!--            <input id="reviewTitle" placeholder="Enter Review Title" required type="text" name="reviewTitle" th:value="*{reviewTitle}">-->
@@ -54,8 +50,7 @@
             <div><label for="reviewTitle"><input class="reviewTitlePr" id = "reviewTitle" type="text" th:value="${reviewTitle}" name="reviewTitle"/> </label></div>
             Review:<br>
             <div><label for="reviewProduct"><textarea class="reviewProductPr" id = "reviewProduct" th:value="${reviewProduct}" name="reviewProduct"></textarea> </label></div>
-            <input type="range" min="0" max="5" step="1" value="1">
-
+            <div><label for="rateP1"><input id="rateP1" type="text" th:value="${rateP1}" name="rateP1" value=""></label></div>
             <div id="rating_new">
                 <div class="param">Параметр 1:</div>
                 <div><div class="stars"></div><p class="progress" id="p1"></p></div>
@@ -67,15 +62,12 @@
 
                 <div class="param">Параметр 3:</div>
                 <div><div class="stars"></div><p class="progress" id="p3"></p></div>
-                <div class="rating_new" th:value = "${rateP1}" id="param3">5.0</div>
+                <div class="rating_new" id="param3">5.0</div>
 
 
                 <div class="param">Общая оценка:</div>
                 <div><div id="sum_stars"></div><p id="sum_progress"></p></div>
                 <div id="summ">5.00</div>
-
-<!--                <input id="el_999" type="submit" value="Send">-->
-<!--                <p id="message"></p>-->
 
 
             <input name="Add review" id="submitButton" type="submit" value="add-review">
