@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<!--      th:fragment="main-fragment (title, otherStaticResources, header, SideMenu, mainContent, footer)">-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+  <title>Business Page</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../../static/main.css"/>
+  <title>Business Page</title>
+
+</head>
+<header>
+  <h2>Buddy page</h2>
+
+</header>
+<body>
+<section>
+  <SideMenu id="SideMenu">
+<!--    <li>Home</li>-->
+    <li><a th:href="@{/buddy/{id}(id=${buddy1.buddyId})}">Home</a></li>
+    <li><a th:href="@{/feed}">Feed</a></li>
+    <li><a th:href="@{/notifications}">Notifications</a></li>
+    <li><span style=vertical-align:bottom><a th:href="@{/logout}">Log out</a> </span></li>
+  </SideMenu>
+  <article>
+    <div id="Buddy_block">
+      <div th:fragment="buddy">
+
+        <p id="buddy_img" ><img src="layouts/img/buddy.png" alt="Buddy image"></p>
+        <p img th:src="*{'data:layouts/img/buddy.png;base64,'+image}" alt="Buddy image"></p>
+
+        <h1 id="first_name" th:text="${buddy.firstName}"> First Name </h1>
+        <h1 id="last_name" th:text="${buddy.lastName}">Last Name</h1>
+        <p id="age" th:text="${buddy.age}">Age</p>
+        <p id="city" th:text="${buddy.city}">City</p>
+
+        <div id="rateBlock" th:each="product : ${buddy.products}">
+          <p th:text="${product.productName}"> Review_title</p><br>
+          <th><a th:href="@{/product/{id}(id=${product.productId})}"><img src="layouts/img/product.png" width="50"
+                                                                                 height="50" alt="Product image"></a></th>
+
+        </div><br>
+        </div><br>
+      </div><br>
+  </article><br>
+</section>
+
+</body>
+<footer>
+  <p>All right reserved and belong to almighty Cthulhu</p>
+  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
+</footer>
+</html>
