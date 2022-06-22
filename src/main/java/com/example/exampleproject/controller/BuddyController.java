@@ -94,19 +94,18 @@ public class BuddyController {
    }
     @GetMapping("/buddy/{id}/wishlist")
     public String showWishlist(@PathVariable("id") int id, @AuthenticationPrincipal UserDetails user,  Model model) {
-        User user1 = userRepository.findByUsername(user.getUsername());
-        int bId = 0;
-        Collection<Buddy> buddies = buddyRepository.findAll();
-        for (var b:buddies) {
-            User user2 = b.getUser();
-            if(user1.equals(user2)) {
-                bId = b.getBuddyId();
-            }
+        User userInPage = userRepository.findByUsername(user.getUsername());
+        if(userInPage.getRole().getName().equals("user")) {
+            Buddy buddy = roleOnPage.findRoleBuddyOnPage(userInPage);
+            model.addAttribute("buddy", buddy);
+            model.addAttribute("homeId", buddy.getBuddyId());
+        } else if (userInPage.getRole().getName().equals("business")) {
+            Business business = roleOnPage.findRoleBusinessOnPage(userInPage);
+            model.addAttribute("homeId", business.getBusinessId());
         }
-        Buddy buddy1 = buddyRepository.getById(bId);
-        Buddy buddy = buddyRepository.getById(id);
-        model.addAttribute("buddy", buddy);
-        model.addAttribute("buddy1", buddy1);
+        Buddy buddyPage = buddyRepository.getById(id);
+        model.addAttribute("user", userInPage);
+        model.addAttribute("buddyPage", buddyPage);
         return "wishlist";
     }
 

@@ -2,8 +2,9 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <!--      th:fragment="main-fragment (title, otherStaticResources, header, SideMenu, mainContent, footer)">-->
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
-  <title>Business Page</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script type="text/javascript" th:src="@{/js/profileForm.js}"></script>
+  <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../../static/main.css"/>
   <title>Business Page</title>
 
@@ -15,28 +16,32 @@
 <body>
 <section>
   <SideMenu id="SideMenu">
-<!--    <li>Home</li>-->
-    <li><a th:href="@{/buddy/{id}(id=${buddy1.buddyId})}">Home</a></li>
+    <li><a th:id="home" th:href="@{/buddy/{id}(id=${homeId})}">Home</a></li>
     <li><a th:href="@{/feed}">Feed</a></li>
-    <li><a th:href="@{/notifications}">Notifications</a></li>
+    <li><a th:href="@{/friend}">Find friends</a></li>
     <li><span style=vertical-align:bottom><a th:href="@{/logout}">Log out</a> </span></li>
   </SideMenu>
   <article>
+    <div id="num_block">
+      <h1 hidden id="buddIdHo" th:text = "${homeId}"
+          th:data-home="${homeId}"> id </h1>
+    </div>
+    <div id="product_block">
+      <h1 hidden id="role" th:text = "${user.role.id}"
+          th:data-role="${user.role.id}"> role </h1>
     <div id="Buddy_block">
-      <div th:fragment="buddy">
+      <div th:fragment="buddyPage">
 
-        <p id="buddy_img" ><img src="layouts/img/buddy.png" alt="Buddy image"></p>
-        <p img th:src="*{'data:layouts/img/buddy.png;base64,'+image}" alt="Buddy image"></p>
+        <h1 id="first_name" th:text="${buddyPage.firstName}"> First Name </h1>
+        <h1 id="last_name" th:text="${buddyPage.lastName}">Last Name</h1>
+        <p id="age" th:text="${buddyPage.age}">Age</p>
+        <p id="city" th:text="${buddyPage.city}">City</p>
+        <p><img th:src="@{${buddyPage.avatarImg}}" alt="Buddy image" width="130" height="180"></p>
 
-        <h1 id="first_name" th:text="${buddy.firstName}"> First Name </h1>
-        <h1 id="last_name" th:text="${buddy.lastName}">Last Name</h1>
-        <p id="age" th:text="${buddy.age}">Age</p>
-        <p id="city" th:text="${buddy.city}">City</p>
-
-        <div id="rateBlock" th:each="product : ${buddy.products}">
+        <div id="rateBlock" th:each="product : ${buddyPage.products}">
           <p th:text="${product.productName}"> Review_title</p><br>
-          <th><a th:href="@{/product/{id}(id=${product.productId})}"><img src="layouts/img/product.png" width="50"
-                                                                                 height="50" alt="Product image"></a></th>
+          <th><a th:href="@{/product/{id}(id=${product.productId})}">
+            <img th:src="@{${product.productImg}}" alt="Buddy image" width="130" height="180"></a></th>
 
         </div><br>
         </div><br>
