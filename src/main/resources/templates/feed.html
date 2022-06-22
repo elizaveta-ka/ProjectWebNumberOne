@@ -48,6 +48,7 @@
 
             <h1 th:text="${product.productName}"> productName </h1>
             <p hidden th:text="${product.productId}" >Id Product</p>
+            <p th:value="${watch}"></p>
             <th><a th:href="@{/product/{id}(id=${product.productId})}"><img src="layouts/img/product.png" width="50"
                                                                          height="50" alt="Product image"></a></th>
             <!--      <p th:text="${product.categoryId}">categoryId</p>-->

@@ -46,7 +46,6 @@
                     <option th:each="productCategory : ${productCategories}" th:value="${productCategory}"
                             th:text="${productCategory.categoryName}"
                             th:data-id="${productCategory.categoryId}">
-
                     </option>
                 </select>
                 <input type="submit" value="Create Product">

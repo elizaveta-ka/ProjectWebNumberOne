@@ -45,6 +45,9 @@ public class FeedController {
     @GetMapping("/feed")
     public String findAll(@AuthenticationPrincipal UserDetails user, Model model) {
         System.out.println(user);
+//        Buddy buddyEx = buddyRepository.getById(1);
+//        Buddy buddyForComparison = buddyRepository.getById(4);
+//        System.out.println(createSimilarityCoefficient(buddyEx, buddyForComparison) + "посмотреееееть");
         User user1 = userRepository.findByUsername(user.getUsername());
         System.out.println(user1);
         Buddy homeB = null;
@@ -58,7 +61,7 @@ public class FeedController {
                 }
             }
             homeB = buddyRepository.getById(bId);
-            model.addAttribute("home", "buddy");
+//            model.addAttribute("watch", createSimilarityCoefficient(buddyEx, buddyForComparison));
             model.addAttribute("homeId", homeB.getBuddyId());
         } else if (user1.getRole().getName().equals("business")) {
             int buId = 0;
@@ -111,6 +114,12 @@ public class FeedController {
         buddiesList.add(buddy);
         product1.setBuddies(buddiesList);
         productRepository.save(product1);
+
+
+//        Buddy buddyEx = buddyRepository.getById(1);
+//        Buddy buddyForComparison = buddyRepository.getById(2);
+//        System.out.println(createSimilarityCoefficient(buddyEx, buddyForComparison));
+//    createSimilarityCoefficient(buddy, buddyForComparison);
         return "redirect:/feed";
     }
 
@@ -122,23 +131,37 @@ public class FeedController {
     }
 
     //бизнес логика
-  
 
-
-//    public double createSimilarityCoefficient() {
-//        double coefficient = 0;
-//        return coefficient;
+//    public double createSimilarityCoefficient(Buddy buddy, Buddy buddyForComparison) {
+////        buddy = buddyRepository.getById(1);
+////        buddyForComparison = buddyRepository.getById(2);
+//        compareProductRate(buddy, buddyForComparison);
+//
+//        double a = compareProductRate(buddy, buddyForComparison);
+//        double b = Math.sqrt(compareProductRate(buddy, buddy));
+//        double c = Math.sqrt(compareProductRate(buddyForComparison, buddyForComparison));
+//        System.out.println(a/ (b * c));
+//        return a/ (b * c);
 //    }
 //
-//
-//
-//
-//
-//
-//
-//    public List<Product> makeRec(Buddy buddy) {
-//        List<Product> bestProducts = null;
-//        System.out.println(buddy);
-//        return bestProducts;
+//    public double compareProductRate(Buddy buddy, Buddy buddyForComparison) {
+//        double d = 0;
+////        buddy = buddyRepository.getById(1);
+////        buddyForComparison = buddyRepository.getById(2);
+//        Collection<Product> products = buddyForComparison.getProducts();
+//        Collection<Product> products2 = buddy.getProducts();
+//        for (var pr : products) {
+//            for (var p: products2) {
+//                if (pr.getProductId() == p.getProductId()) {
+//                    for (var r:pr.getProductReviews()) {
+//                        for (var r2:p.getProductReviews()) {
+//                            d += r.getRateP4() * r2.getRateP4();
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        System.out.println(d);
+//        return d;
 //    }
 }
