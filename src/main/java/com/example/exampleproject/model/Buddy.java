@@ -90,26 +90,27 @@ public class Buddy {
     public String toString() {
         return "Buddy{" +
                 ", businessAuthors=" + businessAuthors +
-                ", productAuthors=" + productAuthors +
+//                ", productAuthors=" + productAuthors +
                 ", friends=" + friends +
-                ", products=" + products +
+//                ", products=" + products +
                 ", buddyId=" + buddyId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
                 ", city='" + city + '\'' +
                 ", avatarImg='" + avatarImg + '\'' +
+                ", user='" + user + '\'' +
                 '}';
     }
-//    public void addProduct(Product product){
-//        this.products.add(product);
-//        product.getBuddies().add(this);
-//    }
-//
-//    public void removeProduct(Product product){
-//        this.products.remove(product);
-//        product.getBuddies().remove(this);
-//    }
+    public void addProduct(Product product){
+        this.products.add(product);
+        product.getBuddies().add(this);
+    }
+
+    public void removeProduct(Product product){
+        this.products.remove(product);
+        product.getBuddies().remove(this);
+    }
 
     public void setFriends(Collection<Friend> friends) {
         this.friends = friends;

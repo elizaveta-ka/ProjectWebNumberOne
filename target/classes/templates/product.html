@@ -1,7 +1,9 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <!--      th:fragment="main-fragment (title, otherStaticResources, header, SideMenu, mainContent, footer)">-->
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="star_rating.js"></script>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
     <title>Product Page</title>
     <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../../static/main.css"/>
@@ -15,7 +17,7 @@
 <body>
 <section>
     <SideMenu id="SideMenu">
-        <li><a th:href="@{/buddy}">Home</a></li>
+        <li><a th:href="@{/buddy/{id}(id=${buddy.buddyId})}">Home</a></li>
         <li><a th:href="@{/feed}">Feed</a></li>
         <li><a th:href="@{/notifications}">Notifications</a></li>
         <li><span style=vertical-align:bottom><a th:href="@{/logout}">Log out</a> </span></li>
@@ -35,18 +37,28 @@
 
                     <div id="rating">
                         <div th:each="p : ${product.productReviews}">
-                        <span th:text="${p.rateP1}"> Rate_P1</span> <span th:text="${p.rateP2}"> Rate_P2</span><br>
-                        <span th:text="${p.rateP3}"> Rate_P3</span> <span th:text="${p.rateP4}"> Rate_P4</span></div>
+                        <span th:text="${p.rateP1}"> Rate_P1</span>
                     </div>
                     <div id="suggestions" th:each="s : ${product.productCategory.suggestions}">
                         <span th:text="${s.foodName} + ${', '} + ${s.foodImg}"></span>
                     </div>
                     <br>
                 </div>
-
-
             </div>
         </div><br>
+
+        <div id = "rating_add"><form id="addReviewForm" class="form-control" method="post" th:object="${productReview}">
+            Review title:<br>
+<!--            <input id="reviewTitle" placeholder="Enter Review Title" required type="text" name="reviewTitle" th:value="*{reviewTitle}">-->
+            <br>
+            <div><label for="reviewTitle"><input class="reviewTitlePr" id = "reviewTitle" type="text" th:value="${reviewTitle}" name="reviewTitle"/> </label></div>
+            Review:<br>
+            <div><label for="reviewProduct"><textarea class="reviewProductPr" id = "reviewProduct" th:value="${reviewProduct}" name="reviewProduct"></textarea> </label></div>
+            <input type="range" min="0" max="5" step="1" value="1" th:value = "${rateP1}">
+
+            <input name="Add review" id="submitButton" type="submit" value="add-review">
+        </form></div>
+
         <div id="rateBlock" th:each="review : ${product.productReviews}">
             <p th:text="${review.buddy.firstName} + ${' '} + ${review.buddy.lastName}">Author</p>
             <p th:text="${review.buddy.avatarImg}">Img</p>
@@ -54,13 +66,20 @@
                                                                             height="50" alt="Buddy image"></a></th>
             <p th:text="${review.reviewProduct}"> Review_title</p><br>
             <div id="rating_pr">
-                <span th:text="${review.rateP1}"> Rate_P1</span> <span th:text="${review.rateP2}"> Rate_P2</span><br>
-                <span th:text="${review.rateP3}"> Rate_P3</span> <span th:text="${review.rateP4}"> Rate_P4</span></div>
+                <span th:text="${review.rateP1}"> Rate_P1</span>
             <p id="reviewer_img"><img src="*{'data:image/png;base64, '+image}" alt="reviewer_img"></p><br>
 
-            <!--    <p th:text="${review.reviewProduct}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus scelerisque ipsum nec mauris dapibus gravida. Nam felis est, ornare sit amet auctor in, malesuada sit amet massa. Pellentesque eget efficitur lorem. Nunc lobortis erat a orci blandit, et consequat diam molestie. Etiam id tempor felis, sit amet egestas sem. Suspendisse potenti. Morbi tristique tincidunt leo in ornare. Aenean sodales leo id dapibus posuere.</p>-->
+<!--            <input type="submit" value="Редактировать" id="editBtn"/>-->
+
+<!--            <form hidden name="reviewEd" method="POST" th:object="${productReview}" class="productReviewEdForm">-->
+<!--                <input readonly id="productReviewId" type="number"  th:value="${productReviewId}"/><br>-->
+<!--                <input id="reviewTitleEd" type="text" th:field="*{reviewTitle}" th:value="${reviewTitle}"/><br>-->
+<!--                <textarea id="reviewProduct" th:field="*{reviewProduct}" th:value="${reviewProduct}"></textarea><br>-->
+<!--                <input type="submit" value="Сохранить" id="btnSubmit"/>-->
+<!--            </form>-->
         </div><br>
         <div id="business_block">
+            <p align="center" id="business_img"><img src="*{'data:image/png;base64, '+image}" alt="business_img"></p><br>
             <div>
 <!--                <p align="right"> <button onclick ="window.location.href='@{/{link}(link=${bR.businessLink})}';">Book a table</button></p>-->
                 <!--        <p th:text="${busName} + ${', '} ${location}">Business_NAME, Business_TYPE</p>-->
@@ -74,6 +93,85 @@
         </div><br>
     </article><br>
 </section>
+<style type="text/css">
+    .param, .rating_new, #summ { line-height: 28px; }
+    .stars, #sum_stars { background: url(../../../static/images/stars.png); }
+    .stars, #sum_stars, .progress, #sum_progress {
+        width: 130px;
+        height: 28px;
+        cursor: pointer;
+    }
+</style>
+<!--<script>-->
+<!--    $(document).ready(function (event) {-->
+<!--        $("#editBtn").on('click', function (event) {-->
+<!--            $("#productReviewEdForm").show();-->
+<!--        });-->
+<!--    });-->
+<!--    $(document).ready(function (event) {-->
+<!--        $("#submitButton").on('click', function (event) {-->
+<!--            $("#addReviewForm").show();-->
+<!--        });-->
+<!--    });-->
+<!--    $(function() {-->
+<!--        $('#btnSubmit').submit(function (e) {-->
+<!--            e.preventDefault();-->
+<!--            var review = $('#productReviewEdForm').serialize();-->
+<!--            console.log(review);-->
+<!--            $.ajax({-->
+<!--                type: 'POST',-->
+<!--                url: '/product/{id}/edit-review',-->
+<!--                data: review,-->
+<!--                contentType: "application/json; charset=utf-8",-->
+<!--                dataType: 'JSON',-->
+<!--                success: function(data){-->
+<!--                    console.log(data);-->
+<!--                }-->
+<!--            });-->
+<!--        });-->
+<!--    });-->
+
+<!--    $(document).ready(function () {-->
+<!--        $("#category").change(function () {-->
+<!--            $("#productId").val($("#product option:selected").attr("data-id"));-->
+<!--        });-->
+<!--    });-->
+
+<!--    // $(function() {-->
+<!--    //     $('#submitButton').submit(function (e) {-->
+<!--    //         e.preventDefault();-->
+<!--    //         var review = $('#addReviewForm').serialize();-->
+<!--    //         console.log(review);-->
+<!--    //         $.ajax({-->
+<!--    //             type: 'POST',-->
+<!--    //             url: '$/product/{product.productId}',-->
+<!--    //             data: review,-->
+<!--    //             contentType: "application/json; charset=utf-8",-->
+<!--    //             dataType: 'JSON',-->
+<!--    //             success: function(data){-->
+<!--    //                 console.log(data);-->
+<!--    //             }-->
+<!--    //         });-->
+<!--    //     });-->
+<!--    // });-->
+<!--    // $(function() {-->
+<!--    //     $('#submitButton').submit(function (e) {-->
+<!--    //         e.preventDefault();-->
+<!--    //         var review = $('#addReviewForm').serialize();-->
+<!--    //         console.log(review);-->
+<!--    //         $.ajax({-->
+<!--    //             type: 'POST',-->
+<!--    //             url: '/product/{id}/{productReview_id}/edit-review',-->
+<!--    //             data: review,-->
+<!--    //             contentType: "application/json; charset=utf-8",-->
+<!--    //             dataType: 'JSON',-->
+<!--    //             success: function(data){-->
+<!--    //                 console.log(data);-->
+<!--    //             }-->
+<!--    //         });-->
+<!--    //     });-->
+<!--    // });-->
+<!--</script>-->
 </body>
 <footer>
     <p>All right reserved and belong to almighty Cthulhu</p>

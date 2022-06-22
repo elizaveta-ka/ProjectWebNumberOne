@@ -44,15 +44,15 @@ public class ProductReview {
 
     @Column(name = "reviewTitle")
     private String reviewTitle;
-    //
-    @Column(name = "buddy_id")
-    private int buddyId;
+//
+   @Column(name = "buddy_id")
+   private int buddyId;
 
     public ProductReview(){
 
     }
 
-    public ProductReview(Product product, Buddy buddy, int productReviewId, int rateP1, int rateP2, int rateP3, int rateP4, String reviewProduct, String photo, int productId, String reviewTitle, int buddyId) {
+    public ProductReview(Product product, Buddy buddy, int buddyId, int productReviewId, int rateP1, int rateP2, int rateP3, int rateP4, String reviewProduct, String photo, int productId, String reviewTitle) {
         this.product = product;
         this.buddy = buddy;
         this.productReviewId = productReviewId;
@@ -166,14 +166,18 @@ public class ProductReview {
     @Override
     public String toString() {
         return "ProductReview{" +
-                "product=" + product +
+//                "product=" + product +
+//                ", buddy=" + buddy +
                 ", productReviewId=" + productReviewId +
                 ", rateP1=" + rateP1 +
                 ", rateP2=" + rateP2 +
                 ", rateP3=" + rateP3 +
-                ", reviewProduct='" + reviewProduct +
-                ", photo='" + photo +
+                ", rateP4=" + rateP4 +
+                ", reviewProduct='" + reviewProduct + '\'' +
+                ", photo='" + photo + '\'' +
                 ", productId=" + productId +
+                ", reviewTitle='" + reviewTitle + '\'' +
+                ", buddyId=" + buddyId +
                 '}';
     }
 }

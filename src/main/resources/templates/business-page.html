@@ -66,10 +66,20 @@
                     <label for="tab_4">Menu</label><br>
 
                     <div id="rating">
-                        //суммарный рейтинг заведения
-                        <span th:text="${rateB1}"> Rate_B1</span> <span th:text="${rateB2}"> Rate_B2</span><br>
-                        <span th:text="${rateB3}"> Rate_B3</span> <span th:text="${rateB4}"> Rate_B4</span></div>
-                    <br>
+                        <div th:each="b : ${business.businessReviews}">
+                            <span th:text="${b.rateB1}"> Rate_B1</span>
+                        </div>
+
+
+<!--                <div id = "menu">-->
+<!--                    <table th:each="product : ${business.products}" width="100%" border="0" cellpadding="4">-->
+<!--                        <tr align="right" valign="top">-->
+<!--                            <th th:text="${product.productName}">Product_NAME</th>-->
+<!--                            <td th:text="${product['productCategory']['categoryName']}">Category_NAME</td>-->
+<!--                            <td>Суммарный рейтинг продукта</td>-->
+<!--                        </tr>-->
+<!--                    </table>-->
+<!--            </div>-->
 
 
                     <div id = "menu">
@@ -87,16 +97,28 @@
                     </div>
                 </div>
             </div>
+            </div>
         </div><br>
+
+        <div id = "rating_add"><form id="addReviewForm" class="form-control"  th:action="@{/business/{id}/add-review(id=${business.businessId})}" method="post" th:object="${businessReview}">
+            Review title:<br>
+            <!--            <input id="reviewTitle" placeholder="Enter Review Title" required type="text" name="reviewTitle" th:value="*{reviewTitle}">-->
+            <br>
+            <div><label for="reviewTitle"><input class="reviewTitlePr" id = "reviewTitle" type="text" th:value="${reviewTitle}" name="reviewTitle"/> </label></div>
+            Review:<br>
+            <div><label for="reviewProduct"><textarea class="reviewProductPr" id = "reviewProduct" th:value="${reviewBusiness}" name="reviewProduct"></textarea> </label></div>
+            <input type="range" min="0" max="5" step="1" value="1" th:value = "${rateB1}">
+
+            <input name="Add review" id="submitButton" type="submit" value="add-review">
+        </form></div>
 
         <div id="rateBlock" th:each="review : ${business.businessReviews}">
             <p th:text="${review.buddy.firstName} + ${' '} + ${review.buddy.lastName}">Author</p>
             <th><a th:href="@{/buddy/{id}(id=${review.buddy.buddyId})}"><img src="layouts/img/product.png" width="30"
                                                                              height="50" alt="Buddy image"></a></th>
-            <p th:text="${review.reviewB}"> Review_title</p><br>
+            <p th:text="${review.reviewTitle}"> Review_title</p><br>
             <div id="rating_pr">
-                <span th:text="${review.rateB1}"> Rate_B1</span> <span th:text="${review.rateB2}"> Rate_B2</span><br>
-                <span th:text="${review.rateB3}"> Rate_B3</span> <span th:text="${review.rateB4}"> Rate_B4</span></div>
+                <span th:text="${review.rateB1}"> Rate_B1</span>
             <p id="reviewer_img"><img src="*{'data:image/png;base64, '+image}" alt="reviewer_img"></p><br>
 
             <!--            <p th:text="${review.reviewB}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus scelerisque ipsum nec mauris dapibus gravida. Nam felis est, ornare sit amet auctor in, malesuada sit amet massa. Pellentesque eget efficitur lorem. Nunc lobortis erat a orci blandit, et consequat diam molestie. Etiam id tempor felis, sit amet egestas sem. Suspendisse potenti. Morbi tristique tincidunt leo in ornare. Aenean sodales leo id dapibus posuere.</p>-->

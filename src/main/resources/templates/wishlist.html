@@ -16,6 +16,7 @@
 <section>
   <SideMenu id="SideMenu">
 <!--    <li>Home</li>-->
+    <li><a th:href="@{/buddy/{id}(id=${buddy1.buddyId})}">Home</a></li>
     <li><a th:href="@{/feed}">Feed</a></li>
     <li><a th:href="@{/notifications}">Notifications</a></li>
     <li><span style=vertical-align:bottom><a th:href="@{/logout}">Log out</a> </span></li>

@@ -74,7 +74,7 @@ public class Business {
     @Override
     public String toString() {
         return "Business{" +
-                ", products=" + products +
+//                ", products=" + products +
                 ", businessReviews=" + businessReviews +
                 ", businessId=" + businessId +
                 ", busName='" + busName + '\'' +

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+
+
+<input type="submit" value="Добавить ревью" id="addBtn"/>
+
+<form hidden id="addReviewForm" class="form-control" method="post" th:action="@{/product/${id}/add-review}" th:object="${productReview}">
+    Review title:<br>
+    <input id="reviewTitle" placeholder="Enter Review Title" required type="text" name="reviewTitle" th:field="*{reviewTitle}">
+    <br>
+    Review:<br>
+    <textarea id="reviewText" placeholder="Enter Your Review" name="reviewProduct" th:field="*{reviewProduct}"></textarea>
+    <br>
+    <input type="hidden" class="form-control" th:field="*{productId}" th:value="${product.productId}">
+<!--    <input type="hidden" th:field="*{buddy}" th:value="${buddyId}">-->
+    <br><br>
+    <input name="Add review" id="submitButton" type="submit" value="add-review">
+</form>
+
+<input type="submit" value="Редактировать" id="editBtn"/>
+
+<form hidden name="reviewEd" method="POST" th:object="${productReview}" class="productReviewEdForm">
+    <input readonly id="id" type="number"  th:value="${productReview.productReviewId}"/><br>
+    <input id="name" type="text" th:field="*{productReview.reviewTitle}" th:value="${productReview.reviewTitle}"/><br>
+    <textarea id="location" th:field="*{productReview.reviewProduct}" th:value="${productReview.reviewProduct}"/><br>
+    <input type="submit" value="Сохранить" id="btnSubmit"/>
+</form>
+
+<script type="text/javascript">
+
+        $(document).ready(function (event) {
+            $("#editBtn").on('click', function (event) {
+                $(".productReviewEdForm").show();
+            });
+        });
+        $(document).ready(function (event) {
+            $("#addBtn").on('click', function (event) {
+                $(".addReviewForm").show();
+            });
+        });
+            $(function() {
+                $('#btnSubmit').submit(function (e) {
+                    e.preventDefault();
+                    var review = $('#productReviewEdForm').serialize();
+                    console.log(review);
+                    $.ajax({
+                        type: 'POST',
+                        url: '/product/{id}/edit-review',
+                        data: review,
+                        contentType: "application/json; charset=utf-8",
+                        dataType: 'JSON',
+                        success: function(data){
+                            console.log(data);
+                        }
+                    });
+                });
+            });
+
+    $(document).ready(function () {
+        $("#category").change(function () {
+            $("#productId").val($("#product option:selected").attr("data-id"));
+        });
+    });
+
+        $(function() {
+        $('#submitButton').submit(function (e) {
+            e.preventDefault();
+            var review = $('#addReviewForm').serialize();
+            console.log(review);
+            $.ajax({
+                type: 'POST',
+                url: '/product/{id}/add-review',
+                data: review,
+                contentType: "application/json; charset=utf-8",
+                dataType: 'JSON',
+                success: function(data){
+                    console.log(data);
+                }
+            });
+        });
+    });
+        $(function() {
+            $('#submitButton').submit(function (e) {
+                e.preventDefault();
+                var review = $('#addReviewForm').serialize();
+                console.log(review);
+                $.ajax({
+                    type: 'POST',
+                    url: '/product/{id}/{productReview_id}/edit-review',
+                    data: review,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: 'JSON',
+                    success: function(data){
+                        console.log(data);
+                    }
+                });
+            });
+        });
+
+</script>
+
+
+
+
+</body>
+</html>

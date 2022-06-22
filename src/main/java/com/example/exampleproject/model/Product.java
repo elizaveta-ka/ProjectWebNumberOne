@@ -63,7 +63,7 @@ public class Product {
         return "Product{" +
                 "businesses=" + businesses +
                 ", buddies=" + buddies +
-                ", productReviews=" + productReviews +
+//                ", productReviews=" + productReviews +
                 ", productCategory=" + productCategory +
                 ", productId=" + productId +
                 ", productName='" + productName + '\'' +

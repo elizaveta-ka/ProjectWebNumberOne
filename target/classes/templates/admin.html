@@ -9,6 +9,17 @@
 <!--        });-->
 <!--    </script>-->
 </head>
+<script type="text/javascript" src="/plugins/jquery.viewportchecker.js"></script>
+<script>
+
+    function ban() {
+        var result = document.getElementById("active").value;
+
+        document.getElementById("message").innerHTML = "Banned";
+
+    }
+</script>
+
 <body>
 <!--<?php-->
 <!--if (isset($_POST['posted'])) {-->
@@ -32,17 +43,20 @@
             </tr>
             </thead>
             <tbody>
+            <form class="form-profile" th:action="@{/admin}" method="post" th:name="profile" th:id="profile" onsubmit ="return ban()" >
             <tr th:each="user : ${users}">
                 <td th:text="${user.id}"></td>
-                <td name = username th:text="${user.username}"></td>
+                <td name = "username" id = "username" th:text="${user.username}" th:value="${user.username}"></td>
+
                 <td th:text="${user.password}"></td>
-                <td th:text="${user.active}"></td>
+                <td name = "active" id = "active" th:text="${user.active}" th:value = ${user.active}></td>
                 <td th:text="${user.role.getName()}"></td>
                 <td
                  method="POST" action="listbox.php">
-                    <form>
-                        <input class="jqButton" type="checkbox" id="ban/unban">
 
+<!--                        <input class="jqButton" type="checkbox" id="ban">-->
+                    <input type="submit" value="Отправить">
+                    <span id = "message" style="color:red"> </span> <br>
                     </form>
                 </form>
                 </td>
@@ -51,7 +65,7 @@
 <!--                <td><a th:href="@{buddy-update/{id}(id=${buddy.buddyId})}">Edit</a></td>-->
 <!--                <td><a th:href="@{buddy-delete/{id}(id=${buddy.buddyId})}">Delete</a></td>-->
             </tr>
-            <input type="submit" value="Отправить">
+
             </tbody>
 
 

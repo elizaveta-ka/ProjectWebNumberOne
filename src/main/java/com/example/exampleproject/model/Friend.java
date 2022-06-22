@@ -29,6 +29,15 @@ public class Friend {
         this.friendId = friendId;
     }
 
+    @Override
+    public String toString() {
+        return "Friend{" +
+//                "buddy=" + buddy +
+                ", buddyId=" + buddyId +
+                ", friendId=" + friendId +
+                '}';
+    }
+
     public Friend(int friendId) {
         this.friendId = friendId;
     }
