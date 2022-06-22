@@ -3,12 +3,7 @@ package com.example.exampleproject.controller;
 //import com.example.exampleproject.Service.UserService;
 import com.example.exampleproject.model.*;
 import com.example.exampleproject.repository.*;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-
-import net.minidev.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,62 +42,64 @@ public class RegistrationController {
 
 
     @GetMapping("/registration")
-    public String registration(Model model) {
-        List<User> usersrep = userRepository.findAll();
-        List <String> users = new ArrayList<>();
-        for (var userdb : usersrep)
-            users.add(userdb.getUsername());
-
-        model.addAttribute("users", users);
-
-//        List <String> users = new ArrayList<>();
-//        for (var user : usersRep)
-//            users.add(user.getUsername());
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        try {
-//            String json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(users);
-//            System.out.println(json);
-//        } catch(Exception e) {
-//            e.printStackTrace();
-//        }
-
+    public String registration() {
         return "registration";
     }
 
     @PostMapping("/registration")
     public String addUser(@RequestParam String Roleee, @RequestParam String username,
-                              @RequestParam String password, Model model) {
+                              @RequestParam String password, @RequestParam int age, User user, Model model) {
+        User userFromDB = userRepository.findByUsername(username);
+        List<User> usersRep = userRepository.findAll();
 
-//        User userFromDB = userRepository.findByUsername(username);
-//        if (userFromDB != null) {
-//            model.addAttribute("message", "User exists!");
-//        }
+        //спросить у Андрея
+        List <String> users = new ArrayList<>();
+        for (var us : usersRep)
+            users.add(us.getUsername());
 
-        User newuser = new User(username, password);
+        if (userFromDB != null) {
+            model.addAttribute("message", "User exists!");
+            return "registration";
+        }
+        User newUser = new User(username, password);
+
+        System.out.println(user);
         Role role = rolerep.findByName(Roleee).orElseThrow();
 
-        newuser.setRole(role);
-        newuser.setActive(true);
-        userRepository.save(newuser);
+        newUser.setRole(role);
+        newUser.setActive(true);
+        userRepository.save(newUser);
+        System.out.println(newUser);
 
+        if(newUser.getRole().getName().equals("user")) {
+            return makeRedirectBuddyAfterRegistration(newUser, age);
+        }
+        else if (newUser.getRole().getName().equals("business")) {
+          return makeRedirectBusinessAfterRegistration(newUser);
+        }
+            return "redirect:/";
+    }
 
-        if(newuser.getRole().getName().equals("user")) {
+    public String makeRedirectBuddyAfterRegistration(User user, int age) {
+        String page = null;
             Buddy buddy = new Buddy();
-            buddy.setUser(newuser);
+            buddy.setUser(user);
+            buddy.setAge(age);
             buddyRepository.save(buddy);
             int id = buddy.getBuddyId();
-            return "redirect:/buddy/" + id;
-        }
+            page = "redirect:/buddy/" + id;
+            return page;
+    }
 
-        if(newuser.getRole().getName().equals("business")) {
+    public String makeRedirectBusinessAfterRegistration(User user) {
+
+        String page = null;
             Business business = new Business();
+            business.setUser(user);
             businessRepository.save(business);
             int id = business.getBusinessId();
-            business.setUser(newuser);
-        return "redirect:/business/" + id;
-        }
-
-        return "redirect:/";
+            page = "redirect:/business/"+ id;
+            return page;
     }
 
 

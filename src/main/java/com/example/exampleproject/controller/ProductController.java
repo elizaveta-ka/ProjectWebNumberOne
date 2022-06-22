@@ -1,8 +1,8 @@
 package com.example.exampleproject.controller;
 
+import com.example.exampleproject.Service.RoleOnPage;
 import com.example.exampleproject.model.*;
 import com.example.exampleproject.repository.*;
-import com.example.exampleproject.model.*;
 import com.example.exampleproject.repository.BuddyRepository;
 import com.example.exampleproject.repository.ProductCategoryRepository;
 import com.example.exampleproject.repository.ProductRepository;
@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
 import java.util.Collection;
-import java.util.Collection;
 import java.util.List;
 
 @Controller
@@ -33,16 +32,19 @@ public class ProductController {
     private final UserRepository userRepository;
     private final BuddyRepository buddyRepository;
 
+    private final RoleOnPage roleOnPage;
+
 
 
 
     @Autowired
-    public ProductController(ProductRepository productRepository, ProductReviewRepository productReviewRepository, ProductCategoryRepository productCategoryRepository, UserRepository userRepository, BuddyRepository buddyRepository) {
+    public ProductController(ProductRepository productRepository, ProductReviewRepository productReviewRepository, ProductCategoryRepository productCategoryRepository, UserRepository userRepository, BuddyRepository buddyRepository, RoleOnPage roleOnPage) {
         this.productRepository = productRepository;
         this.productReviewRepository = productReviewRepository;
         this.productCategoryRepository = productCategoryRepository;
         this.userRepository = userRepository;
         this.buddyRepository = buddyRepository;
+        this.roleOnPage = roleOnPage;
     }
     @GetMapping("/products")
     public String findAll(Model model) {
@@ -63,8 +65,18 @@ public class ProductController {
     }
     //страница продукта
     @GetMapping("/product/{id}")
-    public String showProductPage(@PathVariable("id") int id, Model model) {
+    public String showProductPage(@PathVariable("id") int id, @AuthenticationPrincipal UserDetails user, Model model) {
+        User userInPage = userRepository.findByUsername(user.getUsername());
+        if(userInPage.getRole().getName().equals("user")) {
+            Buddy buddy = roleOnPage.findRoleBuddyOnPage(userInPage);
+            model.addAttribute("buddy", buddy);
+            model.addAttribute("homeId", buddy.getBuddyId());
+        } else if (userInPage.getRole().getName().equals("business")) {
+            Business business = roleOnPage.findRoleBusinessOnPage(userInPage);
+            model.addAttribute("homeId", business.getBusinessId());
+        }
         Product product = productRepository.getById(id);
+        model.addAttribute("user", userInPage);
         model.addAttribute("product", product);
         return "product";
     }

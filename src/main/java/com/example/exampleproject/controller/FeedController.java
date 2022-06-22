@@ -1,6 +1,7 @@
 package com.example.exampleproject.controller;
 
 
+import com.example.exampleproject.Service.RoleOnPage;
 import com.example.exampleproject.model.*;
 import com.example.exampleproject.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,54 +28,74 @@ public class FeedController {
 
     private BusinessRepository businessRepository;
 
+    private RoleRepository roleRepo;
+
+    private RoleOnPage roleOnPage;
+
+//    private BusinessLogicService businessLogicService;
+
     @Autowired
-    public FeedController(ProductRepository productRepository, ProductCategoryRepository productCategoryRepository, BuddyRepository buddyRepository, UserRepository userRepository, BusinessRepository businessRepository) {
+    public FeedController(RoleOnPage roleOnPage, ProductRepository productRepository, ProductCategoryRepository productCategoryRepository, BuddyRepository buddyRepository, UserRepository userRepository, BusinessRepository businessRepository, RoleRepository roleRepo) {
         this.productRepository = productRepository;
         this.productCategoryRepository = productCategoryRepository;
         this.buddyRepository = buddyRepository;
         this.userRepository = userRepository;
         this.businessRepository = businessRepository;
+        this.roleRepo = roleRepo;
+        this.roleOnPage = roleOnPage;
+//        this.businessLogicService = businessLogicService;
     }
-
+            //уменьшить метод
     @GetMapping("/feed")
     public String findAll(@AuthenticationPrincipal UserDetails user, Model model) {
-        User user1 = userRepository.findByUsername(user.getUsername());
-        Buddy homeB;
-        Business homeBu;
-        if(user1.getRole().getName().equals("user")) {
-            int bId = 0;
-            Collection<Buddy> buddies = buddyRepository.findAll();
-            for (var b : buddies) {
-                User user2 = b.getUser();
-                if (user1.equals(user2)) {
-                    bId = b.getBuddyId();
-                }
-            }
-            homeB = buddyRepository.getById(bId);
-            model.addAttribute("home", homeB);
-        } else if (user1.getRole().getName().equals("business")) {
-            int buId = 0;
-
-            Collection<Business> businesses = businessRepository.findAll();
-            for (var b : businesses) {
-                User user2 = b.getUser();
-                if (user1.equals(user2)) {
-                    buId = b.getBusinessId();
-                }
-            }
-            homeBu = businessRepository.getById(buId);
-            model.addAttribute("home", homeBu);
+        User userInPage = userRepository.findByUsername(user.getUsername());
+        if(userInPage.getRole().getName().equals("user")) {
+            Buddy buddy = roleOnPage.findRoleBuddyOnPage(userInPage);
+            model.addAttribute("homeId", buddy.getBuddyId());
+        } else if (userInPage.getRole().getName().equals("business")) {
+            Business business = roleOnPage.findRoleBusinessOnPage(userInPage);
+            model.addAttribute("homeId", business.getBusinessId());
         }
-
         List<Product> products = productRepository.findAll();
         List<ProductCategory> productCategories = productCategoryRepository.findAll();
+
         model.addAttribute("products", products);
+        model.addAttribute("user", userInPage);
         model.addAttribute("productCategories", productCategories);
         return "feed";
     }
 
+//    public Buddy findRoleBuddyOnPage(User user) {
+//        int bId = 0;
+//        Collection<Buddy> buddies = buddyRepository.findAll();
+//        for (var b : buddies) {
+//            User user2 = b.getUser();
+//            if (user.equals(user2)) {
+//                bId = b.getBuddyId();
+//            }
+//        }
+//        Buddy buddy = buddyRepository.getById(bId);
+//        return buddy;
+//    }
+//
+//    public Business findRoleBusinessOnPage(User user) {
+//        int buId = 0;
+//        Collection<Business> businesses = businessRepository.findAll();
+//        for (var b : businesses) {
+//            User user2 = b.getUser();
+//            if (user.equals(user2)) {
+//                buId = b.getBusinessId();
+//            }
+//        }
+//        Business business = businessRepository.getById(buId);
+//        return business;
+//    }
+
+
+
     @PostMapping("/feed")
     public String addWishlist(@AuthenticationPrincipal UserDetails user, Product product) {
+        System.out.println(user);
         User user1 =userRepository.findByUsername(user.getUsername());
         System.out.println(user1);
         int bId = 0;
@@ -108,4 +129,38 @@ public class FeedController {
         return "notifications";
     }
 
+    //бизнес логика
+
+//    public double createSimilarityCoefficient(Buddy buddy, Buddy buddyForComparison) {
+////        buddy = buddyRepository.getById(1);
+////        buddyForComparison = buddyRepository.getById(2);
+//        compareProductRate(buddy, buddyForComparison);
+//
+//        double a = compareProductRate(buddy, buddyForComparison);
+//        double b = Math.sqrt(compareProductRate(buddy, buddy));
+//        double c = Math.sqrt(compareProductRate(buddyForComparison, buddyForComparison));
+//        System.out.println(a/ (b * c));
+//        return a/ (b * c);
+//    }
+//
+//    public double compareProductRate(Buddy buddy, Buddy buddyForComparison) {
+//        double d = 0;
+////        buddy = buddyRepository.getById(1);
+////        buddyForComparison = buddyRepository.getById(2);
+//        Collection<Product> products = buddyForComparison.getProducts();
+//        Collection<Product> products2 = buddy.getProducts();
+//        for (var pr : products) {
+//            for (var p: products2) {
+//                if (pr.getProductId() == p.getProductId()) {
+//                    for (var r:pr.getProductReviews()) {
+//                        for (var r2:p.getProductReviews()) {
+//                            d += r.getRateP4() * r2.getRateP4();
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        System.out.println(d);
+//        return d;
+//    }
 }

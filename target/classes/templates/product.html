@@ -3,9 +3,8 @@
 <!--      th:fragment="main-fragment (title, otherStaticResources, header, SideMenu, mainContent, footer)">-->
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="star_rating.js"></script>
-    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
-    <title>Product Page</title>
+    <script type="text/javascript" th:src="@{/js/profileForm.js}"></script>
+    <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../../static/main.css"/>
     <title>Product Page</title>
 
@@ -17,16 +16,23 @@
 <body>
 <section>
     <SideMenu id="SideMenu">
-        <li><a th:href="@{/buddy/{id}(id=${buddy.buddyId})}">Home</a></li>
+        <li><a th:id="home" th:href="@{/buddy/{id}(id=${homeId})}">Home</a></li>
         <li><a th:href="@{/feed}">Feed</a></li>
-        <li><a th:href="@{/notifications}">Notifications</a></li>
+        <li><a th:href="@{/friend}">Find friends</a></li>
         <li><span style=vertical-align:bottom><a th:href="@{/logout}">Log out</a> </span></li>
     </SideMenu>
     <article>
+        <div id="num_block">
+            <h1 hidden id="buddIdHo" th:text = "${homeId}"
+                th:data-home="${homeId}"> id </h1>
+        </div>
+
         <div id="product_block">
             <div th:fragment="product">
-                <p id="product_img" ><img src="layouts/img/product.png" alt="Product image"></p>
+                <h1 hidden id="role" th:text = "${user.role.id}"
+                    th:data-role="${user.role.id}"> role </h1>
                 <h1 th:text="${product.productName}"> Product_NAME </h1>
+                <p><img th:src="@{${product.productImg}}" alt="Buddy image" width="130" height="180"></p>
                 <p th:text="${product['productCategory']['categoryName']}">Category_NAME</p>
                 <div class="tabs">
                     <input type="radio" name="inset" value="" id="tab_1" checked>
@@ -49,7 +55,6 @@
 
         <div id = "rating_add"><form id="addReviewForm" class="form-control" method="post" th:object="${productReview}">
             Review title:<br>
-<!--            <input id="reviewTitle" placeholder="Enter Review Title" required type="text" name="reviewTitle" th:value="*{reviewTitle}">-->
             <br>
             <div><label for="reviewTitle"><input class="reviewTitlePr" id = "reviewTitle" type="text" th:value="${reviewTitle}" name="reviewTitle"/> </label></div>
             Review:<br>
@@ -61,36 +66,20 @@
 
         <div id="rateBlock" th:each="review : ${product.productReviews}">
             <p th:text="${review.buddy.firstName} + ${' '} + ${review.buddy.lastName}">Author</p>
-            <p th:text="${review.buddy.avatarImg}">Img</p>
-            <th><a th:href="@{/buddy/{id}(id=${review.buddy.buddyId})}"><img src="layouts/img/product.png" width="30"
-                                                                            height="50" alt="Buddy image"></a></th>
+            <p><a th:href="@{/buddy/{id}(id=${review.buddy.buddyId})}"><img th:src="@{${review.buddy.avatarImg}}" alt="Buddy image" width="150" height="180"></a></p>
             <p th:text="${review.reviewProduct}"> Review_title</p><br>
             <div id="rating_pr">
                 <span th:text="${review.rateP1}"> Rate_P1</span>
-            <p id="reviewer_img"><img src="*{'data:image/png;base64, '+image}" alt="reviewer_img"></p><br>
 
-<!--            <input type="submit" value="Редактировать" id="editBtn"/>-->
-
-<!--            <form hidden name="reviewEd" method="POST" th:object="${productReview}" class="productReviewEdForm">-->
-<!--                <input readonly id="productReviewId" type="number"  th:value="${productReviewId}"/><br>-->
-<!--                <input id="reviewTitleEd" type="text" th:field="*{reviewTitle}" th:value="${reviewTitle}"/><br>-->
-<!--                <textarea id="reviewProduct" th:field="*{reviewProduct}" th:value="${reviewProduct}"></textarea><br>-->
-<!--                <input type="submit" value="Сохранить" id="btnSubmit"/>-->
-<!--            </form>-->
         </div><br>
         <div id="business_block">
-            <p align="center" id="business_img"><img src="*{'data:image/png;base64, '+image}" alt="business_img"></p><br>
-            <div>
-<!--                <p align="right"> <button onclick ="window.location.href='@{/{link}(link=${bR.businessLink})}';">Book a table</button></p>-->
-                <!--        <p th:text="${busName} + ${', '} ${location}">Business_NAME, Business_TYPE</p>-->
                 <div th:each = "bR : ${product.businesses}" ><p th:text="${bR.busName} + ${', '} + ${bR.location}">Business_NAME, Business_LocationE<p>
                     <p align="right"> <button onclick ="window.location.href='{{link}(link=${bR.businessLink})}';">Book a table</button></p>
-                <th><a th:href="@{/business/{id}(id=${bR.businessId})}"><img src="layouts/img/product.png" width="30"
-                                                                                 height="50" alt="Business image"></a></th>
+                    <p><a th:href="@{/business/{id}(id=${bR.businessId})}"><img th:src="@{${bR.busImg}}" alt="Buddy image" width="900" height="600"></a></p>
                 <p th:text="${Distance}">2 km away</p>
             </div>
-            </div>
-        </div><br>
+        </div>
+
     </article><br>
 </section>
 <style type="text/css">
