@@ -12,18 +12,17 @@
         $('#sum_progress').width(Math.round($('.stars').width() * summ / 5));
         $('#summ').text(summ.toFixed(2));
     }
-
-    $('#rating_new .stars').click(function(e){
-    $(this).toggleClass('fixed');
-    move(e, $(this));
-});
-
-
-    $('#rating_new .stars').on('mousemove', function(e){
-    if ($(this).hasClass('fixed')==false) move(e, $(this));
-});
-
-    function notice(text){
-    $('#message').fadeOut(500, function(){ $(this).text(text); }).fadeIn(2000);
-}
-});
+        $('#rating_new .stars').click(function(e){
+            $(this).toggleClass('fixed');
+            move(e, $(this));
+        });
+        $('#rating_new .stars').on('mousemove', function(e){
+            if ($(this).hasClass('fixed')==false) move(e, $(this));
+        });
+        $(document).mousedown(function() {
+            summ = parseFloat($('#summ').text());
+            summ.toPrecision(2);
+            console.log(summ);
+            $('#rateP1').val(summ);
+        });
+    });
