@@ -21,7 +21,7 @@ public class ProductReview {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int productReviewId;
 
-    @Column(name = "rateP1")
+    @Column(name = "rateP1", columnDefinition="Decimal(10,2)")
     private float rateP1;
 
     @Column(name = "rateP2")

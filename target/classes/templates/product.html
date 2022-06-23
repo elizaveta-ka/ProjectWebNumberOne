@@ -45,7 +45,6 @@
         </div><br>
         <div id = "rating_add"><form id="addReviewForm" class="form-control" method="post" th:object="${productReview}">
             Review title:<br>
-<!--            <input id="reviewTitle" placeholder="Enter Review Title" required type="text" name="reviewTitle" th:value="*{reviewTitle}">-->
             <br>
             <div><label for="reviewTitle"><input class="reviewTitlePr" id = "reviewTitle" type="text" th:value="${reviewTitle}" name="reviewTitle"/> </label></div>
             Review:<br>
@@ -55,22 +54,16 @@
                 <div class="param">Параметр 1:</div>
                 <div><div class="stars"></div><p class="progress" id="p1"></p></div>
                 <div class="rating_new" id="param1">5.0</div>
-
                 <div class="param">Параметр 2:</div>
                 <div><div class="stars"></div><p class="progress" id="p2"></p></div>
                 <div class="rating_new" id="param2">5.0</div>
-
                 <div class="param">Параметр 3:</div>
                 <div><div class="stars"></div><p class="progress" id="p3"></p></div>
                 <div class="rating_new" id="param3">5.0</div>
-
-
                 <div class="param">Общая оценка:</div>
                 <div><div id="sum_stars"></div><p id="sum_progress"></p></div>
                 <div id="summ">5.00</div>
-
-
-            <input name="Add review" id="submitButton" type="submit" value="add-review">
+                <input name="Add review" id="submitButton" type="submit" value="add-review">
             </div>
         </form></div>
 

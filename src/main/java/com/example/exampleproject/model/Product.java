@@ -40,8 +40,8 @@ public class Product {
     private String productName;
     @Column(name = "product_img")
     private String productImg;
-
-    @Column(name = "pr_rating")
+    
+    @Column(name = "pr_rating", nullable = false, columnDefinition="Decimal(10,2) default '3.00'")
     private float prRating;
 
     public Product(){}
