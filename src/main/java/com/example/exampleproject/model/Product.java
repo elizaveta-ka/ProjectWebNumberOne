@@ -61,13 +61,13 @@ public class Product {
     @Override
     public String toString() {
         return "Product{" +
-                "businesses=" + businesses +
-                ", buddies=" + buddies +
+//                "businesses=" + businesses +
+//                ", buddies=" + buddies +
 //                ", productReviews=" + productReviews +
                 ", productCategory=" + productCategory +
                 ", productId=" + productId +
                 ", productName='" + productName + '\'' +
-                ", productImg='" + productImg + '\'' +
+//                ", productImg='" + productImg + '\'' +
                 '}';
     }
 
