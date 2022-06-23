@@ -45,6 +45,7 @@
                         <div th:each="p : ${product.productReviews}">
                         <span th:text="${p.rateP1}"> Rate_P1</span>
                     </div>
+                    </div>
                     <div id="suggestions" th:each="s : ${product.productCategory.suggestions}">
                         <span th:text="${s.foodName} + ${', '} + ${s.foodImg}"></span>
                     </div>
@@ -70,7 +71,7 @@
             <p th:text="${review.reviewProduct}"> Review_title</p><br>
             <div id="rating_pr">
                 <span th:text="${review.rateP1}"> Rate_P1</span>
-
+            </div>
         </div><br>
         <div id="business_block">
                 <div th:each = "bR : ${product.businesses}" ><p th:text="${bR.busName} + ${', '} + ${bR.location}">Business_NAME, Business_LocationE<p>

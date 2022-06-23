@@ -65,12 +65,18 @@ public class RoleOnPage {
         }
        // система приоритета
 
-        calculatePriority(products, buddy);
+        calculatePriority(products, buddy, buddyProducts);
         return products;
     }
 
-    List<Product> calculatePriority(List<Product> products, Buddy buddy) {
-        HashMap<Product, Priority> productPriorityHashMap = new HashMap<>();
+    List<Product> calculatePriority(List<Product> products, Buddy buddy, List<Product> productsBuddy) {
+        Map<Product, Integer> productPriorityHashMap = new HashMap<>();
+        for (var p:products) {
+            productPriorityHashMap.put(p,1);
+            for (var prB:productsBuddy) {
+
+            }
+        }
 
 
 
