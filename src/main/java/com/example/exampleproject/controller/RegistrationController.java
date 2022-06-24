@@ -9,6 +9,8 @@ import com.google.gson.Gson;
 import net.minidev.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.json.GsonBuilderUtils;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Controller
@@ -38,71 +41,76 @@ public class RegistrationController {
         this.rolerep = rolerep;
     }
 
-//    @GetMapping("/registration")
-//    public String registration(Model model) {
-//        List<User> users = userRepository.findAll();
-//        model.addAttribute("users", users);
-//        return "registration";
-//    }
-
 
     @GetMapping("/registration")
-    public String registration(Model model) {
+    public String registration(@AuthenticationPrincipal UserDetails user, Model model) {
         List<User> usersrep = userRepository.findAll();
         List <String> users = new ArrayList<>();
         for (var userdb : usersrep)
             users.add(userdb.getUsername());
-
         model.addAttribute("users", users);
-
-//        List <String> users = new ArrayList<>();
-//        for (var user : usersRep)
-//            users.add(user.getUsername());
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        try {
-//            String json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(users);
-//            System.out.println(json);
-//        } catch(Exception e) {
-//            e.printStackTrace();
-//        }
+        if (user != null)
+        model.addAttribute("closeButtonAdmin", hideAdmin(user));
 
         return "registration";
     }
 
     @PostMapping("/registration")
-    public String addUser(@RequestParam String Roleee, @RequestParam String username,
+    public String addUser(@RequestParam String role, @RequestParam String username,
                               @RequestParam String password, Model model) {
 
-//        User userFromDB = userRepository.findByUsername(username);
-//        if (userFromDB != null) {
-//            model.addAttribute("message", "User exists!");
-//        }
+        User newUser = new User(username, password);
+        Role usersRole = rolerep.findByName(role).orElseThrow();
 
-        User newuser = new User(username, password);
-        Role role = rolerep.findByName(Roleee).orElseThrow();
+        newUser.setRole(usersRole);
+        newUser.setActive(true);
+        userRepository.save(newUser);
+        System.out.println(redirect(newUser));
+        return redirect(newUser);
+    }
 
-        newuser.setRole(role);
-        newuser.setActive(true);
-        userRepository.save(newuser);
+    public String redirect (User user){
+        String redirect = "";
 
-
-        if(newuser.getRole().getName().equals("user")) {
+        if(user.getRole().getName().equals("USER")) {
             Buddy buddy = new Buddy();
-            buddy.setUser(newuser);
+            buddy.setUser(user);
             buddyRepository.save(buddy);
             int id = buddy.getBuddyId();
-            return "redirect:/buddy/" + id;
+            redirect = "redirect:/buddy/" + id;
+
         }
 
-        if(newuser.getRole().getName().equals("business")) {
+        else if(user.getRole().getName().equals("BUSINESS")) {
             Business business = new Business();
             businessRepository.save(business);
             int id = business.getBusinessId();
-            business.setUser(newuser);
-        return "redirect:/business/" + id;
+            business.setUser(user);
+            redirect ="redirect:/business/" + id;
+        }
+        else if(user.getRole().getName().equals("ADMIN")) {
+
+            redirect ="redirect:/admin" ;
+        }
+        else {
+           redirect = "redirect:/";
         }
 
-        return "redirect:/";
+        return redirect;
+    }
+    public String hideAdmin (UserDetails user){
+        String closeButtonAdmin = "true";
+        if (user != null) {
+            User loggedUser = userRepository.findByUsername(user.getUsername());
+
+            if (loggedUser.getRole().getName().equals("ADMIN")) {
+                closeButtonAdmin = "false";
+            }
+            else {
+                closeButtonAdmin = "true";
+            }
+        }
+        return closeButtonAdmin;
     }
 
 

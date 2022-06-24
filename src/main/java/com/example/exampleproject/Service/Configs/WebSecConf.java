@@ -46,7 +46,7 @@ public class WebSecConf extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/login", "/registration", "/feed", "/logout").permitAll()
-                .antMatchers("/admin/").hasAnyAuthority("ROLE_ADMIN")
+                .antMatchers("/admin").hasAnyAuthority("ROLE_ADMIN")
                 .antMatchers("/business/", "/buddy/").hasAnyAuthority("ROLE_BUSINESS")
                 .antMatchers("/buddy/", "/business/" ).hasAnyAuthority("ROLE_USER")
 
@@ -57,7 +57,9 @@ public class WebSecConf extends WebSecurityConfigurerAdapter {
 //                .loginProcessingUrl("/perform_login")
 //                .defaultSuccessUrl("/homepage.html",true)
                 .failureUrl("/login?error").permitAll()
+
                 .defaultSuccessUrl("/feed").permitAll() //переход на страницу feed
+//                .successForwardUrl("/admin").usernameParameter("ROLE_ADMIN")
 //                .defaultSuccessUrl("/admin").usernameParameter("ROLE_ADMIN")
 //                .defaultSuccessUrl("/business/1/product-create").usernameParameter("ROLE_BUSINESS")
 
@@ -68,6 +70,7 @@ public class WebSecConf extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login");
+
 
 
     }

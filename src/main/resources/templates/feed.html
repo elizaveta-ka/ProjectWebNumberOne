@@ -5,19 +5,38 @@
     <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../../static/main.css"/>
     <title>Product List</title>
 </head>
+<script>
+    window.onload = function hide() {
+
+        if( document.getElementById("close").innerText == "true") {
+            document.getElementById("admin").hidden = true;
+
+        }
+        else {
+            document.getElementById("admin").hidden = false;
+
+        }
+
+    }
+</script>
 <header>
     <h2>Feed</h2>
 
 </header>
 <body>
 <section>
-    <SideMenu id="SideMenu">
+    <a id="admin" th:href="@{/admin}" onload = "return hide()">USERS</a>
+    <SideMenu id="SideMenu" >
 <!--        <li><a th:href="@{/buddy/{id}(id=${home.id})}">HomeBuddy</a></li>-->
         <li>Feed</li>
         <li><a th:href="@{/friend}">Найти друга</a></li>
         <li><a th:href="@{/notifications}">Notifications</a></li>
         <li><span style=vertical-align:bottom><a th:href="@{/logout}">Log out</a> </span></li>
+
+<!--        <li><span id="admin" style=vertical-align:bottom><a th:href="@{/admin}">Admin</a> </span></li>-->
     </SideMenu>
+
+
     <article>
 
         <div id="product_block" th:each = "product : ${products}">
@@ -48,6 +67,7 @@
 
     </article><br>
 </section>
+<label  name="close" th:field="${closeButtonAdmin}" hidden id="close" th:value="${closeButtonAdmin}" th:text = "${closeButtonAdmin}"/>
 </body>
 <footer>
     <p>All right reserved and belong to almighty Cthulhu</p>

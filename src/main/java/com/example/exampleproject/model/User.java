@@ -23,27 +23,16 @@ public class User implements UserDetails {
     private String password;
     @Column(name = "active")
     private boolean active;
-    @Transient
-    transient private String confirmPassword;
+//    @Transient
+//    transient private String confirmPassword;
 
     @ManyToOne (optional=false, fetch = FetchType.EAGER)
     @JoinColumn (name="user_role")
     private Role role;
 
-//    @ManyToMany(fetch = FetchType.EAGER)
-//    private List<Role> roles;
+    public User() {
 
-
-//    @OneToMany
-//    private List<Role> roles;
-
-//    public List<Role> getRoles() {
-//        return roles;
-//    }
-//
-//    public void setRoles(List<Role> roles) {
-//        this.roles = roles;
-//    }
+    }
 
     public User(String username, String password) {
         this.username = username;
@@ -51,16 +40,22 @@ public class User implements UserDetails {
         this.active = false;
     }
 
-    public User() {
-
+    public User(String username, String password, Role role) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+        this.active = false;
     }
 
-    public User(int id, String username, String password, boolean active, String confirmPassword, List<Role> roles) {
+
+
+    public User(int id, String username, String password, boolean active, Role role) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.active = active;
-        this.confirmPassword = confirmPassword;
+        this.role = role;
+
     }
 
     @Override
@@ -70,10 +65,9 @@ public class User implements UserDetails {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", active=" + active +
-                ", confirmPassword='" + confirmPassword + '\'' +
+                ", role=" + role +
                 '}';
     }
-
 
 
     @Override
@@ -122,10 +116,7 @@ public class User implements UserDetails {
     public void setRole(Role role) {
         this.role = role;
     }
-//    @ManyToMany
-//    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"),
-//            inverseJoinColumns = @JoinColumn(name = "role_id"))
-//    private Set<Role> roles;
+
 
 
     public boolean isActive() {
@@ -161,12 +152,6 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
 
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
-    }
 
 }

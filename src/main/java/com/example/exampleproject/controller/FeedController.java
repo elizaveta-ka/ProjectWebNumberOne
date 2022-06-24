@@ -41,6 +41,9 @@ public class FeedController {
         User user1 = userRepository.findByUsername(user.getUsername());
         Buddy homeB;
         Business homeBu;
+
+        model.addAttribute("closeButtonAdmin", hideAdminButton(user));
+
         if(user1.getRole().getName().equals("user")) {
             int bId = 0;
             Collection<Buddy> buddies = buddyRepository.findAll();
@@ -106,6 +109,20 @@ public class FeedController {
     public String notificationPage() {
 
         return "notifications";
+    }
+    public String hideAdminButton (UserDetails user){
+        String closeButtonAdmin = "true";
+        if (user != null) {
+            User loggedUser = userRepository.findByUsername(user.getUsername());
+
+            if (loggedUser.getRole().getName().equals("ADMIN")) {
+                closeButtonAdmin = "false";
+            }
+            else {
+                closeButtonAdmin = "true";
+            }
+        }
+        return closeButtonAdmin;
     }
 
 }
