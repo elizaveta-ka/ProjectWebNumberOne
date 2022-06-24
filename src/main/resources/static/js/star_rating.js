@@ -24,5 +24,6 @@
             summ.toPrecision(2);
             console.log(summ);
             $('#rateP1').val(summ);
+            $('#rateB1').val(summ);
         });
     });
