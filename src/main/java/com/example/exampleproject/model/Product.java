@@ -41,6 +41,9 @@ public class Product {
     @Column(name = "product_img")
     private String productImg;
 
+    @Column(name = "pr_rating", nullable = false, columnDefinition="Decimal(10,2) default '3.00'")
+    private float prRating;
+
     public Product(){}
 
     public Product(Set<Business> businesses, Set<Buddy> buddies, Collection<ProductReview> productReviews, ProductCategory productCategory, int productId, String productName, String productImg) {
@@ -51,6 +54,7 @@ public class Product {
         this.productId = productId;
         this.productName = productName;
         this.productImg = productImg;
+        this.prRating = prRating;
     }
 
     public Product(String productName, String productImg) {
@@ -64,8 +68,8 @@ public class Product {
 //                "businesses=" + businesses +
 //                ", buddies=" + buddies +
 //                ", productReviews=" + productReviews +
-                ", productCategory=" + productCategory +
-                ", productId=" + productId +
+//                ", productCategory=" + productCategory +
+//                ", productId=" + productId +
                 ", productName='" + productName + '\'' +
 //                ", productImg='" + productImg + '\'' +
                 '}';
@@ -144,4 +148,11 @@ public class Product {
         business.getProducts().remove(this);
     }
 
+    public float getPrRating() {
+        return prRating;
+    }
+
+    public void setPrRating(float prRating) {
+        this.prRating = prRating;
+    }
 }
