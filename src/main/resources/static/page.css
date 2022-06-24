@@ -14,7 +14,7 @@
 /* ---------- GENERAL ---------- */
 
 body {
-    background-color: #2c3338;
+    background-color: #ffffff;
     color: #606468;
     font-family: 'Open Sans', Arial, sans-serif;
     font-size: 14px;
@@ -22,7 +22,7 @@ body {
 }
 
 a {
-    color: #eee;
+    color: #606468;
     text-decoration: none;
 }
 
@@ -53,8 +53,10 @@ p {
 /* ---------- LOGIN ---------- */
 
 #login {
-    margin: 150px auto;
+    /*display: flex;*/
+    /*flex-direction: column;*/
     width: 280px;
+    margin: auto;
 }
 
 #login form span {
@@ -62,7 +64,7 @@ p {
     border-radius: 3px 0px 0px 3px;
     -moz-border-radius: 3px 0px 0px 3px;
     -webkit-border-radius: 3px 0px 0px 3px;
-    color: #606468;
+    color: #111111;
     display: block;
     float: left;
     height: 50px;
@@ -76,19 +78,21 @@ p {
     outline:none;
 }
 
-#login form input[type="text"], input[type="password"] {
-    background-color: #3b4148;
+#login form input[type="text"], input[type="password"], input[id = "username"], input[id = "age"] {
+    padding: 0 16px;
+    width: 229px;
     border-radius: 0px 3px 3px 0px;
     -moz-border-radius: 0px 3px 3px 0px;
     -webkit-border-radius: 0px 3px 3px 0px;
-    color: #606468;
     margin-bottom: 1em;
-    padding: 0 16px;
-    width: 229px;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
 }
 
-#login form input:focus {
-    color:#fff;
+#login form input[type="text"]:focus, input[type="password"]:focus, input[id = "username"]:focus, input[id = "age"]:focus {
+    background-color: #ddd;
+    outline: none;
 }
 
 #login form input[type="submit"] {
@@ -100,9 +104,18 @@ p {
     font-weight: bold;
     margin-bottom: 2em;
     text-transform: uppercase;
-    cursor:pointer;
+    cursor: pointer;
     width: 261px;
 }
+#login form input:focus {
+    color:#2e61a9;
+}
+
+
+#login form input[type="submit"]:hover {
+    background-color: #2e61a9;
+}
+
 
 #login form input[type="submit"]:hover {
     background-color: #2e61a9;
@@ -116,7 +129,6 @@ p {
     padding-left: 5px;
 }
 
-/* Ñòèëè áàðà vladmaxi, ìîæíî óäàëèòü */
 .vladmaxi-top{
     line-height: 24px;
     font-size: 11px;
@@ -154,4 +166,14 @@ p {
 .vladmaxi-top span.right a{
     float: left;
     display: block;
+}
+#imgCont{
+
+    width: 261px;
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: auto;
+
 }

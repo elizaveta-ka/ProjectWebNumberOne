@@ -3,12 +3,9 @@
 
       xmlns: sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-<!--    <meta charset="UTF-8">-->
     <title>Login</title>
-    <link rel="stylesheet" href="/page.css"/>
+    <link rel="stylesheet" th:href="@{/page.css}"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<!--    <link rel="icon" href="http://vladmaxi.net/favicon.ico" type="image/x-icon">-->
-<!--    <link rel="shortcut icon" href="http://vladmaxi.net/favicon.ico" type="image/x-icon">-->
 </head>
 <body>
 <div class="vladmaxi-top">
@@ -17,6 +14,8 @@
         </span>
     <div class="clr"></div>
 </div>
+
+<div id="imgCont"><img th:src="@{images/BoozeBuddy.png}"></div><br>
 <div id="login">
     <form th:action="@{/login}" method="post">
         <fieldset class="clearfix">
@@ -28,11 +27,10 @@
             </div>
             <div><label> Login : <input class="fontawesome-user" type="text" name="username"/></label></div>
             <div><label> Password: <input class="fontawesome-lock" type="password" name="password"/> </label></div>
-            <div><input type="submit" value="ВОЙТИ"></div>
+            <div><input type="submit" value="Log in"></div>
         </fieldset>
     </form>
-    <!--    <p>Нет аккаунта? &nbsp;&nbsp;<a href="#">Регистрация</a></p>-->
-    <p class="fontawesome-arrow-right"> Нет аккаунта? &nbsp;&nbsp;<a th:href="@{/registration}">Регистрация</a><span></span></p>
+    <p class="fontawesome-arrow-right"> Doesn't have an account? &nbsp;&nbsp;<a th:href="@{/registration}">Registration</a><span></span></p>
 </div>
 </div>
 </body>
