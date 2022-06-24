@@ -39,6 +39,7 @@ public class WebSecConf extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/page.css");
+        web.ignoring().antMatchers("/images/BoozeBuddy.png");
     }
     protected void configure(HttpSecurity http) throws Exception {
 
