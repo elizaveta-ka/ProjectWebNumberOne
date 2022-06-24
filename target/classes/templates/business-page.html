@@ -2,9 +2,10 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <!--      th:fragment="main-fragment (title, otherStaticResources, header, SideMenu, mainContent, footer)">-->
 <head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <title>Business Page</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script type="text/javascript" th:src="@{/js/profileForm.js}"></script>
-    <meta charset="UTF-8">
+    <script type="text/javascript" th:src="@{/js/star_rating.js}"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../../static/main.css"/>
     <title>Business Page</title>
 
@@ -104,7 +105,7 @@
             <div><label for="reviewTitle"><input class="reviewTitlePr" id = "reviewTitle" type="text" th:value="${reviewTitle}" name="reviewTitle"/> </label></div>
             Review:<br>
             <div><label for="reviewProduct"><textarea class="reviewProductPr" id = "reviewProduct" th:value="${reviewProduct}" name="reviewProduct"></textarea> </label></div>
-            <div><label for="rateP1"><input id="rateP1" type="text" th:value="${rateP1}" name="rateP1" value=""></label></div>
+            <div><label for="rateB1"><input id="rateB1" type="text" th:value="${rateB1}" name="rateB1" value=""></label></div>
             <div id="rating_new">
                 <div class="param">Параметр 1:</div>
                 <div><div class="stars"></div><p class="progress" id="p1"></p></div>
