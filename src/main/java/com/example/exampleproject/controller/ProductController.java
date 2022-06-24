@@ -7,6 +7,7 @@ import com.example.exampleproject.repository.BuddyRepository;
 import com.example.exampleproject.repository.ProductCategoryRepository;
 import com.example.exampleproject.repository.ProductRepository;
 import com.example.exampleproject.repository.UserRepository;
+import com.google.common.collect.Iterables;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -96,15 +97,11 @@ public class ProductController {
     @RequestMapping(value = "/product/{id}", method = RequestMethod.POST)
     public String addReview(@PathVariable("id") int id, @AuthenticationPrincipal UserDetails user, ProductReview pr) {
         ProductReview productReview = new ProductReview();
-
         productReview.setReviewTitle(pr.getReviewTitle());
         productReview.setReviewProduct(pr.getReviewProduct());
         productReview.setRateP1(pr.getRateP1());
-
         Product product = productRepository.getById(id);
-
         User user1 = userRepository.findByUsername(user.getUsername());
-        System.out.println(user1);
         List<Buddy> buddies = buddyRepository.findAll();
         int bId = 0;
         for (var b:buddies) {
@@ -121,24 +118,25 @@ public class ProductController {
         productReview.setBuddy(buddy);
         productReview.setProduct(product);
         productReview.setProductId(product.getProductId());
-
-        System.out.println(productReview);
         buddyRepository.saveAndFlush(buddy);
-
-        System.out.println(productReview);
         productReviewRepository.saveAndFlush(productReview);
-        System.out.println(pr);
+        calculateRating(id);
         return "redirect:/product/" + id;
     }
-//    @GetMapping("/product/{id}")
-//    public String showUpdateForm(@PathVariable("id") int id, Model model) {
-//        ProductReview pr = productReviewRepository.findById(id).get();
-//        model.addAttribute("productReview", pr);
-//        return "redirect:/product" + id;
-//    }
     @RequestMapping(value = "/product/{id}/edit-review", method = RequestMethod.POST)
     public String editReview(@PathVariable("id") int id, Model model, BindingResult result, @Valid ProductReview pr) {
         productReviewRepository.save(pr);
         return "redirect:/product" + id;
+    }
+    public void calculateRating(int id){
+        float calcRate = 0;
+        Product p = productRepository.getById(id);
+        for (int i = 0; i<p.getProductReviews().size(); i++){
+            ProductReview pr = Iterables.get(p.getProductReviews(), i) ;
+            calcRate+=pr.getRateP1();
+        }
+        calcRate /=p.getProductReviews().size();
+        productRepository.getById(id).setPrRating(calcRate);
+        productRepository.save(productRepository.getById(id));
     }
 }

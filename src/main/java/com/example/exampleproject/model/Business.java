@@ -48,6 +48,9 @@ public class Business {
     @Column(name = "business_link")
     private String businessLink;
 
+    @Column(name = "br_rating", nullable = false, columnDefinition="Decimal(10,2) default '3.00'")
+    private float brRating;
+
     public Business() {
         super();
     }
@@ -58,6 +61,7 @@ public class Business {
         this.busImg = busImg;
         this.location = location;
         this.businessLink = businessLink;
+        this.brRating = brRating;
     }
 
     public Business(Set<Product> products, Collection<BusinessReview> businessReviews, int businessId, User user, String busName, String busImg, String location, String businessLink) {
@@ -155,5 +159,13 @@ public class Business {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public float getBrRating() {
+        return brRating;
+    }
+
+    public void setBrRating(float brRating) {
+        this.brRating = brRating;
     }
 }

@@ -3,6 +3,7 @@ package com.example.exampleproject.controller;
 import com.example.exampleproject.Service.RoleOnPage;
 import com.example.exampleproject.model.*;
 import com.example.exampleproject.repository.*;
+import com.google.common.collect.Iterables;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -144,7 +145,6 @@ public class BusinessController {
         businessReview.setRateB1(br.getRateB1());
         Business business = businessRepository.getById(id);
         User user1 = userRepository.findByUsername(user.getUsername());
-        System.out.println(user1);
         List<Buddy> buddies = buddyRepository.findAll();
         int bId = 0;
         for (var b:buddies) {
@@ -155,16 +155,24 @@ public class BusinessController {
         }
         Buddy buddy = buddyRepository.getById(bId);
         businessReview.setBuddy(buddy);
-//        Collection<BusinessReview> businessReviews = buddy.getProductAuthors();
-//        businessReviews.add(productReview);
         businessReview.setBuddy(buddy);
         businessReview.setBuddyId(buddy.getBuddyId());
         businessReview.setBusiness(business);
         businessReview.setBusinessId(business.getBusinessId());
         buddyRepository.saveAndFlush(buddy);
-        System.out.println(businessReview);
         businessReviewRepository.saveAndFlush(businessReview);
-        System.out.println(br);
+        calculateRating(id);
         return "redirect:/business/" + id;
+    }
+    public void calculateRating(int id){
+        float calcRate = 0;
+        Business p = businessRepository.getById(id);
+        for (int i = 0; i<p.getBusinessReviews().size(); i++){
+            BusinessReview pr = Iterables.get(p.getBusinessReviews(), i) ;
+            calcRate+=pr.getRateB1();
+        }
+        calcRate /=p.getBusinessReviews().size();
+        businessRepository.getById(id).setBrRating(calcRate);
+        businessRepository.save(businessRepository.getById(id));
     }
 }
