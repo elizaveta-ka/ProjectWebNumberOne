@@ -20,8 +20,8 @@ import org.springframework.stereotype.Component;
 public class WebSecConf extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserService userService;
-    @Autowired
-    private MyAP aadapter;
+//    @Autowired
+//    private MyAP aadapter;
 
     @Autowired
     public WebSecConf(UserService userService) {
@@ -32,7 +32,7 @@ public class WebSecConf extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userService)
                         .passwordEncoder(NoOpPasswordEncoder.getInstance());
-        auth.authenticationProvider(aadapter);
+//        auth.authenticationProvider(aadapter);
 
     }
 

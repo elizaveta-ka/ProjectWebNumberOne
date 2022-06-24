@@ -6,16 +6,28 @@
     <title>Spring Security Example </title>
 </head>
 <script>
+    window.onload = function hide() {
+
+        if( document.getElementById("close").innerText == "true") {
+            document.getElementById("Choice0").hidden = true;
+            document.getElementById("label").hidden = true;
+        }
+        else if ( document.getElementById("close").innerText == "false"){
+            document.getElementById("Choice0").hidden = false;
+            document.getElementById("label").hidden = false;
+        }
+
+    }
 
     function verify() {
         var pw = document.getElementById("password1").value;
         var pw1 = document.getElementById("password2").value;
         var user = document.getElementById("username").value;
+        var age = document.getElementById("age").value;
         var users = document.getElementById("users").innerHTML;
         var form = document.querySelector("form");
         var data = new FormData(form);
         var outputRole = "";
-        var age = document.getElementById("age").value;
         for (const entry of data) {
             outputRole = entry[0] + entry[1];
         };
@@ -24,75 +36,68 @@
             document.getElementById("message").innerHTML = "**Fill the username please!";
             return false;
         }
-        if (! /^[a-zA-Z0-9_]+$/.test(user)) {
+        else if (! /^[a-zA-Z0-9_]+$/.test(user)) {
             document.getElementById("message").innerHTML = "**Only letters, numbers and '_' in username!";
             return false;
         }
-        if(user.length < 4) {
+        else if(user.length < 4) {
             document.getElementById("message").innerHTML = "**Username length must be atleast 4 characters";
             return false;
         }
-        if(user.length > 15) {
+        else if(user.length > 15) {
             document.getElementById("message").innerHTML = "**Username length must not exceed 15 characters";
             return false;
         }
 
 
-            if(users.includes(user)) {
-                document.getElementById("message").innerHTML = "**This username exists!";
-                return false;
-            }
+        if(users.includes(user)) {
+            document.getElementById("message").innerHTML = "**This username exists!";
+            return false;
+        }
 
 
 
-
-        if(pw == "") {
+        else if(pw == "") {
             document.getElementById("message").innerHTML = "**Fill the password please!";
             return false;
         }
-        if (! /^[a-zA-Z0-9]+$/.test(pw)) {
+        else if (! /^[a-zA-Z0-9]+$/.test(pw)) {
             document.getElementById("message").innerHTML = "**Only letters and numbers in password!";
             return false;
         }
         //minimum password length validation
-        if(pw.length < 4) {
+        else if(pw.length < 4) {
             document.getElementById("message").innerHTML = "**Password length must be atleast 4 characters";
             return false;
         }
 
 //maximum length of password validation
-        if(pw.length > 15) {
+        else if(pw.length > 15) {
             document.getElementById("message").innerHTML = "**Password length must not exceed 15 characters";
             return false;
         }
 
-        if(pw != pw1) {
+        else if(pw != pw1) {
             document.getElementById("message").innerHTML = "**Password is not confirmed!";
             return false;
         }
-        if(age == "") {
+        else if(age == "") {
             document.getElementById("message").innerHTML = "**Fill the age please!";
             return false;
         }
 
-        if (! /^[0-9]+$/.test(age)) {
+        else if (! /^[0-9]+$/.test(age)) {
             document.getElementById("message").innerHTML = "**Only numbers in age!";
             return false;
         }
-        if(Number(age) > 99) {
+        else if(Number(age) > 99) {
             document.getElementById("message").innerHTML = "**You are too old!";
             return false;
         }
-        if(Number(age) < 18) {
+        else if(Number(age) < 18) {
             document.getElementById("message").innerHTML = "**You are too young!";
             return false;
         }
-        if(outputRole == "Roleee") {
-            document.getElementById("message").innerHTML = "**Choose your role!";
-            return false;
-        }
-
-
 
         else {
 
@@ -124,7 +129,7 @@
 
     <span id = "message" style="color:red"> </span> <br>
 
-    <form class="form-profile" th:action="@{/registration}" method="post" th:name="profile" th:id="profile" onsubmit ="return verify()" >
+    <form class="form-profile" th:action="@{/registration}" method="post" th:name="profile" th:id="profile" onsubmit ="return verify()" onload = "return hide()" >
 
         <div><label for="username"> Login : <input class="fontawesome-user" id = "username" type="text" name="username"/> </label></div>
         <div><label for ="password1">  Password: <input class="fontawesome-lock" id = "password1" type="password" name="password"/> </label></div>
@@ -133,18 +138,24 @@
 
 
         <br>
-        <INPUT class="fontawesome-user" name="Roleee" type="radio" id="Choice1" value="USER">
+        <INPUT class="fontawesome-user" name="role" type="radio" id="Choice1" checked value="USER">
         Buddy
         <br>
-        <INPUT class="fontawesome-user"  name="Roleee" type="radio" id="Choice2" value="BUSINESS">
+        <INPUT class="fontawesome-user"  name="role" type="radio" id="Choice2" value="BUSINESS">
         Business
         <br>
+        <INPUT class="fontawesome-user"  name="role" type="radio" id="Choice0" value="ADMIN">
+        <label for="Choice0" id="label">Administrator</label>
+        <br>
+
         <div><input type="submit" value="Sign in">
             <!--    <input type="hidden" th:field="${buddy.buddyId}" id="buddyId" th:data-buddy="${buddy.buddyId}"></div>-->
         </div>
         <label  name="users" th:field="${users}" hidden id="users" th:value="${users}" th:text = "${users}"/>
-        <br>
-        <INPUT class="hidden" name="Roleee" type="radio" id="Choice0" checked value="">
+
+        <label  name="close" th:field="${closeButtonAdmin}" hidden id="close" th:value="${closeButtonAdmin}" th:text = "${closeButtonAdmin}"/>
+        <!--        <br>-->
+        <!--        <INPUT class="fontawesome-user"  name="Roleee" type="radio" id="Choice0" value="ADMIN">-->
     </form>
 </div>
 </body>

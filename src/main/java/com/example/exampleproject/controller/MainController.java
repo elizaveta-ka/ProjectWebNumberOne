@@ -39,6 +39,7 @@ public class MainController {
 //
 //        userFromDB.setActive(Boolean.parseBoolean(ban));
 //        userRepository.save(userFromDB);
+
         return "admin";
     }
     //
@@ -59,14 +60,27 @@ public class MainController {
 
         return "login";
     }
-    @PostMapping("/admin")
-    public String addUser(@RequestParam String username, @RequestParam String active, Model model) {
-        List <User> users = userRepository.findAll();
-        model.addAttribute("users", users);
-        User user = userRepository.findByUsername(username);
-        user.setActive(Boolean.parseBoolean(active));
-        userRepository.save(user);
-        return "admin";
+//    @PostMapping("/admin")
+//    public String addUser(@RequestParam String username, @RequestParam String active, Model model) {
+//        List <User> users = userRepository.findAll();
+//        model.addAttribute("users", users);
+//        User user = userRepository.findByUsername(username);
+//        user.setActive(Boolean.parseBoolean(active));
+//        userRepository.save(user);
+//        return "admin";
+//    }
+    @GetMapping("/ban-user/{id}")
+    public String banGet(@PathVariable("id") int id, Model model) {
+        User userToBan = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        if (userToBan.isActive()) {
+            userToBan.setActive(false);
+        }
+        else if (!userToBan.isActive()){
+            userToBan.setActive(true);
+        }
+
+        userRepository.save(userToBan);
+        return "redirect:/admin";
     }
 //
 //    @RequestMapping("/login")

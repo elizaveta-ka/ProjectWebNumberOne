@@ -7,12 +7,27 @@
     <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../../static/main.css"/>
     <title>Feed</title>
 </head>
+<script>
+    window.onload = function hide() {
+
+        if( document.getElementById("close").innerText == "true") {
+            document.getElementById("admin").hidden = true;
+
+        }
+        else {
+            document.getElementById("admin").hidden = false;
+
+        }
+
+    }
+</script>
 <header>
     <h2>Feed</h2>
 
 </header>
 <body>
 <section>
+    <a id="admin" th:href="@{/admin}" onload = "return hide()">USERS</a>
     <SideMenu id="SideMenu">
         <li><a th:id="home" th:href="@{/buddy/{id}(id=${homeId})}">Home</a></li>
         <li>Feed</li>
@@ -57,6 +72,7 @@
 
     </article><br>
 </section>
+<label  name="close" th:field="${hideButtonAdmin}" hidden id="close" th:value="${hideButtonAdmin}" th:text = "${hideButtonAdmin}"/>
 </body>
 <footer>
     <p>All right reserved and belong to almighty Cthulhu</p>

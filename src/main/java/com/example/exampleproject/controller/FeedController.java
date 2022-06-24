@@ -48,6 +48,7 @@ public class FeedController {
             //уменьшить метод
     @GetMapping("/feed")
     public String findAll(@AuthenticationPrincipal UserDetails user, Model model) {
+        model.addAttribute("hideButtonAdmin", hideAdminButton(user));
         User userInPage = userRepository.findByUsername(user.getUsername());
         if(userInPage.getRole().getName().equals("user")) {
             List<Product> products = productRepository.findAll();
@@ -131,6 +132,20 @@ public class FeedController {
 
         return "notifications";
     }
+    public String hideAdminButton (UserDetails user){
+        String closeButtonAdmin = "true";
+        if (user != null) {
+            User loggedUser = userRepository.findByUsername(user.getUsername());
+
+            if (loggedUser.getRole().getName().equals("ADMIN")) {
+                closeButtonAdmin = "false";
+            }
+            else {
+                closeButtonAdmin = "true";
+            }
+        }
+        return closeButtonAdmin;
+    }
 
     //бизнес логика
 
@@ -166,4 +181,5 @@ public class FeedController {
 //        System.out.println(d);
 //        return d;
 //    }
+
 }
