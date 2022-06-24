@@ -32,7 +32,7 @@
 
 
             <h1 th:text="${product.productName}"> productName </h1>
-            <p><a th:href="@{/product/{id}(id=${product.productId})}"><img th:src="@{${product.productImg}}" alt="Buddy image" width="150" height="180"></a></p>
+            <p><a th:href="@{/product/{id}(id=${product.productId})}"><img th:src="@{${product.productImg}}" alt="Product image" width="150" height="280"></a></p>
             <p hidden th:text="${product.productId}" >Id Product</p>
             <p th:value="${watch}"></p>
             <!--      <p th:text="${product.categoryId}">categoryId</p>-->
