@@ -22,9 +22,25 @@ public class Buddy {
     @Fetch(value = FetchMode.SUBSELECT)
     private Collection<ProductReview> productAuthors;
 
-    @OneToMany(mappedBy = "buddy", fetch = FetchType.EAGER)
-    @Fetch(value = FetchMode.SUBSELECT)
-    private Collection<Friend> friends;
+//    @OneToMany(mappedBy = "buddy", fetch = FetchType.EAGER)
+//    @Fetch(value = FetchMode.SUBSELECT)
+//    private Collection<Friend> friends;
+
+    @ManyToMany
+    @JoinTable(
+            name = "buddy_friends",
+            joinColumns = { @JoinColumn(name = "channel_id") },
+            inverseJoinColumns = { @JoinColumn(name = "subscriber_id") }
+    )
+    private Set<Buddy> subscribers = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "buddy_friends",
+            joinColumns = { @JoinColumn(name = "subscriber_id") },
+            inverseJoinColumns = { @JoinColumn(name = "channel_id") }
+    )
+    private Set<Buddy> subscriptions = new HashSet<>();
 
     @ManyToMany
     @JoinTable (name="wishlist",
@@ -54,30 +70,13 @@ public class Buddy {
     public Buddy() {
     }
 
-    public Buddy(Collection friends, String firstName, String lastName, int age, String city, String avatarImg) {
-        this.friends = friends;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-        this.city = city;
-        this.avatarImg = avatarImg;
-    }
-
-    public Buddy(Collection<BusinessReview> businessAuthors, Collection<ProductReview> productAuthors, Collection<Friend> friends, Set<Product> products, User user, int buddyId, String firstName, String lastName, int age, String city, String avatarImg) {
+    public Buddy(Collection<BusinessReview> businessAuthors, Collection<ProductReview> productAuthors, Set<Buddy> subscribers, Set<Buddy> subscriptions, Set<Product> products, User user, int buddyId, String firstName, String lastName, int age, String city, String avatarImg) {
         this.businessAuthors = businessAuthors;
         this.productAuthors = productAuthors;
-        this.friends = friends;
+        this.subscribers = subscribers;
+        this.subscriptions = subscriptions;
         this.products = products;
         this.user = user;
-        this.buddyId = buddyId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-        this.city = city;
-        this.avatarImg = avatarImg;
-    }
-
-    public Buddy(int buddyId, String firstName, String lastName, int age, String city, String avatarImg) {
         this.buddyId = buddyId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -91,7 +90,6 @@ public class Buddy {
         return "Buddy{" +
 //                ", businessAuthors=" + businessAuthors +
 //                ", productAuthors=" + productAuthors +
-                ", friends=" + friends +
 //                ", products=" + products +
                 ", buddyId=" + buddyId +
                 ", firstName='" + firstName + '\'' +
@@ -110,18 +108,6 @@ public class Buddy {
     public void removeProduct(Product product){
         this.products.remove(product);
         product.getBuddies().remove(this);
-    }
-
-    public void setFriends(Collection<Friend> friends) {
-        this.friends = friends;
-    }
-
-    public Collection<Friend> getFriends() {
-        return friends;
-    }
-
-    public void setFriend(Collection friends) {
-        this.friends = friends;
     }
 
     public Collection<BusinessReview> getBusinessAuthors() {
@@ -202,5 +188,21 @@ public class Buddy {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Set<Buddy> getSubscribers() {
+        return subscribers;
+    }
+
+    public void setSubscribers(Set<Buddy> subscribers) {
+        this.subscribers = subscribers;
+    }
+
+    public Set<Buddy> getSubscriptions() {
+        return subscriptions;
+    }
+
+    public void setSubscriptions(Set<Buddy> subscriptions) {
+        this.subscriptions = subscriptions;
     }
 }

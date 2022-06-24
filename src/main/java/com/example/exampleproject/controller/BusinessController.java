@@ -43,19 +43,19 @@ public class BusinessController {
         this.buddyRepository = buddyRepository;
         this.roleOnPage = roleOnPage;
     }
-    @GetMapping("/business-delete/{id}")
-    public String deleteBusiness(@PathVariable(value = "id") int id) {
-
-        businessRepository.deleteById(id);
-        return "redirect:/business";
-    }
-    // работает
-    @GetMapping("/business-update/{id}")
-    public String updateBusinessForm(@PathVariable("id") int id, Model model) {
-        Optional<Business> business = businessRepository.findById(id);
-        model.addAttribute("business", business);
-        return "/business-update";
-    }
+//    @GetMapping("/business-delete/{id}")
+//    public String deleteBusiness(@PathVariable(value = "id") int id) {
+//
+//        businessRepository.deleteById(id);
+//        return "redirect:/business";
+//    }
+//    // работает
+//    @GetMapping("/business-update/{id}")
+//    public String updateBusinessForm(@PathVariable("id") int id, Model model) {
+//        Optional<Business> business = businessRepository.findById(id);
+//        model.addAttribute("business", business);
+//        return "/business-update";
+//    }
 
     @GetMapping("/business/{id}")
     public String showBusinessPage(@PathVariable("id") int id, @AuthenticationPrincipal UserDetails user, Model model) throws UnsupportedEncodingException {
@@ -136,6 +136,33 @@ public class BusinessController {
         int id = business1.getBusinessId();
         return "redirect:/business/"+ id;
     }
+    @PostMapping("/product-delete")
+    public String deleteProduct(@AuthenticationPrincipal UserDetails user, Product product){
+        System.out.println(product);
+        User user1 = userRepository.findByUsername(user.getUsername());
+        int bId = 0;
+        Collection<Business> businesses = businessRepository.findAll();
+        for (var b:businesses) {
+            User user2 = b.getUser();
+            if(user1.equals(user2)) {
+                bId = b.getBusinessId();
+            }
+        }
+        Product product1 = productRepository.getById(product.getProductId());
+        System.out.println(product1);
+        Business business1 = businessRepository.getById(bId);
+        Set<Product> productBusiness = business1.getProducts();
+        productBusiness.remove(product1);
+        business1.setProducts(productBusiness);
+        businessRepository.save(business1);
+
+        Set<Business> businessByProduct = product1.getBusinesses();
+        businessByProduct.remove(business1);
+        product1.setBusinesses(businessByProduct);
+        productRepository.delete(product1);
+        return "redirect:/business/"+ bId + "/product-create";
+    }
+
 
     @RequestMapping(value = "/business/{id}/add-review", method = RequestMethod.POST)
     public String addReview(@PathVariable("id") int id, @AuthenticationPrincipal UserDetails user, BusinessReview br) {

@@ -64,6 +64,10 @@
                     <img th:src="@{${product.productImg}}" alt="Product image" width="130" height="180"></a></th>
                 <h1 th:text="${product.productName}"> Product_NAME </h1>
                 <p th:text="${product['productCategory']['categoryName']}">Category_NAME</p>
+                <form name="productForm" th:action="@{/product-delete}" th:object="${product}" method="POST" >
+                    <div><label for="productId"><input class="productIdPr" id = "productId" type="hidden" th:value="${product.productId}" name="productId"/> </label></div>
+                    <input type="submit" value="Delete" id="btnAdd"/>
+                </form>
             </div>
         </div>
         <br>

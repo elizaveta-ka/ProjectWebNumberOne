@@ -39,7 +39,7 @@
                 <p hidden id="roleB" th:text = "${business.user.role.id}"
                     th:data-roleB="${business.user.role.id}"> role </p>
                 <p th:text="${business.businessLink}">Link</p>
-                <p><img th:src="@{${business.busImg}}" alt="Buddy image" width="300" height="200"></a></p>
+                <p><img th:src="@{${business.busImg}}" alt="Business image" width="300" height="200"></a></p>
                 <p th:text="${Distance}">2 km away</p>
                 <input type="submit" value="Edit" id="editBtn"/>
             </div>
@@ -97,7 +97,7 @@
                                     </div>
                             </tr>
                         </table>
-                        <td><a id="addNewProduct" th:href="@{{id}/product-create(id=${business.businessId})}">Add new product</a></td>
+                        <td><a id="addNewProduct" th:href="@{{id}/product-create(id=${business.businessId})}">Menu editing</a></td>
 <!--                        <button><a th:href="@{business/{businessId}/product-create}">Add new product</a></button>-->
                     </div>
                 </div>

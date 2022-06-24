@@ -2,90 +2,97 @@ package com.example.exampleproject.Service;
 
 import com.example.exampleproject.model.Buddy;
 import com.example.exampleproject.model.Product;
-import com.example.exampleproject.model.ProductReview;
 import com.example.exampleproject.repository.BuddyRepository;
-import com.example.exampleproject.repository.ProductRepository;
+import com.example.exampleproject.repository.BusinessRepository;
+import com.example.exampleproject.repository.ProductCategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
+
 @Service
 public class BusinessLogicService {
 
-    private ProductRepository productRepository;
+    private final BuddyRepository buddyRepository;
 
-    private BuddyRepository buddyRepository;
+    private final BusinessRepository businessRepository;
+
+    private final ProductCategoryRepository productCategoryRepository;
 
     @Autowired
-    public BusinessLogicService(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+    public BusinessLogicService(BuddyRepository buddyRepository, BusinessRepository businessRepository, ProductCategoryRepository productCategoryRepository) {
+        this.buddyRepository = buddyRepository;
+        this.businessRepository = businessRepository;
+        this.productCategoryRepository = productCategoryRepository;
     }
 
-
-
-
-
-    public double createSimilarityCoefficient(Buddy buddy, Buddy buddyForComparison) {
-        buddy = buddyRepository.getById(1);
-        buddyForComparison = buddyRepository.getById(2);
-        compareProductRate(buddy, buddyForComparison);
-        double temp = 0;
-        double a = 0;
-        double b = 0;
-        double c = 0;
-
-        a = compareProductRate(buddy, buddyForComparison);
-        b = Math.sqrt(compareProductRate(buddy, buddy));
-        c = Math.sqrt(compareProductRate(buddyForComparison, buddyForComparison));
-        temp = b * c;
-        if(temp == 0) {
-            return 0;
+    //business logic
+    public List<Product> createProductRecommendations(List<Product> products, Buddy buddy) {
+        //перевод из Set в List
+        List<Product> buddyProducts = new ArrayList<>();
+        for (var bProduct:buddy.getProducts()) {
+            buddyProducts.add(bProduct);
         }
-        return a/ (b * c);
-    }
-
-
-    
-    public double createKCoeff(List<Buddy> buddies, Buddy buddy) {
-        double kCoeff = 0;
-        for (int i = 0; i < buddies.size(); i++) {
-            if(buddies.get(i).equals(buddy.getBuddyId()))
-                continue;
-            kCoeff += 1/Math.abs(createSimilarityCoefficient(buddy, buddies.get(i)));
-        }
-        return kCoeff;
-    }
-
-
-
-
-    public List<Product> makeRec(Buddy buddy) {
-        List<Product> bestProducts = null;
-        System.out.println(buddy);
-        return bestProducts;
-    }
-
-
-    public double compareProductRate(Buddy buddy, Buddy buddyForComparison) {
-        double d = 0;
-//        buddy = buddyRepository.getById(1);
-//        buddyForComparison = buddyRepository.getById(2);
-        Collection<Product> products = buddyForComparison.getProducts();
-        Collection<Product> products2 = buddy.getProducts();
-        for (var pr : products) {
-            for (var p: products2) {
-                if (pr.getProductId() == p.getProductId()) {
-                    for (var r:pr.getProductReviews()) {
-                        for (var r2:p.getProductReviews()) {
-                            d += r.getRateP4() * r2.getRateP4();
-                        }
-                    }
+        //исключаем wishlist
+        for (int i = 0; i < products.size(); i++) {
+            for (int j = 0; j < buddyProducts.size(); j++) {
+                if(buddyProducts.get(j).getProductId() == products.get(i).getProductId()) {
+                    products.remove(products.get(i));
                 }
             }
         }
-        System.out.println(d);
-        return d;
+        // система приоритета
+        List<Product> productRecommend = calculatePriority(products, buddyProducts);
+
+        return productRecommend;
+    }
+
+    public List<Product> calculatePriority(List<Product> products, List<Product> buddyProducts) {
+        // map Оценка: Продукт отсортированна по убыванию оценки
+        Map<Float, Product> map = new TreeMap<>(Collections.reverseOrder());
+        for (var p:products) {
+            if(p.getProductCategory().getCategoryId() != getPopularCategory(buddyProducts))
+                map.put(p.getPrRating(), p);
+        }
+
+        //отсортированный лист по оценке
+        List<Product> productsNew1 = new ArrayList<>(map.values());
+
+        // map Оценка: Продукт отсортированна по убыванию оценки на популярную категорию
+        Map<Float, Product> mapPopularCategory = new TreeMap<>(Collections.reverseOrder());
+        for (var p:products) {
+            if(p.getProductCategory().getCategoryId() == getPopularCategory(buddyProducts))
+                mapPopularCategory.put(p.getPrRating(), p);
+        }
+
+        List<Product> productsNew2 = new ArrayList<>(mapPopularCategory.values());
+        productsNew2.addAll(productsNew1);
+        return productsNew2;
+    }
+
+
+    //возвращает id популярной категории у buddy(самое наибольшее количество в wishlist)
+    public Integer getPopularCategory(List<Product> buddyProducts){
+        List<Integer> productCategories = new ArrayList<>();
+        for (var p:buddyProducts) {
+            productCategories.add(p.getProductCategory().getCategoryId());
+        }
+        int tempOccurrences = 0;
+        int tempElement = 0;
+        int mostOccurrences = 0;
+        int mostElement = 0;
+        for (int i = 0; i < productCategories.size(); i++) {
+            if (tempElement == productCategories.get(i)) {
+                tempOccurrences++;
+                if (tempOccurrences > mostOccurrences) {
+                    mostOccurrences = tempOccurrences;
+                    mostElement = tempElement;
+                }
+            } else {
+                tempOccurrences = 1;
+                tempElement = productCategories.get(i);
+            }
+        }
+        return mostElement;
     }
 }
