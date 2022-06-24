@@ -7,12 +7,27 @@
     <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../../static/main.css"/>
     <title>Feed</title>
 </head>
+<script>
+    window.onload = function hide() {
+
+        if( document.getElementById("close").innerText == "true") {
+            document.getElementById("admin").hidden = true;
+
+        }
+        else {
+            document.getElementById("admin").hidden = false;
+
+        }
+
+    }
+</script>
 <header>
     <h2>Feed</h2>
 
 </header>
 <body>
 <section>
+    <a id="admin" th:href="@{/admin}" onload = "return hide()">USERS</a>
     <SideMenu id="SideMenu">
         <li><a th:id="home" th:href="@{/buddy/{id}(id=${homeId})}">Home</a></li>
         <li>Feed</li>
@@ -32,7 +47,7 @@
 
 
             <h1 th:text="${product.productName}"> productName </h1>
-            <p><a th:href="@{/product/{id}(id=${product.productId})}"><img th:src="@{${product.productImg}}" alt="Buddy image" width="150" height="180"></a></p>
+            <p><a th:href="@{/product/{id}(id=${product.productId})}"><img th:src="@{${product.productImg}}" alt="Product image" width="150" height="280"></a></p>
             <p hidden th:text="${product.productId}" >Id Product</p>
             <p th:value="${watch}"></p>
             <!--      <p th:text="${product.categoryId}">categoryId</p>-->
@@ -57,6 +72,7 @@
 
     </article><br>
 </section>
+<label  name="close" th:field="${hideButtonAdmin}" hidden id="close" th:value="${hideButtonAdmin}" th:text = "${hideButtonAdmin}"/>
 </body>
 <footer>
     <p>All right reserved and belong to almighty Cthulhu</p>

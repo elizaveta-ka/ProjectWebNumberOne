@@ -4,6 +4,8 @@ package com.example.exampleproject.controller;
 import com.example.exampleproject.model.*;
 import com.example.exampleproject.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,42 +44,46 @@ public class RegistrationController {
 
 
     @GetMapping("/registration")
-    public String registration() {
+    public String registration(@AuthenticationPrincipal UserDetails user, Model model) {
+        List<User> usersrep = userRepository.findAll();
+        List <String> users = new ArrayList<>();
+        for (var userdb : usersrep)
+            users.add(userdb.getUsername());
+        model.addAttribute("users", users);
+        String hideAdminFlag = "true";
+        if (user != null)
+           hideAdminFlag = hideAdmin(user);
+            model.addAttribute("closeButtonAdmin", hideAdminFlag);
+
         return "registration";
     }
 
+
     @PostMapping("/registration")
-    public String addUser(@RequestParam String Roleee, @RequestParam String username,
-                              @RequestParam String password, @RequestParam int age, User user, Model model) {
-        User userFromDB = userRepository.findByUsername(username);
-        List<User> usersRep = userRepository.findAll();
+    public String addUser(@RequestParam String role, @RequestParam String username,
+                              @RequestParam String password, @RequestParam String age) {
 
-        //спросить у Андрея
-        List <String> users = new ArrayList<>();
-        for (var us : usersRep)
-            users.add(us.getUsername());
 
-        if (userFromDB != null) {
-            model.addAttribute("message", "User exists!");
-            return "registration";
-        }
         User newUser = new User(username, password);
 
-        System.out.println(user);
-        Role role = rolerep.findByName(Roleee).orElseThrow();
+        Role newRole = rolerep.findByName(role).orElseThrow();
+        System.out.println(newRole);
+        newUser.setRole(newRole);
 
-        newUser.setRole(role);
         newUser.setActive(true);
         userRepository.save(newUser);
-        System.out.println(newUser);
 
-        if(newUser.getRole().getName().equals("user")) {
-            return makeRedirectBuddyAfterRegistration(newUser, age);
+        if(newUser.getRole().getName().equals("USER")) {
+
+            return makeRedirectBuddyAfterRegistration(newUser, Integer.parseInt(age));
         }
-        else if (newUser.getRole().getName().equals("business")) {
+        else if (newUser.getRole().getName().equals("BUSINESS")) {
           return makeRedirectBusinessAfterRegistration(newUser);
         }
-            return "redirect:/";
+        else if (newUser.getRole().getName().equals("ADMIN")){
+            return makeRedirectAdminAfterRegistration();
+        }
+            return "redirect:/feed";
     }
 
     public String makeRedirectBuddyAfterRegistration(User user, int age) {
@@ -101,7 +107,26 @@ public class RegistrationController {
             page = "redirect:/business/"+ id;
             return page;
     }
+    public String makeRedirectAdminAfterRegistration() {
 
+        return "redirect:/admin";
+    }
+
+
+    public String hideAdmin (UserDetails user){
+        String closeButtonAdmin = "true";
+        if (user != null) {
+            User loggedUser = userRepository.findByUsername(user.getUsername());
+
+            if (loggedUser.getRole().getName().equals("ADMIN")) {
+                closeButtonAdmin = "false";
+            }
+            else {
+                closeButtonAdmin = "true";
+            }
+        }
+        return closeButtonAdmin;
+    }
 
 
 

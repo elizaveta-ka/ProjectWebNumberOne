@@ -12,15 +12,21 @@
 <script type="text/javascript" src="/plugins/jquery.viewportchecker.js"></script>
 <script>
 
-    function ban() {
-        var result = document.getElementById("active").value;
+    window.onload = function hide() {
 
-        document.getElementById("message").innerHTML = "Banned";
-
+        if( document.getElementById("role").innerText == "ADMIN") {
+            document.getElementById("ban").hidden = true;
+            document.getElementById("password").innerHTML = "*******";
+        }
+        else  {
+            document.getElementById("ban").hidden = false;
+        }
     }
+
 </script>
 
 <body>
+<li><span style=vertical-align:bottom><a th:href="@{/logout}">Log out</a> </span></li>
 <!--<?php-->
 <!--if (isset($_POST['posted'])) {-->
 <!--${banned} = ban;-->
@@ -43,7 +49,7 @@
             </tr>
             </thead>
             <tbody>
-            <form class="form-profile" th:action="@{/admin}" method="post" th:name="profile" th:id="profile" onsubmit ="return ban()" >
+            <form class="form-profile" th:action="@{/admin}" method="post" th:name="profile" th:id="profile" onload = "return hide()" >
             <tr th:each="user : ${users}">
                 <td th:text="${user.id}"></td>
                 <td name = "username" id = "username" th:text="${user.username}" th:value="${user.username}"></td>
@@ -51,12 +57,7 @@
                 <td th:text="${user.password}"></td>
                 <td name = "active" id = "active" th:text="${user.active}" th:value = ${user.active}></td>
                 <td th:text="${user.role.getName()}"></td>
-                <td
-                 method="POST" action="listbox.php">
-
-<!--                        <input class="jqButton" type="checkbox" id="ban">-->
-                    <input type="submit" value="Отправить">
-                    <span id = "message" style="color:red"> </span> <br>
+                <td><a id="ban" th:href="@{/ban-user/{id}(id=${user.id})}">Ban/Unban<i></i></a></td>
                     </form>
                 </form>
                 </td>
@@ -70,5 +71,6 @@
 
 
         </table>
+        <p><a href="/registration">Create user</a></p>
 </body>
 </html>

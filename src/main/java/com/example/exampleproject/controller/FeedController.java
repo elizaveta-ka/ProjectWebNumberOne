@@ -48,18 +48,22 @@ public class FeedController {
             //уменьшить метод
     @GetMapping("/feed")
     public String findAll(@AuthenticationPrincipal UserDetails user, Model model) {
+        model.addAttribute("hideButtonAdmin", hideAdminButton(user));
         User userInPage = userRepository.findByUsername(user.getUsername());
         if(userInPage.getRole().getName().equals("user")) {
+            List<Product> products = productRepository.findAll();
             Buddy buddy = roleOnPage.findRoleBuddyOnPage(userInPage);
             model.addAttribute("homeId", buddy.getBuddyId());
+            List<Product> productsRecommendations = roleOnPage.createProductRecommendations(products, buddy);
+            model.addAttribute("products", productsRecommendations);
         } else if (userInPage.getRole().getName().equals("business")) {
+            List<Product> products = productRepository.findAll();
             Business business = roleOnPage.findRoleBusinessOnPage(userInPage);
             model.addAttribute("homeId", business.getBusinessId());
+            model.addAttribute("products", products);
         }
-        List<Product> products = productRepository.findAll();
         List<ProductCategory> productCategories = productCategoryRepository.findAll();
-
-        model.addAttribute("products", products);
+//        model.addAttribute("products", products);
         model.addAttribute("user", userInPage);
         model.addAttribute("productCategories", productCategories);
         return "feed";
@@ -128,6 +132,20 @@ public class FeedController {
 
         return "notifications";
     }
+    public String hideAdminButton (UserDetails user){
+        String closeButtonAdmin = "true";
+        if (user != null) {
+            User loggedUser = userRepository.findByUsername(user.getUsername());
+
+            if (loggedUser.getRole().getName().equals("ADMIN")) {
+                closeButtonAdmin = "false";
+            }
+            else {
+                closeButtonAdmin = "true";
+            }
+        }
+        return closeButtonAdmin;
+    }
 
     //бизнес логика
 
@@ -163,4 +181,5 @@ public class FeedController {
 //        System.out.println(d);
 //        return d;
 //    }
+
 }
