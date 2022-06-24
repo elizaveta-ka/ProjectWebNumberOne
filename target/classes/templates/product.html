@@ -5,6 +5,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript" th:src="@{/js/profileForm.js}"></script>
     <script type="text/javascript" th:src="@{/js/star_rating.js}"></script>
+    <script type="text/javascript" th:src="@{/js/showReview.js}"></script>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../../static/main.css"/>
     <title>Product Page</title>
@@ -60,16 +61,16 @@
             <div><label for="reviewProduct"><textarea class="reviewProductPr" id = "reviewProduct" th:value="${reviewProduct}" name="reviewProduct"></textarea> </label></div>
             <div><label for="rateP1"><input id="rateP1" type="text" th:value="${rateP1}" name="rateP1" value=""></label></div>
             <div id="rating_new">
-                <div class="param">Параметр 1:</div>
+                <div class="param" th:text="${product.productCategory.firstAtt} + ${' :'}">Param 1:</div>
                 <div><div class="stars"></div><p class="progress" id="p1"></p></div>
                 <div class="rating_new" id="param1">5.0</div>
-                <div class="param">Параметр 2:</div>
+                <div class="param" th:text="${product.productCategory.secondAtt} + ${' :'}">Param 2:</div>
                 <div><div class="stars"></div><p class="progress" id="p2"></p></div>
                 <div class="rating_new" id="param2">5.0</div>
-                <div class="param">Параметр 3:</div>
+                <div class="param" th:text="${product.productCategory.thirdAtt} + ${' :'}">Param 3:</div>
                 <div><div class="stars"></div><p class="progress" id="p3"></p></div>
                 <div class="rating_new" id="param3">5.0</div>
-                <div class="param">Общая оценка:</div>
+                <div class="param">Overall score :</div>
                 <div><div id="sum_stars"></div><p id="sum_progress"></p></div>
                 <div id="summ">5.00</div>
                 <input name="Add review" id="submitButton" type="submit" value="add-review">

@@ -68,34 +68,6 @@ public class FeedController {
         return "feed";
     }
 
-//    public Buddy findRoleBuddyOnPage(User user) {
-//        int bId = 0;
-//        Collection<Buddy> buddies = buddyRepository.findAll();
-//        for (var b : buddies) {
-//            User user2 = b.getUser();
-//            if (user.equals(user2)) {
-//                bId = b.getBuddyId();
-//            }
-//        }
-//        Buddy buddy = buddyRepository.getById(bId);
-//        return buddy;
-//    }
-//
-//    public Business findRoleBusinessOnPage(User user) {
-//        int buId = 0;
-//        Collection<Business> businesses = businessRepository.findAll();
-//        for (var b : businesses) {
-//            User user2 = b.getUser();
-//            if (user.equals(user2)) {
-//                buId = b.getBusinessId();
-//            }
-//        }
-//        Business business = businessRepository.getById(buId);
-//        return business;
-//    }
-
-
-
     @PostMapping("/feed")
     public String addWishlist(@AuthenticationPrincipal UserDetails user, Product product) {
         System.out.println(user);

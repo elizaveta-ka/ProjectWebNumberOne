@@ -7,6 +7,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript" th:src="@{/js/star_rating.js}"></script>
     <script type="text/javascript" th:src="@{/js/profileForm.js}"></script>
+    <script type="text/javascript" th:src="@{/js/showEditBusiness.js}"></script>
+    <script type="text/javascript" th:src="@{/js/showReview.js}"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../../static/main.css"/>
     <title>Business Page</title>
 
@@ -33,10 +35,13 @@
             <div th:fragment="business">
                 <h1 th:text="${business.busName}"> Business_NAME </h1>
                 <p th:text="${business.location}">Location</p>
+                <p  hidden id="userName" th:text="${business.user.id}" th:data-userName="${business.user.id}">User</p>
+                <p hidden id="roleB" th:text = "${business.user.role.id}"
+                    th:data-roleB="${business.user.role.id}"> role </p>
                 <p th:text="${business.businessLink}">Link</p>
                 <p><img th:src="@{${business.busImg}}" alt="Buddy image" width="300" height="200"></a></p>
                 <p th:text="${Distance}">2 km away</p>
-                <input type="submit" value="Редактировать" id="editBtn"/>
+                <input type="submit" value="Edit" id="editBtn"/>
             </div>
 
 <!--            <iframe id="iframe1" name="iframe1" style="position: absolute; left: -9999px;"></iframe>-->
@@ -45,7 +50,8 @@
             <input id="name" type="text" name="busName" th:value="${business.busName}" placeholder="Имя" /><br/><br/>
             <input id="location" type="text" name="location" th:value="${business.location}" placeholder="Расположение" /><br/><br/>
             <input id="link" type="text" name="businessLink" th:value="${business.businessLink}" placeholder="Ссылка"/><br/><br/>
-            <input type="submit" value="Сохранить" id="btnSubmit"/>
+<!--            <a herf="http://www.google.com">Link</a>-->
+            <input type="submit" value="Save" id="btnSubmit"/>
         </form>
 
 
@@ -82,6 +88,8 @@
                                     <div id="product_block">
                                         <h1 hidden id="role" th:text = "${user.role.id}"
                                             th:data-role="${user.role.id}"> role </h1>
+                                        <h1 hidden id="nameUs" th:text = "${user.id}"
+                                            th:data-nameUs="${user.id}"> USER </h1>
                                         <th th:text="${product.productName}">Product_NAME</th>
                                         <td th:text="${product['productCategory']['categoryName']}">Category_NAME</td>
                                         <p><a th:href="@{/product/{id}(id=${product.productId})}"><img th:src="@{${product.productImg}}" alt="Product image" width="160" height="180"></a></p>
@@ -89,7 +97,7 @@
                                     </div>
                             </tr>
                         </table>
-                        <td><a th:href="@{{id}/product-create(id=${business.businessId})}">Add new product</a></td>
+                        <td><a id="addNewProduct" th:href="@{{id}/product-create(id=${business.businessId})}">Add new product</a></td>
 <!--                        <button><a th:href="@{business/{businessId}/product-create}">Add new product</a></button>-->
                     </div>
                 </div>
@@ -103,17 +111,17 @@
             Review:<br>
             <div><label for="reviewProduct"><textarea class="reviewProductPr" id = "reviewProduct" th:value="${reviewProduct}" name="reviewProduct"></textarea> </label></div>
             <div><label for="rateB1"><input id="rateB1" type="text" th:value="${rateB1}" name="rateB1" value=""></label></div>
-            <div id="rating_new">
-                <div class="param">Параметр 1:</div>
+            <div id="rating_new" >
+                <div class="param">Location :</div>
                 <div><div class="stars"></div><p class="progress" id="p1"></p></div>
                 <div class="rating_new" id="param1">5.0</div>
-                <div class="param">Параметр 2:</div>
+                <div class="param">Comfort :</div>
                 <div><div class="stars"></div><p class="progress" id="p2"></p></div>
                 <div class="rating_new" id="param2">5.0</div>
-                <div class="param">Параметр 3:</div>
+                <div class="param">Service :</div>
                 <div><div class="stars"></div><p class="progress" id="p3"></p></div>
                 <div class="rating_new" id="param3">5.0</div>
-                <div class="param">Общая оценка:</div>
+                <div class="param">Overall score :</div>
                 <div><div id="sum_stars"></div><p id="sum_progress"></p></div>
                 <div id="summ">5.00</div>
                 <input name="Add review" id="submitButton" type="submit" value="add-review">
