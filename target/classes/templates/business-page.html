@@ -2,9 +2,11 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <!--      th:fragment="main-fragment (title, otherStaticResources, header, SideMenu, mainContent, footer)">-->
 <head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <title>Business Page</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/star_rating.js}"></script>
     <script type="text/javascript" th:src="@{/js/profileForm.js}"></script>
-    <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../../static/main.css"/>
     <title>Business Page</title>
 
@@ -26,77 +28,88 @@
             <h1 hidden id="buddIdHo" th:text = "${homeId}"
                 th:data-home="${homeId}"> id </h1>
         </div>
-
+        <div id="product_block">
+            <h1 hidden id="role" th:text = "${user.role.id}"
+                th:data-role="${user.role.id}"> role </h1>
+        </div>
         <div class="Business_block" th:name="business" th:id="business">
             <div th:fragment="business">
                 <h1 th:text="${business.busName}"> Business_NAME </h1>
                 <p th:text="${business.location}">Location</p>
                 <p th:text="${business.businessLink}">Link</p>
-                <p><img th:src="@{${business.busImg}}" alt="Buddy image" width="300" height="200"></a></p>
+                <p><a th:href="@{/business/{id}(id=${business.businessId})}"><img th:src="@{${business.busImg}}" alt="Product image" width="600" height="400"></a></p>
                 <p th:text="${Distance}">2 km away</p>
                 <input type="submit" value="Редактировать" id="editBtn"/>
             </div>
 
-<!--            <iframe id="iframe1" name="iframe1" style="position: absolute; left: -9999px;"></iframe>-->
-        <form hidden name="businessEd" method="POST" th:object="${business}" class="businessForm">
-            <input readonly id="id" type="number" name="id" th:value="${business.businessId}"/><br/><br/>
-            <input id="name" type="text" name="busName" th:value="${business.busName}" placeholder="Имя" /><br/><br/>
-            <input id="location" type="text" name="location" th:value="${business.location}" placeholder="Расположение" /><br/><br/>
-            <input id="link" type="text" name="businessLink" th:value="${business.businessLink}" placeholder="Ссылка"/><br/><br/>
-            <input type="submit" value="Сохранить" id="btnSubmit"/>
-        </form>
+            <!--            <iframe id="iframe1" name="iframe1" style="position: absolute; left: -9999px;"></iframe>-->
+            <form hidden name="businessEd" method="POST" th:object="${business}" class="businessForm">
+                <input readonly id="id" type="number" name="id" th:value="${business.businessId}"/><br/><br/>
+                <input id="name" type="text" name="busName" th:value="${business.busName}" placeholder="Имя" /><br/><br/>
+                <input id="location" type="text" name="location" th:value="${business.location}" placeholder="Расположение" /><br/><br/>
+                <input id="link" type="text" name="businessLink" th:value="${business.businessLink}" placeholder="Ссылка"/><br/><br/>
+                <input type="submit" value="Сохранить" id="btnSubmit"/>
+            </form>
 
 
 
-<!--                <p id="link" th:text="${business.businessLink}" th:data-link="business.businessLink">link</p>-->
-<!--                <a href='${business.businessLink}' class="btn">Переход по ссылке</a>-->
-<!--                <div onclick="javascript:location.href='${business.businessLink}';">Переход по ссылке</div>-->
-<!--                <p align="right"> <button id="linkButton">Book a table</button></p>-->
-<!--            <script>-->
-<!--                $("#linkButton").on('click', function (event) {-->
-<!--                    $.ajax({-->
-<!--                        type: 'GET', // method attribute of form-->
-<!--                        url: '/link'-->
-<!--                    });-->
-<!--                });-->
-<!--            </script>-->
-<!--                <link action="http://italyco.rest/hitch-medikov" target="_blank">-->
-<!--                    <link rel="shortcut icon" href="http://italyco.rest/hitch-medikov">-->
-<!--                    <button>Переход по ссылке</button>-->
+            <!--                <p id="link" th:text="${business.businessLink}" th:data-link="business.businessLink">link</p>-->
+            <!--                <a href='${business.businessLink}' class="btn">Переход по ссылке</a>-->
+            <!--                <div onclick="javascript:location.href='${business.businessLink}';">Переход по ссылке</div>-->
+            <!--                <p align="right"> <button id="linkButton">Book a table</button></p>-->
+            <!--            <script>-->
+            <!--                $("#linkButton").on('click', function (event) {-->
+            <!--                    $.ajax({-->
+            <!--                        type: 'GET', // method attribute of form-->
+            <!--                        url: '/link'-->
+            <!--                    });-->
+            <!--                });-->
+            <!--            </script>-->
+            <!--                <link action="http://italyco.rest/hitch-medikov" target="_blank">-->
+            <!--                    <link rel="shortcut icon" href="http://italyco.rest/hitch-medikov">-->
+            <!--                    <button>Переход по ссылке</button>-->
 
-                <div class="tabs">
-                    <input type="radio" name="inset" value="" id="tab_3" checked>
-                    <label for="tab_3">Rating</label>
+            <div class="tabs">
+                <input type="radio" name="inset" value="" id="tab_3" checked>
+                <label for="tab_3">Rating</label>
 
-                    <input type="radio" name="inset" value="" id="tab_4">
-                    <label for="tab_4">Menu</label><br>
+                <input type="radio" name="inset" value="" id="tab_4">
+                <label for="tab_4">Menu</label><br>
 
-                    <div id="rating">
-                        <div th:each="b : ${business.businessReviews}">
-                            <span th:text="${b.rateB1}"> Rate_B1</span>
-                        </div>
+                <div id="rating">
+                    <div th:each="b : ${business.businessReviews}">
+                        <span th:text="${b.rateB1}"> Rate_B1</span>
+                    </div>
+
+
+                    <!--                <div id = "menu">-->
+                    <!--                    <table th:each="product : ${business.products}" width="100%" border="0" cellpadding="4">-->
+                    <!--                        <tr align="right" valign="top">-->
+                    <!--                            <th th:text="${product.productName}">Product_NAME</th>-->
+                    <!--                            <td th:text="${product['productCategory']['categoryName']}">Category_NAME</td>-->
+                    <!--                            <td>Суммарный рейтинг продукта</td>-->
+                    <!--                        </tr>-->
+                    <!--                    </table>-->
+                    <!--            </div>-->
+
+
                     <div id = "menu">
-<!--                        <article>-->
-                            <td><a th:href="@{{id}/product-create(id=${business.businessId})}">Add new product</a></td>
-                        <div id="business_block">
-                            <table th:each="product : ${business.products}" width="100%" border="0" cellpadding="4">
-<!--                                <tr align="right" valign="top">-->
-                                    <div id="product_block">
-                                        <h1 hidden id="role" th:text = "${user.role.id}"
-                                            th:data-role="${user.role.id}"> role </h1>
-                                        <th th:text="${product.productName}">Product_NAME</th>
-                                        <td th:text="${product['productCategory']['categoryName']}">Category_NAME</td>
-                                        <p><a th:href="@{/product/{id}(id=${product.productId})}"><img th:src="@{${product.productImg}}" alt="Product image" width="160" height="180"></a></p>
-                                        <td th:text="${'Суммарный рейтинг продукта'}">Суммарный рейтинг продукта</td><!--                                </tr>-->
-                                    </div>
-                            </table>
-                        </div>
-
-                        <!--                        </article><br>-->
+                        <table th:each="product : ${business.products}" width="100%" border="0" cellpadding="4">
+                            <tr align="right" valign="top">
+                                <div>
+                                    <th th:text="${product.productName}">Product_NAME</th>
+                                    <td th:text="${product['productCategory']['categoryName']}">Category_NAME</td>
+                                    <td><a th:href="@{/product/{id}(id=${product.productId})}"><img th:src="@{${product.productImg}}" alt="Product image" width="160" height="180"></a></td>
+<!--                                    <td th:text="${product.prRating}">Суммарный рейтинг продукта</td>-->
+                                </div>
+                            </tr>
+                        </table>
+                        <td><a th:href="@{{id}/product-create(id=${business.businessId})}">Add new product</a></td>
+                        <!--                        <button><a th:href="@{business/{businessId}/product-create}">Add new product</a></button>-->
                     </div>
                 </div>
             </div>
-            </div>
+        </div>
         </div><br>
         <div id = "rating_add"><form id="addReviewForm" class="form-control" method="post" th:object="${businessReview}">
             Review title:<br>
@@ -104,7 +117,7 @@
             <div><label for="reviewTitle"><input class="reviewTitlePr" id = "reviewTitle" type="text" th:value="${reviewTitle}" name="reviewTitle"/> </label></div>
             Review:<br>
             <div><label for="reviewProduct"><textarea class="reviewProductPr" id = "reviewProduct" th:value="${reviewProduct}" name="reviewProduct"></textarea> </label></div>
-            <div><label for="rateP1"><input id="rateP1" type="text" th:value="${rateP1}" name="rateP1" value=""></label></div>
+            <div><label for="rateB1"><input id="rateB1" type="text" th:value="${rateB1}" name="rateB1" value=""></label></div>
             <div id="rating_new">
                 <div class="param">Параметр 1:</div>
                 <div><div class="stars"></div><p class="progress" id="p1"></p></div>
@@ -125,13 +138,12 @@
         <div id="rateBlock" th:each="review : ${business.businessReviews}">
             <p th:text="${review.buddy.firstName} + ${' '} + ${review.buddy.lastName}">Author</p>
             <p><a th:href="@{/buddy/{id}(id=${review.buddy.buddyId})}"><img th:src="@{${review.buddy.avatarImg}}" alt="Buddy image" width="130" height="180"></a></p>
-            <th>
             <p th:text="${review.reviewTitle}"> Review_title</p><br>
             <div id="rating_pr">
                 <span th:text="${review.rateB1}"> Rate_B1</span>
 
-            <!--            <p th:text="${review.reviewB}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus scelerisque ipsum nec mauris dapibus gravida. Nam felis est, ornare sit amet auctor in, malesuada sit amet massa. Pellentesque eget efficitur lorem. Nunc lobortis erat a orci blandit, et consequat diam molestie. Etiam id tempor felis, sit amet egestas sem. Suspendisse potenti. Morbi tristique tincidunt leo in ornare. Aenean sodales leo id dapibus posuere.</p>-->
-        </div><br>
+                <!--            <p th:text="${review.reviewB}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus scelerisque ipsum nec mauris dapibus gravida. Nam felis est, ornare sit amet auctor in, malesuada sit amet massa. Pellentesque eget efficitur lorem. Nunc lobortis erat a orci blandit, et consequat diam molestie. Etiam id tempor felis, sit amet egestas sem. Suspendisse potenti. Morbi tristique tincidunt leo in ornare. Aenean sodales leo id dapibus posuere.</p>-->
+            </div><br>
         </div><br>
     </article><br>
 </section>
@@ -172,66 +184,66 @@
             // });
         });
     </script>
-<!--    <script>-->
-<!--        $(document).ready(function () {-->
-<!--            $("#editBtn").on('click', function () {-->
-<!--                $(".businessForm").show();-->
-<!--                let form;-->
-<!--                let action;-->
+    <!--    <script>-->
+    <!--        $(document).ready(function () {-->
+    <!--            $("#editBtn").on('click', function () {-->
+    <!--                $(".businessForm").show();-->
+    <!--                let form;-->
+    <!--                let action;-->
 
-<!--                function findElements() {-->
-<!--                    form = document.querySelector('form');-->
-<!--                    ({action} = form);-->
-<!--                }-->
+    <!--                function findElements() {-->
+    <!--                    form = document.querySelector('form');-->
+    <!--                    ({action} = form);-->
+    <!--                }-->
 
-<!--                function showMessage(data) {-->
-<!--                    alert(data.message);-->
-<!--                }-->
+    <!--                function showMessage(data) {-->
+    <!--                    alert(data.message);-->
+    <!--                }-->
 
-<!--                function onSuccess(response) {-->
-<!--                    return response.json().then(showMessage);-->
-<!--                }-->
+    <!--                function onSuccess(response) {-->
+    <!--                    return response.json().then(showMessage);-->
+    <!--                }-->
 
-<!--                function onError(data) {-->
-<!--                    console.error(data);-->
-<!--                }-->
+    <!--                function onError(data) {-->
+    <!--                    console.error(data);-->
+    <!--                }-->
 
-<!--                function collectData(currentForm) {-->
-<!--                    const data = new FormData(currentForm);-->
-<!--                    return data;-->
-<!--                }-->
+    <!--                function collectData(currentForm) {-->
+    <!--                    const data = new FormData(currentForm);-->
+    <!--                    return data;-->
+    <!--                }-->
 
-<!--                function setOptions(currentForm) {-->
-<!--                    return {-->
-<!--                        method: 'post',-->
-<!--                        body: collectData(currentForm),-->
-<!--                    };-->
-<!--                }-->
+    <!--                function setOptions(currentForm) {-->
+    <!--                    return {-->
+    <!--                        method: 'post',-->
+    <!--                        body: collectData(currentForm),-->
+    <!--                    };-->
+    <!--                }-->
 
-<!--                function sendForm(currentForm) {-->
-<!--                    return fetch(action, setOptions(currentForm));-->
-<!--                }-->
+    <!--                function sendForm(currentForm) {-->
+    <!--                    return fetch(action, setOptions(currentForm));-->
+    <!--                }-->
 
-<!--                function onSubmit(event) {-->
-<!--                    event.preventDefault();-->
-<!--                    const {currentTarget} = event;-->
-<!--                    sendForm(currentTarget)-->
-<!--                        .then(response => onSuccess(response, currentTarget))-->
-<!--                        .catch(onError);-->
-<!--                }-->
+    <!--                function onSubmit(event) {-->
+    <!--                    event.preventDefault();-->
+    <!--                    const {currentTarget} = event;-->
+    <!--                    sendForm(currentTarget)-->
+    <!--                        .then(response => onSuccess(response, currentTarget))-->
+    <!--                        .catch(onError);-->
+    <!--                }-->
 
-<!--                function subscribe() {-->
-<!--                    form.addEventListener('btnSubmit', onSubmit);-->
-<!--                }-->
+    <!--                function subscribe() {-->
+    <!--                    form.addEventListener('btnSubmit', onSubmit);-->
+    <!--                }-->
 
-<!--                function init() {-->
-<!--                    findElements();-->
-<!--                    subscribe();-->
-<!--                }-->
+    <!--                function init() {-->
+    <!--                    findElements();-->
+    <!--                    subscribe();-->
+    <!--                }-->
 
-<!--                init();-->
-<!--            });-->
-<!--        });-->
-<!--    </script>-->
+    <!--                init();-->
+    <!--            });-->
+    <!--        });-->
+    <!--    </script>-->
 </footer>
 </html>

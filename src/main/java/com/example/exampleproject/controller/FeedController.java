@@ -54,7 +54,6 @@ public class FeedController {
             Buddy buddy = roleOnPage.findRoleBuddyOnPage(userInPage);
             model.addAttribute("homeId", buddy.getBuddyId());
             List<Product> productsRecommendations = roleOnPage.createProductRecommendations(products, buddy);
-            System.out.println(productsRecommendations + " рекомендую");
             model.addAttribute("products", productsRecommendations);
         } else if (userInPage.getRole().getName().equals("business")) {
             List<Product> products = productRepository.findAll();
