@@ -163,7 +163,6 @@ public class BusinessController {
         return "redirect:/business/"+ bId + "/product-create";
     }
 
-
     @RequestMapping(value = "/business/{id}/add-review", method = RequestMethod.POST)
     public String addReview(@PathVariable("id") int id, @AuthenticationPrincipal UserDetails user, BusinessReview br) {
         BusinessReview businessReview = new BusinessReview();

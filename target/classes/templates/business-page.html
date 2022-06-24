@@ -48,6 +48,7 @@
         <form hidden name="businessEd" method="POST" th:object="${business}" class="businessForm">
             <input readonly id="id" type="number" name="id" th:value="${business.businessId}"/><br/><br/>
             <input id="name" type="text" name="busName" th:value="${business.busName}" placeholder="Имя" /><br/><br/>
+            <input id="busImg" type="text" name="busImg" th:value="${business.businessImg}" placeholder="Фото"/><br/>Фото<br/>
             <input id="location" type="text" name="location" th:value="${business.location}" placeholder="Расположение" /><br/><br/>
             <input id="link" type="text" name="businessLink" th:value="${business.businessLink}" placeholder="Ссылка"/><br/><br/>
 <!--            <a herf="http://www.google.com">Link</a>-->
