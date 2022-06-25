@@ -5,24 +5,30 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript" th:src="@{/js/profileForm.js}"></script>
     <script type="text/javascript" th:src="@{/js/star_rating.js}"></script>
+    <script type="text/javascript" th:src="@{/js/menuHandler.js}"></script>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../../static/main.css"/>
     <title>Product Page</title>
 
 </head>
 <header>
-    <h2>Booze buddy</h2>
+
+    <a id="menuBtn" onclick="openMenu()"><img th:src="@{/images/BoozeBuddyMin.svg}">
+    <h2>Grab your Booze</h2></a>
 
 </header>
 <body>
+<div id="main">
 <section>
-    <SideMenu id="SideMenu">
-        <li><a th:id="home" th:href="@{/buddy/{id}(id=${homeId})}">Home</a></li>
-        <li><a th:href="@{/feed}">Feed</a></li>
-        <li><a th:href="@{/friend}">Find friends</a></li>
-        <li><span style=vertical-align:bottom><a th:href="@{/logout}">Log out</a> </span></li>
-    </SideMenu>
+
     <article>
+        <SideMenu id="SideMenu" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a th:id="home" th:href="@{/buddy/{id}(id=${homeId})}">Home</a>
+            <a th:href="@{/feed}">Feed</a>
+            <a th:href="@{/friend}">Find friends</a>
+            <a th:href="@{/logout}">Log out</a>
+        </SideMenu>
         <div id="num_block">
             <h1 hidden id="buddIdHo" th:text = "${homeId}"
                 th:data-home="${homeId}"> id </h1>
@@ -53,12 +59,10 @@
         </div><br>
 
         <div id = "rating_add"><form id="addReviewForm" class="form-control" method="post" th:object="${productReview}">
-            Review title:<br>
-            <br>
-            <div><label for="reviewTitle"><input class="reviewTitlePr" id = "reviewTitle" type="text" th:value="${reviewTitle}" name="reviewTitle"/> </label></div>
-            Review:<br>
-            <div><label for="reviewProduct"><textarea class="reviewProductPr" id = "reviewProduct" th:value="${reviewProduct}" name="reviewProduct"></textarea> </label></div>
-            <div><label for="rateP1"><input id="rateP1" type="text" th:value="${rateP1}" name="rateP1" value=""></label></div>
+
+            <p>Review title:</p><div><label for="reviewTitle"><input class="reviewTitlePr" id = "reviewTitle" type="text" th:value="${reviewTitle}" name="reviewTitle"/> </label></div>
+            <p>Review:</p> <div><label for="reviewProduct"><textarea class="reviewProductPr" id = "reviewProduct" th:value="${reviewProduct}" name="reviewProduct"></textarea> </label></div>
+            <div><label for="rateP1"><input id="rateP1" type="hidden" th:value="${rateP1}" name="rateP1" value=""></label></div>
             <div id="rating_new">
                 <div class="param">Параметр 1:</div>
                 <div><div class="stars"></div><p class="progress" id="p1"></p></div>
@@ -103,6 +107,7 @@
         cursor: pointer;
     }
 </style>
+</div>
 </body>
 <footer>
     <p>All right reserved and belong to almighty Cthulhu</p>

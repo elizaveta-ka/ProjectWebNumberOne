@@ -7,6 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript" th:src="@{/js/star_rating.js}"></script>
     <script type="text/javascript" th:src="@{/js/profileForm.js}"></script>
+    <script type="text/javascript" th:src="@{/js/menuHandler.js}"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../../static/main.css"/>
     <title>Business Page</title>
 
@@ -17,7 +18,8 @@
 </header>
 <body>
 <section>
-    <SideMenu id="SideMenu">
+    <SideMenu id="SideMenu" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <li><a th:id="home" th:href="@{/buddy/{id}(id=${homeId})}">Home</a></li>
         <li><a th:href="@{/feed}">Feed</a></li>
         <li><a th:href="@{/friend}">Find friends</a></li>
@@ -102,7 +104,7 @@
             <div><label for="reviewTitle"><input class="reviewTitlePr" id = "reviewTitle" type="text" th:value="${reviewTitle}" name="reviewTitle"/> </label></div>
             Review:<br>
             <div><label for="reviewProduct"><textarea class="reviewProductPr" id = "reviewProduct" th:value="${reviewProduct}" name="reviewProduct"></textarea> </label></div>
-            <div><label for="rateB1"><input id="rateB1" type="text" th:value="${rateB1}" name="rateB1" value=""></label></div>
+            <div><label for="rateB1"><input id="rateB1" type="hidden" th:value="${rateB1}" name="rateB1" value=""></label></div>
             <div id="rating_new">
                 <div class="param">Параметр 1:</div>
                 <div><div class="stars"></div><p class="progress" id="p1"></p></div>

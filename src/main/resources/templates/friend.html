@@ -4,6 +4,7 @@
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript" th:src="@{/js/profileForm.js}"></script>
+    <script type="text/javascript" th:src="@{/js/menuHandler.js}"></script>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../../static/main.css"/>
     <title>Find friends</title>
@@ -14,7 +15,8 @@
 </header>
 <body>
 <section>
-<SideMenu id="SideMenu">
+    <SideMenu id="SideMenu" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <li><a th:id="home" th:href="@{/buddy/{id}(id=${homeId})}">Home</a></li>
     <li><a th:href="@{/feed}">Feed</a></li>
     <li><a>Find friends</a></li>

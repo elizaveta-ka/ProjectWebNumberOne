@@ -1,38 +1,66 @@
 * {
     box-sizing: border-box;
-    color:#111214;
 }
 header {
-    background-color: #666;
+    background-color: #c1d8f0;
     padding: 5px;
     text-align: center;
     font-size: 24px;
-    color: white;
+    color: #777;
+    box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.25);
+    transition: background-color 2s ease-out 100ms;
 }
-SideMenu {
-    float: left;
-    z-index: 1; /* Stay on top */
-    top: 0; /* Stay at the top */
-    left: 0;
-    height: 100%;
-    overflow-x: hidden;
-    width: 30%;
-    padding: 0 10px;
-    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
-    background-color: #ffffff;
-    border-radius: 5px;
+input[type=text]{
+    border-top: #ffffff;
+    border-right: #ffffff;
+    border-left: #ffffff;
+    border-bottom: 2px solid #111111;
+    outline: none;
+    alignment: center;
 }
-SideMenu ul {
-    list-style-type: true;
-    padding: 0;
+input[type=text]:focus{
+    bborder-top: #ffffff;
+    border-right: #ffffff;
+    border-left: #ffffff;
+    border-bottom: 2px solid #2a8bf2;
+    outline: none;
 }
+textarea{
+    border-top: #ffffff;
+    border-right: #ffffff;
+    border-left: #ffffff;
+    border-bottom: 2px solid #111111;
+    outline: none;
+    display: inline-block;
+
+}
+textarea:focus {
+    border-top: #ffffff;
+    border-right: #ffffff;
+    border-left: #ffffff;
+    border-bottom: 2px solid #2a8bf2;
+    outline: none;
+
+}
+a:hover h2{
+    color: #111111;
+}
+header:hover h2{
+    color: #111;
+}
+head:hover{
+    background-color: #c1d8f0;
+}
+header h2{
+    display: inline-block;
+}
+
 article {
     float: right;
     padding: 15px;
-    width: 70%;
-    background-color: #f1f1f1;
-
-
+    width: 100%;
+    background-color: #e1f1fd;
+    display: block;
 }
 section:after {
     content: "";
@@ -58,7 +86,6 @@ footer {
 }
 
 #rateBlock {
-    float: left;
     height: 30%; /* Высота слоя в пикселах */
     left: 40%; /* Положение слоя от левого края */
     top: 50%; /* Положение слоя от верхнего края */
@@ -75,7 +102,6 @@ footer {
     float: right;
 }
 #business_block{
-    float: left;
     margin-top: 15px;
     margin-bottom: 15px;
     background-color: #ffffff;
@@ -94,7 +120,6 @@ footer {
     alignment: right;
 }
 #product_block {
-    float: left;
     margin-top: 15px;
     margin-bottom: 15px;
     background-color: #ffffff;
@@ -176,7 +201,6 @@ footer {
     font-weight: bold;
 }
 #rating_add{
-    float: left;
     height: 30%; /* Высота слоя в пикселах */
     left: 40%; /* Положение слоя от левого края */
     top: 50%; /* Положение слоя от верхнего края */
@@ -188,6 +212,10 @@ footer {
     overflow: auto; /* Добавление полосы прокрутки */
     width: 40%;
     margin-right: 30%;
+    text-align: center;
+}
+#rating_add.p{
+    display: inline-block;
 }
 #rating_add.form{
     margin:  20px;
@@ -197,4 +225,58 @@ footer {
 #submitButton{
     margin: 20px;
     alignment: center;
+}
+
+/* The side navigation menu */
+#SideMenu {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: #ffffff;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+
+}
+
+/* The navigation menu links */
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+    color: #2a8bf2;
+}
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+    transition: margin-left .5s;
+    padding: 20px;
+
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+#menuBtn {
+    display: inline-block;
 }
