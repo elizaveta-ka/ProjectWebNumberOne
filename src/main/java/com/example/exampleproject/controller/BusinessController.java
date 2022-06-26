@@ -69,6 +69,7 @@ public class BusinessController {
         }
         Business business = businessRepository.getById(id);
         model.addAttribute("user", userInPage);
+        model.addAttribute("count", business.getBusinessReviews().size());
         model.addAttribute("business", business);
         return "business-page";
     }
@@ -134,7 +135,7 @@ public class BusinessController {
         business1.setProducts(products);
         businessRepository.save(business1);
         int id = business1.getBusinessId();
-        return "redirect:/business/"+ id;
+        return "redirect:/business/"+ id + "/product-create";
     }
     @PostMapping("/product-delete")
     public String deleteProduct(@AuthenticationPrincipal UserDetails user, Product product){
@@ -193,7 +194,7 @@ public class BusinessController {
     public void calculateRating(int id){
         float calcRate = 0;
         Business p = businessRepository.getById(id);
-        for (int i = 0; i<p.getBusinessReviews().size(); i++){
+        for (int i = 0; i < p.getBusinessReviews().size(); i++){
             BusinessReview pr = Iterables.get(p.getBusinessReviews(), i) ;
             calcRate+=pr.getRateB1();
         }

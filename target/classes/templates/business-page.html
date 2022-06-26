@@ -48,7 +48,7 @@
         <form hidden name="businessEd" method="POST" th:object="${business}" class="businessForm">
             <input readonly id="id" type="number" name="id" th:value="${business.businessId}"/><br/><br/>
             <input id="name" type="text" name="busName" th:value="${business.busName}" placeholder="Имя" /><br/><br/>
-            <input id="busImg" type="text" name="busImg" th:value="${business.businessImg}" placeholder="Фото"/><br/>Фото<br/>
+            <input id="busImg" type="text" name="busImg" th:value="${business.busImg}" placeholder="Фото"/><br/>Фото<br/>
             <input id="location" type="text" name="location" th:value="${business.location}" placeholder="Расположение" /><br/><br/>
             <input id="link" type="text" name="businessLink" th:value="${business.businessLink}" placeholder="Ссылка"/><br/><br/>
 <!--            <a herf="http://www.google.com">Link</a>-->
@@ -72,7 +72,6 @@
 <!--                <link action="http://italyco.rest/hitch-medikov" target="_blank">-->
 <!--                    <link rel="shortcut icon" href="http://italyco.rest/hitch-medikov">-->
 <!--                    <button>Переход по ссылке</button>-->
-
                 <div class="tabs">
                     <input type="radio" name="inset" value="" id="tab_3" checked>
                     <label for="tab_3">Rating</label>
@@ -82,6 +81,7 @@
 
                     <div id="rating">
                         <span th:text="${business.brRating}"> Rate_P1</span>
+                        <p th:text="${count}">Count Authors</p>
                     </div>
                     <div id = "menu">
                             <table th:each="product : ${business.products}" width="100%" border="0" cellpadding="4">

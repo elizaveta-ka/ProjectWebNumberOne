@@ -44,7 +44,10 @@
                     <label for="tab_2">Suggestions</label><br>
 
                     <div id="rating">
-                        <span th:text="${product.prRating}"> Rate_P1</span></div>
+                        <span th:text="${product.prRating}"> Rate_P1</span>
+                        <p th:text="${count}">Count Authors</p>
+                    </div>
+
                     <div id="suggestions" th:each="s : ${product.productCategory.suggestions}">
                         <span th:text="${s.foodName} + ${', '} + ${s.foodImg}"></span>
                     </div>
