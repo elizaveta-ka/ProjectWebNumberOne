@@ -4,6 +4,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript" th:src="@{/js/profileForm.js}"></script>
     <script type="text/javascript" th:src="@{/js/menuHandler.js}"></script>
+    <script type="text/javascript" th:src="@{/js/hiddenWishlistForBusiness.js}"></script>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../../static/main.css"/>
     <title>Feed</title>
@@ -57,7 +58,7 @@
 
             <form name="productForm" th:object="${product}" method="POST" >
                 <div><label for="productId"><input class="productIdPr" id = "productId" type="hidden" th:value="${product.productId}" name="productId"/> </label></div>
-                <input type="submit" value="Добавить в Wishlist" id="btnAdd"/>
+                <input type="submit" value="Add Wishlist" id="btnAdd"/>
             </form>
 
 <!--            <input type="hidden" th:field="*{product.productId}" class="product_block" id="productId"-->
