@@ -4,88 +4,94 @@ import com.example.exampleproject.model.Buddy;
 import com.example.exampleproject.model.Product;
 import com.example.exampleproject.model.ProductReview;
 import com.example.exampleproject.repository.BuddyRepository;
-import com.example.exampleproject.repository.ProductRepository;
+import com.example.exampleproject.repository.BusinessRepository;
+import com.example.exampleproject.repository.ProductCategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
+
 @Service
 public class BusinessLogicService {
-
-    private ProductRepository productRepository;
-
-    private BuddyRepository buddyRepository;
-
-    @Autowired
-    public BusinessLogicService(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
-
-
-
-
-
-    public double createSimilarityCoefficient(Buddy buddy, Buddy buddyForComparison) {
-        buddy = buddyRepository.getById(1);
-        buddyForComparison = buddyRepository.getById(2);
-        compareProductRate(buddy, buddyForComparison);
-        double temp = 0;
-        double a = 0;
-        double b = 0;
-        double c = 0;
-
-        a = compareProductRate(buddy, buddyForComparison);
-        b = Math.sqrt(compareProductRate(buddy, buddy));
-        c = Math.sqrt(compareProductRate(buddyForComparison, buddyForComparison));
-        temp = b * c;
-        if(temp == 0) {
-            return 0;
-        }
-        return a/ (b * c);
-    }
-
-
     
-    public double createKCoeff(List<Buddy> buddies, Buddy buddy) {
-        double kCoeff = 0;
-        for (int i = 0; i < buddies.size(); i++) {
-            if(buddies.get(i).equals(buddy.getBuddyId()))
-                continue;
-            kCoeff += 1/Math.abs(createSimilarityCoefficient(buddy, buddies.get(i)));
-        }
-        return kCoeff;
-    }
+    //business logic
+    public List<Product> createProductRecommendations(List<Product> products, Buddy buddy) {
+        //List продуктов, на которые buddy оставлял отзыв
+        List<ProductReview> productReviews = (List<ProductReview>) buddy.getProductAuthors();
 
+        Set<Product> buddyProducts = buddy.getProducts();
 
+        List<Product> productRecommend = calculateRecommend(products, productReviews);
 
-
-    public List<Product> makeRec(Buddy buddy) {
-        List<Product> bestProducts = null;
-        System.out.println(buddy);
-        return bestProducts;
-    }
-
-
-    public double compareProductRate(Buddy buddy, Buddy buddyForComparison) {
-        double d = 0;
-//        buddy = buddyRepository.getById(1);
-//        buddyForComparison = buddyRepository.getById(2);
-        Collection<Product> products = buddyForComparison.getProducts();
-        Collection<Product> products2 = buddy.getProducts();
-        for (var pr : products) {
-            for (var p: products2) {
-                if (pr.getProductId() == p.getProductId()) {
-                    for (var r:pr.getProductReviews()) {
-                        for (var r2:p.getProductReviews()) {
-                            d += r.getRateP4() * r2.getRateP4();
-                        }
-                    }
+        //delete wishlist
+        for (int i = 0; i < productRecommend.size(); i++) {
+            for (var pR : buddyProducts) {
+                if (productRecommend.get(i).getProductId() == pR.getProductId()) {
+                    productRecommend.remove(productRecommend.get(i));
                 }
             }
         }
-        System.out.println(d);
-        return d;
+        // помещаем в map, сортируем по ключу, забираем отсортированные значения
+        Map<Float, Product> mapPopularCategory = new TreeMap<>(Collections.reverseOrder());
+        for (var p : productRecommend) {
+            mapPopularCategory.put(p.getPrRating(), p);
+        }
+        List<Product> productsNew2 = new ArrayList<>(mapPopularCategory.values());
+        System.out.println(Arrays.toString(productsNew2.toArray()));
+
+        return productsNew2;
     }
+
+    public List<Product> calculateRecommend(List<Product> products, List<ProductReview> productReviews) {
+        List<Product> productRecommend = new ArrayList<>();
+        List<Integer> popularCategory = getPopularCategory(productReviews);
+
+        for (int i = 0; i < popularCategory.size(); i++) {
+            int categoryId = popularCategory.get(i);
+            for (int j = 0; j < products.size(); j++) {
+                if(products.get(j).getProductCategory().getCategoryId() == categoryId) {
+                    productRecommend.add(products.get(j));
+                }
+            }
+        }
+        return productRecommend;
+    }
+
+
+    //возвращает List id 3х популярных категорий у buddy(продукты, на которые buddy оставлял отзыв)
+    public List<Integer> getPopularCategory(List<ProductReview> productReviews) {
+        List <Integer> productCategories = new ArrayList<>();
+        for (var p : productReviews) {
+            productCategories.add(p.getProduct().getProductCategory().getCategoryId());
+        }
+        int count = 0;
+        List<Integer> listPopularCategory = new ArrayList<>();
+        while (count != 3) {
+        int tempOccurrences = 0;
+        int tempElement = 0;
+        int mostOccurrences = 0;
+        int mostElement = 0;
+            for (int i = 0; i < productCategories.size(); i++) {
+                if (tempElement == productCategories.get(i)) {
+                    tempOccurrences++;
+                    if (tempOccurrences > mostOccurrences) {
+                        mostOccurrences = tempOccurrences;
+                        mostElement = tempElement;
+                    }
+                } else {
+                    tempOccurrences = 1;
+                    tempElement = productCategories.get(i);
+                }
+            }
+            if(productCategories.size() == 1) {
+                mostElement = productCategories.get(0);
+            }
+            listPopularCategory.add(mostElement);
+            count++;
+            while(productCategories.contains(mostElement)){
+                productCategories.remove((Integer) mostElement);
+            }
+        }
+            return listPopularCategory;
+        }
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.UnsupportedEncodingException;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 
 @Controller
@@ -107,6 +108,32 @@ public class BuddyController {
         model.addAttribute("user", userInPage);
         model.addAttribute("buddyPage", buddyPage);
         return "wishlist";
+    }
+
+    @PostMapping("/wishlist-delete")
+    public String deleteProduct(@AuthenticationPrincipal UserDetails user, Product product){
+        User user1 = userRepository.findByUsername(user.getUsername());
+        int bId = 0;
+        Collection<Buddy> buddies = buddyRepository.findAll();
+        for (var b:buddies) {
+            User user2 = b.getUser();
+            if(user1.equals(user2)) {
+                bId = b.getBuddyId();
+            }
+        }
+        Buddy buddy1 = buddyRepository.getById(bId);
+        Product product1 = productRepository.getById(product.getProductId());
+        System.out.println(product1);
+        Set<Product> productBuddy = buddy1.getProducts();
+        productBuddy.remove(product1);
+        buddy1.setProducts(productBuddy);
+        buddyRepository.save(buddy1);
+
+        Set<Buddy> buddyProduct = product1.getBuddies();
+        buddyProduct.remove(buddy1);
+        product1.setBuddies(buddyProduct);
+        productRepository.delete(product1);
+        return "redirect:/buddy/"+ bId + "/wishlist";
     }
 
 

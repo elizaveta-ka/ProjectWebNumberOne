@@ -6,6 +6,8 @@
     <script type="text/javascript" th:src="@{/js/profileForm.js}"></script>
     <script type="text/javascript" th:src="@{/js/star_rating.js}"></script>
     <script type="text/javascript" th:src="@{/js/menuHandler.js}"></script>
+    <script type="text/javascript" th:src="@{/js/showReview.js}"></script>
+    <script type="text/javascript" th:src="@{/js/menuHandler.js}"></script>
     <script type="text/javascript" th:src="@{/js/particlesJS.js}"></script>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../../static/main.css"/>
@@ -38,9 +40,8 @@
                 <h1 hidden id="role" th:text = "${user.role.id}"
                     th:data-role="${user.role.id}"> role </h1>
                 <h1 th:text="${product.productName}"> Product_NAME </h1>
-                <p th:text="${product['productCategory']['categoryName']}" >Category_NAME</p>
-                <p><img style="display: inline-block" th:src="@{${product.productImg}}" alt="Buddy image" width="80" height="300"></p>
-
+                <p><img th:src="@{${product.productImg}}" alt="Buddy image" width="130" height="180"></p>
+                <p th:text="${product['productCategory']['categoryName']}">Category_NAME</p>
                 <div class="tabs">
                     <input type="radio" name="inset" value="" id="tab_1" checked>
                     <label for="tab_1">Rating</label>
@@ -51,6 +52,10 @@
                     <div id="rating">
                         <div id="overall"><div id="oRate"></div></div> <p th:text="${product.prRating}"></p>
                         <input type="hidden" id="ovRate" th:value="${product.prRating}">
+                    </div>
+
+                        <span th:text="${product.prRating}"> Rate_P1</span>
+                        <p th:text="${count}">Count Authors</p>
                     </div>
 
                     <div id="suggestions" th:each="s : ${product.productCategory.suggestions}">
@@ -67,17 +72,18 @@
             <p>Review:</p> <div><label for="reviewProduct"><textarea class="reviewProductPr" id = "reviewProduct" th:value="${reviewProduct}" name="reviewProduct"></textarea> </label></div>
             <div><label for="rateP1"><input id="rateP1" type="hidden" th:value="${rateP1}" name="rateP1" value=""></label></div>
             <div id="rating_new">
-                <div class="param">Параметр 1:</div>
+                <div class="param" th:text="${product.productCategory.firstAtt} + ${' :'}">Param 1:</div>
                 <div><div class="stars"></div><p class="progress" id="p1"></p></div>
                 <div class="rating_new" id="param1">5.0</div>
-                <div class="param">Параметр 2:</div>
+                <div class="param" th:text="${product.productCategory.secondAtt} + ${' :'}">Param 2:</div>
                 <div><div class="stars"></div><p class="progress" id="p2"></p></div>
                 <div class="rating_new" id="param2">5.0</div>
-                <div class="param">Параметр 3:</div>
+                <div class="param" th:text="${product.productCategory.thirdAtt} + ${' :'}">Param 3:</div>
                 <div><div class="stars"></div><p class="progress" id="p3"></p></div>
                 <div class="rating_new" id="param3">5.0</div>
-                <div class="param">Общая оценка:</div>
-                <div><div id="sum_stars"></div><p id="sum_progress"></p></div><div id="summ">5.00</div><br>
+                <div class="param">Overall score :</div>
+                <div><div id="sum_stars"></div><p id="sum_progress"></p></div>
+                <div id="summ">5.00</div>
                 <input name="Add review" id="submitButton" type="submit" value="add-review">
             </div>
         </form></div>

@@ -4,6 +4,7 @@
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript" th:src="@{/js/profileForm.js}"></script>
+    <script type="text/javascript" th:src="@{/js/ShowEdit.js}"></script>
     <script type="text/javascript" th:src="@{/js/menuHandler.js}"></script>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../../static/main.css"/>
@@ -31,11 +32,14 @@
         <div  id="product_block">
             <h1 hidden id="role" th:text = "${user.role.id}"
                 th:data-role="${user.role.id}"> role </h1>
+            <h1 hidden id="nameUs" th:text = "${user.id}"
+                th:data-nameUs="${user.id}"> USER </h1>
 
         <div class="Buddy_block" th:name="buddy" th:id="buddy">
             <div th:fragment="buddy">
                 <h1 id="first_name" th:text="${buddy.firstName}"> First Name </h1>
                 <h1 id="last_name" th:text="${buddy.lastName}">Last Name</h1>
+                <p  hidden id="userName" th:text="${buddy.user.id}" th:data-userName="${buddy.user.id}">User</p>
                 <p id="age1" th:text="${buddy.age}">Age</p>
                 <p id="city1" th:text="${buddy.city}">City</p>
                 <p><img th:src="@{${buddy.avatarImg}}" alt="Buddy image" width="130" height="180"></p>
@@ -44,9 +48,6 @@
             </div>
             </div>
         </div>
-
-
-
                 <form  hidden name="buddyEd" method="POST"  th:object="${buddy}" modelAttribute="buddy" class="buddyForm" th:name="buddyEd" th:id="buddyEd">
                     <input readonly id="id" type="hidden" name="id" th:value="${buddy.buddyId}" th:data-id="${buddy.buddyId}"/><br/><br/>
                     <input id="firstName" type="text" name="firstName" th:value="${buddy.firstName}" placeholder="Имя" th:data-fName="${buddy.firstName}" /><br/>Имя<br/>

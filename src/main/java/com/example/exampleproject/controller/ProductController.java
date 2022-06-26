@@ -77,21 +77,10 @@ public class ProductController {
             model.addAttribute("homeId", business.getBusinessId());
         }
         Product product = productRepository.getById(id);
+        model.addAttribute("count", product.getProductReviews().size());
         model.addAttribute("user", userInPage);
         model.addAttribute("product", product);
         return "product";
-    }
-
-    @GetMapping("/product/{id}/suggestion")
-    public String showProductSuggestionPage(@PathVariable("id") int id, Model model) {
-        Product product = productRepository.getById(id);
-        model.addAttribute("product", product);
-        return "suggestion-page";
-    }
-
-    @GetMapping("/fragments")
-    public String getHome(){
-        return "main-fragments.html";
     }
 
     @RequestMapping(value = "/product/{id}", method = RequestMethod.POST)
@@ -115,28 +104,29 @@ public class ProductController {
         productReview.setBuddyId(buddy.getBuddyId());
         Collection<ProductReview> productReviews = buddy.getProductAuthors();
         productReviews.add(productReview);
+        buddy.setProductAuthors(productReviews);
         productReview.setBuddy(buddy);
         productReview.setProduct(product);
         productReview.setProductId(product.getProductId());
-        buddyRepository.saveAndFlush(buddy);
-        productReviewRepository.saveAndFlush(productReview);
+        buddyRepository.save(buddy);
+        productReviewRepository.save(productReview);
         calculateRating(id);
         return "redirect:/product/" + id;
     }
-    @RequestMapping(value = "/product/{id}/edit-review", method = RequestMethod.POST)
-    public String editReview(@PathVariable("id") int id, Model model, BindingResult result, @Valid ProductReview pr) {
-        productReviewRepository.save(pr);
-        return "redirect:/product" + id;
-    }
-    public void calculateRating(int id){
+//    @RequestMapping(value = "/product/{id}/edit-review", method = RequestMethod.POST)
+//    public String editReview(@PathVariable("id") int id, Model model, BindingResult result, @Valid ProductReview pr) {
+//        productReviewRepository.save(pr);
+//        return "redirect:/product" + id;
+//    }
+    public void calculateRating(int id) {
         float calcRate = 0;
         Product p = productRepository.getById(id);
-        for (int i = 0; i<p.getProductReviews().size(); i++){
-            ProductReview pr = Iterables.get(p.getProductReviews(), i) ;
-            calcRate+=pr.getRateP1();
+            for (int i = 0; i < p.getProductReviews().size(); i++) {
+                ProductReview pr = Iterables.get(p.getProductReviews(), i);
+                calcRate += pr.getRateP1();
+            }
+            calcRate /= p.getProductReviews().size();
+            p.setPrRating(calcRate);
+            productRepository.save(p);
         }
-        calcRate /=p.getProductReviews().size();
-        productRepository.getById(id).setPrRating(calcRate);
-        productRepository.save(productRepository.getById(id));
-    }
 }

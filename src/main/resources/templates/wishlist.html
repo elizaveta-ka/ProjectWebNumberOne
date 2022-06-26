@@ -32,13 +32,15 @@
     <div id="product_block">
       <h1 hidden id="role" th:text = "${user.role.id}"
           th:data-role="${user.role.id}"> role </h1>
-
+      <h1 hidden id="nameUs" th:text = "${user.id}"
+          th:data-nameUs="${user.id}"> USER </h1>
     <div id="Buddy_block">
       <div th:fragment="buddyPage">
         <h1 id="first_name" th:text="${buddyPage.firstName}"> First Name </h1>
         <h1 id="last_name" th:text="${buddyPage.lastName}">Last Name</h1>
         <p id="age" th:text="${buddyPage.age}">Age</p>
         <p id="city" th:text="${buddyPage.city}">City</p>
+        <p  hidden id="userName" th:text="${buddy.user.id}" th:data-userName="${buddy.user.id}">User</p>
         <p><img th:src="@{${buddyPage.avatarImg}}" alt="Buddy image" width="130" height="180"></p>
       </div>
     </div>
@@ -48,8 +50,14 @@
           <p th:text="${product.productName}"> Review_title</p><br>
           <th><a th:href="@{/product/{id}(id=${product.productId})}">
             <img th:src="@{${product.productImg}}" alt="Buddy image" width="130" height="180"></a></th>
-
+          <form name="productForm" th:action="@{/wishlist-delete}" th:object="${product}" method="POST" >
+            <div><label for="productId"><input class="productIdPr" id = "productId" type="hidden" th:value="${product.productId}" name="productId"/> </label></div>
+            <input type="submit" value="Delete" id="btnDelete"/>
+          </form>
         </div><br>
+        </div><br>
+      </div><br>
+    </div>
         <br><br>
   </article><br>
 </section>
