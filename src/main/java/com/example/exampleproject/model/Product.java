@@ -62,6 +62,9 @@ public class Product {
         this.productImg = productImg;
     }
 
+    public Product(String p1) {
+    }
+
     @Override
     public String toString() {
         return "Product{" +

@@ -55,7 +55,8 @@
                     </div>
 
                     <div id="suggestions" th:each="s : ${product.productCategory.suggestions}">
-                        <span th:text="${s.foodName} + ${', '} + ${s.foodImg}"></span>
+                        <span th:text="${s.foodName} + ${', '}"></span>
+                        <span><img th:src="@{${s.foodImg}}" alt="Suggestion image" width="30" height="20"></span>
                     </div>
                     <br>
                 </div>

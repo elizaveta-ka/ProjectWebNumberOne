@@ -1,6 +1,4 @@
 package com.example.exampleproject.controller;
-
-//import com.example.exampleproject.Service.UserService;
 import com.example.exampleproject.model.*;
 import com.example.exampleproject.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,14 +32,6 @@ public class RegistrationController {
         this.businessRepository = businessRepository;
         this.rolerep = rolerep;
     }
-
-//    @GetMapping("/registration")
-//    public String registration(Model model) {
-//        List<User> users = userRepository.findAll();
-//        model.addAttribute("users", users);
-//        return "registration";
-//    }
-
 
     @GetMapping("/registration")
     public String registration(@AuthenticationPrincipal UserDetails user, Model model) {
@@ -127,25 +117,4 @@ public class RegistrationController {
         }
         return closeButtonAdmin;
     }
-
-
-
-
-//    @PostMapping("/registration")
-//    public String addUser(@ModelAttribute("userForm") @Validated User userForm, BindingResult bindingResult, Model model) {
-//
-//        if (bindingResult.hasErrors()) {
-//            return "registration";
-//        }
-//        if (!userForm.getPassword().equals(userForm.getConfirmPassword())){
-//            model.addAttribute("passwordError", "Пароли не совпадают");
-//            return "registration";
-//        }
-//        if (!userService.saveUser(userForm)){
-//            model.addAttribute("usernameError", "Пользователь с таким именем уже существует");
-//            return "registration";
-//        }
-//
-//        return "redirect:/";
-//    }
 }
