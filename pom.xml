@@ -208,6 +208,11 @@
             <artifactId>google-collections</artifactId>
             <version>1.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.jwebmp.plugins.javascript</groupId>
+            <artifactId>jwebmp-particlesjs</artifactId>
+            <version>1.2.2.1</version>
+        </dependency>
 
     </dependencies>
 

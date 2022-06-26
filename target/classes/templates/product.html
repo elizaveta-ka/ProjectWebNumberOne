@@ -6,6 +6,7 @@
     <script type="text/javascript" th:src="@{/js/profileForm.js}"></script>
     <script type="text/javascript" th:src="@{/js/star_rating.js}"></script>
     <script type="text/javascript" th:src="@{/js/menuHandler.js}"></script>
+    <script type="text/javascript" th:src="@{/js/particlesJS.js}"></script>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../../static/main.css"/>
     <title>Product Page</title>
@@ -19,8 +20,6 @@
 </header>
 <body>
 <div id="main">
-<section>
-
     <article>
         <SideMenu id="SideMenu" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -39,8 +38,9 @@
                 <h1 hidden id="role" th:text = "${user.role.id}"
                     th:data-role="${user.role.id}"> role </h1>
                 <h1 th:text="${product.productName}"> Product_NAME </h1>
-                <p><img th:src="@{${product.productImg}}" alt="Buddy image" width="130" height="180"></p>
-                <p th:text="${product['productCategory']['categoryName']}">Category_NAME</p>
+                <p th:text="${product['productCategory']['categoryName']}" >Category_NAME</p>
+                <p><img style="display: inline-block" th:src="@{${product.productImg}}" alt="Buddy image" width="80" height="300"></p>
+
                 <div class="tabs">
                     <input type="radio" name="inset" value="" id="tab_1" checked>
                     <label for="tab_1">Rating</label>
@@ -49,7 +49,10 @@
                     <label for="tab_2">Suggestions</label><br>
 
                     <div id="rating">
-                        <span th:text="${product.prRating}"> Rate_P1</span></div>
+                        <div id="overall"><div id="oRate"></div></div> <p th:text="${product.prRating}"></p>
+                        <input type="hidden" id="ovRate" th:value="${product.prRating}">
+                    </div>
+
                     <div id="suggestions" th:each="s : ${product.productCategory.suggestions}">
                         <span th:text="${s.foodName} + ${', '} + ${s.foodImg}"></span>
                     </div>
@@ -74,8 +77,7 @@
                 <div><div class="stars"></div><p class="progress" id="p3"></p></div>
                 <div class="rating_new" id="param3">5.0</div>
                 <div class="param">Общая оценка:</div>
-                <div><div id="sum_stars"></div><p id="sum_progress"></p></div>
-                <div id="summ">5.00</div>
+                <div><div id="sum_stars"></div><p id="sum_progress"></p></div><div id="summ">5.00</div><br>
                 <input name="Add review" id="submitButton" type="submit" value="add-review">
             </div>
         </form></div>
@@ -97,7 +99,6 @@
         </div>
 
     </article><br>
-</section>
 <style type="text/css">
     .param, #rating_new, #summ { line-height: 28px; }
     .stars, #sum_stars { background: url(/images/stars.png); }
@@ -109,9 +110,4 @@
 </style>
 </div>
 </body>
-<footer>
-    <p>All right reserved and belong to almighty Cthulhu</p>
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-
-</footer>
 </html>

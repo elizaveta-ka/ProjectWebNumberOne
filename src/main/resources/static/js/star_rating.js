@@ -26,4 +26,9 @@
             $('#rateP1').val(summ);
             $('#rateB1').val(summ);
         });
+        var overRate = $('#ovRate').val();
+        overRate = parseInt(overRate);
+        console.log(overRate);
+        overRate*=20;
+        document.getElementById('oRate').style.width = overRate +"px";
     });

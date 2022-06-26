@@ -225,5 +225,31 @@
     <orderEntry type="library" name="Maven: org.ow2.asm:asm:9.1" level="project" />
     <orderEntry type="library" name="Maven: javax.validation:validation-api:1.0.0.GA" level="project" />
     <orderEntry type="library" name="Maven: com.google.collections:google-collections:1.0" level="project" />
+    <orderEntry type="library" name="Maven: com.jwebmp.plugins.javascript:jwebmp-particlesjs:1.2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: com.jwebmp.core:jwebmp-core:1.2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: com.guicedee.services:guava:1.2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: com.guicedee.services:jakarta.activation:1.2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: com.guicedee.services:jakarta.validation-api:1.2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: com.guicedee.services:jakarta.annotation-api:1.2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: com.guicedee:guiced-injection:1.2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: io.github.classgraph:classgraph:4.8.138" level="project" />
+    <orderEntry type="library" name="Maven: com.guicedee.services:guice:1.2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: com.guicedee.services:javax.inject:1.2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: com.guicedee.services:jakarta.xml.bind-api:1.2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.woodstox:stax2-api:4.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.jvnet.staxex:stax-ex:2.1.0-M1" level="project" />
+    <orderEntry type="library" name="Maven: com.guicedee.services:slf4j:1.2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: com.guicedee.services:uadetector-core:1.2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: com.guicedee:guiced-log-master:1.2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: com.guicedee.servlets:guiced-servlets:1.2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: com.guicedee.services:guice-servlet:1.2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: com.guicedee.services:aopalliance-core:1.2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: com.guicedee.services:jakarta.servlet-api:1.2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: com.guicedee.servlets:guiced-websockets:1.2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: com.guicedee.services:jakarta.websocket-api:1.2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: com.guicedee.services:uadetector-resources:1.2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: com.guicedee.services:commons-lang3:1.2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: com.guicedee.services:commons-text:1.2.2.1" level="project" />
+    <orderEntry type="library" name="Maven: com.guicedee.services:commons-io:1.2.2.1" level="project" />
   </component>
 </module>

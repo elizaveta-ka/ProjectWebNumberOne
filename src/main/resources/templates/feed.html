@@ -23,19 +23,19 @@
     }
 </script>
 <header>
-    <h2>Feed</h2>
+    <a id="menuBtn" onclick="openMenu()"><img th:src="@{/images/BoozeBuddyMin.svg}"><h2>Feed</h2></a>
 
 </header>
 <body>
 <section>
-    <a id="admin" th:href="@{/admin}" onload = "return hide()">USERS</a>
     <SideMenu id="SideMenu" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <li><a th:id="home" th:href="@{/buddy/{id}(id=${homeId})}">Home</a></li>
-        <li>Feed</li>
-        <li><a th:href="@{/friend}">Find friends</a></li>
-        <li><span style=vertical-align:bottom><a th:href="@{/logout}">Log out</a> </span></li>
+        <a th:id="home" th:href="@{/buddy/{id}(id=${homeId})}">Home</a>
+        <a th:href="@{/feed}">Feed</a>
+        <a th:href="@{/friend}">Find friends</a>
+        <a th:href="@{/logout}">Log out</a>
     </SideMenu>
+    <a id="admin" th:href="@{/admin}" onload = "return hide()">USERS</a>
     <article>
 
         <div id="num_block">
@@ -76,11 +76,9 @@
 </section>
 <label  name="close" th:field="${hideButtonAdmin}" hidden id="close" th:value="${hideButtonAdmin}" th:text = "${hideButtonAdmin}"/>
 </body>
-<footer>
-    <p>All right reserved and belong to almighty Cthulhu</p>
+
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script>
 
     </script>
-</footer>
 </html>
