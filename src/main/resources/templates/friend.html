@@ -44,7 +44,7 @@
 <!--    <p th:each = "b : ${buddy.friends}" th:text="${b.buddy.firstName}"></p>-->
     <form name="buddyAdd" th:object="${user}" method="POST" >
         <div><label  hidden for="idF"><input class="buddyIdAdd" id = "idF" type="text" th:value="${buddy.buddyId}" name="idF"/> </label></div>
-        <input type="submit" value="Subscribe" id="friendAdd"/>
+        <input type="submit" value="Subscribe" class="friendAdd"/>
     </form>
 </div><br>
     </div>
@@ -52,8 +52,4 @@
     <br>
 </section>
 </body>
-<footer>
-    <p>All right reserved and belong to almighty Cthulhu</p>
-</footer>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </html>
