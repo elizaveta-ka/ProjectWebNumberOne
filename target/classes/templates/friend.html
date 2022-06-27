@@ -40,7 +40,7 @@
     <p th:text="${buddy.age}"> Возраст </p>
     <p th:text="${buddy.city}"> Город </p>
 
-    <p><a th:href="@{/buddy/{id}(id=${buddy.buddyId})}"><img th:src="@{${buddy.avatarImg}}" alt="Buddy image" width="150" height="180"></a></p>
+    <p><a th:href="@{/buddy/{id}(id=${buddy.buddyId})}"><img id="buddyImg" th:src="@{${buddy.avatarImg}}" alt="Buddy image" width="150" height="180"></a></p>
     <p hidden th:text="${buddy.buddyId}" >Id </p>
 <!--    <p th:each = "b : ${buddy.friends}" th:text="${b.buddy.firstName}"></p>-->
     <form name="buddyAdd" th:object="${user}" method="POST" >

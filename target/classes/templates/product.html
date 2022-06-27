@@ -51,13 +51,21 @@
                     <label for="tab_2">Suggestions</label><br>
 
                     <div id="rating">
-                        <span th:text="${product.prRating}"> Rate_P1</span>
-                        <p th:text="${count}">Count Authors</p>
+                    <table>
+                        <tr>
+                            <td><img th:src="@{/images/star.png}"></td>
+                            <th><span th:text="${product.prRating} + ${' from'}"> Rate_P1</span></th>
+                            <td><p th:text="${count} + ${' reviews'}">Count Authors</p></td>
+                        </tr>
+                    </table>
                     </div>
-
-                    <div id="suggestions" th:each="s : ${product.productCategory.suggestions}">
-                        <span th:text="${s.foodName} + ${', '}"></span>
-                        <span><img th:src="@{${s.foodImg}}" alt="Suggestion image" width="30" height="20"></span>
+                    <div id="suggestions">
+                    <table>
+                    <tr  th:each="s : ${product.productCategory.suggestions}">
+                        <td><img th:src="@{${s.foodImg}}" alt="Suggestion image" width="30" height="20"></td>
+                        <td><span th:text="${s.foodName}"></span></td>
+                    </tr>
+                    </table>
                     </div>
                     <br>
                 </div>
@@ -89,7 +97,7 @@
 
         <div id="rateBlock" th:each="review : ${product.productReviews}">
             <p th:text="${review.buddy.firstName} + ${' '} + ${review.buddy.lastName}">Author</p>
-            <p><a th:href="@{/buddy/{id}(id=${review.buddy.buddyId})}"><img th:src="@{${review.buddy.avatarImg}}" alt="Buddy image" width="150" height="180"></a></p>
+            <p><a th:href="@{/buddy/{id}(id=${review.buddy.buddyId})}"><img id="buddyImg" th:src="@{${review.buddy.avatarImg}}" alt="Buddy image" width="150" height="180"></a></p>
             <p th:text="${review.reviewProduct}"> Review_title</p><br>
             <div id="rating_pr">
                 <span th:text="${review.rateP1}"> Rate_P1</span>

@@ -123,7 +123,7 @@
 
         <div id="rateBlock" th:each="review : ${business.businessReviews}">
             <p th:text="${review.buddy.firstName} + ${' '} + ${review.buddy.lastName}">Author</p>
-            <p><a th:href="@{/buddy/{id}(id=${review.buddy.buddyId})}"><img th:src="@{${review.buddy.avatarImg}}" alt="Buddy image" width="130" height="180"></a></p>
+            <p><a th:href="@{/buddy/{id}(id=${review.buddy.buddyId})}"><img id="buddyImg" th:src="@{${review.buddy.avatarImg}}" alt="Buddy image" width="130" height="180"></a></p>
             <th>
             <p th:text="${review.reviewTitle}"> Review_title</p><br>
                 <p th:text="${review.reviewBusiness}"> Review</p><br>
