@@ -21,9 +21,9 @@
         // Инициализация и уничтожение карты при нажатии на кнопку.
         function init () {
 
-            var usersRaw = document.getElementById("allrev").innerHTML;
-            var usersArray = usersRaw.split("@");
-            var review = usersArray[usersArray.length - 2].substring(2);
+            var usersAllRev = document.getElementById("allrev").innerHTML;
+            var revArray = usersAllRev.split("@");
+            var review = revArray[revArray.length - 2].substring(2);
 
 
             var geolocation = ymaps.geolocation;
@@ -226,18 +226,13 @@
 
             </div></div><br>
         <div id="business_block">
-                <div th:each = "bR : ${product.businesses}" ><p th:text="${bR.busName} + ${', '} + ${bR.location}">Business_NAME, Business_LocationE<p>
-                    <label  name="loc" th:field="${bR.businessLink}" hidden id="loc" th:value="${bR.businessLink}" th:text = "${bR.businessLink}"/>
-                    <label  name="nameofBr" th:field="${bR.busName}" hidden id="nameofBr" th:value="${bR.busName}" th:text = "${bR.busName}"/>
-                    <label  name="address" th:field="${bR.location}" hidden id="address" th:value="${bR.location}" th:text = "${bR.location}"/>
-                    <p align="right"> <button onclick ="window.location.href='{{link}(link=${bR.businessLink})}';">Book a table</button></p>
-                    <p><a th:href="@{/business/{id}(id=${bR.businessId})}"><img th:src="@{${bR.busImg}}" alt="Buddy image" width="900" height="600"></a></p>
-                <p th:text="${Distance}">2 km away</p>
+            <div><p th:text="${product.businesses[0].busName} + ${', '} + ${product.businesses[0].location}">Business_NAME, Business_LocationE<p>
+                    <label  name="loc" th:field="${product.businesses[0].businessLink}" hidden id="loc" th:value="${product.businesses[0].businessLink}" th:text = "${product.businesses[0].businessLink}"/>
+                    <label  name="nameofBr" th:field="${product.businesses[0].busName}" hidden id="nameofBr" th:value="${product.businesses[0].busName}" th:text = "${product.businesses[0].busName}"/>
+                    <label  name="address" th:field="${product.businesses[0].location}" hidden id="address" th:value="${product.businesses[0].location}" th:text = "${product.businesses[0].location}"/>
+                    <p><a th:href="@{/business/{id}(id=${product.businesses[0].businessId})}"><img th:src="@{${product.businesses[0].busImg}}" alt="Buddy image" width="900" height="600"></a></p>
                     <input type="button" value="Показать карту" id="toggle"  />
                     <div id="map" style="width: 700px; height: 500px"></div>
-
-                <div><p th:text="${product.businesses[0].busName} + ${', '} + ${product.businesses[0].location}">Business_NAME, Business_LocationE<p>
-                    <p><a th:href="@{/business/{id}(id=${product.businesses[0].businessId})}"><img th:src="@{${product.businesses[0].busImg}}" alt="Buddy image" width="900" height="600"></a></p>
             </div>
         </div>
 </article><br>
