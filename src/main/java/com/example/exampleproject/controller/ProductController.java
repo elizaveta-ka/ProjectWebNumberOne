@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -65,9 +66,16 @@ public class ProductController {
             model.addAttribute("homeId", business.getBusinessId());
         }
         Product product = productRepository.getById(id);
+        Collection <ProductReview> productReviews = productRepository.getById(id).getProductReviews();
+        List <String> allrev = new ArrayList<>();
+        for (ProductReview rev : productReviews)
+            allrev.add(rev.getReviewProduct() + "@");
+        System.out.println(allrev);
         model.addAttribute("count", product.getProductReviews().size());
         model.addAttribute("user", userInPage);
         model.addAttribute("product", product);
+        model.addAttribute("allrev", allrev);
+
         return "product";
     }
 
