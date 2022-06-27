@@ -42,7 +42,7 @@
                 <p  hidden id="userName" th:text="${buddy.user.id}" th:data-userName="${buddy.user.id}">User</p>
                 <p id="age1" th:text="${buddy.age}">Age</p>
                 <p id="city1" th:text="${buddy.city}">City</p>
-                <p><img th:src="@{${buddy.avatarImg}}" alt="Buddy image" width="130" height="180"></p>
+                <p><img th:src="@{${buddy.avatarImg}}" alt="Buddy image" width="150" height="100"></p>
                 <td><a th:href="@{/buddy/{id}/wishlist(id=${buddy.buddyId})}">Wishlist</a></td>
                 <input type="submit" value="Редактировать" id="editBtn"/>
             </div>
