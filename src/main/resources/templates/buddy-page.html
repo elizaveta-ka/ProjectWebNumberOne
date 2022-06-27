@@ -47,7 +47,7 @@
                 <input type="submit" value="Edit" id="editBtn"/>
             </div>
             </div>
-
+        <div id="rating_add">
                 <form  hidden name="buddyEd" method="POST"  th:object="${buddy}" modelAttribute="buddy" class="buddyForm" th:name="buddyEd" th:id="buddyEd">
                     <input readonly id="id" type="hidden" name="id" th:value="${buddy.buddyId}" th:data-id="${buddy.buddyId}"/><br/><br/>
                     <input id="firstName" type="text" name="firstName" th:value="${buddy.firstName}" placeholder="Имя" th:data-fName="${buddy.firstName}" /><br/>Имя<br/>
@@ -57,6 +57,7 @@
                     <input id="city" type="text" name="city" th:value="${buddy.city}" placeholder="Город"/><br/>Город<br/>
                     <input type="submit" value="Сохранить" id="btnSubmit"/>
                 </form>
+        </div>
 
 
         <div id="rateBlock" th:each="review : ${buddy.productAuthors}">
