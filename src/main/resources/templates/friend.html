@@ -11,11 +11,11 @@
     <title>Find friends</title>
 </head>
 <header>
-    <h2>Find friends</h2>
+    <a id="menuBtn" onclick="openMenu()"><img th:src="@{/images/BoozeBuddyMin.svg}">
+        <h2>Find friends</h2></a>
 
 </header>
 <body>
-<section>
     <SideMenu id="SideMenu" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <li><a th:id="home" th:href="@{/buddy/{id}(id=${homeId})}">Home</a></li>
@@ -29,9 +29,10 @@
             th:data-home="${homeId}"> id </h1>
     </div>
 
-    <div id="product_block">
+    <div hidden id="product_block">
         <h1 hidden id="role" th:text = "${user.role.id}"
             th:data-role="${user.role.id}"> role </h1>
+    </div>
 
 <div id="Buddy_block" th:each = "buddy : ${buddies}">
     <p th:text="${buddy.firstName}"> Имя </p>
@@ -47,13 +48,9 @@
         <input type="submit" value="Subscribe" id="friendAdd"/>
     </form>
 </div><br>
-    </div>
+
 </article>
     <br>
-</section>
 </body>
-<footer>
-    <p>All right reserved and belong to almighty Cthulhu</p>
-</footer>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </html>

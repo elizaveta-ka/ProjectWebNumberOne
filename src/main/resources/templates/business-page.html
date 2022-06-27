@@ -15,7 +15,8 @@
 
 </head>
 <header>
-    <h2>Business page</h2>
+    <a id="menuBtn" onclick="openMenu()"><img th:src="@{/images/BoozeBuddyMin.svg}">
+        <h2>Business page</h2></a>
 
 </header>
 <body>
@@ -66,22 +67,22 @@
                         <p th:text="${count}">Count Authors</p>
                     </div>
                     <div id = "menu">
-                            <table th:each="product : ${business.products}" width="100%" border="0" cellpadding="4">
-<!--                                <tr align="right" valign="top">-->
-                                    <div id="product_block">
+                        <div id="product_block">
+                            <table  width="100%" border="0" cellpadding="4">
+                                <tr th:each="product : ${business.products}">
+
                                         <h1 hidden id="role" th:text = "${user.role.id}"
                                             th:data-role="${user.role.id}"> role </h1>
                                         <h1 hidden id="nameUs" th:text = "${user.id}"
                                             th:data-nameUs="${user.id}"> USER </h1>
+                                        <td><a th:href="@{/product/{id}(id=${product.productId})}"><img th:src="@{${product.productImg}}" alt="Product image" width="20" height="75" style="display: inline-block"></a></td>
                                         <th th:text="${product.productName}">Product_NAME</th>
                                         <td th:text="${product['productCategory']['categoryName']}">Category_NAME</td>
-                                        <p><a th:href="@{/product/{id}(id=${product.productId})}"><img th:src="@{${product.productImg}}" alt="Product image" width="160" height="180"></a></p>
-                                        <td th:text="${'Суммарный рейтинг продукта'}">Суммарный рейтинг продукта</td><!--                                </tr>-->
-                                    </div>
-                            </table>
-                        <td><a id="addNewProduct" th:href="@{{id}/product-create(id=${business.businessId})}">Menu editing</a></td>
-                        <!--                        <button><a th:href="@{business/{businessId}/product-create}">Add new product</a></button>-->
 
+                                </tr>
+                            </table>
+                        </div>
+                        <td><a id="addNewProduct" th:href="@{{id}/product-create(id=${business.businessId})}">Menu editing</a></td>
                     </div>
                 </div>
             </div>
@@ -91,8 +92,8 @@
             <br>
             <div><label for="reviewTitle"><input class="reviewTitlePr" id = "reviewTitle" type="text" th:value="${reviewTitle}" name="reviewTitle"/> </label></div>
             Review:<br>
-            <div><label for="reviewProduct"><textarea class="reviewProductPr" id = "reviewProduct" th:value="${reviewProduct}" name="reviewProduct"></textarea> </label></div>
-            <div><label for="rateB1"><input id="rateB1" type="text" th:value="${rateB1}" name="rateB1" value=""></label></div>
+            <div><label for="reviewBusiness"><textarea class="reviewBusinessBr" id = "reviewBusiness" th:value="${reviewBusiness}" name="reviewBusiness"></textarea> </label></div>
+            <div><label for="rateB1"><input id="rateB1" type="hidden" th:value="${rateB1}" name="rateB1" value=""></label></div>
             <div id="rating_new" >
                 <div class="param">Location :</div>
                 <div><div class="stars"></div><p class="progress" id="p1"></p></div>
@@ -128,6 +129,7 @@
                 <p th:text="${review.reviewBusiness}"> Review</p><br>
             <div id="rating_pr">
                 <span th:text="${review.rateB1}"> Rate_B1</span>
+
 
             <!--            <p th:text="${review.reviewB}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus scelerisque ipsum nec mauris dapibus gravida. Nam felis est, ornare sit amet auctor in, malesuada sit amet massa. Pellentesque eget efficitur lorem. Nunc lobortis erat a orci blandit, et consequat diam molestie. Etiam id tempor felis, sit amet egestas sem. Suspendisse potenti. Morbi tristique tincidunt leo in ornare. Aenean sodales leo id dapibus posuere.</p>-->
         </div><br>

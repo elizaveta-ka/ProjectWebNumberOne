@@ -29,25 +29,25 @@
             <h1 hidden id="buddIdHo" th:text = "${homeId}"
                 th:data-home="${homeId}"> id </h1>
         </div>
-        <div  id="product_block">
+        <div hidden id="product_block">
             <h1 hidden id="role" th:text = "${user.role.id}"
                 th:data-role="${user.role.id}"> role </h1>
             <h1 hidden id="nameUs" th:text = "${user.id}"
                 th:data-nameUs="${user.id}"> USER </h1>
-
+        </div>
         <div class="Buddy_block" th:name="buddy" th:id="buddy">
-            <div th:fragment="buddy">
+            <div class="bb" th:fragment="buddy">
                 <h1 id="first_name" th:text="${buddy.firstName}"> First Name </h1>
                 <h1 id="last_name" th:text="${buddy.lastName}">Last Name</h1>
                 <p  hidden id="userName" th:text="${buddy.user.id}" th:data-userName="${buddy.user.id}">User</p>
                 <p id="age1" th:text="${buddy.age}">Age</p>
                 <p id="city1" th:text="${buddy.city}">City</p>
                 <p><img th:src="@{${buddy.avatarImg}}" alt="Buddy image" width="130" height="180"></p>
-                <td><a th:href="@{/buddy/{id}/wishlist(id=${buddy.buddyId})}">Wishlist</a></td>
-                <input type="submit" value="Редактировать" id="editBtn"/>
+                <button th:href="@{/buddy/{id}/wishlist(id=${buddy.buddyId})}">Wishlist</button>
+                <input type="submit" value="Edit" id="editBtn"/>
             </div>
             </div>
-        </div>
+
                 <form  hidden name="buddyEd" method="POST"  th:object="${buddy}" modelAttribute="buddy" class="buddyForm" th:name="buddyEd" th:id="buddyEd">
                     <input readonly id="id" type="hidden" name="id" th:value="${buddy.buddyId}" th:data-id="${buddy.buddyId}"/><br/><br/>
                     <input id="firstName" type="text" name="firstName" th:value="${buddy.firstName}" placeholder="Имя" th:data-fName="${buddy.firstName}" /><br/>Имя<br/>
@@ -62,7 +62,8 @@
         <div id="rateBlock" th:each="review : ${buddy.productAuthors}">
             <p th:text="${review.product.productName}"> Review_title</p><br>
             <th><a th:href="@{/product/{id}(id=${review.product.productId})}">
-                <img th:src="@{${review.product.productImg}}" alt="Product image" width="130" height="180"></a></th>
+                <img th:src="@{${review.product.productImg}}" alt="Product image" width="80" height="300"></a></th>
+            <p th:text="${review.reviewTitle}"> Review_title</p><br>
             <p th:text="${review.reviewProduct}"> Review_title</p><br>
             <div id="rating_pr">
                  <span th:text="${review.rateP1}"> Rate_P4</span>

@@ -130,7 +130,6 @@ public class BusinessController {
         Business business = businessRepository.getById(id);
         Buddy buddy = roleOnPage.findBuddyByUser(user);
         businessReview.setBuddy(buddy);
-        businessReview.setBuddy(buddy);
         businessReview.setBuddyId(buddy.getBuddyId());
         businessReview.setBusiness(business);
         businessReview.setBusinessId(business.getBusinessId());

@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
 <!--      th:fragment="main-fragment (title, otherStaticResources, header, SideMenu, mainContent, footer)">-->
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -35,6 +35,7 @@
         </div>
 
         <div id="product_block">
+
             <div th:fragment="product">
                 <h1 hidden id="role" th:text = "${user.role.id}"
                     th:data-role="${user.role.id}"> role </h1>
@@ -54,10 +55,6 @@
                         <p th:text="${count}">Count Authors</p>
                     </div>
 
-                        <div id="overall"><div id="oRate"></div></div> <p th:text="${product.prRating}"></p>
-                        <input type="hidden" id="ovRate" th:value="${product.prRating}">
-                    </div>
-
                     <div id="suggestions" th:each="s : ${product.productCategory.suggestions}">
                         <span th:text="${s.foodName} + ${', '}"></span>
                         <span><img th:src="@{${s.foodImg}}" alt="Suggestion image" width="30" height="20"></span>
@@ -65,7 +62,8 @@
                     <br>
                 </div>
             </div>
-        </div><br>
+        </div>
+        <br>
 
         <div id = "rating_add"><form id="addReviewForm" class="form-control" method="post" th:object="${productReview}">
 
@@ -104,8 +102,8 @@
                 <p th:text="${Distance}">2 km away</p>
             </div>
         </div>
-
-    </article><br>
+</article><br>
+    </div>
 <style type="text/css">
     .param, #rating_new, #summ { line-height: 28px; }
     .stars, #sum_stars { background: url(/images/stars.png); }
