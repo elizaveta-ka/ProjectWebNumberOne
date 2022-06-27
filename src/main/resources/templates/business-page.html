@@ -50,7 +50,7 @@
             <input id="name" type="text" name="busName" th:value="${business.busName}" placeholder="Имя" /><br/><br/>
             <input id="busImg" type="text" name="busImg" th:value="${business.busImg}" placeholder="Фото"/><br/>Фото<br/>
             <input id="location" type="text" name="location" th:value="${business.location}" placeholder="Расположение" /><br/><br/>
-            <input id="link" type="text" name="businessLink" th:value="${business.businessLink}" placeholder="Ссылка"/><br/><br/>
+<!--            <input id="link" type="text" name="businessLink" th:value="${business.businessLink}" placeholder="Ссылка"/><br/><br/>-->
 
             <input type="submit" value="Save" id="btnSubmit"/>
         </form>
@@ -122,7 +122,7 @@
 
         <div id="rateBlock" th:each="review : ${business.businessReviews}">
             <p th:text="${review.buddy.firstName} + ${' '} + ${review.buddy.lastName}">Author</p>
-            <p><a th:href="@{/buddy/{id}(id=${review.buddy.buddyId})}"><img th:src="@{${review.buddy.avatarImg}}" alt="Buddy image" width="130" height="180"></a></p>
+            <p><a th:href="@{/buddy/{id}(id=${review.buddy.buddyId})}"><img id="buddyImg" th:src="@{${review.buddy.avatarImg}}" alt="Buddy image" width="130" height="180"></a></p>
             <th>
             <p th:text="${review.reviewTitle}"> Review_title</p><br>
                 <p th:text="${review.reviewBusiness}"> Review</p><br>
