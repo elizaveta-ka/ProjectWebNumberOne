@@ -63,14 +63,14 @@ public class RegistrationController {
         newUser.setActive(true);
         userRepository.save(newUser);
 
-        if(newUser.getRole().getName().equals("USER")) {
+        if(newUser.getRole().getName().equals("user")) {
 
             return makeRedirectBuddyAfterRegistration(newUser, Integer.parseInt(age));
         }
-        else if (newUser.getRole().getName().equals("BUSINESS")) {
+        else if (newUser.getRole().getName().equals("business")) {
           return makeRedirectBusinessAfterRegistration(newUser);
         }
-        else if (newUser.getRole().getName().equals("ADMIN")){
+        else if (newUser.getRole().getName().equals("admin")){
             return makeRedirectAdminAfterRegistration();
         }
             return "redirect:/feed";
