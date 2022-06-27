@@ -8,6 +8,7 @@
     <script type="text/javascript" th:src="@{/js/menuHandler.js}"></script>
     <script type="text/javascript" th:src="@{/js/showReview.js}"></script>
     <script type="text/javascript" th:src="@{/js/menuHandler.js}"></script>
+    <script type="text/javascript" th:src="@{/js/particlesJS.js}"></script>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../../static/main.css"/>
     <title>Product Page</title>
@@ -21,8 +22,6 @@
 </header>
 <body>
 <div id="main">
-<section>
-
     <article>
         <SideMenu id="SideMenu" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -51,6 +50,10 @@
                     <label for="tab_2">Suggestions</label><br>
 
                     <div id="rating">
+                        <div id="overall"><div id="oRate"></div></div> <p th:text="${product.prRating}"></p>
+                        <input type="hidden" id="ovRate" th:value="${product.prRating}">
+                    </div>
+
                         <span th:text="${product.prRating}"> Rate_P1</span>
                         <p th:text="${count}">Count Authors</p>
                     </div>
@@ -102,7 +105,6 @@
         </div>
 
     </article><br>
-</section>
 <style type="text/css">
     .param, #rating_new, #summ { line-height: 28px; }
     .stars, #sum_stars { background: url(/images/stars.png); }
@@ -114,9 +116,4 @@
 </style>
 </div>
 </body>
-<footer>
-    <p>All right reserved and belong to almighty Cthulhu</p>
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-
-</footer>
 </html>

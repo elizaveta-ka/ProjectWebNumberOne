@@ -11,7 +11,8 @@
 
 </head>
 <header>
-  <h2>Buddy page</h2>
+  <a id="menuBtn" onclick="openMenu()"><img th:src="@{/images/BoozeBuddyMin.svg}">
+    <h2>Buddy page</h2></a>
 
 </header>
 <body>
@@ -35,13 +36,15 @@
           th:data-nameUs="${user.id}"> USER </h1>
     <div id="Buddy_block">
       <div th:fragment="buddyPage">
-
         <h1 id="first_name" th:text="${buddyPage.firstName}"> First Name </h1>
         <h1 id="last_name" th:text="${buddyPage.lastName}">Last Name</h1>
         <p id="age" th:text="${buddyPage.age}">Age</p>
         <p id="city" th:text="${buddyPage.city}">City</p>
         <p  hidden id="userName" th:text="${buddy.user.id}" th:data-userName="${buddy.user.id}">User</p>
         <p><img th:src="@{${buddyPage.avatarImg}}" alt="Buddy image" width="130" height="180"></p>
+      </div>
+    </div>
+    </div>
 
         <div id="rateBlock" th:each="product : ${buddyPage.products}">
           <p th:text="${product.productName}"> Review_title</p><br>
@@ -55,13 +58,9 @@
         </div><br>
       </div><br>
     </div>
+        <br><br>
   </article><br>
 </section>
 
 </body>
-<footer>
-  <p>All right reserved and belong to almighty Cthulhu</p>
-  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-
-</footer>
 </html>

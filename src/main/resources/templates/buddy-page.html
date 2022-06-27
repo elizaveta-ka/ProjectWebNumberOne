@@ -11,24 +11,25 @@
     <title>Buddy page</title>
 </head>
 <header>
-    <h2>Buddy page</h2>
+
+    <a id="menuBtn" onclick="openMenu()"><img th:src="@{/images/BoozeBuddyMin.svg}">
+        <h2>Buddy page</h2></a>
 
 </header>
 <body>
-<section>
     <SideMenu id="SideMenu" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <li><a th:id="home" th:href="@{/buddy/{id}(id=${homeId})}">Home</a></li>
-        <li><a th:href="@{/feed}">Feed</a></li>
-        <li><a th:href="@{/friend}">Find friends</a></li>
-        <li><span style=vertical-align:bottom><a th:href="@{/logout}">Log out</a> </span></li>
+        <a th:id="home" th:href="@{/buddy/{id}(id=${homeId})}">Home</a>
+        <a th:href="@{/feed}">Feed</a>
+        <a th:href="@{/friend}">Find friends</a>
+        <a th:href="@{/logout}">Log out</a>
     </SideMenu>
     <article>
         <div id="num_block">
             <h1 hidden id="buddIdHo" th:text = "${homeId}"
                 th:data-home="${homeId}"> id </h1>
         </div>
-        <div id="product_block">
+        <div  id="product_block">
             <h1 hidden id="role" th:text = "${user.role.id}"
                 th:data-role="${user.role.id}"> role </h1>
             <h1 hidden id="nameUs" th:text = "${user.id}"
@@ -64,16 +65,14 @@
                 <img th:src="@{${review.product.productImg}}" alt="Product image" width="130" height="180"></a></th>
             <p th:text="${review.reviewProduct}"> Review_title</p><br>
             <div id="rating_pr">
-                 <span th:text="${review.rateP1}"> Rate_P4</span></div>
-            </div><br>
+                 <span th:text="${review.rateP1}"> Rate_P4</span>
+            </div>
         </div><br>
-        </div>
+        <br>
     </article><br>
-</section>
+
 
 </body>
-<footer>
-    <p>All right reserved and belong to almighty Cthulhu</p>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script>
         $(document).ready(function () {
@@ -103,5 +102,4 @@
             });
         });
     </script>
-</footer>
 </html>

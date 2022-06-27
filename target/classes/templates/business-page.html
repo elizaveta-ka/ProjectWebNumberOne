@@ -33,7 +33,7 @@
                 th:data-home="${homeId}"> id </h1>
         </div>
 
-        <div class="Business_block" th:name="business" th:id="business">
+        <div class="business_block" th:name="business" th:id="business">
             <div th:fragment="business">
                 <h1 th:text="${business.busName}"> Business_NAME </h1>
                 <p th:text="${business.location}">Location</p>
@@ -99,15 +99,13 @@
                                         <p><a th:href="@{/product/{id}(id=${product.productId})}"><img th:src="@{${product.productImg}}" alt="Product image" width="160" height="180"></a></p>
                                         <td th:text="${'Суммарный рейтинг продукта'}">Суммарный рейтинг продукта</td><!--                                </tr>-->
                                     </div>
-                            </tr>
-                        </table>
+                            </table>
                         <td><a id="addNewProduct" th:href="@{{id}/product-create(id=${business.businessId})}">Menu editing</a></td>
-<!--                        <button><a th:href="@{business/{businessId}/product-create}">Add new product</a></button>-->
+                        <!--                        <button><a th:href="@{business/{businessId}/product-create}">Add new product</a></button>-->
                     </div>
                 </div>
             </div>
-            </div>
-        </div><br>
+            <br>
         <div id = "rating_add"><form id="addReviewForm" class="form-control" method="post" th:action="@{{id}/add-review(id=${business.businessId})}" th:object="${businessReview}">
             Review title:<br>
             <br>
@@ -156,8 +154,6 @@
     </article><br>
 </section>
 </body>
-<footer>
-    <p>All right reserved and belong to almighty Cthulhu</p>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script>
         $(document).ready(function (event) {
@@ -184,5 +180,4 @@
             });
         });
     </script>
-</footer>
 </html>

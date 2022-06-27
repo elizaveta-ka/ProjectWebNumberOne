@@ -1,14 +1,38 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,700&display=swap');
+@font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Raleway'), local('Raleway-Regular'), url(https://fonts.gstatic.com/s/raleway/v11/yQiAaD56cjx1AooMTSghGfY6323mHUZFJMgTvxaG2iE.woff2) format('woff2');
+    unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
 * {
     box-sizing: border-box;
 }
+html{
+    font-family: "Raleway", sans-serif;
+}
 header {
-    background-color: #c1d8f0;
+    background-color: #ffffff;
+    position: absolute;
     padding: 5px;
     text-align: center;
     font-size: 24px;
     color: #777;
-    box-shadow: 0px 4px 0px 0px rgba(0, 0, 0, 0.25);
+    border-bottom: 1px solid silver;
+    width: 100%;
+    margin: 0 auto;
     transition: background-color 2s ease-out 100ms;
+    font-family: "Raleway", sans-serif;
+}
+a:hover h2{
+    color: #111111;
+}
+header:hover h2{
+    color: #111;
+}
+header h2{
+    display: inline-block;
 }
 input[type=text]{
     border-top: #ffffff;
@@ -17,6 +41,36 @@ input[type=text]{
     border-bottom: 2px solid #111111;
     outline: none;
     alignment: center;
+    width: 80%;
+}
+input[type=submit]{
+    border: 1px solid #111111;
+    background-color: transparent;
+    text-align: center;
+    text-decoration: none;
+    height: 40px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    box-shadow: 0px 1px 2px 1px rgba(0, 0, 100, 0.25);
+    border-radius: 20px;
+}
+button{
+
+    background-color: transparent;
+    text-align: center;
+    text-decoration: none;
+    height: 24px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    border-radius: 20px;
+    box-shadow: 0px 1px 2px 1px rgba(0, 0, 100, 0.25);
+    border-radius: 20px;
+}
+input[type=submit]:hover{
+    box-shadow: 0px 2px 4px 2px rgba(0, 0, 100, 0.25);
+}
+button:hover{
+    box-shadow: 0px 2px 4px 2px rgba(0, 0, 100, 0.25);
 }
 input[type=text]:focus{
     bborder-top: #ffffff;
@@ -32,6 +86,7 @@ textarea{
     border-bottom: 2px solid #111111;
     outline: none;
     display: inline-block;
+    width: 80%;
 
 }
 textarea:focus {
@@ -42,25 +97,47 @@ textarea:focus {
     outline: none;
 
 }
-a:hover h2{
-    color: #111111;
+
+body{
+    background-color: #ffffff;
+    margin: 0;
+    font:normal 75% Raleway, sans-serif;
+    width: 100%;
+
 }
-header:hover h2{
-    color: #111;
+
+canvas {
+    display: block;
+    vertical-align: bottom;
 }
-head:hover{
-    background-color: #c1d8f0;
-}
-header h2{
-    display: inline-block;
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    /*background-image: url("");*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
 }
 
 article {
     float: right;
-    padding: 15px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding-left: 30%;
+    padding-right: 30%;
+    padding-top: 20px;
     width: 100%;
-    background-color: #e1f1fd;
+    background-color: #ffffff;
     display: block;
+    background-image: url("/images/2.png");
+}
+article:hover{
+    background-image: url("/images/1.png");
+}
+article>div:hover article{
+    background-image: url("/images/2.png");
 }
 section:after {
     content: "";
@@ -69,14 +146,15 @@ section:after {
 }
 footer {
     background-color: #777;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
     padding: 10px;
     text-align: center;
     color: white;
-    bottom: 0;
     width: 100%;
     height: 80px;
-    position: relative;
-    clear: left;
+    position: absolute;
 }
 @media ( max-width : 600px) {
     nav, article {
@@ -87,50 +165,56 @@ footer {
 
 #rateBlock {
     height: 30%; /* Высота слоя в пикселах */
-    left: 40%; /* Положение слоя от левого края */
-    top: 50%; /* Положение слоя от верхнего края */
     margin-top: 15px;  /* Отступ сверху */
-    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.25);
     background-color: #ffffff;
-    border: solid 1px; /* Параметры рамки вокруг */
+    /*border: solid 1px; !* Параметры рамки вокруг *!*/
     padding: 10px; /* Поля вокруг текста */
     overflow: auto; /* Добавление полосы прокрутки */
-    width: 40%;
-    margin-right: 30%;
+    width: 100%;
+    border-radius: 20px;
 }
 #reviewer_img{
     float: right;
 }
-#business_block{
-    margin-top: 15px;
+.business_block{
+    margin-top: 75px;
     margin-bottom: 15px;
     background-color: #ffffff;
-    border: solid 1px;
+    /*border: solid 1px;*/
     padding: 10px;
     overflow: auto;
-    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.25);
     height: 30%;
-    left: 40%;
-    align: bottom;
-    width: 40%;
-    margin-right: 30%;
+    width: 100%;
+    border-radius: 20px;
+}
+#business_block{
+    margin-top: 75px;
+    margin-bottom: 15px;
+    background-color: #ffffff;
+    /*border: solid 1px;*/
+    padding: 10px;
+    overflow: auto;
+    box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.25);
+    height: 30%;
+    width: 100%;
+    border-radius: 20px;
 }
 #booking{
     position: relative;
     alignment: right;
 }
 #product_block {
-    margin-top: 15px;
+    margin-top: 75px;
     margin-bottom: 15px;
     background-color: #ffffff;
-    border: solid 1px;
+    /*border: solid 1px;*/
     padding: 10px;
-    overflow: auto;
-    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.25);
     height: 30%;
-    left: 40%;
-    width: 40%;
-    margin-right: 30%;
+    width: 100%;
+    border-radius: 20px;
 }
 
 #menu{
@@ -144,7 +228,12 @@ footer {
     height: 30%;
     alignment: right;
 }
-.tabs { width: 100%; padding: 0px; margin: 0 auto; }
+.tabs {
+    width: 100%;
+    padding: 0px;
+    margin: 0 auto;
+    display: inline-block;
+}
 .tabs>input { display: none; }
 .tabs>div {
     display: none;
@@ -157,10 +246,13 @@ footer {
     padding: 7px;
     margin: 0 -5px -1px 0;
     text-align: center;
-    color: #666666;
+    color: #606468;
     border: 1px solid #C0C0C0;
     background: #E0E0E0;
     cursor: pointer;
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+
 }
 .tabs>input:checked + label {
     color: #000000;
@@ -176,9 +268,10 @@ footer {
 #rating_new {
     width: 320px;
 
-    margin: 10px auto;
-    padding: 10px;
-    text-align: center;
+    /*margin: 10px;*/
+    /*padding: 10px;*/
+    text-align: left;
+    alignment: left;
 }
 #rating_new div { float: left; }
 #rating_new p { margin: 0; padding: 0; }
@@ -187,40 +280,44 @@ footer {
     margin: 0 20px 0 0;
     text-align: right;
 }
-/*.param, .rating_new, #summ { line-height: 28px; }*/
-/*.stars, #sum_stars { background: url(../../../static/images//stars.png); }*/
-/*.stars, #sum_stars, .progress, #sum_progress {*/
-/*    width: 130px;*/
-/*    height: 28px;*/
-/*    cursor: pointer;*/
-/*}*/
 .progress { background: #38D8FF; }
 #sum_progress { background: #FCFF38; }
 .rating_new, #summ {
     margin: 0 0 0 20px;
     font-weight: bold;
 }
+#overall{
+    background: url("/images/stars.png");
+    position: absolute;
+    line-height: 28px;
+}
+#oRate{
+    background-color: #FCFF38;
+    line-height: 28px;
+    position: relative;
+    left: 0;
+    width: 100px;
+    /*--rateBar: 0px;*/
+    /*width: var(--rateBar);*/
+}
 #rating_add{
     height: 30%; /* Высота слоя в пикселах */
-    left: 40%; /* Положение слоя от левого края */
-    top: 50%; /* Положение слоя от верхнего края */
     margin-top: 15px;  /* Отступ сверху */
-    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
     background-color: #ffffff;
-    border: solid 1px; /* Параметры рамки вокруг */
+    /*border: solid 1px; !* Параметры рамки вокруг *!*/
     padding: 10px; /* Поля вокруг текста */
     overflow: auto; /* Добавление полосы прокрутки */
-    width: 40%;
-    margin-right: 30%;
-    text-align: center;
+    width: 100%;;
+    text-align: left;
+    box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.25);
 }
 #rating_add.p{
     display: inline-block;
 }
 #rating_add.form{
-    margin:  20px;
     padding: 10px;
-    alignment: center;
+    alignment: left;
 }
 #submitButton{
     margin: 20px;
@@ -268,7 +365,7 @@ footer {
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {
     transition: margin-left .5s;
-    padding: 20px;
+    width: 100%;
 
 }
 
