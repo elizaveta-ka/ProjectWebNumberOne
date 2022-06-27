@@ -3,6 +3,12 @@ package com.example.exampleproject.controller;
 import com.example.exampleproject.model.User;
 import com.example.exampleproject.repository.RoleRepository;
 import com.example.exampleproject.repository.UserRepository;
+import com.maxmind.geoip.Location;
+import com.maxmind.geoip.LookupService;
+import com.maxmind.geoip2.WebServiceClient;
+import com.maxmind.geoip2.exception.GeoIp2Exception;
+import com.maxmind.geoip2.model.CountryResponse;
+import com.maxmind.geoip2.record.Country;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,6 +16,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.net.InetAddress;
 import java.sql.SQLOutput;
 import java.util.List;
 
@@ -32,7 +40,10 @@ public class MainController {
     }
 
     @GetMapping("/admin")
-    public String admin( Model model) {
+    public String admin( Model model) throws IOException, GeoIp2Exception {
+
+
+
         List <User> users = userRepository.findAll();
         model.addAttribute("users", users);
 //        User userFromDB = userRepository.findByUsername(username);

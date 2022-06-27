@@ -45,6 +45,7 @@ public class RegistrationController {
 
     @GetMapping("/registration")
     public String registration(@AuthenticationPrincipal UserDetails user, Model model) {
+
         List<User> usersrep = userRepository.findAll();
         List <String> users = new ArrayList<>();
         for (var userdb : usersrep)
@@ -52,11 +53,12 @@ public class RegistrationController {
         model.addAttribute("users", users);
         String hideAdminFlag = "true";
         if (user != null)
-           hideAdminFlag = hideAdmin(user);
-            model.addAttribute("closeButtonAdmin", hideAdminFlag);
+            hideAdminFlag = hideAdmin(user);
+        model.addAttribute("closeButtonAdmin", hideAdminFlag);
 
         return "registration";
     }
+
 
 
     @PostMapping("/registration")
@@ -73,14 +75,14 @@ public class RegistrationController {
         newUser.setActive(true);
         userRepository.save(newUser);
 
-        if(newUser.getRole().getName().equals("USER")) {
+        if(newUser.getRole().getName().equals("user")) {
 
             return makeRedirectBuddyAfterRegistration(newUser, Integer.parseInt(age));
         }
-        else if (newUser.getRole().getName().equals("BUSINESS")) {
+        else if (newUser.getRole().getName().equals("business")) {
           return makeRedirectBusinessAfterRegistration(newUser);
         }
-        else if (newUser.getRole().getName().equals("ADMIN")){
+        else if (newUser.getRole().getName().equals("admin")){
             return makeRedirectAdminAfterRegistration();
         }
             return "redirect:/feed";
@@ -118,7 +120,7 @@ public class RegistrationController {
         if (user != null) {
             User loggedUser = userRepository.findByUsername(user.getUsername());
 
-            if (loggedUser.getRole().getName().equals("ADMIN")) {
+            if (loggedUser.getRole().getName().equals("admin")) {
                 closeButtonAdmin = "false";
             }
             else {

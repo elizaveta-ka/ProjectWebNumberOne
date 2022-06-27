@@ -7,6 +7,7 @@
 </head>
 <script>
     window.onload = function hide() {
+        // document.getElementById("message2").innerHTML = document.getElementById("users").innerHTML.split(", ");
 
         if( document.getElementById("close").innerText == "true") {
             document.getElementById("Choice0").hidden = true;
@@ -24,13 +25,9 @@
         var pw1 = document.getElementById("password2").value;
         var user = document.getElementById("username").value;
         var age = document.getElementById("age").value;
-        var users = document.getElementById("users").innerHTML;
-        var form = document.querySelector("form");
-        var data = new FormData(form);
-        var outputRole = "";
-        for (const entry of data) {
-            outputRole = entry[0] + entry[1];
-        };
+        var usersRaw = document.getElementById("users").innerHTML;
+        var users = usersRaw.substring(1, usersRaw.length -1);
+        var usersArray = users.split(", ");
 
         if(user == "") {
             document.getElementById("message").innerHTML = "**Fill the username please!";
@@ -49,13 +46,14 @@
             return false;
         }
 
-
-        if(users.includes(user)) {
-            document.getElementById("message").innerHTML = "**This username exists!";
-            return false;
+        else if(usersArray.includes(user)) {
+            // for(let i=0; i< usersArray.length; i++) {
+                // if (usersArray[i].valueOf(user)) {
+                    document.getElementById("message").innerHTML = "**This username exists!";
+                    return false;
+                // }
+            // }
         }
-
-
 
         else if(pw == "") {
             document.getElementById("message").innerHTML = "**Fill the password please!";
@@ -85,7 +83,6 @@
             document.getElementById("message").innerHTML = "**Fill the age please!";
             return false;
         }
-
         else if (! /^[0-9]+$/.test(age)) {
             document.getElementById("message").innerHTML = "**Only numbers in age!";
             return false;
@@ -98,9 +95,8 @@
             document.getElementById("message").innerHTML = "**You are too young!";
             return false;
         }
-
         else {
-
+            return true;
         }
     }
 </script>
@@ -128,7 +124,7 @@
             <p th:case="*"></p>
         </div>
     </fieldset>
-
+<!--    <span id = "message2" style="color:red"> </span> <br>-->
     <span id = "message" style="color:red"> </span> <br>
 
     <form class="form-profile" th:action="@{/registration}" method="post" th:name="profile" th:id="profile" onsubmit ="return verify()" onload = "return hide()" >
@@ -140,13 +136,13 @@
 
 
         <br>
-        <INPUT class="fontawesome-user" name="role" type="radio" id="Choice1" checked value="USER">
+        <INPUT class="fontawesome-user" name="role" type="radio" id="Choice1" checked value="user">
         Buddy
         <br>
-        <INPUT class="fontawesome-user"  name="role" type="radio" id="Choice2" value="BUSINESS">
+        <INPUT class="fontawesome-user"  name="role" type="radio" id="Choice2" value="business">
         Business
         <br>
-        <INPUT class="fontawesome-user"  name="role" type="radio" id="Choice0" value="ADMIN">
+        <INPUT class="fontawesome-user"  name="role" type="radio" id="Choice0" value="admin">
         <label for="Choice0" id="label">Administrator</label>
         <br>
 

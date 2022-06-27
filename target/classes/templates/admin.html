@@ -14,7 +14,7 @@
 
     window.onload = function hide() {
 
-        if( document.getElementById("role").innerText == "ADMIN") {
+        if( document.getElementById("role").innerText == "admin") {
             document.getElementById("ban").hidden = true;
             document.getElementById("password").innerHTML = "*******";
         }
@@ -54,10 +54,11 @@
                 <td th:text="${user.id}"></td>
                 <td name = "username" id = "username" th:text="${user.username}" th:value="${user.username}"></td>
 
-                <td th:text="${user.password}"></td>
+                <td id = "password" th:text="${user.password}"></td>
                 <td name = "active" id = "active" th:text="${user.active}" th:value = ${user.active}></td>
-                <td th:text="${user.role.getName()}"></td>
-                <td><a id="ban" th:href="@{/ban-user/{id}(id=${user.id})}">Ban/Unban<i></i></a></td>
+                <td id = "role" th:text="${user.role.getName()}"></td>
+
+                <td><a id="ban"  th:href="@{/ban-user/{id}(id=${user.id})}">Ban/Unban<i></i></a></td>
                     </form>
                 </form>
                 </td>

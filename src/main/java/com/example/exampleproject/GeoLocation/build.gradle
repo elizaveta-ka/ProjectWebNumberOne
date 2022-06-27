@@ -1,0 +1,6 @@
+repositories {
+    mavenCentral()
+}
+dependencies {
+    compile 'com.maxmind.geoip2:geoip2:3.0.1'
+}

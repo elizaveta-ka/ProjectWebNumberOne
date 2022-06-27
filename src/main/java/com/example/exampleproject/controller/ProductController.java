@@ -79,6 +79,9 @@ public class ProductController {
         Product product = productRepository.getById(id);
         model.addAttribute("user", userInPage);
         model.addAttribute("product", product);
+
+
+
         return "product";
     }
 
