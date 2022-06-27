@@ -43,7 +43,7 @@
                 <p id="age1" th:text="${buddy.age}">Age</p>
                 <p id="city1" th:text="${buddy.city}">City</p>
                 <p><img th:src="@{${buddy.avatarImg}}" alt="Buddy image" width="130" height="180"></p>
-                <button th:href="@{/buddy/{id}/wishlist(id=${buddy.buddyId})}">Wishlist</button>
+                <a th:href="@{/buddy/{id}/wishlist(id=${buddy.buddyId})}">Wishlist</a>
                 <input type="submit" value="Edit" id="editBtn"/>
             </div>
             </div>

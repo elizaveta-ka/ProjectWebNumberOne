@@ -29,11 +29,12 @@
       <h1 hidden id="buddIdHo" th:text = "${homeId}"
           th:data-home="${homeId}"> id </h1>
     </div>
-    <div id="product_block">
+    <div hidden id="product_block">
       <h1 hidden id="role" th:text = "${user.role.id}"
           th:data-role="${user.role.id}"> role </h1>
       <h1 hidden id="nameUs" th:text = "${user.id}"
           th:data-nameUs="${user.id}"> USER </h1>
+    </div>
     <div id="Buddy_block">
       <div th:fragment="buddyPage">
         <h1 id="first_name" th:text="${buddyPage.firstName}"> First Name </h1>
@@ -44,7 +45,7 @@
         <p><img th:src="@{${buddyPage.avatarImg}}" alt="Buddy image" width="130" height="180"></p>
       </div>
     </div>
-    </div>
+
 
         <div id="rateBlock" th:each="product : ${buddyPage.products}">
           <p th:text="${product.productName}"> Review_title</p><br>

@@ -62,8 +62,13 @@
                     <label for="tab_4">Menu</label><br>
 
                     <div id="rating">
-                        <span th:text="${business.brRating}"> Rate_P1</span>
-                        <p th:text="${count}">Count Authors</p>
+                        <table>
+                            <tr>
+                                <td><img th:src="@{/images/star.png}"></td>
+                                <th><span th:text="${business.brRating} + ${' from'}"> Rate_P1</span></th>
+                                <td><p th:text="${count} + ${' reviews'}">Count Authors</p></td>
+                            </tr>
+                        </table>
                     </div>
                     <div id = "menu">
                         <div id="product_block">
@@ -77,7 +82,6 @@
                                         <td><a th:href="@{/product/{id}(id=${product.productId})}"><img th:src="@{${product.productImg}}" alt="Product image" width="20" height="75" style="display: inline-block"></a></td>
                                         <th th:text="${product.productName}">Product_NAME</th>
                                         <td th:text="${product['productCategory']['categoryName']}">Category_NAME</td>
-
                                 </tr>
                             </table>
                         </div>
