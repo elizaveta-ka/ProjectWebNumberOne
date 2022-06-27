@@ -43,19 +43,6 @@ public class BusinessController {
         this.buddyRepository = buddyRepository;
         this.roleOnPage = roleOnPage;
     }
-//    @GetMapping("/business-delete/{id}")
-//    public String deleteBusiness(@PathVariable(value = "id") int id) {
-//
-//        businessRepository.deleteById(id);
-//        return "redirect:/business";
-//    }
-//    // работает
-//    @GetMapping("/business-update/{id}")
-//    public String updateBusinessForm(@PathVariable("id") int id, Model model) {
-//        Optional<Business> business = businessRepository.findById(id);
-//        model.addAttribute("business", business);
-//        return "/business-update";
-//    }
 
     @GetMapping("/business/{id}")
     public String showBusinessPage(@PathVariable("id") int id, @AuthenticationPrincipal UserDetails user, Model model) throws UnsupportedEncodingException {
@@ -76,22 +63,12 @@ public class BusinessController {
 
     @PostMapping("/business/{id}")
     public String updateBusiness(@PathVariable int id, @AuthenticationPrincipal UserDetails user, Business business, BindingResult bindingResult) {
-        System.out.println(business);
-        User user1 = userRepository.findByUsername(user.getUsername());
-        int bId = 0;
-        Collection<Business> businesses = businessRepository.findAll();
-        for (var b:businesses) {
-            User user2 = b.getUser();
-            if(user1.equals(user2)) {
-                bId = b.getBusinessId();
-            }
-        }
-        Business business1 = businessRepository.getById(bId);
+        Business business1 = roleOnPage.findBusinessByUser(user);
         System.out.println(business1);
         business1.setBusName(business.getBusName());
         business1.setLocation(business.getLocation());
         business1.setBusinessLink(business.getBusinessLink());
-        business1.setUser(user1);
+        business1.setBusImg(business.getBusImg());
         businessRepository.save(business1);
         return "redirect:/business/" + id;
     }
@@ -115,17 +92,7 @@ public class BusinessController {
 
     @PostMapping("/business/{id}/product-create")
     public String createProduct(@AuthenticationPrincipal UserDetails user, Product product, Business business) {
-        System.out.println(business);
-        User user1 = userRepository.findByUsername(user.getUsername());
-        int bId = 0;
-        Collection<Business> businesses = businessRepository.findAll();
-        for (var b:businesses) {
-            User user2 = b.getUser();
-            if(user1.equals(user2)) {
-                bId = b.getBusinessId();
-            }
-        }
-        Business business1 = businessRepository.getById(bId);
+        Business business1 = roleOnPage.findBusinessByUser(user);
         Set<Product> products = business1.getProducts();
         var productCategory= productCategoryRepository.findById(product.getProductCategory().getCategoryId()).orElseThrow();
         product.setProductCategory(productCategory);
@@ -139,19 +106,8 @@ public class BusinessController {
     }
     @PostMapping("/product-delete")
     public String deleteProduct(@AuthenticationPrincipal UserDetails user, Product product){
-        System.out.println(product);
-        User user1 = userRepository.findByUsername(user.getUsername());
-        int bId = 0;
-        Collection<Business> businesses = businessRepository.findAll();
-        for (var b:businesses) {
-            User user2 = b.getUser();
-            if(user1.equals(user2)) {
-                bId = b.getBusinessId();
-            }
-        }
+        Business business1 = roleOnPage.findBusinessByUser(user);
         Product product1 = productRepository.getById(product.getProductId());
-        System.out.println(product1);
-        Business business1 = businessRepository.getById(bId);
         Set<Product> productBusiness = business1.getProducts();
         productBusiness.remove(product1);
         business1.setProducts(productBusiness);
@@ -161,26 +117,18 @@ public class BusinessController {
         businessByProduct.remove(business1);
         product1.setBusinesses(businessByProduct);
         productRepository.delete(product1);
-        return "redirect:/business/"+ bId + "/product-create";
+        return "redirect:/business/"+ business1.getBusinessId() + "/product-create";
     }
 
     @RequestMapping(value = "/business/{id}/add-review", method = RequestMethod.POST)
     public String addReview(@PathVariable("id") int id, @AuthenticationPrincipal UserDetails user, BusinessReview br) {
+        System.out.println(br);
         BusinessReview businessReview = new BusinessReview();
         businessReview.setReviewTitle(br.getReviewTitle());
         businessReview.setReviewBusiness(br.getReviewBusiness());
         businessReview.setRateB1(br.getRateB1());
         Business business = businessRepository.getById(id);
-        User user1 = userRepository.findByUsername(user.getUsername());
-        List<Buddy> buddies = buddyRepository.findAll();
-        int bId = 0;
-        for (var b:buddies) {
-            User user2 = b.getUser();
-            if(user1.equals(user2)) {
-                bId = b.getBuddyId();
-            }
-        }
-        Buddy buddy = buddyRepository.getById(bId);
+        Buddy buddy = roleOnPage.findBuddyByUser(user);
         businessReview.setBuddy(buddy);
         businessReview.setBuddy(buddy);
         businessReview.setBuddyId(buddy.getBuddyId());

@@ -45,36 +45,15 @@
                 <p th:text="${Distance}">2 km away</p>
                 <input type="submit" value="Edit" id="editBtn"/>
             </div>
-
-<!--            <iframe id="iframe1" name="iframe1" style="position: absolute; left: -9999px;"></iframe>-->
         <form hidden name="businessEd" method="POST" th:object="${business}" class="businessForm">
             <input readonly id="id" type="number" name="id" th:value="${business.businessId}"/><br/><br/>
             <input id="name" type="text" name="busName" th:value="${business.busName}" placeholder="Имя" /><br/><br/>
             <input id="busImg" type="text" name="busImg" th:value="${business.busImg}" placeholder="Фото"/><br/>Фото<br/>
             <input id="location" type="text" name="location" th:value="${business.location}" placeholder="Расположение" /><br/><br/>
             <input id="link" type="text" name="businessLink" th:value="${business.businessLink}" placeholder="Ссылка"/><br/><br/>
-<!--            <a herf="http://www.google.com">Link</a>-->
+
             <input type="submit" value="Save" id="btnSubmit"/>
         </form>
-
-
-
-<!--                <p id="link" th:text="${business.businessLink}" th:data-link="business.businessLink">link</p>-->
-<!--                <a href='${business.businessLink}' class="btn">Переход по ссылке</a>-->
-<!--                <div onclick="javascript:location.href='${business.businessLink}';">Переход по ссылке</div>-->
-<!--                <p align="right"> <button id="linkButton">Book a table</button></p>-->
-<!--            <script>-->
-<!--                $("#linkButton").on('click', function (event) {-->
-<!--                    $.ajax({-->
-<!--                        type: 'GET', // method attribute of form-->
-<!--                        url: '/link'-->
-<!--                    });-->
-<!--                });-->
-<!--            </script>-->
-<!--                <link action="http://italyco.rest/hitch-medikov" target="_blank">-->
-<!--                    <link rel="shortcut icon" href="http://italyco.rest/hitch-medikov">-->
-<!--                    <button>Переход по ссылке</button>-->
-
                 <div class="tabs">
                     <input type="radio" name="inset" value="" id="tab_3" checked>
                     <label for="tab_3">Rating</label>
@@ -102,6 +81,7 @@
                             </table>
                         <td><a id="addNewProduct" th:href="@{{id}/product-create(id=${business.businessId})}">Menu editing</a></td>
                         <!--                        <button><a th:href="@{business/{businessId}/product-create}">Add new product</a></button>-->
+
                     </div>
                 </div>
             </div>
@@ -145,6 +125,7 @@
             <p><a th:href="@{/buddy/{id}(id=${review.buddy.buddyId})}"><img th:src="@{${review.buddy.avatarImg}}" alt="Buddy image" width="130" height="180"></a></p>
             <th>
             <p th:text="${review.reviewTitle}"> Review_title</p><br>
+                <p th:text="${review.reviewBusiness}"> Review</p><br>
             <div id="rating_pr">
                 <span th:text="${review.rateB1}"> Rate_B1</span>
 

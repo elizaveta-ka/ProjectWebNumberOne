@@ -32,11 +32,7 @@ public class ProductController {
     private final ProductCategoryRepository productCategoryRepository;
     private final UserRepository userRepository;
     private final BuddyRepository buddyRepository;
-
     private final RoleOnPage roleOnPage;
-
-
-
 
     @Autowired
     public ProductController(ProductRepository productRepository, ProductReviewRepository productReviewRepository, ProductCategoryRepository productCategoryRepository, UserRepository userRepository, BuddyRepository buddyRepository, RoleOnPage roleOnPage) {
@@ -47,14 +43,6 @@ public class ProductController {
         this.buddyRepository = buddyRepository;
         this.roleOnPage = roleOnPage;
     }
-    @GetMapping("/products")
-    public String findAll(Model model) {
-        List<Product> products = productRepository.findAll();
-        List<ProductCategory> productCategories = productCategoryRepository.findAll();
-        model.addAttribute("products", products);
-        model.addAttribute("productCategories", productCategories);
-        return "product-list";
-    }
 
     @GetMapping("/productsAdd")
     public String productAdd(Model model) {
@@ -64,7 +52,7 @@ public class ProductController {
         model.addAttribute("productCategories", productCategories);
         return "product-list";
     }
-    //страница продукта
+
     @GetMapping("/product/{id}")
     public String showProductPage(@PathVariable("id") int id, @AuthenticationPrincipal UserDetails user, Model model) {
         User userInPage = userRepository.findByUsername(user.getUsername());
@@ -90,17 +78,7 @@ public class ProductController {
         productReview.setReviewProduct(pr.getReviewProduct());
         productReview.setRateP1(pr.getRateP1());
         Product product = productRepository.getById(id);
-        User user1 = userRepository.findByUsername(user.getUsername());
-        List<Buddy> buddies = buddyRepository.findAll();
-        int bId = 0;
-        for (var b:buddies) {
-            User user2 = b.getUser();
-            if(user1.equals(user2)) {
-                bId = b.getBuddyId();
-            }
-        }
-        System.out.println(productReview);
-        Buddy buddy = buddyRepository.getById(bId);
+        Buddy buddy = roleOnPage.findBuddyByUser(user);
         productReview.setBuddyId(buddy.getBuddyId());
         Collection<ProductReview> productReviews = buddy.getProductAuthors();
         productReviews.add(productReview);
@@ -113,11 +91,7 @@ public class ProductController {
         calculateRating(id);
         return "redirect:/product/" + id;
     }
-//    @RequestMapping(value = "/product/{id}/edit-review", method = RequestMethod.POST)
-//    public String editReview(@PathVariable("id") int id, Model model, BindingResult result, @Valid ProductReview pr) {
-//        productReviewRepository.save(pr);
-//        return "redirect:/product" + id;
-//    }
+
     public void calculateRating(int id) {
         float calcRate = 0;
         Product p = productRepository.getById(id);

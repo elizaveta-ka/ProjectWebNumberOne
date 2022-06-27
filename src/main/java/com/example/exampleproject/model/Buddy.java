@@ -85,6 +85,9 @@ public class Buddy {
         this.avatarImg = avatarImg;
     }
 
+    public Buddy(String b1) {
+    }
+
     @Override
     public String toString() {
         return "Buddy{" +

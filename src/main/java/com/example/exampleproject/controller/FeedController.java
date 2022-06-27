@@ -57,7 +57,11 @@ public class FeedController {
             Buddy buddy = roleOnPage.findRoleBuddyOnPage(userInPage);
             model.addAttribute("homeId", buddy.getBuddyId());
             List<Product> productsRecommendations = businessLogicService.createProductRecommendations(products, buddy);
-            model.addAttribute("products", productsRecommendations);
+            if(buddy.getProductAuthors().size() == 0) {
+                model.addAttribute("products", products);
+            } else {
+                model.addAttribute("products", productsRecommendations);
+            }
         } else if (userInPage.getRole().getName().equals("business")) {
             List<Product> products = productRepository.findAll();
             Business business = roleOnPage.findRoleBusinessOnPage(userInPage);
@@ -98,13 +102,6 @@ public class FeedController {
         product1.setBuddies(buddiesList);
         productRepository.save(product1);
         return "redirect:/feed";
-    }
-
-
-    @GetMapping("/notifications")
-    public String notificationPage() {
-
-        return "notifications";
     }
     public String hideAdminButton (UserDetails user){
         String closeButtonAdmin = "true";

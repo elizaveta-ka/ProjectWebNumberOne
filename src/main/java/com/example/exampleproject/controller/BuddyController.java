@@ -14,8 +14,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
-import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 
 
@@ -36,21 +34,12 @@ public class BuddyController {
         this.userRepository = userRepository;
         this.roleOnPage = roleOnPage;
     }
-    @GetMapping("/buddy")
-    public String findAll(Model model) {
-        List<Buddy> buddies = buddyRepository.findAll();
-        List<Product> products = productRepository.findAll();
-        model.addAttribute("buddies", buddies);
-        model.addAttribute("products", products);
-        return "buddy-list";
-    }
 
     @GetMapping("/buddy/{id}")
     public String showBuddyPage(@PathVariable("id") int id, @AuthenticationPrincipal UserDetails user,Model model) throws UnsupportedEncodingException {
         User userInPage = userRepository.findByUsername(user.getUsername());
         if(userInPage.getRole().getName().equals("user")) {
             Buddy buddy = roleOnPage.findRoleBuddyOnPage(userInPage);
-//            model.addAttribute("buddy", buddy);
             model.addAttribute("homeId", buddy.getBuddyId());
         } else if (userInPage.getRole().getName().equals("business")) {
             Business business = roleOnPage.findRoleBusinessOnPage(userInPage);
@@ -62,35 +51,15 @@ public class BuddyController {
         return "buddy-page";
     }
 
-    @GetMapping("/buddy-delete/{id}")
-    public String deleteBuddy(@PathVariable("id") int id) {
-        Buddy buddy = buddyRepository.getById(id);
-        List<Buddy> buddies = buddyRepository.findAll();
-
-//       buddyRepository.deleteById(id);
-
-        return "redirect:/buddy";
-    }
-
     @PostMapping("/buddy/{id}")
    public String updateBuddy(@PathVariable int id, @AuthenticationPrincipal UserDetails user, Buddy buddy, BindingResult bindingResult, String formData) {
-        User user1 = userRepository.findByUsername(user.getUsername());
-        int bId = 0;
-        Collection<Buddy> buddies = buddyRepository.findAll();
-        for (var b:buddies) {
-            User user2 = b.getUser();
-            if(user1.equals(user2)) {
-                bId = b.getBuddyId();
-            }
-        }
-        Buddy buddy1 = buddyRepository.getById(bId);
-        buddy1.setFirstName(buddy.getFirstName());
-        buddy1.setLastName(buddy.getLastName());
-        buddy1.setAge(buddy.getAge());
-        System.out.println(buddy);
-        buddy1.setAvatarImg(buddy.getAvatarImg());
-        buddy1.setCity(buddy.getCity());
-        buddyRepository.save(buddy1);
+        Buddy buddyEdit = roleOnPage.findBuddyByUser(user);
+        buddyEdit.setFirstName(buddy.getFirstName());
+        buddyEdit.setLastName(buddy.getLastName());
+        buddyEdit.setAge(buddy.getAge());
+        buddyEdit.setAvatarImg(buddy.getAvatarImg());
+        buddyEdit.setCity(buddy.getCity());
+        buddyRepository.save(buddyEdit);
        return "redirect:/buddy/" + id;
    }
     @GetMapping("/buddy/{id}/wishlist")
@@ -112,28 +81,19 @@ public class BuddyController {
 
     @PostMapping("/wishlist-delete")
     public String deleteProduct(@AuthenticationPrincipal UserDetails user, Product product){
-        User user1 = userRepository.findByUsername(user.getUsername());
-        int bId = 0;
-        Collection<Buddy> buddies = buddyRepository.findAll();
-        for (var b:buddies) {
-            User user2 = b.getUser();
-            if(user1.equals(user2)) {
-                bId = b.getBuddyId();
-            }
-        }
-        Buddy buddy1 = buddyRepository.getById(bId);
+        Buddy buddy = roleOnPage.findBuddyByUser(user);
         Product product1 = productRepository.getById(product.getProductId());
         System.out.println(product1);
-        Set<Product> productBuddy = buddy1.getProducts();
+        Set<Product> productBuddy = buddy.getProducts();
         productBuddy.remove(product1);
-        buddy1.setProducts(productBuddy);
-        buddyRepository.save(buddy1);
+        buddy.setProducts(productBuddy);
+        buddyRepository.save(buddy);
 
         Set<Buddy> buddyProduct = product1.getBuddies();
-        buddyProduct.remove(buddy1);
+        buddyProduct.remove(buddy);
         product1.setBuddies(buddyProduct);
         productRepository.delete(product1);
-        return "redirect:/buddy/"+ bId + "/wishlist";
+        return "redirect:/buddy/"+ buddy.getBuddyId() + "/wishlist";
     }
 
 
