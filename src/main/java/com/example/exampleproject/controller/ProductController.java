@@ -86,8 +86,8 @@ public class ProductController {
         productReview.setBuddy(buddy);
         productReview.setProduct(product);
         productReview.setProductId(product.getProductId());
-        buddyRepository.save(buddy);
-        productReviewRepository.save(productReview);
+        buddyRepository.saveAndFlush(buddy);
+        productReviewRepository.saveAndFlush(productReview);
         calculateRating(id);
         return "redirect:/product/" + id;
     }
@@ -100,7 +100,7 @@ public class ProductController {
                 calcRate += pr.getRateP1();
             }
             calcRate /= p.getProductReviews().size();
-            p.setPrRating(calcRate);
-            productRepository.save(p);
+            productRepository.getById(id).setPrRating(calcRate);
+            productRepository.save(productRepository.getById(id));
         }
 }

@@ -96,10 +96,8 @@
 
             </div></div><br>
         <div id="business_block">
-                <div th:each = "bR : ${product.businesses}" ><p th:text="${bR.busName} + ${', '} + ${bR.location}">Business_NAME, Business_LocationE<p>
-                    <p align="right"> <button onclick ="window.location.href='{{link}(link=${bR.businessLink})}';">Book a table</button></p>
-                    <p><a th:href="@{/business/{id}(id=${bR.businessId})}"><img th:src="@{${bR.busImg}}" alt="Buddy image" width="900" height="600"></a></p>
-                <p th:text="${Distance}">2 km away</p>
+                <div><p th:text="${product.businesses[0].busName} + ${', '} + ${product.businesses[0].location}">Business_NAME, Business_LocationE<p>
+                    <p><a th:href="@{/business/{id}(id=${product.businesses[0].businessId})}"><img th:src="@{${product.businesses[0].busImg}}" alt="Buddy image" width="900" height="600"></a></p>
             </div>
         </div>
 </article><br>

@@ -41,7 +41,6 @@
                 <p  hidden id="userName" th:text="${business.user.id}" th:data-userName="${business.user.id}">User</p>
                 <p hidden id="roleB" th:text = "${business.user.role.id}"
                     th:data-roleB="${business.user.role.id}"> role </p>
-                <p th:text="${business.businessLink}">Link</p>
                 <p><img th:src="@{${business.busImg}}" alt="Business image" width="300" height="200"></a></p>
                 <p th:text="${Distance}">2 km away</p>
                 <input type="submit" value="Edit" id="editBtn"/>
