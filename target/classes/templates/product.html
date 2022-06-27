@@ -39,8 +39,9 @@
                 <h1 hidden id="role" th:text = "${user.role.id}"
                     th:data-role="${user.role.id}"> role </h1>
                 <h1 th:text="${product.productName}"> Product_NAME </h1>
-                <p><img th:src="@{${product.productImg}}" alt="Buddy image" width="130" height="180"></p>
-                <p th:text="${product['productCategory']['categoryName']}">Category_NAME</p>
+                <p th:text="${product['productCategory']['categoryName']}" >Category_NAME</p>
+                <p><img style="display: inline-block" th:src="@{${product.productImg}}" alt="Buddy image" width="80" height="300"></p>
+
                 <div class="tabs">
                     <input type="radio" name="inset" value="" id="tab_1" checked>
                     <label for="tab_1">Rating</label>
@@ -49,12 +50,12 @@
                     <label for="tab_2">Suggestions</label><br>
 
                     <div id="rating">
-                        <div id="overall"><div id="oRate"></div></div> <p th:text="${product.prRating}"></p>
-                        <input type="hidden" id="ovRate" th:value="${product.prRating}">
-                    </div>
-
                         <span th:text="${product.prRating}"> Rate_P1</span>
                         <p th:text="${count}">Count Authors</p>
+                    </div>
+
+                        <div id="overall"><div id="oRate"></div></div> <p th:text="${product.prRating}"></p>
+                        <input type="hidden" id="ovRate" th:value="${product.prRating}">
                     </div>
 
                     <div id="suggestions" th:each="s : ${product.productCategory.suggestions}">

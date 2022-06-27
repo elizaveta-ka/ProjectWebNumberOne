@@ -4,7 +4,6 @@
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript" th:src="@{/js/profileForm.js}"></script>
-    <script type="text/javascript" th:src="@{/js/menuHandler.js}"></script>
     <script type="text/javascript" th:src="@{/js/ShowEdit.js}"></script>
     <script type="text/javascript" th:src="@{/js/menuHandler.js}"></script>
     <meta charset="UTF-8">
@@ -49,9 +48,6 @@
             </div>
             </div>
         </div>
-
-
-
                 <form  hidden name="buddyEd" method="POST"  th:object="${buddy}" modelAttribute="buddy" class="buddyForm" th:name="buddyEd" th:id="buddyEd">
                     <input readonly id="id" type="hidden" name="id" th:value="${buddy.buddyId}" th:data-id="${buddy.buddyId}"/><br/><br/>
                     <input id="firstName" type="text" name="firstName" th:value="${buddy.firstName}" placeholder="Имя" th:data-fName="${buddy.firstName}" /><br/>Имя<br/>
