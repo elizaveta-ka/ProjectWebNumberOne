@@ -24,13 +24,9 @@
         var pw1 = document.getElementById("password2").value;
         var user = document.getElementById("username").value;
         var age = document.getElementById("age").value;
-        var users = document.getElementById("users").innerHTML;
-        var form = document.querySelector("form");
-        var data = new FormData(form);
-        var outputRole = "";
-        for (const entry of data) {
-            outputRole = entry[0] + entry[1];
-        };
+        var usersRaw = document.getElementById("users").innerHTML;
+        var users = usersRaw.replace(/[^a-zа-яё\s]/gi, '');
+        var usersArray = users.split(" ");
 
         if(user == "") {
             document.getElementById("message").innerHTML = "**Fill the username please!";
@@ -50,7 +46,8 @@
         }
 
 
-        if(users.includes(user)) {
+        else if(usersArray.includes(user)) {
+
             document.getElementById("message").innerHTML = "**This username exists!";
             return false;
         }

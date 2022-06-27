@@ -8,6 +8,125 @@
     <script type="text/javascript" th:src="@{/js/showReview.js}"></script>
     <script type="text/javascript" th:src="@{/js/menuHandler.js}"></script>
     <script type="text/javascript" th:src="@{/js/particlesJS.js}"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=<ваш API-ключ>" type="text/javascript"></script>
+    <script src="https://yandex.st/jquery/2.2.3/jquery.min.js" type="text/javascript"></script>
+
+    <script>
+
+
+        // Как только будет загружен API и готов DOM, выполняем инициализацию
+        ymaps.ready(init);
+
+
+        // Инициализация и уничтожение карты при нажатии на кнопку.
+        function init () {
+
+            var usersAllRev = document.getElementById("allrev").innerHTML;
+            var revArray = usersAllRev.split("@");
+            var review = revArray[revArray.length - 2].substring(2);
+
+
+            var geolocation = ymaps.geolocation;
+            var loc = document.getElementById("loc").innerHTML;
+            var locArr = loc.split(", ");
+            var loc1 = locArr[0];
+            var loc2 = locArr[1];
+            var myMap;
+            document.getElementById("map").hidden = true;
+            $('#toggle').bind({
+                click: function () {
+                    document.getElementById("map").hidden = false;
+                    if (!myMap) {
+                        myMap = new ymaps.Map('map', {
+                            center: [loc1, loc2],
+                            zoom: 16,
+                            controls: ['routePanelControl']
+                        }, {
+                            searchControlProvider: 'yandex#search'
+                        });
+                        myMap.controls.add('routePanelControl', {
+                            maxWidth: 300,
+                        });
+                        var routePanel = myMap.controls.get('routePanelControl').routePanel;
+                        routePanel.options.set('adjustMapMargin', true);
+                        routePanel.state.set({
+                            fromEnabled: false,
+                            from: "Санкт-Петербург",
+                            to: loc,
+                            type: "auto"
+                        });
+                        // Создаем геообъект с типом геометрии "Точка".
+                        myGeoObject = new ymaps.GeoObject({
+                            // Описание геометрии.
+                            geometry: {
+                                type: "Point",
+                                coordinates: [Number(loc1)+ 0.00020, loc2]
+                            },
+                            // Свойства.
+                            properties: {
+                                // Контент метки.
+                                iconContent: review
+
+                            }
+                        }, {
+                            // Опции.
+                            // Иконка метки будет растягиваться под размер ее содержимого.
+                            preset: 'islands#blackStretchyIcon',
+                            // Метку можно перемещать.
+                            draggable: true
+                        });
+                        // Сравним положение, вычисленное по ip пользователя и
+                        // положение, вычисленное средствами браузера.
+                        geolocation.get({
+                            provider: 'yandex',
+                            mapStateAutoApply: true
+                        }).then(function (result) {
+                            // Красным цветом пометим положение, вычисленное через ip.
+                            result.geoObjects.options.set('preset', 'islands#redCircleIcon');
+                            result.geoObjects.get(0).properties.set({
+                                balloonContentBody: 'Мое местоположение'
+                            });
+                            myMap.geoObjects.add(result.geoObjects);
+                        });
+
+                        geolocation.get({
+                            provider: 'browser',
+                            mapStateAutoApply: true
+                        }).then(function (result) {
+                            // Синим цветом пометим положение, полученное через браузер.
+                            // Если браузер не поддерживает эту функциональность, метка не будет добавлена на карту.
+                            result.geoObjects.options.set('preset', 'islands#blueCircleIcon');
+                            myMap.geoObjects.add(result.geoObjects);
+                        });
+                        myMap.geoObjects
+                            .add(myGeoObject)
+
+                            .add(new ymaps.Placemark([loc1, loc2], {
+                                balloonContent:
+
+                                    document.getElementById("nameofBr").innerHTML
+                                    + " " + document.getElementById("address").innerHTML
+                            }, {
+
+                                preset: 'islands#icon',
+                                iconColor: '#0095b6'
+                            }));
+
+                        $("#toggle").attr('value', 'Скрыть карту');
+                    }
+                    else {
+                        document.getElementById("map").hidden = true;
+                        myMap.destroy();// Деструктор карты
+                        myMap = null;
+                        $("#toggle").attr('value', 'Показать карту снова');
+                    }
+                }
+            });
+        }
+
+
+    </script>
+
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../../static/main.css"/>
     <title>Product Page</title>
@@ -102,10 +221,18 @@
             <div id="rating_pr">
                 <span th:text="${review.rateP1}"> Rate_P1</span>
 
+                <p name = "allrev" hidden id = "allrev" th:text="${allrev}" th:value="${allrev}"> Review_title</p><br>
+
+
             </div></div><br>
         <div id="business_block">
-                <div><p th:text="${product.businesses[0].busName} + ${', '} + ${product.businesses[0].location}">Business_NAME, Business_LocationE<p>
+            <div><p th:text="${product.businesses[0].busName} + ${', '} + ${product.businesses[0].location}">Business_NAME, Business_LocationE<p>
+                    <label  name="loc" th:field="${product.businesses[0].businessLink}" hidden id="loc" th:value="${product.businesses[0].businessLink}" th:text = "${product.businesses[0].businessLink}"/>
+                    <label  name="nameofBr" th:field="${product.businesses[0].busName}" hidden id="nameofBr" th:value="${product.businesses[0].busName}" th:text = "${product.businesses[0].busName}"/>
+                    <label  name="address" th:field="${product.businesses[0].location}" hidden id="address" th:value="${product.businesses[0].location}" th:text = "${product.businesses[0].location}"/>
                     <p><a th:href="@{/business/{id}(id=${product.businesses[0].businessId})}"><img th:src="@{${product.businesses[0].busImg}}" alt="Buddy image" width="900" height="600"></a></p>
+                    <input type="button" value="Показать карту" id="toggle"  />
+                    <div id="map" style="width: 700px; height: 500px"></div>
             </div>
         </div>
 </article><br>
