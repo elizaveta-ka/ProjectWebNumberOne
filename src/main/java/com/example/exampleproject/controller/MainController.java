@@ -5,6 +5,7 @@ import com.example.exampleproject.repository.RoleRepository;
 import com.example.exampleproject.repository.UserRepository;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,9 +33,11 @@ public class MainController {
     }
 
     @GetMapping("/admin")
-    public String admin( Model model) {
+    public String admin(Model model) {
+
         List <User> users = userRepository.findAll();
         model.addAttribute("users", users);
+
         return "admin";
     }
     @GetMapping("/login")
@@ -58,11 +61,5 @@ public class MainController {
         return "redirect:/admin";
     }
 
-@GetMapping("/xxx")
-public String getxxx(Model model){
-    List <User> users = userRepository.findAll();
-    model.addAttribute("users", users);
 
-    return "xxx";
-}
 }

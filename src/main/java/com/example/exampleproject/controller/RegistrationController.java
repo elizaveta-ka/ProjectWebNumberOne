@@ -57,7 +57,6 @@ public class RegistrationController {
         User newUser = new User(username, password);
 
         Role newRole = rolerep.findByName(role).orElseThrow();
-        System.out.println(newRole);
         newUser.setRole(newRole);
 
         newUser.setActive(true);

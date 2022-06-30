@@ -3,18 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Buddies</title>
-<!--    <script type="text/javascript">-->
-<!--        $(function() {-->
-<!--            $('.jqButton').button();-->
-<!--        });-->
-<!--    </script>-->
 </head>
 <script type="text/javascript" src="/plugins/jquery.viewportchecker.js"></script>
+<link rel="stylesheet" type="text/css" th:href="@{/main.css}" href="../../../static/main.css"/>
 <script>
 
     window.onload = function hide() {
 
-        if( document.getElementById("role").innerText == "ADMIN") {
+        if( document.getElementById("role").innerText.includes("admin")) {
             document.getElementById("ban").hidden = true;
             document.getElementById("password").innerHTML = "*******";
         }
@@ -35,7 +31,7 @@
 <div th:switch="${users}">
     <h2 th:case="null">No buddies found!</h2>
     <div th:case="*">
-        <h2>Buddies</h2>
+        <h2>All users</h2>
         <table>
             <thead>
             <tr>
@@ -52,12 +48,12 @@
             <form class="form-profile" th:action="@{/admin}" method="post" th:name="profile" th:id="profile" onload = "return hide()" >
             <tr th:each="user : ${users}">
                 <td th:text="${user.id}"></td>
-                <td name = "username" id = "username" th:text="${user.username}" th:value="${user.username}"></td>
-
-                <td th:text="${user.password}"></td>
+                <th name = "username" id = "username" th:text="${user.username}" th:value="${user.username}"></th>
+                <td id = "password" th:text="${user.password}"></td>
                 <td name = "active" id = "active" th:text="${user.active}" th:value = ${user.active}></td>
                 <td th:text="${user.role.getName()}"></td>
                 <td><a id="ban" th:href="@{/ban-user/{id}(id=${user.id})}">Ban/Unban<i></i></a></td>
+                <td hidden id = "role" th:text="${user.role.getName()}"></td>
                     </form>
                 </form>
                 </td>

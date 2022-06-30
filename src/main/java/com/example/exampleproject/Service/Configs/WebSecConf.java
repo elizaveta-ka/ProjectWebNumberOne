@@ -20,7 +20,8 @@ import org.springframework.stereotype.Component;
 public class WebSecConf extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private MyAP adapter;
 
     @Autowired
     public WebSecConf(UserService userService) {
@@ -31,6 +32,7 @@ public class WebSecConf extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userService)
                         .passwordEncoder(NoOpPasswordEncoder.getInstance());
+        auth.authenticationProvider(adapter);
 
     }
 
@@ -45,9 +47,9 @@ public class WebSecConf extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/login", "/registration", "/feed", "/logout").permitAll()
-                .antMatchers("/admin/").hasAnyAuthority("ROLE_ADMIN")
-                .antMatchers("/business/", "/buddy/").hasAnyAuthority("ROLE_BUSINESS")
-                .antMatchers("/buddy/", "/business/" ).hasAnyAuthority("ROLE_USER")
+                .antMatchers("/admin").hasAnyAuthority("ROLE_admin")
+                .antMatchers("/business/", "/buddy/").hasAnyAuthority("ROLE_business")
+                .antMatchers("/buddy/", "/business/" ).hasAnyAuthority("ROLE_user")
 
                 .anyRequest().authenticated()
                 .and()
@@ -76,11 +78,11 @@ public class WebSecConf extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 
         auth.inMemoryAuthentication()
-                .withUser("user").password("password").roles("USER")
+                .withUser("user").password("password").roles("user")
                 .and()
-                .withUser("admin").password("password").roles("ADMIN")
+                .withUser("admin").password("password").roles("admin")
                 .and()
-                .withUser("business").password("password").roles("BUSINESS");
+                .withUser("business").password("password").roles("business");
     }
 
 

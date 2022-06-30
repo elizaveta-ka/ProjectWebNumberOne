@@ -12,18 +12,20 @@
 <script>
     window.onload = function hide() {
 
-        if( document.getElementById("close").innerText == "true") {
-            document.getElementById("admin").hidden = true;
+        let flagOfClose = document.getElementById("close").innerText;
 
+        if( flagOfClose.includes("true")) {
+            document.getElementById("admin").hidden = true;
         }
         else {
             document.getElementById("admin").hidden = false;
-
         }
 
     }
 </script>
 <header>
+    <a id="admin" th:href="@{/admin}" onload = "return hide()"><img th:src="@{/images/BoozeBuddyMin.svg}">BOOZE USERS</a>
+    <br>
     <a id="menuBtn" onclick="openMenu()"><img th:src="@{/images/BoozeBuddyMin.svg}"><h2>Feed</h2></a>
 
 </header>
@@ -35,8 +37,10 @@
         <a th:href="@{/feed}">Feed</a>
         <a th:href="@{/friend}">Find friends</a>
         <a th:href="@{/logout}">Log out</a>
+
+        <label  name="close" th:field="${hideButtonAdmin}" hidden id="close" th:value="${hideButtonAdmin}" th:text = "${hideButtonAdmin}"/>
     </SideMenu>
-    <a id="admin" th:href="@{/admin}" onload = "return hide()">USERS</a>
+
     <article>
 
         <div id="num_block">
@@ -62,21 +66,11 @@
                 <input type="submit" value="Add Wishlist" class="btnAdd"/>
             </form>
         </div><br>
-<!--            <input type="hidden" th:field="*{product.productId}" class="product_block" id="productId"-->
-<!--                   placeholder="productId" th:data-product="product.productId">-->
-
-<!--            <div><div class="rating">-->
-<!--                <span th:text="${rateP1}"> Rate_P1</span> <span th:text="${rateP2}"> Rate_P2</span><br>-->
-<!--                <span th:text="${rateP3}"> Rate_P3</span> <span th:text="${rateP4}"> Rate_P4</span></div>-->
-<!--                <br>-->
-<!--&lt;!&ndash;                <p id="product_img"><img src="*{'data:image/png;base64, '+image}" alt="product_img"></p>&ndash;&gt;-->
-<!--            </div>-->
-
 
 
     </article><br>
 </section>
-<label  name="close" th:field="${hideButtonAdmin}" hidden id="close" th:value="${hideButtonAdmin}" th:text = "${hideButtonAdmin}"/>
+
 </body>
 
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>

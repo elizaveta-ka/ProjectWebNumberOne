@@ -50,6 +50,7 @@ public class FeedController {
 
     @GetMapping("/feed")
     public String findAll(@AuthenticationPrincipal UserDetails user, Model model) {
+
         model.addAttribute("hideButtonAdmin", hideAdminButton(user));
         User userInPage = userRepository.findByUsername(user.getUsername());
         if(userInPage.getRole().getName().equals("user")) {
@@ -77,9 +78,9 @@ public class FeedController {
 
     @PostMapping("/feed")
     public String addWishlist(@AuthenticationPrincipal UserDetails user, Product product) {
-        System.out.println(user);
+
         User user1 =userRepository.findByUsername(user.getUsername());
-        System.out.println(user1);
+
         int bId = 0;
 
         Product product1 = productRepository.getById(product.getProductId());
@@ -108,7 +109,7 @@ public class FeedController {
         if (user != null) {
             User loggedUser = userRepository.findByUsername(user.getUsername());
 
-            if (loggedUser.getRole().getName().equals("ADMIN")) {
+            if (loggedUser.getRole().getName().equals("admin")) {
                 closeButtonAdmin = "false";
             }
             else {
