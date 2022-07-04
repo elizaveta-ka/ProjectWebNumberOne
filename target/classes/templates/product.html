@@ -230,7 +230,7 @@
                     <label  name="loc" th:field="${product.businesses[0].businessLink}" hidden id="loc" th:value="${product.businesses[0].businessLink}" th:text = "${product.businesses[0].businessLink}"/>
                     <label  name="nameofBr" th:field="${product.businesses[0].busName}" hidden id="nameofBr" th:value="${product.businesses[0].busName}" th:text = "${product.businesses[0].busName}"/>
                     <label  name="address" th:field="${product.businesses[0].location}" hidden id="address" th:value="${product.businesses[0].location}" th:text = "${product.businesses[0].location}"/>
-                    <p><a th:href="@{/business/{id}(id=${product.businesses[0].businessId})}"><img th:src="@{${product.businesses[0].busImg}}" alt="Buddy image" width="900" height="600"></a></p>
+                    <p><a th:href="@{/business/{id}(id=${product.businesses[0].businessId})}"><img th:src="@{${product.businesses[0].busImg}}" alt="Buddy image" width="360" height="260"></a></p>
                     <input type="button" value="Показать карту" id="toggle"  />
                     <div id="map" style="width: 700px; height: 500px"></div>
             </div>
