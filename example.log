@@ -1,0 +1,542 @@
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#26]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#27]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 7609
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = marest
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#27]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#28]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 5654
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 2
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = oleg
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#28]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#29]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 3435
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 2
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = kate
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#29]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#30]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = aaaa
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 2
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = andrey2
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#30]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#31]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 1212
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 2
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = olya
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#31]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#32]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = aaaa
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 2
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = Viktor
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#32]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#33]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = alex
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 1
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = GM_Alex
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#33]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#34]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = aaaa
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 2
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = Clement
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#34]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#35]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = aaaa
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 1
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = GM_Stepan
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#35]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.transaction.internal.TransactionImpl - committing
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.transaction.internal.TransactionImpl - On TransactionImpl creation, JpaCompliance#isJpaTransactionComplianceEnabled == false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.transaction.internal.TransactionImpl - begin
+DEBUG http-nio-9090-exec-10 org.hibernate.query.criteria.internal.CriteriaQueryImpl - Rendered criteria query -> select generatedAlias0 from User as generatedAlias0
+DEBUG http-nio-9090-exec-10 org.hibernate.SQL - select user0_.id as id1_10_, user0_.active as active2_10_, user0_.password as password3_10_, user0_.user_role as user_rol5_10_, user0_.username as username4_10_ from users user0_
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result set row: 0
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#1]
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result set row: 1
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#2]
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result set row: 2
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#3]
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result set row: 3
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#4]
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result set row: 4
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#5]
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result set row: 5
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#6]
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result set row: 6
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#7]
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result set row: 7
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#8]
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result set row: 8
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#9]
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result set row: 9
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#10]
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result set row: 10
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#11]
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result set row: 11
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#12]
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result set row: 12
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#13]
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result set row: 13
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#14]
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result set row: 14
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#15]
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result set row: 15
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#16]
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result set row: 16
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#17]
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result set row: 17
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#18]
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result set row: 18
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#19]
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result set row: 19
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#20]
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result set row: 20
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#21]
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result set row: 21
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#22]
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result set row: 22
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#23]
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result set row: 23
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#24]
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result set row: 24
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#25]
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result set row: 25
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#26]
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result set row: 26
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#27]
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result set row: 27
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#28]
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result set row: 28
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#29]
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result set row: 29
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#30]
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result set row: 30
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#31]
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result set row: 31
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#32]
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result set row: 32
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#33]
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result set row: 33
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#34]
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result set row: 34
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#35]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#1]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = admin
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 1
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.SQL - select role0_.id as id1_8_0_, role0_.name as name2_8_0_ from roles role0_ where role0_.id=?
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.plan.exec.process.internal.EntityReferenceInitializerImpl - On call to EntityIdentifierReaderImpl#resolve, EntityKey was already known; should only happen on root returns with an optional identifier specified
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.Role#1]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `name` : value = admin
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`name`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.Role#1]
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.entity.plan.AbstractLoadPlanBasedEntityLoader - Done entity load : com.example.exampleproject.model.Role#1
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = admin
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#1]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#2]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 6666
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 2
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.SQL - select role0_.id as id1_8_0_, role0_.name as name2_8_0_ from roles role0_ where role0_.id=?
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.plan.exec.process.internal.EntityReferenceInitializerImpl - On call to EntityIdentifierReaderImpl#resolve, EntityKey was already known; should only happen on root returns with an optional identifier specified
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.Role#2]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `name` : value = user
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`name`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.Role#2]
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.entity.plan.AbstractLoadPlanBasedEntityLoader - Done entity load : com.example.exampleproject.model.Role#2
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = liza
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#2]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#3]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 3333
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 2
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = stepan
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#3]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#4]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 4444
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 2
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = andrey
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#4]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#5]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 2222
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.SQL - select role0_.id as id1_8_0_, role0_.name as name2_8_0_ from roles role0_ where role0_.id=?
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.plan.exec.process.internal.EntityReferenceInitializerImpl - On call to EntityIdentifierReaderImpl#resolve, EntityKey was already known; should only happen on root returns with an optional identifier specified
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.Role#3]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `name` : value = business
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`name`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.Role#3]
+DEBUG http-nio-9090-exec-10 org.hibernate.loader.entity.plan.AbstractLoadPlanBasedEntityLoader - Done entity load : com.example.exampleproject.model.Role#3
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = hitch
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#5]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#6]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 1111
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = duoBar
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#6]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#7]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 1212
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = duoAsia
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#7]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#8]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 2323
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = harvest
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#8]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#9]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 2324
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = gods
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#9]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#10]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 2325
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = birch
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#10]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#11]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 3435
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = georg
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#11]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#12]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 5565
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = jerome
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#12]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#13]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 6765
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = mona
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#13]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#14]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 8778
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = seasignora
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#14]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#15]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 7898
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = secretchoco
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#15]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#16]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 7865
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = krang
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#16]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#17]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 0990
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = friendof
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#17]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#18]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 4545
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = avocado
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#18]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#19]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 4593
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = betulla
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#19]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#20]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 3691
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = frofro
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#20]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#21]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 2904
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = charlie
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#21]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#22]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 4936
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = cococo
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#22]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#23]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 4520
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = under
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#23]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#24]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 1209
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = ezoizakaya
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#24]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#25]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 0978
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = thebuddy
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#25]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#26]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 0456
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = chang
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#26]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#27]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 7609
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = marest
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#27]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#28]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 5654
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 2
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = oleg
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#28]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#29]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 3435
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 2
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = kate
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#29]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#30]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = aaaa
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 2
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = andrey2
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#30]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#31]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 1212
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 2
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = olya
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#31]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#32]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = aaaa
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 2
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = Viktor
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#32]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#33]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = alex
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 1
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = GM_Alex
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#33]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#34]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = aaaa
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 2
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = Clement
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#34]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#35]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = aaaa
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 1
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = GM_Stepan
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#35]
+DEBUG http-nio-9090-exec-10 org.hibernate.engine.transaction.internal.TransactionImpl - committing
+DEBUG SpringApplicationShutdownHook org.hibernate.internal.SessionFactoryImpl - HHH000031: Closing
+DEBUG SpringApplicationShutdownHook org.hibernate.type.spi.TypeConfiguration$Scope - Un-scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration$Scope@e65400d] from SessionFactory [org.hibernate.internal.SessionFactoryImpl@5c713e10]
+DEBUG SpringApplicationShutdownHook org.hibernate.service.internal.AbstractServiceRegistryImpl - Implicitly destroying ServiceRegistry on de-registration of all child ServiceRegistries
+DEBUG SpringApplicationShutdownHook org.hibernate.boot.registry.internal.BootstrapServiceRegistryImpl - Implicitly destroying Boot-strap registry on de-registration of all child ServiceRegistries

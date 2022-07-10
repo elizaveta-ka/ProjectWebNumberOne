@@ -1,0 +1,793 @@
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : rateP2
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : rateP3
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : rateP4
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : reviewProduct
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : reviewTitle
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+DEBUG restartedMain org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+DEBUG restartedMain org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(collection=com.example.exampleproject.model.Buddy.productAuthors)
+    - Returns
+       - CollectionReturnImpl(collection=com.example.exampleproject.model.Buddy.productAuthors, querySpaceUid=<gen:0>, path=[com.example.exampleproject.model.Buddy.productAuthors])
+          - (collection element) CollectionFetchableElementEntityGraph(entity=com.example.exampleproject.model.ProductReview, querySpaceUid=<gen:1>, path=[com.example.exampleproject.model.Buddy.productAuthors].<elements>)
+             - EntityAttributeFetchImpl(entity=com.example.exampleproject.model.Product, querySpaceUid=<gen:2>, path=[com.example.exampleproject.model.Buddy.productAuthors].<elements>.product)
+                - CollectionAttributeFetchImpl(collection=com.example.exampleproject.model.Product.buddies, querySpaceUid=<gen:3>, path=[com.example.exampleproject.model.Buddy.productAuthors].<elements>.product.buddies)
+                   - (collection element) CollectionFetchableElementEntityGraph(entity=com.example.exampleproject.model.Buddy, querySpaceUid=<gen:4>, path=[com.example.exampleproject.model.Buddy.productAuthors].<elements>.product.buddies.<elements>)
+                - CollectionAttributeFetchImpl(collection=com.example.exampleproject.model.Product.businesses, querySpaceUid=<gen:5>, path=[com.example.exampleproject.model.Buddy.productAuthors].<elements>.product.businesses)
+                   - (collection element) CollectionFetchableElementEntityGraph(entity=com.example.exampleproject.model.Business, querySpaceUid=<gen:6>, path=[com.example.exampleproject.model.Buddy.productAuthors].<elements>.product.businesses.<elements>)
+                - EntityAttributeFetchImpl(entity=com.example.exampleproject.model.ProductCategory, querySpaceUid=<gen:7>, path=[com.example.exampleproject.model.Buddy.productAuthors].<elements>.product.productCategory)
+                   - CollectionAttributeFetchImpl(collection=com.example.exampleproject.model.ProductCategory.suggestions, querySpaceUid=<gen:8>, path=[com.example.exampleproject.model.Buddy.productAuthors].<elements>.product.productCategory.suggestions)
+                      - (collection element) CollectionFetchableElementEntityGraph(entity=com.example.exampleproject.model.Suggestion, querySpaceUid=<gen:9>, path=[com.example.exampleproject.model.Buddy.productAuthors].<elements>.product.productCategory.suggestions.<elements>)
+    - QuerySpaces
+       - CollectionQuerySpaceImpl(uid=<gen:0>, collection=com.example.exampleproject.model.Buddy.productAuthors)
+          - SQL table alias mapping - productaut0_
+          - alias suffix - 0_
+          - suffixed key columns - {buddy_id2_6_0_}
+          - entity-element alias suffix - 1_
+          - 1_entity-element suffixed key columns - product_1_6_1_
+          - JOIN (JoinDefinedByMetadata(elements)) : <gen:0> -> <gen:1>
+             - EntityQuerySpaceImpl(uid=<gen:1>, entity=com.example.exampleproject.model.ProductReview)
+                - SQL table alias mapping - productaut0_
+                - alias suffix - 1_
+                - suffixed key columns - {product_1_6_1_}
+                - JOIN (JoinDefinedByMetadata(product)) : <gen:1> -> <gen:2>
+                   - EntityQuerySpaceImpl(uid=<gen:2>, entity=com.example.exampleproject.model.Product)
+                      - SQL table alias mapping - product1_
+                      - alias suffix - 2_
+                      - suffixed key columns - {product_1_7_2_}
+                      - JOIN (JoinDefinedByMetadata(productCategory)) : <gen:2> -> <gen:7>
+                         - EntityQuerySpaceImpl(uid=<gen:7>, entity=com.example.exampleproject.model.ProductCategory)
+                            - SQL table alias mapping - productcat2_
+                            - alias suffix - 3_
+                            - suffixed key columns - {category1_5_3_}
+
+DEBUG restartedMain org.hibernate.loader.collection.plan.CollectionLoader - Static select for collection com.example.exampleproject.model.Buddy.productAuthors: select productaut0_.buddy_id as buddy_id2_6_0_, productaut0_.product_review_id as product_1_6_0_, productaut0_.product_review_id as product_1_6_1_, productaut0_.buddy_id as buddy_id2_6_1_, productaut0_.photo as photo3_6_1_, productaut0_.product_id as product_4_6_1_, productaut0_.ratep1 as ratep5_6_1_, productaut0_.ratep2 as ratep6_6_1_, productaut0_.ratep3 as ratep7_6_1_, productaut0_.ratep4 as ratep8_6_1_, productaut0_.review_product as review_p9_6_1_, productaut0_.review_title as review_10_6_1_, product1_.product_id as product_1_7_2_, product1_.pr_rating as pr_ratin2_7_2_, product1_.category_id as category5_7_2_, product1_.product_img as product_3_7_2_, product1_.product_name as product_4_7_2_, productcat2_.category_id as category1_5_3_, productcat2_.category_name as category2_5_3_, productcat2_.first_att as first_at3_5_3_, productcat2_.second_att as second_a4_5_3_, productcat2_.third_att as third_at5_5_3_ from product_review productaut0_ inner join products product1_ on productaut0_.product_id=product1_.product_id inner join product_category productcat2_ on product1_.category_id=productcat2_.category_id where productaut0_.buddy_id=?
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.CollectionQuerySpaceImpl@1f9cf41c]
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@4cdef002]
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : buddies
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Property path deemed to be circular : buddies
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : businesses
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:2> -> org.hibernate.loader.plan.build.internal.spaces.CollectionQuerySpaceImpl@3b121c90]
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:3> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@f7a510]
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : prRating
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : productCategory
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:4> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@178e3e2b]
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : productCategory.categoryName
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : productCategory.firstAtt
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : productCategory.secondAtt
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : productCategory.suggestions
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:5> -> org.hibernate.loader.plan.build.internal.spaces.CollectionQuerySpaceImpl@4e905731]
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:6> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@7372a4d6]
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : productCategory.thirdAtt
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : productImg
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : productName
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : productReviews
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:7> -> org.hibernate.loader.plan.build.internal.spaces.CollectionQuerySpaceImpl@156bb3f5]
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:8> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@192671dd]
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+DEBUG restartedMain org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+DEBUG restartedMain org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(collection=com.example.exampleproject.model.Buddy.products)
+    - Returns
+       - CollectionReturnImpl(collection=com.example.exampleproject.model.Buddy.products, querySpaceUid=<gen:0>, path=[com.example.exampleproject.model.Buddy.products])
+          - (collection element) CollectionFetchableElementEntityGraph(entity=com.example.exampleproject.model.Product, querySpaceUid=<gen:1>, path=[com.example.exampleproject.model.Buddy.products].<elements>)
+             - CollectionAttributeFetchImpl(collection=com.example.exampleproject.model.Product.businesses, querySpaceUid=<gen:2>, path=[com.example.exampleproject.model.Buddy.products].<elements>.businesses)
+                - (collection element) CollectionFetchableElementEntityGraph(entity=com.example.exampleproject.model.Business, querySpaceUid=<gen:3>, path=[com.example.exampleproject.model.Buddy.products].<elements>.businesses.<elements>)
+             - EntityAttributeFetchImpl(entity=com.example.exampleproject.model.ProductCategory, querySpaceUid=<gen:4>, path=[com.example.exampleproject.model.Buddy.products].<elements>.productCategory)
+                - CollectionAttributeFetchImpl(collection=com.example.exampleproject.model.ProductCategory.suggestions, querySpaceUid=<gen:5>, path=[com.example.exampleproject.model.Buddy.products].<elements>.productCategory.suggestions)
+                   - (collection element) CollectionFetchableElementEntityGraph(entity=com.example.exampleproject.model.Suggestion, querySpaceUid=<gen:6>, path=[com.example.exampleproject.model.Buddy.products].<elements>.productCategory.suggestions.<elements>)
+             - CollectionAttributeFetchImpl(collection=com.example.exampleproject.model.Product.productReviews, querySpaceUid=<gen:7>, path=[com.example.exampleproject.model.Buddy.products].<elements>.productReviews)
+                - (collection element) CollectionFetchableElementEntityGraph(entity=com.example.exampleproject.model.ProductReview, querySpaceUid=<gen:8>, path=[com.example.exampleproject.model.Buddy.products].<elements>.productReviews.<elements>)
+    - QuerySpaces
+       - CollectionQuerySpaceImpl(uid=<gen:0>, collection=com.example.exampleproject.model.Buddy.products)
+          - SQL table alias mapping - products0_
+          - alias suffix - 0_
+          - suffixed key columns - {buddy_id2_11_0_}
+          - entity-element alias suffix - 1_
+          - 1_entity-element suffixed key columns - product_1_7_1_
+          - JOIN (JoinDefinedByMetadata(elements)) : <gen:0> -> <gen:1>
+             - EntityQuerySpaceImpl(uid=<gen:1>, entity=com.example.exampleproject.model.Product)
+                - SQL table alias mapping - product1_
+                - alias suffix - 1_
+                - suffixed key columns - {product_1_7_1_}
+                - JOIN (JoinDefinedByMetadata(productCategory)) : <gen:1> -> <gen:4>
+                   - EntityQuerySpaceImpl(uid=<gen:4>, entity=com.example.exampleproject.model.ProductCategory)
+                      - SQL table alias mapping - productcat2_
+                      - alias suffix - 2_
+                      - suffixed key columns - {category1_5_2_}
+
+DEBUG restartedMain org.hibernate.loader.collection.plan.CollectionLoader - Static select for collection com.example.exampleproject.model.Buddy.products: select products0_.buddy_id as buddy_id2_11_0_, products0_.product_id as product_1_11_0_, product1_.product_id as product_1_7_1_, product1_.pr_rating as pr_ratin2_7_1_, product1_.category_id as category5_7_1_, product1_.product_img as product_3_7_1_, product1_.product_name as product_4_7_1_, productcat2_.category_id as category1_5_2_, productcat2_.category_name as category2_5_2_, productcat2_.first_att as first_at3_5_2_, productcat2_.second_att as second_a4_5_2_, productcat2_.third_att as third_at5_5_2_ from wishlist products0_ inner join products product1_ on products0_.product_id=product1_.product_id inner join product_category productcat2_ on product1_.category_id=productcat2_.category_id where products0_.buddy_id=?
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.CollectionQuerySpaceImpl@55c39417]
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@3371de6d]
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : age
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : avatarImg
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : businessAuthors
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:2> -> org.hibernate.loader.plan.build.internal.spaces.CollectionQuerySpaceImpl@18e54cd2]
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:3> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@255a7b15]
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : city
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : firstName
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : lastName
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : productAuthors
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:4> -> org.hibernate.loader.plan.build.internal.spaces.CollectionQuerySpaceImpl@373ac21c]
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:5> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@1e92dca2]
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : products
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:6> -> org.hibernate.loader.plan.build.internal.spaces.CollectionQuerySpaceImpl@2c23907e]
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:7> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@5a57d43c]
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : subscribers
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Property path deemed to be circular : subscribers
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : subscriptions
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Property path deemed to be circular : subscriptions
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : user
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:8> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@3b1cd748]
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : user.active
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : user.password
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : user.role
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:9> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@373ad37]
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : user.role.name
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : user.username
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+DEBUG restartedMain org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+DEBUG restartedMain org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(collection=com.example.exampleproject.model.Buddy.subscribers)
+    - Returns
+       - CollectionReturnImpl(collection=com.example.exampleproject.model.Buddy.subscribers, querySpaceUid=<gen:0>, path=[com.example.exampleproject.model.Buddy.subscribers])
+          - (collection element) CollectionFetchableElementEntityGraph(entity=com.example.exampleproject.model.Buddy, querySpaceUid=<gen:1>, path=[com.example.exampleproject.model.Buddy.subscribers].<elements>)
+             - CollectionAttributeFetchImpl(collection=com.example.exampleproject.model.Buddy.businessAuthors, querySpaceUid=<gen:2>, path=[com.example.exampleproject.model.Buddy.subscribers].<elements>.businessAuthors)
+                - (collection element) CollectionFetchableElementEntityGraph(entity=com.example.exampleproject.model.BusinessReview, querySpaceUid=<gen:3>, path=[com.example.exampleproject.model.Buddy.subscribers].<elements>.businessAuthors.<elements>)
+             - CollectionAttributeFetchImpl(collection=com.example.exampleproject.model.Buddy.productAuthors, querySpaceUid=<gen:4>, path=[com.example.exampleproject.model.Buddy.subscribers].<elements>.productAuthors)
+                - (collection element) CollectionFetchableElementEntityGraph(entity=com.example.exampleproject.model.ProductReview, querySpaceUid=<gen:5>, path=[com.example.exampleproject.model.Buddy.subscribers].<elements>.productAuthors.<elements>)
+             - CollectionAttributeFetchImpl(collection=com.example.exampleproject.model.Buddy.products, querySpaceUid=<gen:6>, path=[com.example.exampleproject.model.Buddy.subscribers].<elements>.products)
+                - (collection element) CollectionFetchableElementEntityGraph(entity=com.example.exampleproject.model.Product, querySpaceUid=<gen:7>, path=[com.example.exampleproject.model.Buddy.subscribers].<elements>.products.<elements>)
+             - EntityAttributeFetchImpl(entity=com.example.exampleproject.model.User, querySpaceUid=<gen:8>, path=[com.example.exampleproject.model.Buddy.subscribers].<elements>.user)
+                - EntityAttributeFetchImpl(entity=com.example.exampleproject.model.Role, querySpaceUid=<gen:9>, path=[com.example.exampleproject.model.Buddy.subscribers].<elements>.user.role)
+    - QuerySpaces
+       - CollectionQuerySpaceImpl(uid=<gen:0>, collection=com.example.exampleproject.model.Buddy.subscribers)
+          - SQL table alias mapping - subscriber0_
+          - alias suffix - 0_
+          - suffixed key columns - {channel_2_1_0_}
+          - entity-element alias suffix - 1_
+          - 1_entity-element suffixed key columns - buddy_id1_0_1_
+          - JOIN (JoinDefinedByMetadata(elements)) : <gen:0> -> <gen:1>
+             - EntityQuerySpaceImpl(uid=<gen:1>, entity=com.example.exampleproject.model.Buddy)
+                - SQL table alias mapping - buddy1_
+                - alias suffix - 1_
+                - suffixed key columns - {buddy_id1_0_1_}
+                - JOIN (JoinDefinedByMetadata(user)) : <gen:1> -> <gen:8>
+                   - EntityQuerySpaceImpl(uid=<gen:8>, entity=com.example.exampleproject.model.User)
+                      - SQL table alias mapping - user2_
+                      - alias suffix - 2_
+                      - suffixed key columns - {id1_10_2_}
+                      - JOIN (JoinDefinedByMetadata(role)) : <gen:8> -> <gen:9>
+                         - EntityQuerySpaceImpl(uid=<gen:9>, entity=com.example.exampleproject.model.Role)
+                            - SQL table alias mapping - role3_
+                            - alias suffix - 3_
+                            - suffixed key columns - {id1_8_3_}
+
+DEBUG restartedMain org.hibernate.loader.collection.plan.CollectionLoader - Static select for collection com.example.exampleproject.model.Buddy.subscribers: select subscriber0_.channel_id as channel_2_1_0_, subscriber0_.subscriber_id as subscrib1_1_0_, buddy1_.buddy_id as buddy_id1_0_1_, buddy1_.age as age2_0_1_, buddy1_.avatar_img as avatar_i3_0_1_, buddy1_.city as city4_0_1_, buddy1_.first_name as first_na5_0_1_, buddy1_.last_name as last_nam6_0_1_, buddy1_.user_id as user_id7_0_1_, user2_.id as id1_10_2_, user2_.active as active2_10_2_, user2_.password as password3_10_2_, user2_.user_role as user_rol5_10_2_, user2_.username as username4_10_2_, role3_.id as id1_8_3_, role3_.name as name2_8_3_ from buddy_friends subscriber0_ inner join buddies buddy1_ on subscriber0_.subscriber_id=buddy1_.buddy_id left outer join users user2_ on buddy1_.user_id=user2_.id left outer join roles role3_ on user2_.user_role=role3_.id where subscriber0_.channel_id=?
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.CollectionQuerySpaceImpl@3a1a4262]
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@120b2f27]
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : brRating
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : busImg
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : busName
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : businessLink
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : businessReviews
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:2> -> org.hibernate.loader.plan.build.internal.spaces.CollectionQuerySpaceImpl@899084c]
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:3> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@43207c6f]
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : location
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : products
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Property path deemed to be circular : products
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : user
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:4> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@3648fb5d]
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : user.active
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : user.password
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : user.role
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:5> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@54729819]
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : user.role.name
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : user.username
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+DEBUG restartedMain org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+DEBUG restartedMain org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(collection=com.example.exampleproject.model.Product.businesses)
+    - Returns
+       - CollectionReturnImpl(collection=com.example.exampleproject.model.Product.businesses, querySpaceUid=<gen:0>, path=[com.example.exampleproject.model.Product.businesses])
+          - (collection element) CollectionFetchableElementEntityGraph(entity=com.example.exampleproject.model.Business, querySpaceUid=<gen:1>, path=[com.example.exampleproject.model.Product.businesses].<elements>)
+             - CollectionAttributeFetchImpl(collection=com.example.exampleproject.model.Business.businessReviews, querySpaceUid=<gen:2>, path=[com.example.exampleproject.model.Product.businesses].<elements>.businessReviews)
+                - (collection element) CollectionFetchableElementEntityGraph(entity=com.example.exampleproject.model.BusinessReview, querySpaceUid=<gen:3>, path=[com.example.exampleproject.model.Product.businesses].<elements>.businessReviews.<elements>)
+             - EntityAttributeFetchImpl(entity=com.example.exampleproject.model.User, querySpaceUid=<gen:4>, path=[com.example.exampleproject.model.Product.businesses].<elements>.user)
+                - EntityAttributeFetchImpl(entity=com.example.exampleproject.model.Role, querySpaceUid=<gen:5>, path=[com.example.exampleproject.model.Product.businesses].<elements>.user.role)
+    - QuerySpaces
+       - CollectionQuerySpaceImpl(uid=<gen:0>, collection=com.example.exampleproject.model.Product.businesses)
+          - SQL table alias mapping - businesses0_
+          - alias suffix - 0_
+          - suffixed key columns - {product_1_3_0_}
+          - entity-element alias suffix - 1_
+          - 1_entity-element suffixed key columns - business1_2_1_
+          - JOIN (JoinDefinedByMetadata(elements)) : <gen:0> -> <gen:1>
+             - EntityQuerySpaceImpl(uid=<gen:1>, entity=com.example.exampleproject.model.Business)
+                - SQL table alias mapping - business1_
+                - alias suffix - 1_
+                - suffixed key columns - {business1_2_1_}
+                - JOIN (JoinDefinedByMetadata(user)) : <gen:1> -> <gen:4>
+                   - EntityQuerySpaceImpl(uid=<gen:4>, entity=com.example.exampleproject.model.User)
+                      - SQL table alias mapping - user2_
+                      - alias suffix - 2_
+                      - suffixed key columns - {id1_10_2_}
+                      - JOIN (JoinDefinedByMetadata(role)) : <gen:4> -> <gen:5>
+                         - EntityQuerySpaceImpl(uid=<gen:5>, entity=com.example.exampleproject.model.Role)
+                            - SQL table alias mapping - role3_
+                            - alias suffix - 3_
+                            - suffixed key columns - {id1_8_3_}
+
+DEBUG restartedMain org.hibernate.loader.collection.plan.CollectionLoader - Static select for collection com.example.exampleproject.model.Product.businesses: select businesses0_.product_id as product_1_3_0_, businesses0_.business_id as business2_3_0_, business1_.business_id as business1_2_1_, business1_.br_rating as br_ratin2_2_1_, business1_.bus_img as bus_img3_2_1_, business1_.bus_name as bus_name4_2_1_, business1_.business_link as business5_2_1_, business1_.location as location6_2_1_, business1_.user_id as user_id7_2_1_, user2_.id as id1_10_2_, user2_.active as active2_10_2_, user2_.password as password3_10_2_, user2_.user_role as user_rol5_10_2_, user2_.username as username4_10_2_, role3_.id as id1_8_3_, role3_.name as name2_8_3_ from business_product businesses0_ inner join business business1_ on businesses0_.business_id=business1_.business_id left outer join users user2_ on business1_.user_id=user2_.id left outer join roles role3_ on user2_.user_role=role3_.id where businesses0_.product_id=?
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.CollectionQuerySpaceImpl@6592d62c]
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@386bc707]
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : buddy
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:2> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@1589df58]
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : buddy.age
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : buddy.avatarImg
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : buddy.businessAuthors
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:3> -> org.hibernate.loader.plan.build.internal.spaces.CollectionQuerySpaceImpl@42064e1f]
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:4> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@6ec3a148]
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : buddy.city
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : buddy.firstName
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : buddy.lastName
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : buddy.productAuthors
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Property path deemed to be circular : buddy.productAuthors
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : buddy.products
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:5> -> org.hibernate.loader.plan.build.internal.spaces.CollectionQuerySpaceImpl@35ebd0d7]
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:6> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@254f8b82]
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : buddy.subscribers
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:7> -> org.hibernate.loader.plan.build.internal.spaces.CollectionQuerySpaceImpl@55c95f82]
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:8> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@26f37d92]
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : buddy.subscriptions
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:9> -> org.hibernate.loader.plan.build.internal.spaces.CollectionQuerySpaceImpl@4d756cf3]
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:10> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@14bfed44]
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : buddy.user
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:11> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@b95851e]
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : buddy.user.active
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : buddy.user.password
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : buddy.user.role
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:12> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@504396c2]
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : buddy.user.username
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : buddyId
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : photo
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : product
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Property path deemed to be circular : product
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : productId
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : rateP1
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : rateP2
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : rateP3
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : rateP4
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : reviewProduct
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : reviewTitle
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+DEBUG restartedMain org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+DEBUG restartedMain org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(collection=com.example.exampleproject.model.Product.productReviews)
+    - Returns
+       - CollectionReturnImpl(collection=com.example.exampleproject.model.Product.productReviews, querySpaceUid=<gen:0>, path=[com.example.exampleproject.model.Product.productReviews])
+          - (collection element) CollectionFetchableElementEntityGraph(entity=com.example.exampleproject.model.ProductReview, querySpaceUid=<gen:1>, path=[com.example.exampleproject.model.Product.productReviews].<elements>)
+             - EntityAttributeFetchImpl(entity=com.example.exampleproject.model.Buddy, querySpaceUid=<gen:2>, path=[com.example.exampleproject.model.Product.productReviews].<elements>.buddy)
+                - CollectionAttributeFetchImpl(collection=com.example.exampleproject.model.Buddy.businessAuthors, querySpaceUid=<gen:3>, path=[com.example.exampleproject.model.Product.productReviews].<elements>.buddy.businessAuthors)
+                   - (collection element) CollectionFetchableElementEntityGraph(entity=com.example.exampleproject.model.BusinessReview, querySpaceUid=<gen:4>, path=[com.example.exampleproject.model.Product.productReviews].<elements>.buddy.businessAuthors.<elements>)
+                - CollectionAttributeFetchImpl(collection=com.example.exampleproject.model.Buddy.products, querySpaceUid=<gen:5>, path=[com.example.exampleproject.model.Product.productReviews].<elements>.buddy.products)
+                   - (collection element) CollectionFetchableElementEntityGraph(entity=com.example.exampleproject.model.Product, querySpaceUid=<gen:6>, path=[com.example.exampleproject.model.Product.productReviews].<elements>.buddy.products.<elements>)
+                - CollectionAttributeFetchImpl(collection=com.example.exampleproject.model.Buddy.subscribers, querySpaceUid=<gen:7>, path=[com.example.exampleproject.model.Product.productReviews].<elements>.buddy.subscribers)
+                   - (collection element) CollectionFetchableElementEntityGraph(entity=com.example.exampleproject.model.Buddy, querySpaceUid=<gen:8>, path=[com.example.exampleproject.model.Product.productReviews].<elements>.buddy.subscribers.<elements>)
+                - CollectionAttributeFetchImpl(collection=com.example.exampleproject.model.Buddy.subscriptions, querySpaceUid=<gen:9>, path=[com.example.exampleproject.model.Product.productReviews].<elements>.buddy.subscriptions)
+                   - (collection element) CollectionFetchableElementEntityGraph(entity=com.example.exampleproject.model.Buddy, querySpaceUid=<gen:10>, path=[com.example.exampleproject.model.Product.productReviews].<elements>.buddy.subscriptions.<elements>)
+                - EntityAttributeFetchImpl(entity=com.example.exampleproject.model.User, querySpaceUid=<gen:11>, path=[com.example.exampleproject.model.Product.productReviews].<elements>.buddy.user)
+                   - EntityAttributeFetchImpl(entity=com.example.exampleproject.model.Role, querySpaceUid=<gen:12>, path=[com.example.exampleproject.model.Product.productReviews].<elements>.buddy.user.role)
+    - QuerySpaces
+       - CollectionQuerySpaceImpl(uid=<gen:0>, collection=com.example.exampleproject.model.Product.productReviews)
+          - SQL table alias mapping - productrev0_
+          - alias suffix - 0_
+          - suffixed key columns - {product_4_6_0_}
+          - entity-element alias suffix - 1_
+          - 1_entity-element suffixed key columns - product_1_6_1_
+          - JOIN (JoinDefinedByMetadata(elements)) : <gen:0> -> <gen:1>
+             - EntityQuerySpaceImpl(uid=<gen:1>, entity=com.example.exampleproject.model.ProductReview)
+                - SQL table alias mapping - productrev0_
+                - alias suffix - 1_
+                - suffixed key columns - {product_1_6_1_}
+                - JOIN (JoinDefinedByMetadata(buddy)) : <gen:1> -> <gen:2>
+                   - EntityQuerySpaceImpl(uid=<gen:2>, entity=com.example.exampleproject.model.Buddy)
+                      - SQL table alias mapping - buddy1_
+                      - alias suffix - 2_
+                      - suffixed key columns - {buddy_id1_0_2_}
+                      - JOIN (JoinDefinedByMetadata(user)) : <gen:2> -> <gen:11>
+                         - EntityQuerySpaceImpl(uid=<gen:11>, entity=com.example.exampleproject.model.User)
+                            - SQL table alias mapping - user2_
+                            - alias suffix - 3_
+                            - suffixed key columns - {id1_10_3_}
+
+DEBUG restartedMain org.hibernate.loader.collection.plan.CollectionLoader - Static select for collection com.example.exampleproject.model.Product.productReviews: select productrev0_.product_id as product_4_6_0_, productrev0_.product_review_id as product_1_6_0_, productrev0_.product_review_id as product_1_6_1_, productrev0_.buddy_id as buddy_id2_6_1_, productrev0_.photo as photo3_6_1_, productrev0_.product_id as product_4_6_1_, productrev0_.ratep1 as ratep5_6_1_, productrev0_.ratep2 as ratep6_6_1_, productrev0_.ratep3 as ratep7_6_1_, productrev0_.ratep4 as ratep8_6_1_, productrev0_.review_product as review_p9_6_1_, productrev0_.review_title as review_10_6_1_, buddy1_.buddy_id as buddy_id1_0_2_, buddy1_.age as age2_0_2_, buddy1_.avatar_img as avatar_i3_0_2_, buddy1_.city as city4_0_2_, buddy1_.first_name as first_na5_0_2_, buddy1_.last_name as last_nam6_0_2_, buddy1_.user_id as user_id7_0_2_, user2_.id as id1_10_3_, user2_.active as active2_10_3_, user2_.password as password3_10_3_, user2_.user_role as user_rol5_10_3_, user2_.username as username4_10_3_ from product_review productrev0_ inner join buddies buddy1_ on productrev0_.buddy_id=buddy1_.buddy_id left outer join users user2_ on buddy1_.user_id=user2_.id where productrev0_.product_id=?
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:0> -> org.hibernate.loader.plan.build.internal.spaces.CollectionQuerySpaceImpl@3bfd8443]
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:1> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@1c674b57]
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : age
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : avatarImg
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : businessAuthors
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:2> -> org.hibernate.loader.plan.build.internal.spaces.CollectionQuerySpaceImpl@a5c083a]
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:3> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@2c47d7d5]
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : city
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : firstName
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : lastName
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : productAuthors
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:4> -> org.hibernate.loader.plan.build.internal.spaces.CollectionQuerySpaceImpl@545b27ea]
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:5> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@2bf25316]
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : products
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:6> -> org.hibernate.loader.plan.build.internal.spaces.CollectionQuerySpaceImpl@4185938a]
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:7> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@53ee1d10]
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : subscribers
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Property path deemed to be circular : subscribers
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : subscriptions
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Property path deemed to be circular : subscriptions
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : user
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:8> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@5e8714f0]
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : user.active
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : user.password
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : user.role
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.spaces.QuerySpacesImpl - Adding QuerySpace : uid = <gen:9> -> org.hibernate.loader.plan.build.internal.spaces.EntityQuerySpaceImpl@a205076]
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : user.role.name
+DEBUG restartedMain org.hibernate.persister.walking.spi.MetamodelGraphWalker - Visiting attribute path : user.username
+DEBUG restartedMain org.hibernate.loader.plan.build.internal.FetchStyleLoadPlanBuildingAssociationVisitationStrategy - Building LoadPlan...
+DEBUG restartedMain org.hibernate.loader.plan.exec.internal.LoadQueryJoinAndFetchProcessor - processing queryspace <gen:0>
+DEBUG restartedMain org.hibernate.loader.plan.build.spi.LoadPlanTreePrinter - LoadPlan(collection=com.example.exampleproject.model.Buddy.subscriptions)
+    - Returns
+       - CollectionReturnImpl(collection=com.example.exampleproject.model.Buddy.subscriptions, querySpaceUid=<gen:0>, path=[com.example.exampleproject.model.Buddy.subscriptions])
+          - (collection element) CollectionFetchableElementEntityGraph(entity=com.example.exampleproject.model.Buddy, querySpaceUid=<gen:1>, path=[com.example.exampleproject.model.Buddy.subscriptions].<elements>)
+             - CollectionAttributeFetchImpl(collection=com.example.exampleproject.model.Buddy.businessAuthors, querySpaceUid=<gen:2>, path=[com.example.exampleproject.model.Buddy.subscriptions].<elements>.businessAuthors)
+                - (collection element) CollectionFetchableElementEntityGraph(entity=com.example.exampleproject.model.BusinessReview, querySpaceUid=<gen:3>, path=[com.example.exampleproject.model.Buddy.subscriptions].<elements>.businessAuthors.<elements>)
+             - CollectionAttributeFetchImpl(collection=com.example.exampleproject.model.Buddy.productAuthors, querySpaceUid=<gen:4>, path=[com.example.exampleproject.model.Buddy.subscriptions].<elements>.productAuthors)
+                - (collection element) CollectionFetchableElementEntityGraph(entity=com.example.exampleproject.model.ProductReview, querySpaceUid=<gen:5>, path=[com.example.exampleproject.model.Buddy.subscriptions].<elements>.productAuthors.<elements>)
+             - CollectionAttributeFetchImpl(collection=com.example.exampleproject.model.Buddy.products, querySpaceUid=<gen:6>, path=[com.example.exampleproject.model.Buddy.subscriptions].<elements>.products)
+                - (collection element) CollectionFetchableElementEntityGraph(entity=com.example.exampleproject.model.Product, querySpaceUid=<gen:7>, path=[com.example.exampleproject.model.Buddy.subscriptions].<elements>.products.<elements>)
+             - EntityAttributeFetchImpl(entity=com.example.exampleproject.model.User, querySpaceUid=<gen:8>, path=[com.example.exampleproject.model.Buddy.subscriptions].<elements>.user)
+                - EntityAttributeFetchImpl(entity=com.example.exampleproject.model.Role, querySpaceUid=<gen:9>, path=[com.example.exampleproject.model.Buddy.subscriptions].<elements>.user.role)
+    - QuerySpaces
+       - CollectionQuerySpaceImpl(uid=<gen:0>, collection=com.example.exampleproject.model.Buddy.subscriptions)
+          - SQL table alias mapping - subscripti0_
+          - alias suffix - 0_
+          - suffixed key columns - {subscrib1_1_0_}
+          - entity-element alias suffix - 1_
+          - 1_entity-element suffixed key columns - buddy_id1_0_1_
+          - JOIN (JoinDefinedByMetadata(elements)) : <gen:0> -> <gen:1>
+             - EntityQuerySpaceImpl(uid=<gen:1>, entity=com.example.exampleproject.model.Buddy)
+                - SQL table alias mapping - buddy1_
+                - alias suffix - 1_
+                - suffixed key columns - {buddy_id1_0_1_}
+                - JOIN (JoinDefinedByMetadata(user)) : <gen:1> -> <gen:8>
+                   - EntityQuerySpaceImpl(uid=<gen:8>, entity=com.example.exampleproject.model.User)
+                      - SQL table alias mapping - user2_
+                      - alias suffix - 2_
+                      - suffixed key columns - {id1_10_2_}
+                      - JOIN (JoinDefinedByMetadata(role)) : <gen:8> -> <gen:9>
+                         - EntityQuerySpaceImpl(uid=<gen:9>, entity=com.example.exampleproject.model.Role)
+                            - SQL table alias mapping - role3_
+                            - alias suffix - 3_
+                            - suffixed key columns - {id1_8_3_}
+
+DEBUG restartedMain org.hibernate.loader.collection.plan.CollectionLoader - Static select for collection com.example.exampleproject.model.Buddy.subscriptions: select subscripti0_.subscriber_id as subscrib1_1_0_, subscripti0_.channel_id as channel_2_1_0_, buddy1_.buddy_id as buddy_id1_0_1_, buddy1_.age as age2_0_1_, buddy1_.avatar_img as avatar_i3_0_1_, buddy1_.city as city4_0_1_, buddy1_.first_name as first_na5_0_1_, buddy1_.last_name as last_nam6_0_1_, buddy1_.user_id as user_id7_0_1_, user2_.id as id1_10_2_, user2_.active as active2_10_2_, user2_.password as password3_10_2_, user2_.user_role as user_rol5_10_2_, user2_.username as username4_10_2_, role3_.id as id1_8_3_, role3_.name as name2_8_3_ from buddy_friends subscripti0_ inner join buddies buddy1_ on subscripti0_.channel_id=buddy1_.buddy_id left outer join users user2_ on buddy1_.user_id=user2_.id left outer join roles role3_ on user2_.user_role=role3_.id where subscripti0_.subscriber_id=?
+DEBUG restartedMain org.hibernate.mapping.Table - No alter strings for table : buddies
+DEBUG restartedMain org.hibernate.mapping.Table - No alter strings for table : buddy_friends
+DEBUG restartedMain org.hibernate.mapping.Table - No alter strings for table : business
+DEBUG restartedMain org.hibernate.mapping.Table - No alter strings for table : business_product
+DEBUG restartedMain org.hibernate.mapping.Table - No alter strings for table : business_review
+DEBUG restartedMain org.hibernate.mapping.Table - No alter strings for table : hibernate_sequence
+DEBUG restartedMain org.hibernate.mapping.Table - No alter strings for table : product_category
+DEBUG restartedMain org.hibernate.mapping.Table - No alter strings for table : product_review
+DEBUG restartedMain org.hibernate.mapping.Table - No alter strings for table : products
+DEBUG restartedMain org.hibernate.mapping.Table - No alter strings for table : roles
+DEBUG restartedMain org.hibernate.mapping.Table - No alter strings for table : suggestion
+DEBUG restartedMain org.hibernate.mapping.Table - No alter strings for table : users
+DEBUG restartedMain org.hibernate.mapping.Table - No alter strings for table : wishlist
+INFO restartedMain org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+DEBUG restartedMain org.hibernate.query.spi.NamedQueryRepository - Checking 0 named HQL queries
+DEBUG restartedMain org.hibernate.query.spi.NamedQueryRepository - Checking 0 named SQL queries
+DEBUG restartedMain org.hibernate.service.internal.SessionFactoryServiceRegistryImpl - EventListenerRegistry access via ServiceRegistry is deprecated.  Use `sessionFactory.getEventEngine().getListenerRegistry()` instead
+DEBUG restartedMain org.hibernate.internal.SessionFactoryRegistry - Initializing SessionFactoryRegistry : org.hibernate.internal.SessionFactoryRegistry@76bc402d
+DEBUG restartedMain org.hibernate.internal.SessionFactoryRegistry - Registering SessionFactory: 3a0ba939-feb3-405f-a917-76f506bf647a (<unnamed>)
+DEBUG restartedMain org.hibernate.internal.SessionFactoryRegistry - Not binding SessionFactory to JNDI, no JNDI name configured
+DEBUG restartedMain org.hibernate.stat.internal.StatisticsInitiator - Statistics initialized [enabled=false]
+DEBUG restartedMain org.hibernate.engine.transaction.internal.TransactionImpl - On TransactionImpl creation, JpaCompliance#isJpaTransactionComplianceEnabled == false
+DEBUG restartedMain org.hibernate.engine.transaction.internal.TransactionImpl - On TransactionImpl creation, JpaCompliance#isJpaTransactionComplianceEnabled == false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.transaction.internal.TransactionImpl - On TransactionImpl creation, JpaCompliance#isJpaTransactionComplianceEnabled == false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.transaction.internal.TransactionImpl - begin
+DEBUG http-nio-9090-exec-1 org.hibernate.query.criteria.internal.CriteriaQueryImpl - Rendered criteria query -> select generatedAlias0 from User as generatedAlias0
+DEBUG http-nio-9090-exec-1 org.hibernate.hql.internal.QueryTranslatorFactoryInitiator - QueryTranslatorFactory: org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory@1719e456
+DEBUG http-nio-9090-exec-1 org.hibernate.hql.internal.ast.QueryTranslatorImpl - parse() - HQL: select generatedAlias0 from com.example.exampleproject.model.User as generatedAlias0
+DEBUG http-nio-9090-exec-1 org.hibernate.hql.internal.ast.ErrorTracker - throwQueryException() : no errors
+DEBUG http-nio-9090-exec-1 org.hibernate.hql.internal.ast.QueryTranslatorImpl - --- HQL AST ---
+ \-[QUERY] Node: 'query'
+    \-[SELECT_FROM] Node: 'SELECT_FROM'
+       +-[FROM] Node: 'from'
+       |  \-[RANGE] Node: 'RANGE'
+       |     +-[DOT] Node: '.'
+       |     |  +-[DOT] Node: '.'
+       |     |  |  +-[DOT] Node: '.'
+       |     |  |  |  +-[DOT] Node: '.'
+       |     |  |  |  |  +-[IDENT] Node: 'com'
+       |     |  |  |  |  \-[IDENT] Node: 'example'
+       |     |  |  |  \-[IDENT] Node: 'exampleproject'
+       |     |  |  \-[IDENT] Node: 'model'
+       |     |  \-[IDENT] Node: 'User'
+       |     \-[ALIAS] Node: 'generatedAlias0'
+       \-[SELECT] Node: 'select'
+          \-[IDENT] Node: 'generatedAlias0'
+
+DEBUG http-nio-9090-exec-1 org.hibernate.hql.internal.antlr.HqlSqlBaseWalker - select << begin [level=1, statement=select]
+DEBUG http-nio-9090-exec-1 org.hibernate.hql.internal.ast.tree.FromElement - FromClause{level=1} : com.example.exampleproject.model.User (generatedAlias0) -> user0_
+DEBUG http-nio-9090-exec-1 org.hibernate.hql.internal.ast.tree.FromReferenceNode - Resolved : generatedAlias0 -> user0_.id
+DEBUG http-nio-9090-exec-1 org.hibernate.hql.internal.antlr.HqlSqlBaseWalker - select : finishing up [level=1, statement=select]
+DEBUG http-nio-9090-exec-1 org.hibernate.hql.internal.ast.HqlSqlWalker - processQuery() :  ( SELECT ( {select clause} user0_.id ) ( FromClause{level=1} users user0_ ) )
+DEBUG http-nio-9090-exec-1 org.hibernate.hql.internal.ast.util.JoinProcessor - Tables referenced from query nodes:
+ \-QueryNode
+    +-SelectClause
+    | referencedTables(entity User): [users]
+    |  +-IdentNode
+    |  | persister: SingleTableEntityPersister(com.example.exampleproject.model.User)
+    |  | originalText: generatedAlias0
+    |  \-SqlFragment
+    \-FromClause
+       \-FromElement
+
+DEBUG http-nio-9090-exec-1 org.hibernate.hql.internal.ast.util.JoinProcessor - Using FROM fragment [users user0_]
+DEBUG http-nio-9090-exec-1 org.hibernate.hql.internal.antlr.HqlSqlBaseWalker - select >> end [level=1, statement=select]
+DEBUG http-nio-9090-exec-1 org.hibernate.hql.internal.ast.QueryTranslatorImpl - --- SQL AST ---
+ \-[SELECT] QueryNode: 'SELECT'  querySpaces (users)
+    +-[SELECT_CLAUSE] SelectClause: '{select clause}'
+    |  +-[ALIAS_REF] IdentNode: 'user0_.id as id1_10_' {alias=generatedAlias0, className=com.example.exampleproject.model.User, tableAlias=user0_}
+    |  \-[SQL_TOKEN] SqlFragment: 'user0_.active as active2_10_, user0_.password as password3_10_, user0_.user_role as user_rol5_10_, user0_.username as username4_10_'
+    \-[FROM] FromClause: 'from' FromClause{level=1, fromElementCounter=1, fromElements=1, fromElementByClassAlias=[generatedAlias0], fromElementByTableAlias=[user0_], fromElementsByPath=[], collectionJoinFromElementsByPath=[], impliedElements=[]}
+       \-[FROM_FRAGMENT] FromElement: 'users user0_' FromElement{explicit,not a collection join,not a fetch join,fetch non-lazy properties,classAlias=generatedAlias0,role=null,tableName=users,tableAlias=user0_,origin=null,columns={,className=com.example.exampleproject.model.User}}
+
+DEBUG http-nio-9090-exec-1 org.hibernate.hql.internal.ast.ErrorTracker - throwQueryException() : no errors
+DEBUG http-nio-9090-exec-1 org.hibernate.hql.internal.ast.QueryTranslatorImpl - HQL: select generatedAlias0 from com.example.exampleproject.model.User as generatedAlias0
+DEBUG http-nio-9090-exec-1 org.hibernate.hql.internal.ast.QueryTranslatorImpl - SQL: select user0_.id as id1_10_, user0_.active as active2_10_, user0_.password as password3_10_, user0_.user_role as user_rol5_10_, user0_.username as username4_10_ from users user0_
+DEBUG http-nio-9090-exec-1 org.hibernate.hql.internal.ast.ErrorTracker - throwQueryException() : no errors
+DEBUG http-nio-9090-exec-1 org.hibernate.SQL - select user0_.id as id1_10_, user0_.active as active2_10_, user0_.password as password3_10_, user0_.user_role as user_rol5_10_, user0_.username as username4_10_ from users user0_
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result set row: 0
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#1]
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result set row: 1
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#2]
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result set row: 2
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#3]
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result set row: 3
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#4]
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result set row: 4
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#5]
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result set row: 5
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#6]
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result set row: 6
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#7]
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result set row: 7
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#8]
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result set row: 8
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#9]
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result set row: 9
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#10]
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result set row: 10
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#11]
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result set row: 11
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#12]
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result set row: 12
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#13]
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result set row: 13
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#14]
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result set row: 14
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#15]
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result set row: 15
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#16]
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result set row: 16
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#17]
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result set row: 17
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#18]
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result set row: 18
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#19]
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result set row: 19
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#20]
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result set row: 20
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#21]
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result set row: 21
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#22]
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result set row: 22
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#23]
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result set row: 23
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#24]
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result set row: 24
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#25]
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result set row: 25
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#26]
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result set row: 26
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#27]
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result set row: 27
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#28]
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result set row: 28
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#29]
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result set row: 29
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#30]
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result set row: 30
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#31]
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result set row: 31
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#32]
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result set row: 32
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#33]
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result set row: 33
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#34]
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result set row: 34
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.Loader - Result row: EntityKey[com.example.exampleproject.model.User#35]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#1]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = admin
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 1
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.SQL - select role0_.id as id1_8_0_, role0_.name as name2_8_0_ from roles role0_ where role0_.id=?
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.plan.exec.process.internal.EntityReferenceInitializerImpl - On call to EntityIdentifierReaderImpl#resolve, EntityKey was already known; should only happen on root returns with an optional identifier specified
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.Role#1]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `name` : value = admin
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`name`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.Role#1]
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.entity.plan.AbstractLoadPlanBasedEntityLoader - Done entity load : com.example.exampleproject.model.Role#1
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = admin
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#1]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#2]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 6666
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 2
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.SQL - select role0_.id as id1_8_0_, role0_.name as name2_8_0_ from roles role0_ where role0_.id=?
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.plan.exec.process.internal.EntityReferenceInitializerImpl - On call to EntityIdentifierReaderImpl#resolve, EntityKey was already known; should only happen on root returns with an optional identifier specified
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.Role#2]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `name` : value = user
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`name`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.Role#2]
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.entity.plan.AbstractLoadPlanBasedEntityLoader - Done entity load : com.example.exampleproject.model.Role#2
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = liza
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#2]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#3]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 3333
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 2
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = stepan
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#3]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#4]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 4444
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 2
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = andrey
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#4]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#5]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 2222
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.SQL - select role0_.id as id1_8_0_, role0_.name as name2_8_0_ from roles role0_ where role0_.id=?
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.plan.exec.process.internal.EntityReferenceInitializerImpl - On call to EntityIdentifierReaderImpl#resolve, EntityKey was already known; should only happen on root returns with an optional identifier specified
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.Role#3]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `name` : value = business
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`name`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.Role#3]
+DEBUG http-nio-9090-exec-1 org.hibernate.loader.entity.plan.AbstractLoadPlanBasedEntityLoader - Done entity load : com.example.exampleproject.model.Role#3
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = hitch
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#5]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#6]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 1111
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = duoBar
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#6]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#7]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 1212
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = duoAsia
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#7]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#8]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 2323
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = harvest
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#8]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#9]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 2324
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = gods
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#9]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#10]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 2325
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = birch
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#10]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#11]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 3435
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = georg
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#11]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#12]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 5565
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = jerome
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#12]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#13]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 6765
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = mona
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#13]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#14]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 8778
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = seasignora
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#14]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#15]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 7898
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = secretchoco
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#15]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#16]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 7865
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = krang
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#16]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#17]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 0990
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = friendof
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#17]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#18]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 4545
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = avocado
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#18]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#19]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 4593
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = betulla
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#19]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#20]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 3691
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = frofro
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#20]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#21]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 2904
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = charlie
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#21]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#22]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 4936
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = cococo
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#22]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#23]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 4520
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = under
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#23]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#24]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 1209
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = ezoizakaya
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#24]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#25]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 0978
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = thebuddy
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Done materializing entity [com.example.exampleproject.model.User#25]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Resolving attributes for [com.example.exampleproject.model.User#26]
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `active` : value = true
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`active`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `password` : value = 0456
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`password`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `role` : value = 3
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`role`)  - enhanced for lazy-loading? - false
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Processing attribute `username` : value = chang
+DEBUG http-nio-9090-exec-1 org.hibernate.engine.internal.TwoPhaseLoad - Attribute (`username`)  - enhanced for lazy-loading? - false

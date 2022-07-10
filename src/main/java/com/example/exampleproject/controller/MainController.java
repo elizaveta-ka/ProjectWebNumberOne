@@ -29,6 +29,8 @@ public class MainController {
 
     @GetMapping(value = {"/"})
     public String index() {
+        System.out.println(getClass().getClassLoader().getResource("logging.properties"));
+
         return "login";
     }
 
